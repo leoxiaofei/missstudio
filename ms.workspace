@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_workspace_file>
+	<Workspace title="Workspace">
+		<Project filename="MissStudioCore/MissStudioCore.cbp" active="1">
+			<Depends filename="MissTools/MissAPI.cbp" />
+			<Depends filename="MissAPI/MissAPI.cbp" />
+			<Depends filename="MissPluginTest/MissPluginTest.cbp" />
+		</Project>
+		<Project filename="MissTools/MissAPI.cbp" />
+		<Project filename="MissAPI/MissAPI.cbp" />
+		<Project filename="MissPluginTest/MissPluginTest.cbp">
+			<Depends filename="MissAPI/MissAPI.cbp" />
+		</Project>
+	</Workspace>
+</CodeBlocks_workspace_file>
