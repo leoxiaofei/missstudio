@@ -31,6 +31,7 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="interface\IMissConfig.h" />
 		<Unit filename="interface\IMissHotKey.h" />
 		<Unit filename="interface\IMissMain.h" />
 		<Unit filename="interface\IMissPlugin.h" />

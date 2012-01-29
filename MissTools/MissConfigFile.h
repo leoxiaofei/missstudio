@@ -3,8 +3,9 @@
 
 #include <wx/string.h>
 #include <tr1/memory>
+#include "../MissAPI/interface/IMissConfig.h"
 
-class MissConfigFile
+class MissConfigFile:public IMissConfig
 {
     class MissConfigFileImpl;
 

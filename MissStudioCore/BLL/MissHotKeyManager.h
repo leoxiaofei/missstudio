@@ -25,6 +25,11 @@ class MissHotKeyManager : public IMissHotKey
 
         void RunFuncFromHotKey(int nHotKeyID);
 
+        bool RegHotKey(int nHotKeyID, const wxString &strHotKey);
+        bool UnRegHotKey(int nHotKeyID);
+
+        bool ModifyHotKey(int nPlugin, int nFunc, const wxString &strHotKey);
+
         ///接口实现
         bool RegHotKeys(const std::vector<SHotKey>& vecHotKey, MissHotKeyFuncBase* pChild);
 

@@ -20,6 +20,8 @@
 #include "../Widget/MissTaskBarIcon.h"
 #include "../BLL/MissHotKeyManager.h"
 #include "../BLL/MissPluginManager.h"
+#include "../../MissTools/MissConfigFile.h"
+#include "../../MissAPI/plugin/MissPluginBase.h"
 
 #include <wx/dir.h>
 
@@ -168,3 +170,8 @@ IMissHotKey* MissStudioCoreFrame::GetHotKey()
     return m_pHotKeyManager.get();
 }
 
+std::tr1::shared_ptr<IMissConfig> MissStudioCoreFrame::GetConfig(MissPluginBase* pPlugin)
+{
+    std::tr1::shared_ptr<IMissConfig> conf(new MissConfigFile(wxT("config\\") + pPlugin->GetPlugInfo().strPluginName +wxT(".ini")));
+    return conf;
+}
