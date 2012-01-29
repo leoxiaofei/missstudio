@@ -27,7 +27,9 @@
 					<Add library="libwxpngd.a" />
 					<Add library="libwxzlibd.a" />
 					<Add library="libwxmsw28ud_adv.a" />
+					<Add library="libMissTools.a" />
 					<Add directory="$(#wx)\lib\gcc_dll" />
+					<Add directory="$(TARGET_OUTPUT_DIR)" />
 				</Linker>
 			</Target>
 			<Target title="Release">
@@ -50,7 +52,9 @@
 					<Add library="libwxpng.a" />
 					<Add library="libwxzlib.a" />
 					<Add library="libwxmsw28u_adv.a" />
+					<Add library="libMissTools.a" />
 					<Add directory="$(#wx)\lib\gcc_dll" />
+					<Add directory="$(TARGET_OUTPUT_DIR)" />
 				</Linker>
 			</Target>
 		</Build>

@@ -4,6 +4,7 @@
 #include "../BLL/MissHotKeyManager.h"
 #include "../../MissAPI/plugin/MissHotKeyFuncBase.h"
 
+#include <iostream>
 
 class MissHotKeyFrame::MissHotKeyFrameImpl
 {
@@ -24,7 +25,7 @@ void MissHotKeyFrame::InitUI()
 {
     m_listHotKey->InsertColumn(0,_T("ID"),wxLIST_FORMAT_LEFT,0);
     m_listHotKey->InsertColumn(1,_T("插件名称"),wxLIST_FORMAT_LEFT,100);
-    m_listHotKey->InsertColumn(2,_T("功能"),wxLIST_FORMAT_LEFT,100);
+    m_listHotKey->InsertColumn(2,_T("功能"),wxLIST_FORMAT_LEFT,200);
     m_listHotKey->InsertColumn(3,_T("快捷键"),wxLIST_FORMAT_LEFT,100);
     //m_listHotKey->InsertColumn(4,_T(""),wxLIST_FORMAT_LEFT,220);
 
@@ -47,8 +48,8 @@ void MissHotKeyFrame::InitUI()
             //m_listHotKey->SetItem(nItemIndex,0,m_pImpl->m_pData->);
             //m_listHotKey->SetItem(nItemIndex,1,wxString::Format(wxT("%d"),nItemIndex+1));
 
-            m_listHotKey->SetItem(nItemIndex,0,wxString::Format(wxT("%d-%d"),nPluginIndex,++nFuncIndex));
-            m_listHotKey->SetItem(nItemIndex,1,wxT("┖┄┄┄┄┄┄"));
+            m_listHotKey->SetItem(nItemIndex,0,wxString::Format(wxT("%d:%d"),nPluginIndex,++nFuncIndex));
+            m_listHotKey->SetItem(nItemIndex,1,wxT("    ┖┄┄┄┄"));
             m_listHotKey->SetItem(nItemIndex,2,hkitor->strDescription);
             m_listHotKey->SetItem(nItemIndex,3,hkitor->strHotKey);
             ++nItemIndex;
@@ -65,6 +66,8 @@ void MissHotKeyFrame::OnListItemActivated(wxListEvent& event)
     wxString strID = m_listHotKey->GetItemText(nItemIndex);
     long nFunc = -1;
     strID.AfterLast(':').ToLong(&nFunc);
+    std::wcout << strID.c_str() << " " << strID.AfterLast(':').c_str() <<" " << nFunc << std::endl;
+
     if(nFunc > -1)
     {
         long nPlugin = -1;
@@ -73,7 +76,16 @@ void MissHotKeyFrame::OnListItemActivated(wxListEvent& event)
         if(GetHotkeyString(nPlugin,nFunc,strHotkey))
         {
             MissSetHotKey dlg(strHotkey,this);
-            dlg.ShowModal();
+            if(dlg.ShowModal() == wxID_OK)
+            {
+                dlg.GetHotKeyString(strHotkey);
+                if(!m_pImpl->m_pData->ModifyHotKey(nPlugin, nFunc, strHotkey))
+                {
+                    wxMessageBox(wxT("抱歉，快捷键冲突，请重新设置。"));
+                    strHotkey.Clear();
+                }
+                m_listHotKey->SetItem(nItemIndex,3,strHotkey);
+            }
         }
 
     }

@@ -10,9 +10,13 @@ class MissPluginTest : public MissPluginBase, public MissHotKeyFuncBase
         MissPluginTest(IMissMain* pParent);
         virtual ~MissPluginTest();
 
-        void RunFunc(int nFuncIndex);
-        void ModifyHotKey(int nFuncIndex, const wxString& strHotKey);
+        ///初始化插件
         void LoadPlugin();
+
+        ///热键方法实现
+        void RunFunc(int nFuncIndex);
+        void ModifiedHotKey(int nFuncIndex, const wxString& strHotKey);
+
     protected:
     private:
 };

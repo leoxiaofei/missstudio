@@ -9,7 +9,7 @@ class MissHotKeyFuncBase: virtual public IMissPlugin
         virtual ~MissHotKeyFuncBase() {}
 
         virtual void RunFunc(int nFuncIndex) = 0;
-        virtual void ModifyHotKey(int nFuncIndex, const wxString& strHotKey) = 0;
+        virtual void ModifiedHotKey(int nFuncIndex, const wxString& strHotKey) = 0;
 
     protected:
 
