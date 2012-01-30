@@ -1,23 +1,19 @@
 #ifndef IMISSPLUGIN_H
 #define IMISSPLUGIN_H
 
-struct SPlugInfo
-{
-    wxString strPluginName;
-    wxString strVersion;
-    wxString strAuthor;
-    wxString strEmail;
-    wxString strWeb;
-    wxString strSpecification;
-};
+class MissPluginBase;
 
 class IMissPlugin
 {
     public:
         virtual ~IMissPlugin() {}
-        virtual const SPlugInfo& GetPlugInfo() = 0;
+        const MissPluginBase* GetPlugin(){return m_pPlugin;}
+
     protected:
+        IMissPlugin(MissPluginBase* pParent):m_pPlugin(pParent){}
+
     private:
+        MissPluginBase* m_pPlugin;
 };
 
 #endif // IMISSPLUGIN_H

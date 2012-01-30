@@ -63,7 +63,7 @@ class MissStudioCoreFrame: public GUIFrame, public IMissMain
         virtual void           ExitApp();
         virtual IMissTaskIcon *GetTaskIcon();
         virtual IMissHotKey   *GetHotKey();
-        virtual std::tr1::shared_ptr<IMissConfig> GetConfig(MissPluginBase* pPlugin) ;
+        virtual std::tr1::shared_ptr<IMissConfig> GetConfig(MissPluginBase* pPlugin);
 };
 
 BEGIN_DECLARE_EVENT_TYPES()

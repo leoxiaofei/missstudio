@@ -3,6 +3,7 @@
 #include "MissSetHotKey.h"
 #include "../BLL/MissHotKeyManager.h"
 #include "../../MissAPI/plugin/MissHotKeyFuncBase.h"
+#include "../../MissAPI/plugin/MissPluginBase.h"
 
 #include <iostream>
 
@@ -39,7 +40,7 @@ void MissHotKeyFrame::InitUI()
         nFuncIndex = -2;
         m_listHotKey->InsertItem(nItemIndex, wxEmptyString);
         m_listHotKey->SetItem(nItemIndex,0,wxString::Format(wxT("%d:%d"),nPluginIndex,++nFuncIndex));
-        m_listHotKey->SetItem(nItemIndex,1,itor->pChild->GetPlugInfo().strPluginName);
+        m_listHotKey->SetItem(nItemIndex,1,itor->pChild->GetPlugin()->GetPlugInfo().strPluginName);
         ++nItemIndex;
         for(std::vector<SHotKey>::iterator hkitor = itor->vecHotKey.begin();
             hkitor != itor->vecHotKey.end(); ++hkitor)

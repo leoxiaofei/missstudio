@@ -8,7 +8,8 @@
 
 
 MissPluginTest::MissPluginTest(IMissMain* pParent):
-MissPluginBase(pParent)
+MissPluginBase(pParent),
+MissHotKeyFuncBase(this)
 {
     //ctor
     SPlugInfo info;
