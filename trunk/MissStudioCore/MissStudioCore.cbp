@@ -84,6 +84,8 @@
 		<Unit filename="BLL\MissHotKeyManager.h" />
 		<Unit filename="BLL\MissPluginManager.cpp" />
 		<Unit filename="BLL\MissPluginManager.h" />
+		<Unit filename="BLL\MissWidgetManager.cpp" />
+		<Unit filename="BLL\MissWidgetManager.h" />
 		<Unit filename="Generated\GUIFrame.cpp" />
 		<Unit filename="Generated\GUIFrame.h" />
 		<Unit filename="Main\MissHotKeyFrame.cpp" />
@@ -96,6 +98,8 @@
 		<Unit filename="Main\MissStudioCoreMain.h" />
 		<Unit filename="Widget\MissTaskBarIcon.cpp" />
 		<Unit filename="Widget\MissTaskBarIcon.h" />
+		<Unit filename="Widget\MissWidget.cpp" />
+		<Unit filename="Widget\MissWidget.h" />
 		<Unit filename="Widget\wxKeyMonitorTextCtrl.cpp" />
 		<Unit filename="Widget\wxKeyMonitorTextCtrl.h" />
 		<Unit filename="WxWizFrame.fbp" />

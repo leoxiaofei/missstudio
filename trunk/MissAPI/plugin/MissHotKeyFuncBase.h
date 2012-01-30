@@ -3,15 +3,17 @@
 
 #include "../interface/IMissPlugin.h"
 
-class MissHotKeyFuncBase: virtual public IMissPlugin
+class MissHotKeyFuncBase: public IMissPlugin
 {
     public:
+        MissHotKeyFuncBase(MissPluginBase* pPlugin):IMissPlugin(pPlugin){};
         virtual ~MissHotKeyFuncBase() {}
 
         virtual void RunFunc(int nFuncIndex) = 0;
         virtual void ModifiedHotKey(int nFuncIndex, const wxString& strHotKey) = 0;
 
     protected:
+
 
     private:
 };

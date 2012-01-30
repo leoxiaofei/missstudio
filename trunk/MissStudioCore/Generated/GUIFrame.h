@@ -96,11 +96,32 @@ class SetHotKeyBase : public wxDialog
 		wxStdDialogButtonSizer* m_sdbSizer1;
 		wxButton* m_sdbSizer1OK;
 		wxButton* m_sdbSizer1Cancel;
+		
+		// Virtual event handlers, overide them in your derived class
+		virtual void OnBtnClearClick( wxCommandEvent& event ) { event.Skip(); }
+		
 	
 	public:
 		
 		SetHotKeyBase( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxT("设置热键"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 264,96 ), long style = wxDEFAULT_DIALOG_STYLE ); 
 		~SetHotKeyBase();
+	
+};
+
+///////////////////////////////////////////////////////////////////////////////
+/// Class MissWidgetBase
+///////////////////////////////////////////////////////////////////////////////
+class MissWidgetBase : public wxFrame 
+{
+	private:
+	
+	protected:
+	
+	public:
+		
+		MissWidgetBase( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxEmptyString, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 500,300 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
+		
+		~MissWidgetBase();
 	
 };
 
