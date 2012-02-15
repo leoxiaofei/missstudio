@@ -20,6 +20,7 @@ m_pImpl(new MissHotKeyFrameImpl)
 {
     m_pImpl->m_pData = pData;
     InitUI();
+    Centre( wxBOTH );
 }
 
 void MissHotKeyFrame::InitUI()

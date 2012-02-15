@@ -14,5 +14,6 @@ MissWidgetManager::~MissWidgetManager()
 
 std::tr1::shared_ptr<wxFrame> MissWidgetManager::CreateWidget()
 {
-    return new MissWidget(0L);
+    //MissWidget a(0);
+    //return new MissWidget(0);
 }

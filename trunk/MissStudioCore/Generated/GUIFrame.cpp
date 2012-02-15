@@ -139,15 +139,3 @@ SetHotKeyBase::~SetHotKeyBase()
 	m_btnClear->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( SetHotKeyBase::OnBtnClearClick ), NULL, this );
 	
 }
-
-MissWidgetBase::MissWidgetBase( wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style ) : wxFrame( parent, id, title, pos, size, style )
-{
-	this->SetSizeHints( wxDefaultSize, wxDefaultSize );
-	
-	
-	this->Centre( wxBOTH );
-}
-
-MissWidgetBase::~MissWidgetBase()
-{
-}
