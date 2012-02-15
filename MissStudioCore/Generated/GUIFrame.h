@@ -108,21 +108,4 @@ class SetHotKeyBase : public wxDialog
 	
 };
 
-///////////////////////////////////////////////////////////////////////////////
-/// Class MissWidgetBase
-///////////////////////////////////////////////////////////////////////////////
-class MissWidgetBase : public wxFrame 
-{
-	private:
-	
-	protected:
-	
-	public:
-		
-		MissWidgetBase( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxEmptyString, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 500,300 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
-		
-		~MissWidgetBase();
-	
-};
-
 #endif //__GUIFRAME_H__

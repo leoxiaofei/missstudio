@@ -22,10 +22,12 @@
 #include "../BLL/MissPluginManager.h"
 #include "../../MissTools/MissConfigFile.h"
 #include "../../MissAPI/plugin/MissPluginBase.h"
+#include "../Widget/MissWidget.h"
 
 #include <wx/dir.h>
 
 #include <iostream>
+#include "../MissWidgetFunc.h"
 
 DEFINE_LOCAL_EVENT_TYPE(wxEVT_INITIALIZE);
 
@@ -130,6 +132,9 @@ void MissStudioCoreFrame::OnMenuHotKeySettingSelection(wxCommandEvent& event)
 
 void MissStudioCoreFrame::OnMenuAboutSelection(wxCommandEvent& event)
 {
+    MissWidgetFunc* cs = new MissWidgetFunc;
+    MissWidget *a = new MissWidget(cs,NULL);
+    a->Show();
 }
 
 void MissStudioCoreFrame::OnMenuExitSelection(wxCommandEvent& event)
