@@ -36,6 +36,7 @@
 		<Unit filename="interface\IMissMain.h" />
 		<Unit filename="interface\IMissPlugin.h" />
 		<Unit filename="interface\IMissTaskIcon.h" />
+		<Unit filename="interface\IMissWidget.h" />
 		<Unit filename="plugin\MissHotKeyFuncBase.h" />
 		<Unit filename="plugin\MissPluginBase.h" />
 		<Unit filename="plugin\MissTimerFuncBase.h" />

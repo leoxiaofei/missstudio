@@ -97,8 +97,6 @@
 		<Unit filename="Main\MissStudioCoreApp.h" />
 		<Unit filename="Main\MissStudioCoreMain.cpp" />
 		<Unit filename="Main\MissStudioCoreMain.h" />
-		<Unit filename="MissWidgetFunc.cpp" />
-		<Unit filename="MissWidgetFunc.h" />
 		<Unit filename="Widget\MissTaskBarIcon.cpp" />
 		<Unit filename="Widget\MissTaskBarIcon.h" />
 		<Unit filename="Widget\MissWidget.cpp" />

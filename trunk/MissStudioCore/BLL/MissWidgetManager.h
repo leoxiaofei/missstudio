@@ -1,16 +1,20 @@
 #ifndef MISSWIDGETMANAGER_H
 #define MISSWIDGETMANAGER_H
 
+#include "../../MissAPI/interface/IMissWidget.h"
 
-class MissWidgetManager
+class MissWidgetManager: public IMissWidget
 {
+    class MissWidgetManagerImpl;
     public:
         MissWidgetManager();
         virtual ~MissWidgetManager();
 
-        std::tr1::shared_ptr<wxFrame> CreateWidget();
+        MissWidgetUpdateFunc* CreateWidget(MissWidgetFuncBase * pFunc);
+
     protected:
     private:
+        shared_ptr<MissWidgetManagerImpl> m_pImpl;
 };
 
 #endif // MISSWIDGETMANAGER_H

@@ -7,7 +7,7 @@ class MissTimerFuncBase
 {
     public:
         virtual ~MissTimerFuncBase(){}
-        virtual void TimeUp(const tm* tmNow, MissTimerType eType)=0;
+        virtual void TimeUp(const tm* tmNow, MissTimerType eType  = MTT_SEC) = 0;
 
     protected:
     private:

@@ -22,6 +22,7 @@ class MissPluginBase;
 class MissTaskBarIcon;
 class MissHotKeyManager;
 class MissPluginManager;
+class MissWidgetManager;
 class IMissTaskIcon;
 class IMissHotKey;
 class wxTimer;
@@ -59,7 +60,9 @@ class MissStudioCoreFrame: public GUIFrame, public IMissMain
     private:
         shared_ptr<MissTaskBarIcon>      m_pTaskBarIcon;
         shared_ptr<MissHotKeyManager>    m_pHotKeyManager;
+        shared_ptr<MissWidgetManager>    m_pWidgetManager;
         shared_ptr<wxTimer>              m_pMainTimer;
+
 
         std::vector<MissTimerFuncBase*>  m_vecSecUp;
         std::vector<MissTimerFuncBase*>  m_vecMinUp;
@@ -68,6 +71,7 @@ class MissStudioCoreFrame: public GUIFrame, public IMissMain
         virtual void           ExitApp();
         virtual IMissTaskIcon *GetTaskIcon();
         virtual IMissHotKey   *GetHotKey();
+        virtual IMissWidget   *GetWidget();
         virtual std::tr1::shared_ptr<IMissConfig> GetConfig(MissPluginBase* pPlugin);
         virtual void RegSecTimer(MissTimerFuncBase* pPlugin);
         virtual void RegMinTimer(MissTimerFuncBase* pPlugin);
