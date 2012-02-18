@@ -1,9 +1,11 @@
 #ifndef __MissWidget__
 #define __MissWidget__
 
+#include "../../MissAPI/plugin/MissTimerFuncBase.h"
+
 class MissWidgetFuncBase;
 
-class MissWidget : public wxFrame
+class MissWidget : public wxFrame, public MissTimerFuncBase
 {
 	public:
 		/** Constructor */
@@ -18,8 +20,13 @@ class MissWidget : public wxFrame
 	    HWND m_hWnd;
         virtual void OnLeftDown( wxMouseEvent& event );
         virtual void OnRightUp( wxMouseEvent& event );
+
+        ///实现接口
+        virtual void TimeUp(const tm* tmNow, MissTimerType eType);
+
     private:
         std::tr1::shared_ptr<MissWidgetFuncBase> m_pFunc;
+        BLENDFUNCTION      m_Blend;
 
 };
 

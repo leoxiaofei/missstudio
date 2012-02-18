@@ -10,8 +10,8 @@ class MissWidgetFunc : public MissWidgetFuncBase
         MissWidgetFunc();
         virtual ~MissWidgetFunc();
 
-        virtual void InitUI(wxFrame* pWidget);
-
+        virtual void InitWidget(wxFrame* pWidget);
+        virtual void UpdateUI(wxDC &dc, const tm* tmNow);
     protected:
     private:
 };

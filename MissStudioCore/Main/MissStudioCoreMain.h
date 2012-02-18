@@ -52,18 +52,25 @@ class MissStudioCoreFrame: public GUIFrame, public IMissMain
         ///托盘图标事件
         void OnRightUp(wxMouseEvent& event);
 
+    private:
+        tm                              *m_tmNow;
+        time_t                           m_ttNow;
 
     private:
         shared_ptr<MissTaskBarIcon>      m_pTaskBarIcon;
         shared_ptr<MissHotKeyManager>    m_pHotKeyManager;
         shared_ptr<wxTimer>              m_pMainTimer;
 
+        std::vector<MissTimerFuncBase*>  m_vecSecUp;
+        std::vector<MissTimerFuncBase*>  m_vecMinUp;
     ///以下是接口实现
     public:
         virtual void           ExitApp();
         virtual IMissTaskIcon *GetTaskIcon();
         virtual IMissHotKey   *GetHotKey();
         virtual std::tr1::shared_ptr<IMissConfig> GetConfig(MissPluginBase* pPlugin);
+        virtual void RegSecTimer(MissTimerFuncBase* pPlugin);
+        virtual void RegMinTimer(MissTimerFuncBase* pPlugin);
 };
 
 BEGIN_DECLARE_EVENT_TYPES()
