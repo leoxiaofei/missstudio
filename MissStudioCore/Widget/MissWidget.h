@@ -22,7 +22,7 @@ class MissWidget : public wxFrame, public MissTimerFuncBase
         virtual void OnRightUp( wxMouseEvent& event );
 
         ///实现接口
-        virtual void TimeUp(const tm* tmNow, MissTimerType eType);
+        virtual void TimeUp(const tm* tmNow, MissTimerType eType = MTT_SEC);
 
     private:
         std::tr1::shared_ptr<MissWidgetFuncBase> m_pFunc;

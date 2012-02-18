@@ -1,5 +1,5 @@
 #include "MissWidgetFunc.h"
-#include <winuser.h>
+#include <wx/dc.h>
 
 MissWidgetFunc::MissWidgetFunc():
     MissWidgetFuncBase()

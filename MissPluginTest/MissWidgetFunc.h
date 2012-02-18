@@ -12,6 +12,8 @@ class MissWidgetFunc : public MissWidgetFuncBase
 
         virtual void InitWidget(wxFrame* pWidget);
         virtual void UpdateUI(wxDC &dc, const tm* tmNow);
+        virtual wxSize GetSize(){return wxSize(300,300);}
+
     protected:
     private:
 };

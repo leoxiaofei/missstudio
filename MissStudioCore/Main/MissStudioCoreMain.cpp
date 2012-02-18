@@ -20,6 +20,7 @@
 #include "../Widget/MissTaskBarIcon.h"
 #include "../BLL/MissHotKeyManager.h"
 #include "../BLL/MissPluginManager.h"
+#include "../BLL/MissWidgetManager.h"
 #include "../../MissTools/MissConfigFile.h"
 #include "../../MissAPI/plugin/MissPluginBase.h"
 #include "../../MissAPI/plugin/MissTimerFuncBase.h"
@@ -30,7 +31,7 @@
 
 #include <iostream>
 
-#include "../MissWidgetFunc.h"
+//#include "../MissWidgetFunc.h"
 
 DEFINE_LOCAL_EVENT_TYPE(wxEVT_INITIALIZE);
 
@@ -67,6 +68,7 @@ MissStudioCoreFrame::MissStudioCoreFrame(wxFrame *frame)
     : GUIFrame(frame),
     m_pTaskBarIcon(new MissTaskBarIcon),
     m_pHotKeyManager(new MissHotKeyManager(this)),
+    m_pWidgetManager(new MissWidgetManager),
     m_pMainTimer(new wxTimer(this))
 {
     m_pTaskBarIcon->SetIcon(wxICON(RC_STUDIO_ICON), wxT("迷失工作室"));
@@ -157,10 +159,10 @@ void MissStudioCoreFrame::OnMenuHotKeySettingSelection(wxCommandEvent& event)
 
 void MissStudioCoreFrame::OnMenuAboutSelection(wxCommandEvent& event)
 {
-    MissWidgetFunc* cs = new MissWidgetFunc;
-    MissWidget *a = new MissWidget(cs,this);
-    RegSecTimer(a);
-    a->Show();
+    //MissWidgetFunc* cs = new MissWidgetFunc;
+    //MissWidget *a = new MissWidget(cs,this);
+    //RegSecTimer(a);
+    //a->Show();
 }
 
 void MissStudioCoreFrame::OnMenuExitSelection(wxCommandEvent& event)
@@ -199,6 +201,11 @@ IMissTaskIcon* MissStudioCoreFrame::GetTaskIcon()
 IMissHotKey* MissStudioCoreFrame::GetHotKey()
 {
     return m_pHotKeyManager.get();
+}
+
+IMissWidget* MissStudioCoreFrame::GetWidget()
+{
+    return m_pWidgetManager.get();
 }
 
 std::tr1::shared_ptr<IMissConfig> MissStudioCoreFrame::GetConfig(MissPluginBase* pPlugin)

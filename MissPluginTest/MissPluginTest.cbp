@@ -64,6 +64,8 @@
 		</ResourceCompiler>
 		<Unit filename="MissPluginTest.cpp" />
 		<Unit filename="MissPluginTest.h" />
+		<Unit filename="MissWidgetFunc.cpp" />
+		<Unit filename="MissWidgetFunc.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="main.h" />
 		<Extensions>

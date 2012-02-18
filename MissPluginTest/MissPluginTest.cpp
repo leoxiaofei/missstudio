@@ -3,8 +3,11 @@
 #include "../MissAPI/interface/IMissTaskIcon.h"
 #include "../MissAPI/interface/IMissHotKey.h"
 #include "../MissAPI/interface/IMissConfig.h"
+#include "../MissAPI/interface/IMissWidget.h"
 
 #include <vector>
+
+#include "MissWidgetFunc.h"
 
 
 MissPluginTest::MissPluginTest(IMissMain* pParent):
@@ -30,6 +33,12 @@ MissPluginTest::~MissPluginTest()
 void MissPluginTest::RunFunc(int nFuncIndex)
 {
     GetMain()->GetTaskIcon()->ShowBalloon(wxT("标题测试"),wxString::Format(wxT("内容%d测试。"),nFuncIndex));
+    if(nFuncIndex == 1)
+    {
+        MissWidgetFunc *pFunc = new MissWidgetFunc();
+        MissWidgetUpdateFunc *pUpdate= GetMain()->GetWidget()->CreateWidget(pFunc);
+        GetMain()->RegSecTimer(pUpdate);
+    }
 }
 
 void MissPluginTest::ModifiedHotKey(int nFuncIndex, const wxString& strHotKey)
