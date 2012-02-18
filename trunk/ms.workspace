@@ -6,6 +6,7 @@
 			<Depends filename="MissAPI/MissAPI.cbp" />
 			<Depends filename="MissPluginTest/MissPluginTest.cbp" />
 			<Depends filename="MissPasswordAid/MissPasswordAid.cbp" />
+			<Depends filename="MissClock/MissClock.cbp" />
 		</Project>
 		<Project filename="MissTools/MissAPI.cbp" />
 		<Project filename="MissAPI/MissAPI.cbp" />
@@ -13,6 +14,9 @@
 			<Depends filename="MissAPI/MissAPI.cbp" />
 		</Project>
 		<Project filename="MissPasswordAid/MissPasswordAid.cbp">
+			<Depends filename="MissAPI/MissAPI.cbp" />
+		</Project>
+		<Project filename="MissClock/MissClock.cbp">
 			<Depends filename="MissAPI/MissAPI.cbp" />
 		</Project>
 	</Workspace>
