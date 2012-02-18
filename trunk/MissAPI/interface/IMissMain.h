@@ -7,6 +7,7 @@ class IMissTaskIcon;
 class IMissHotKey;
 class IMissConfig;
 class MissPluginBase;
+class MissTimerFuncBase;
 
 class IMissMain
 {
@@ -16,6 +17,8 @@ class IMissMain
         virtual IMissTaskIcon *GetTaskIcon() = 0;
         virtual IMissHotKey   *GetHotKey()   = 0;
         virtual std::tr1::shared_ptr<IMissConfig> GetConfig(MissPluginBase* pPlugin) = 0;
+        virtual void RegSecTimer(MissTimerFuncBase* pPlugin) = 0;
+        virtual void RegMinTimer(MissTimerFuncBase* pPlugin) = 0;
 
     protected:
     private:

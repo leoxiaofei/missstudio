@@ -22,11 +22,14 @@
 #include "../BLL/MissPluginManager.h"
 #include "../../MissTools/MissConfigFile.h"
 #include "../../MissAPI/plugin/MissPluginBase.h"
+#include "../../MissAPI/plugin/MissTimerFuncBase.h"
 #include "../Widget/MissWidget.h"
 
 #include <wx/dir.h>
+#include <algorithm>
 
 #include <iostream>
+
 #include "../MissWidgetFunc.h"
 
 DEFINE_LOCAL_EVENT_TYPE(wxEVT_INITIALIZE);
@@ -122,6 +125,28 @@ void MissStudioCoreFrame::OnClose(wxCloseEvent &event)
 
 void MissStudioCoreFrame::OnTimer(wxTimerEvent& event)
 {
+    std::cout<<"OnTimer"<<std::endl;
+    m_ttNow = time(NULL);
+    m_tmNow = localtime(&m_ttNow);
+    static int s_savemin = m_tmNow->tm_min;
+
+    ///秒钟定时器
+    for(std::vector<MissTimerFuncBase*>::iterator itor = m_vecSecUp.begin();
+        itor != m_vecSecUp.end(); ++itor)
+    {
+        (*itor)->TimeUp(m_tmNow,MTT_SEC);
+    }
+
+    ///分钟定时器
+    if (s_savemin != m_tmNow->tm_min)
+    {
+        s_savemin = m_tmNow->tm_min;
+        for(std::vector<MissTimerFuncBase*>::iterator itor = m_vecMinUp.begin();
+            itor != m_vecMinUp.end(); ++itor)
+        {
+            (*itor)->TimeUp(m_tmNow,MTT_MIN);
+        }
+    }
 }
 
 void MissStudioCoreFrame::OnMenuHotKeySettingSelection(wxCommandEvent& event)
@@ -133,7 +158,8 @@ void MissStudioCoreFrame::OnMenuHotKeySettingSelection(wxCommandEvent& event)
 void MissStudioCoreFrame::OnMenuAboutSelection(wxCommandEvent& event)
 {
     MissWidgetFunc* cs = new MissWidgetFunc;
-    MissWidget *a = new MissWidget(cs,NULL);
+    MissWidget *a = new MissWidget(cs,this);
+    RegSecTimer(a);
     a->Show();
 }
 
@@ -177,6 +203,27 @@ IMissHotKey* MissStudioCoreFrame::GetHotKey()
 
 std::tr1::shared_ptr<IMissConfig> MissStudioCoreFrame::GetConfig(MissPluginBase* pPlugin)
 {
-    std::tr1::shared_ptr<IMissConfig> conf(new MissConfigFile(wxT("config\\") + pPlugin->GetPlugInfo().strPluginName +wxT(".ini")));
+    std::tr1::shared_ptr<IMissConfig> conf(new MissConfigFile(wxT("config\\")
+        + pPlugin->GetPlugInfo().strPluginName +wxT(".ini")));
     return conf;
+}
+
+void MissStudioCoreFrame::RegSecTimer(MissTimerFuncBase* pPlugin)
+{
+    std::vector<MissTimerFuncBase*>::iterator itor =
+        std::find(m_vecSecUp.begin(),m_vecSecUp.end(),pPlugin);
+    if(itor == m_vecSecUp.end())
+    {
+        m_vecSecUp.push_back(pPlugin);
+    }
+}
+
+void MissStudioCoreFrame::RegMinTimer(MissTimerFuncBase* pPlugin)
+{
+    std::vector<MissTimerFuncBase*>::iterator itor =
+        std::find(m_vecMinUp.begin(),m_vecMinUp.end(),pPlugin);
+    if(itor == m_vecMinUp.end())
+    {
+        m_vecMinUp.push_back(pPlugin);
+    }
 }
