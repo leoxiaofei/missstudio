@@ -1,5 +1,5 @@
 #include "main.h"
-#include "MissClockPlugin.h"
+#include "./Main/MissClockPlugin.h"
 
 // a sample exported function
 bool DLL_EXPORT CreateMissStudioPlug(void ** pobj, void* pParent)

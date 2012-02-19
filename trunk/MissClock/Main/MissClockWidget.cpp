@@ -17,8 +17,7 @@ MissClockWidget::~MissClockWidget()
 
 void MissClockWidget::LoadSkin()
 {
-
-    MissXML::LoadSkin(m_pSkin.get(), "");
+    MissXML::LoadSkin(m_pSkin.get(), wxT(""));
 }
 
 void MissClockWidget::InitWidget(wxFrame* pWidget)
