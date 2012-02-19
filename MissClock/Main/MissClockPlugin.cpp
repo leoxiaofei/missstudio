@@ -66,5 +66,5 @@ void MissClockPlugin::LoadPlugin()
         vecHotKey[1].strHotKey = wxT("Win+W");
     }
 
-    GetMain()->GetHotKey()->RegHotKeys(vecHotKey,this);
+    //GetMain()->GetHotKey()->RegHotKeys(vecHotKey,this);
 }

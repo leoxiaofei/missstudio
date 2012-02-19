@@ -33,17 +33,6 @@ PasswordAidDialog::~PasswordAidDialog()
 {
 }
 
-void PasswordAidDialog::OnClose(wxCloseEvent &event)
-{
-    Destroy();
-}
-
-void PasswordAidDialog::OnQuit(wxCommandEvent &event)
-{
-    Destroy();
-}
-
-
 void PasswordAidDialog::OnBtnGenerateClick(wxCommandEvent& event)
 {
     int nLen = m_spLen->GetValue();

@@ -23,6 +23,8 @@
 					<Add library="user32" />
 					<Add library="libwxmsw28ud_core.a" />
 					<Add library="libwxbase28ud.a" />
+					<Add library="libMissTools.a" />
+					<Add directory="$(TARGET_OUTPUT_DIR)\..\" />
 					<Add directory="$(#wx)\lib\gcc_dll" />
 				</Linker>
 			</Target>
@@ -44,6 +46,8 @@
 					<Add library="user32" />
 					<Add library="libwxmsw28u_core.a" />
 					<Add library="libwxbase28u.a" />
+					<Add library="libMissTools.a" />
+					<Add directory="$(TARGET_OUTPUT_DIR)\..\" />
 					<Add directory="$(#wx)\lib\gcc_dll" />
 				</Linker>
 			</Target>

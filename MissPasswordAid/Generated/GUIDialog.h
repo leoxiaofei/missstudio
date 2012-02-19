@@ -42,7 +42,6 @@ class GUIDialog : public wxDialog
 		wxTextCtrl* m_edtOut;
 		
 		// Virtual event handlers, overide them in your derived class
-		virtual void OnClose( wxCloseEvent& event ) { event.Skip(); }
 		virtual void OnBtnGenerateClick( wxCommandEvent& event ) { event.Skip(); }
 		
 	

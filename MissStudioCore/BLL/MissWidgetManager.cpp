@@ -36,7 +36,8 @@ MissWidgetUpdateFunc* MissWidgetManager::CreateWidget(MissWidgetFuncBase * pFunc
     //return new MissWidget(0);
 }
 */
-void MissWidgetManager::RegPluginWidget(MissWidgetFactoryBase* pFactory, const std::vector<wxString>& vecWidget)
+void MissWidgetManager::RegPluginWidget(MissWidgetFactoryBase* pFactory,
+    const std::vector<wxString>& vecWidget)
 {
     std::cout<<"RegPluginWidget:"<<vecWidget.size()<<std::endl;
     m_pImpl->m_vecWidgets.push_back(shared_ptr<SWidget>(new SWidget(pFactory, vecWidget)));
@@ -57,7 +58,7 @@ void MissWidgetManager::CreateWidget(unsigned int nPlugin, unsigned int nWidget)
             ->pFactory->CreateWidgetFunc(nWidget);
         shared_ptr<MissWidget> p(new MissWidget(pFunc,0));
         p->Show();
-        m_pImpl->m_vecWidgets[nPlugin]->pFactory->CreateSuccessed((MissWidgetUpdateFunc*)(MissTimerFuncBase*)p.get());
+        m_pImpl->m_vecWidgets[nPlugin]->pFactory->CreateSuccessed((MissTimerFuncBase*)p.get());
         m_pImpl->m_vecRunWidgets.push_back(p);
     }
 }

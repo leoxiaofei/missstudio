@@ -25,13 +25,13 @@ void MissWidgetFrame::InitUI()
 {
     m_listWidgets->InsertColumn(0,_T("ID"),wxLIST_FORMAT_LEFT,0);
     m_listWidgets->InsertColumn(1,_T("插件名称"),wxLIST_FORMAT_LEFT,100);
-    m_listWidgets->InsertColumn(2,_T("小工具名称"),wxLIST_FORMAT_LEFT,200);
+    m_listWidgets->InsertColumn(2,_T("小工具名称"),wxLIST_FORMAT_LEFT,100);
 
     m_listRunWidgets->InsertColumn(0,_T("ID"),wxLIST_FORMAT_LEFT,0);
-    m_listRunWidgets->InsertColumn(1,_T("小工具名称"),wxLIST_FORMAT_LEFT,200);
-    m_listRunWidgets->InsertColumn(2,_T("坐标"),wxLIST_FORMAT_LEFT,70);
-    m_listRunWidgets->InsertColumn(3,_T("透明度"),wxLIST_FORMAT_LEFT,70);
-    m_listRunWidgets->InsertColumn(4,_T("缩放"),wxLIST_FORMAT_LEFT,70);
+    m_listRunWidgets->InsertColumn(1,_T("小工具名称"),wxLIST_FORMAT_LEFT,100);
+    m_listRunWidgets->InsertColumn(2,_T("坐标"),wxLIST_FORMAT_LEFT,50);
+    m_listRunWidgets->InsertColumn(3,_T("透明度"),wxLIST_FORMAT_LEFT,50);
+    m_listRunWidgets->InsertColumn(4,_T("缩放"),wxLIST_FORMAT_LEFT,50);
 
     int nItemIndex = 0;
     int nPluginIndex = 0;

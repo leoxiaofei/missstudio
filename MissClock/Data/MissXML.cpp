@@ -2,7 +2,7 @@
 #include "MissXML.h"
 #include "MissSkin.h"
 //#include "MissRemindSkin.h"
-#include <tinyxml.h>
+#include "../../MissTools/tinyxml.h"
 
 bool MissXML::SaveSkin(const MissSkin* pSkin)
 {
