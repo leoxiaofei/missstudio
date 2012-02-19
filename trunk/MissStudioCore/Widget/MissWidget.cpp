@@ -18,30 +18,23 @@ m_pFunc(pFunc)
     exStyle |= WS_EX_LAYERED;
     ::SetWindowLong(m_hWnd, GWL_EXSTYLE, exStyle);
 
-    m_pFunc->InitWidget(this);
-
-
     m_Blend.BlendOp = AC_SRC_OVER;      ///指定源混合操作。目前，唯一的源和目标混合操作被定义为 AC_SRC_OVER。
     m_Blend.BlendFlags = 0;             ///必须为 0
     m_Blend.AlphaFormat = AC_SRC_ALPHA; ///该成员控制源和目标位图被解释的方式。
-    m_Blend.SourceConstantAlpha = 255;
 
     this->Connect( wxEVT_LEFT_DOWN, wxMouseEventHandler( MissWidget::OnLeftDown ) );
 	this->Connect( wxEVT_RIGHT_UP, wxMouseEventHandler( MissWidget::OnRightUp ) );
+
+	m_pFunc->InitWidget(this);
+
+	SetScale(1);
+	SetOpacity(150);
 }
 
 void MissWidget::TimeUp(const tm* tmNow, MissTimerType eType)
 {
     static HDC s_hdcScreen = ::GetDC(m_hWnd);
     static POINT s_ptSrc = {0, 0};
-    SIZE m_SizeWindow = {300, 300};
-
-    wxBitmap m_bpUI(300,300,32);
-
-    BITMAP bm;
-    ::GetObject(static_cast<HBITMAP>(m_bpUI.GetHBITMAP()), sizeof(bm), &bm);
-    int m_nPixCount = bm.bmWidth * bm.bmHeight;
-    unsigned int* m_pBitmap = static_cast<unsigned int*>(bm.bmBits);
 
     static int nPixCount;
     static unsigned int* pBitmap;
@@ -56,6 +49,8 @@ void MissWidget::TimeUp(const tm* tmNow, MissTimerType eType)
     }
 
     wxMemoryDC memdc(m_bpUI);
+    //memdc.SetUserScale(m_dZoom,m_dZoom);
+
     m_pFunc->UpdateUI(memdc,tmNow);
 
     nPixCount = m_nPixCount;
@@ -81,4 +76,23 @@ void MissWidget::OnRightUp(wxMouseEvent& event)
     if(m_pOptionDlg == NULL)
         PopupMenu(m_pMainMenu);
     */
+}
+
+void MissWidget::SetScale(const double& dZoom)
+{
+    m_dZoom = dZoom;
+
+    m_SizeWindow.cx = static_cast<int>(m_pFunc->GetSize().GetWidth() * dZoom);
+    m_SizeWindow.cy = static_cast<int>(m_pFunc->GetSize().GetHeight() * dZoom);
+    m_bpUI = wxBitmap(m_SizeWindow.cx, m_SizeWindow.cy, 32);
+    BITMAP bm;
+    ::GetObject(static_cast<HBITMAP>(m_bpUI.GetHBITMAP()), sizeof(bm), &bm);
+    m_nPixCount = bm.bmWidth * bm.bmHeight;
+    m_pBitmap = static_cast<unsigned int*>(bm.bmBits);
+}
+
+void MissWidget::SetOpacity(int nOpacity)
+{
+    ///指定用于整张源位图的Alpha透明度值。(0~255)
+    m_Blend.SourceConstantAlpha = nOpacity;
 }

@@ -1,8 +1,8 @@
 #ifndef MISSPLUGINTEST_H
 #define MISSPLUGINTEST_H
 
-#include "../MissAPI/plugin/MissPluginBase.h"
-#include "../MissAPI/plugin/MissHotKeyFuncBase.h"
+#include "../../MissAPI/plugin/MissPluginBase.h"
+#include "../../MissAPI/plugin/MissHotKeyFuncBase.h"
 
 class MissClockPlugin : public MissPluginBase, public MissHotKeyFuncBase
 {

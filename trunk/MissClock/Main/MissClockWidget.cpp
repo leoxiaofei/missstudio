@@ -1,8 +1,11 @@
 #include "MissClockWidget.h"
 #include <wx/dc.h>
+#include "../Data/MissXML.h"
+#include "../Data/MissSkin.h"
 
 MissClockWidget::MissClockWidget():
-    MissWidgetFuncBase()
+    MissWidgetFuncBase(),
+    m_pSkin(new MissSkin)
 {
     //ctor
 }
@@ -10,6 +13,12 @@ MissClockWidget::MissClockWidget():
 MissClockWidget::~MissClockWidget()
 {
     //dtor
+}
+
+void MissClockWidget::LoadSkin()
+{
+
+    MissXML::LoadSkin(m_pSkin.get(), "");
 }
 
 void MissClockWidget::InitWidget(wxFrame* pWidget)
@@ -25,6 +34,12 @@ void MissClockWidget::InitWidget(wxFrame* pWidget)
 
 void MissClockWidget::UpdateUI(wxDC& dc, const tm* tmNow)
 {
-    dc.SetBrush(*wxBLUE_BRUSH);
-    dc.DrawRectangle(0,0,300,300);
+    m_pSkin->DrawSkin(dc, tmNow);
+    //dc.SetBrush(*wxBLUE_BRUSH);
+    //dc.DrawRectangle(0,0,300,300);
+}
+
+wxSize MissClockWidget::GetSize()
+{
+
 }

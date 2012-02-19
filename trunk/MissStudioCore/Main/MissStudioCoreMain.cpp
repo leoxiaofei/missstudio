@@ -17,6 +17,7 @@
 
 #include "MissStudioCoreMain.h"
 #include "MissHotKeyFrame.h"
+#include "MissWidgetFrame.h"
 #include "../Widget/MissTaskBarIcon.h"
 #include "../BLL/MissHotKeyManager.h"
 #include "../BLL/MissPluginManager.h"
@@ -155,6 +156,12 @@ void MissStudioCoreFrame::OnMenuHotKeySettingSelection(wxCommandEvent& event)
 {
     MissHotKeyFrame* hotkey = new MissHotKeyFrame(this, m_pHotKeyManager.get());
     hotkey->Show();
+}
+
+void MissStudioCoreFrame::OnMenuWidgetsSettingSelection(wxCommandEvent& event)
+{
+    MissWidgetFrame* widget = new MissWidgetFrame(this, m_pWidgetManager.get());
+    widget->Show();
 }
 
 void MissStudioCoreFrame::OnMenuAboutSelection(wxCommandEvent& event)

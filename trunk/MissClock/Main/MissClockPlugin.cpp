@@ -1,9 +1,9 @@
 #include "MissClockPlugin.h"
-#include "../MissAPI/interface/IMissMain.h"
-#include "../MissAPI/interface/IMissTaskIcon.h"
-#include "../MissAPI/interface/IMissHotKey.h"
-#include "../MissAPI/interface/IMissConfig.h"
-#include "../MissAPI/interface/IMissWidget.h"
+#include "../../MissAPI/interface/IMissMain.h"
+#include "../../MissAPI/interface/IMissTaskIcon.h"
+#include "../../MissAPI/interface/IMissHotKey.h"
+#include "../../MissAPI/interface/IMissConfig.h"
+#include "../../MissAPI/interface/IMissWidget.h"
 
 #include <vector>
 

@@ -44,6 +44,7 @@ class MissStudioCoreFrame: public GUIFrame, public IMissMain
         virtual void OnClose(wxCloseEvent& event);
         virtual void OnTimer(wxTimerEvent& event);
         virtual void OnMenuHotKeySettingSelection( wxCommandEvent& event );
+        virtual void OnMenuWidgetsSettingSelection( wxCommandEvent& event );
         virtual void OnMenuExitSelection(wxCommandEvent& event);
         virtual void OnMenuAboutSelection( wxCommandEvent& event );
 
