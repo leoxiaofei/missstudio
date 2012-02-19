@@ -14,10 +14,6 @@
 				<Compiler>
 					<Add option="-Wall" />
 					<Add option="-g" />
-					<Add option="-DBUILD_DLL" />
-					<Add option="-D__WXMSW__" />
-					<Add option="-DWXUSINGDLL" />
-					<Add option="-DwxUSE_UNICODE" />
 					<Add directory="$(#wx)\lib\gcc_dll\mswud" />
 				</Compiler>
 				<ResourceCompiler>
@@ -38,10 +34,6 @@
 				<Compiler>
 					<Add option="-O2" />
 					<Add option="-Wall" />
-					<Add option="-DBUILD_DLL" />
-					<Add option="-D__WXMSW__" />
-					<Add option="-DWXUSINGDLL" />
-					<Add option="-DwxUSE_UNICODE" />
 					<Add directory="$(#wx)\lib\gcc_dll\mswu" />
 				</Compiler>
 				<ResourceCompiler>
@@ -57,17 +49,33 @@
 			</Target>
 		</Build>
 		<Compiler>
+			<Add option='[[if (PLATFORM == PLATFORM_MSW &amp;&amp; (GetCompilerFactory().GetCompilerVersionString(_T(&quot;gcc&quot;)) &gt;= _T(&quot;4.0.0&quot;))) print(_T(&quot;-Wno-attributes&quot;));]]' />
+			<Add option="-Winvalid-pch" />
+			<Add option="-include wx_pch.h" />
+			<Add option="-DWX_PRECOMP" />
+			<Add option="-D__WXMSW__" />
+			<Add option="-DWXUSINGDLL" />
+			<Add option="-DwxUSE_UNICODE" />
+			<Add option="-DBUILD_DLL" />
 			<Add directory="$(#wx)\include" />
 		</Compiler>
 		<ResourceCompiler>
 			<Add directory="$(#wx)\include" />
 		</ResourceCompiler>
-		<Unit filename="MissClockPlugin.cpp" />
-		<Unit filename="MissClockPlugin.h" />
-		<Unit filename="MissClockWidget.cpp" />
-		<Unit filename="MissClockWidget.h" />
+		<Unit filename="Data\MissSkin.cpp" />
+		<Unit filename="Data\MissSkin.h" />
+		<Unit filename="Data\MissXML.cpp" />
+		<Unit filename="Data\MissXML.h" />
+		<Unit filename="Main\MissClockPlugin.cpp" />
+		<Unit filename="Main\MissClockPlugin.h" />
+		<Unit filename="Main\MissClockWidget.cpp" />
+		<Unit filename="Main\MissClockWidget.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="main.h" />
+		<Unit filename="wx_pch.h">
+			<Option compile="1" />
+			<Option weight="0" />
+		</Unit>
 		<Extensions>
 			<code_completion />
 			<envvars />

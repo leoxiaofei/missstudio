@@ -16,6 +16,9 @@ class MissWidget : public wxFrame, public MissTimerFuncBase
              const wxSize& size = wxSize( 200,200 ),
              long style = 0|wxTAB_TRAVERSAL );
 
+        void SetScale(const double& dZoom);
+        void SetOpacity(int nOpacity);
+
 	private:
 	    HWND m_hWnd;
         virtual void OnLeftDown( wxMouseEvent& event );
@@ -27,7 +30,12 @@ class MissWidget : public wxFrame, public MissTimerFuncBase
     private:
         std::tr1::shared_ptr<MissWidgetFuncBase> m_pFunc;
         BLENDFUNCTION      m_Blend;
+        double             m_dZoom;
+        SIZE               m_SizeWindow;
 
+        wxBitmap           m_bpUI;
+        unsigned int      *m_pBitmap;
+        int                m_nPixCount;
 };
 
 #endif // __MissWidget__

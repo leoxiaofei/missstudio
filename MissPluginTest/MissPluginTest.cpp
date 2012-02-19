@@ -12,7 +12,8 @@
 
 MissPluginTest::MissPluginTest(IMissMain* pParent):
 MissPluginBase(pParent),
-MissHotKeyFuncBase(this)
+MissHotKeyFuncBase(this),
+MissWidgetFactoryBase(this)
 {
     //ctor
     SPlugInfo info;
@@ -32,12 +33,15 @@ MissPluginTest::~MissPluginTest()
 
 void MissPluginTest::RunFunc(int nFuncIndex)
 {
-    GetMain()->GetTaskIcon()->ShowBalloon(wxT("标题测试"),wxString::Format(wxT("内容%d测试。"),nFuncIndex));
     if(nFuncIndex == 1)
     {
-        MissWidgetFunc *pFunc = new MissWidgetFunc();
-        MissWidgetUpdateFunc *pUpdate= GetMain()->GetWidget()->CreateWidget(pFunc);
-        GetMain()->RegSecTimer(pUpdate);
+        GetMain()->GetTaskIcon()->ShowBalloon(wxT("标题测试"),wxString::Format(wxT("内容%d测试。"),nFuncIndex));
+        std::vector<wxString> vecWidgetName;
+        vecWidgetName.push_back(wxT("Widget测试"));
+        GetMain()->GetWidget()->RegPluginWidget(this,vecWidgetName);
+//        MissWidgetFunc *pFunc = new MissWidgetFunc();
+//        MissWidgetUpdateFunc *pUpdate= GetMain()->GetWidget()->CreateWidget(pFunc);
+//        GetMain()->RegSecTimer(pUpdate);
     }
 }
 
@@ -65,4 +69,14 @@ void MissPluginTest::LoadPlugin()
     }
 
     GetMain()->GetHotKey()->RegHotKeys(vecHotKey,this);
+}
+
+MissWidgetFuncBase* MissPluginTest::CreateWidgetFunc(unsigned int nIndex)
+{
+    return new MissWidgetFunc();
+}
+
+void MissPluginTest::CreateSuccessed(MissWidgetUpdateFunc* pUpdate)
+{
+    GetMain()->RegSecTimer(pUpdate);
 }

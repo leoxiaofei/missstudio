@@ -68,6 +68,12 @@
 		</ResourceCompiler>
 		<Unit filename="MissConfigFile.cpp" />
 		<Unit filename="MissConfigFile.h" />
+		<Unit filename="tinystr.cpp" />
+		<Unit filename="tinystr.h" />
+		<Unit filename="tinyxml.cpp" />
+		<Unit filename="tinyxml.h" />
+		<Unit filename="tinyxmlerror.cpp" />
+		<Unit filename="tinyxmlparser.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />

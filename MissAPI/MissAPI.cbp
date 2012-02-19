@@ -40,6 +40,7 @@
 		<Unit filename="plugin\MissHotKeyFuncBase.h" />
 		<Unit filename="plugin\MissPluginBase.h" />
 		<Unit filename="plugin\MissTimerFuncBase.h" />
+		<Unit filename="plugin\MissWidgetFactoryBase.h" />
 		<Unit filename="plugin\MissWidgetFuncBase.h" />
 		<Extensions>
 			<code_completion />

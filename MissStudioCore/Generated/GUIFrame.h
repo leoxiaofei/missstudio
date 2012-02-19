@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////
-// C++ code generated with wxFormBuilder (version Dec  2 2011)
+// C++ code generated with wxFormBuilder (version Feb  9 2012)
 // http://www.wxformbuilder.org/
 //
 // PLEASE DO "NOT" EDIT THIS FILE!
@@ -23,6 +23,8 @@
 #include <wx/listctrl.h>
 #include <wx/sizer.h>
 #include <wx/statbox.h>
+#include <wx/panel.h>
+#include <wx/splitter.h>
 #include <wx/button.h>
 #include "../Widget/wxKeyMonitorTextCtrl.h"
 #include <wx/dialog.h>
@@ -43,6 +45,7 @@ class GUIFrame : public wxFrame
 		
 		// Virtual event handlers, overide them in your derived class
 		virtual void OnClose( wxCloseEvent& event ) { event.Skip(); }
+		virtual void OnMenuWidgetsSettingSelection( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnMenuHotKeySettingSelection( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnMenuAboutSelection( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnMenuExitSelection( wxCommandEvent& event ) { event.Skip(); }
@@ -80,6 +83,41 @@ class MissHotKeyFrameBase : public wxFrame
 		MissHotKeyFrameBase( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxT("全局快捷键编辑器"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 500,300 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
 		
 		~MissHotKeyFrameBase();
+	
+};
+
+///////////////////////////////////////////////////////////////////////////////
+/// Class MissWidgetFrameBase
+///////////////////////////////////////////////////////////////////////////////
+class MissWidgetFrameBase : public wxFrame 
+{
+	private:
+	
+	protected:
+		wxSplitterWindow* m_splitter1;
+		wxPanel* m_panel1;
+		wxListCtrl* m_listWidgets;
+		wxPanel* m_panel2;
+		wxListCtrl* m_listRunWidgets;
+		wxMenu* m_mnuRunWidget;
+		
+		// Virtual event handlers, overide them in your derived class
+		virtual void OnWidgetsListItemActivated( wxListEvent& event ) { event.Skip(); }
+		virtual void OnRunWidgetsListItemActivated( wxListEvent& event ) { event.Skip(); }
+		virtual void OnRunWidgetsListItemRightClick( wxListEvent& event ) { event.Skip(); }
+		
+	
+	public:
+		
+		MissWidgetFrameBase( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxT("小工具管理器"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 515,391 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
+		
+		~MissWidgetFrameBase();
+		
+		void m_splitter1OnIdle( wxIdleEvent& )
+		{
+			m_splitter1->SetSashPosition( 180 );
+			m_splitter1->Disconnect( wxEVT_IDLE, wxIdleEventHandler( MissWidgetFrameBase::m_splitter1OnIdle ), NULL, this );
+		}
 	
 };
 
