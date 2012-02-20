@@ -11,7 +11,7 @@ class MissPluginMain : public MissPluginBase, public MissHotKeyFuncBase
         virtual ~MissPluginMain();
 
         ///初始化插件
-        virtual void LoadPlugin();
+        virtual void LoadPlugin(const wxString& strPath);
 
         ///热键方法实现
         void RunFunc(int nFuncIndex);

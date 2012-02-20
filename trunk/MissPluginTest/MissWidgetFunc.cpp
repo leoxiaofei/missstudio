@@ -1,8 +1,8 @@
 #include "MissWidgetFunc.h"
 #include <wx/dc.h>
 
-MissWidgetFunc::MissWidgetFunc():
-    MissWidgetFuncBase()
+MissWidgetFunc::MissWidgetFunc(MissPluginBase* pPlugin):
+    MissWidgetFuncBase(pPlugin)
 {
     //ctor
 }

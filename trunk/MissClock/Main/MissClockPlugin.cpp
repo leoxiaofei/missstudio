@@ -12,7 +12,8 @@
 
 MissClockPlugin::MissClockPlugin(IMissMain* pParent):
 MissPluginBase(pParent),
-MissHotKeyFuncBase(this)
+MissHotKeyFuncBase(this),
+MissWidgetFactoryBase(this)
 {
     //ctor
     SPlugInfo info;
@@ -49,8 +50,9 @@ void MissClockPlugin::ModifiedHotKey(int nFuncIndex, const wxString& strHotKey)
     config->Write(wxString::Format(wxT("函数%d"),nFuncIndex), strHotKey);
 }
 
-void MissClockPlugin::LoadPlugin()
+void MissClockPlugin::LoadPlugin(const wxString& strPath)
 {
+    MissPluginBase::LoadPlugin(strPath);
     std::vector<SHotKey> vecHotKey(2);
     std::tr1::shared_ptr<IMissConfig> config = GetMain()->GetConfig(this);
     //wxString strHotkey;
@@ -66,5 +68,18 @@ void MissClockPlugin::LoadPlugin()
         vecHotKey[1].strHotKey = wxT("Win+W");
     }
 
+    std::vector<wxString> vecWidgetName;
+    vecWidgetName.push_back(wxT("日历时钟"));
+    GetMain()->GetWidget()->RegPluginWidget(this,vecWidgetName);
     //GetMain()->GetHotKey()->RegHotKeys(vecHotKey,this);
+}
+
+MissWidgetFuncBase* MissClockPlugin::CreateWidgetFunc(unsigned int nIndex)
+{
+    return new MissClockWidget(this);
+}
+
+void MissClockPlugin::CreateSuccessed(MissWidgetUpdateFunc* pUpdate)
+{
+    GetMain()->RegSecTimer(pUpdate);
 }

@@ -13,7 +13,7 @@ class MissPluginTest : public MissPluginBase, public MissHotKeyFuncBase, public 
         virtual ~MissPluginTest();
 
         ///初始化插件
-        void LoadPlugin();
+        void LoadPlugin(const wxString& strPath);
 
         ///热键方法实现
         void RunFunc(int nFuncIndex);

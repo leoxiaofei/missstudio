@@ -51,8 +51,9 @@ void MissPluginTest::ModifiedHotKey(int nFuncIndex, const wxString& strHotKey)
     config->Write(wxString::Format(wxT("函数%d"),nFuncIndex), strHotKey);
 }
 
-void MissPluginTest::LoadPlugin()
+void MissPluginTest::LoadPlugin(const wxString& strPath)
 {
+    MissPluginBase::LoadPlugin(strPath);
     std::vector<SHotKey> vecHotKey(2);
     std::tr1::shared_ptr<IMissConfig> config = GetMain()->GetConfig(this);
     //wxString strHotkey;
@@ -73,7 +74,7 @@ void MissPluginTest::LoadPlugin()
 
 MissWidgetFuncBase* MissPluginTest::CreateWidgetFunc(unsigned int nIndex)
 {
-    return new MissWidgetFunc();
+    return new MissWidgetFunc(this);
 }
 
 void MissPluginTest::CreateSuccessed(MissWidgetUpdateFunc* pUpdate)

@@ -117,7 +117,7 @@ void MissStudioCoreFrame::InitPlugin()
 
 void MissStudioCoreFrame::OnInitWindow(wxCommandEvent& event)
 {
-    wxString strPath = wxGetCwd() + wxT("\\plugin\\MissPluginTest.dll");
+    //wxString strPath = wxGetCwd() + wxT("\\plugin\\MissPluginTest.dll");
     InitPlugin();
 }
 

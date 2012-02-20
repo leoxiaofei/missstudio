@@ -25,6 +25,8 @@ IMPLEMENT_APP(MissStudioCoreApp);
 bool MissStudioCoreApp::OnInit()
 {
     wxSetWorkingDirectory(Miss::GetAppExePath());
+    wxImage::AddHandler( new wxPNGHandler );
+
     MissStudioCoreFrame* frame = new MissStudioCoreFrame(0L);
     frame->SetIcon(wxICON(RC_STUDIO_ICON)); // To Set App Icon
     //frame->Show();

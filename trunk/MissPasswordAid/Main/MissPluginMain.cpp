@@ -29,8 +29,9 @@ MissPluginMain::~MissPluginMain()
     //dtor
 }
 
-void MissPluginMain::LoadPlugin()
+void MissPluginMain::LoadPlugin(const wxString& strPath)
 {
+    MissPluginBase::LoadPlugin(strPath);
     std::vector<SHotKey> vecHotKey(2);
     std::tr1::shared_ptr<IMissConfig> config = GetMain()->GetConfig(this);
     //wxString strHotkey;
