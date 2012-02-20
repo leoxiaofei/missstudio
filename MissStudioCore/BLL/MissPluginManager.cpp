@@ -3,6 +3,8 @@
 #include <wx/dynlib.h>
 #include "../../MissAPI/plugin/MissPluginBase.h"
 
+//#include <iostream>
+
 class MissPluginManager::MissPluginManagerImpl
 {
 public:
@@ -55,7 +57,8 @@ bool MissPluginManager::LoadDll(const wxString& strPath, IMissMain* pParent)
         }
         m_pImpl->m_vecPlugin.push_back(data);
         ///调用初始化函数；
-        data.pPlugin->LoadPlugin();
+        data.pPlugin->LoadPlugin(strPath.Left(strPath.rfind('.')));
+        //std::wcout<<strPath.Left(strPath.rfind('.')).c_str()<<std::endl;
         return true;
     }
     while(0);

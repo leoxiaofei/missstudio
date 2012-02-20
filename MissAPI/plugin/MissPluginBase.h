@@ -19,10 +19,10 @@ class MissPluginBase
 {
     public:
         virtual ~MissPluginBase(){}
-        virtual void LoadPlugin(){}
+        virtual void LoadPlugin(const wxString& strPath){m_PluginPath = strPath;}
         virtual void UnloadPlugin(){}
-        const SPlugInfo& GetPlugInfo() const {return _info;}
-
+        const SPlugInfo& GetPlugInfo() const {return m_Info;}
+        const wxString & GetPluginPath() const {return m_PluginPath;}
         static int APIVersion(){return 1;}
 
     protected:
@@ -38,7 +38,7 @@ class MissPluginBase
          * \return void
          *
          */
-        void SetPlugInfo(const SPlugInfo& info){_info = info;}
+        void SetPlugInfo(const SPlugInfo& info){m_Info = info;}
 
         /** \brief 得到主接口
          *
@@ -48,8 +48,9 @@ class MissPluginBase
         IMissMain* GetMain(){return m_pParent;}
 
     private:
-        SPlugInfo _info;
+        SPlugInfo  m_Info;
         IMissMain* m_pParent;
+        wxString   m_PluginPath;
 };
 
 #endif // MISSPLUGINBASE_H

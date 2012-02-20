@@ -8,7 +8,7 @@ class MissSkin;
 class MissClockWidget : public MissWidgetFuncBase
 {
     public:
-        MissClockWidget();
+        MissClockWidget(MissPluginBase* pPlugin);
         virtual ~MissClockWidget();
 
         void LoadSkin();
