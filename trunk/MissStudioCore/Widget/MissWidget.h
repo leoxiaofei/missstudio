@@ -5,6 +5,15 @@
 
 class MissWidgetFuncBase;
 
+typedef std::vector<std::pair<wxString, wxString> > WidgetParas;
+struct SWidgetData
+{
+    double      m_dZome;
+    int         m_nOpacity;
+    wxPoint     m_ptPos;
+    WidgetParas m_vecPata;
+};
+
 class MissWidget : public wxFrame, public MissTimerFuncBase
 {
 	public:
@@ -16,11 +25,15 @@ class MissWidget : public wxFrame, public MissTimerFuncBase
              const wxSize& size = wxSize( 200,200 ),
              long style = 0|wxTAB_TRAVERSAL );
 
+        void InitData(const SWidgetData& data);
+
         void SetScale(const double& dZoom);
         void SetOpacity(int nOpacity);
 
+        const double& GetScale() const;
+        int           GetOpacity() const;
+
 	private:
-	    HWND m_hWnd;
         virtual void OnLeftDown( wxMouseEvent& event );
         virtual void OnRightUp( wxMouseEvent& event );
 
@@ -32,6 +45,7 @@ class MissWidget : public wxFrame, public MissTimerFuncBase
         BLENDFUNCTION      m_Blend;
         double             m_dZoom;
         SIZE               m_SizeWindow;
+        HWND               m_hWnd;
 
         wxBitmap           m_bpUI;
         unsigned int      *m_pBitmap;

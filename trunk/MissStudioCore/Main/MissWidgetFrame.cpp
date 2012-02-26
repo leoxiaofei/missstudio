@@ -1,6 +1,7 @@
 #include "MissWidgetFrame.h"
 
 #include "../BLL/MissWidgetManager.h"
+#include "../Widget/MissWidget.h"
 #include "../../MissAPI/plugin/MissWidgetFactoryBase.h"
 #include "../../MissAPI/plugin/MissPluginBase.h"
 
@@ -74,9 +75,8 @@ void MissWidgetFrame::OnWidgetsListItemActivated( wxListEvent& event )
     {
         long nPlugin = -1;
         strID.BeforeFirst(':').ToLong(&nPlugin);
-
-        m_pImpl->m_pManager->CreateWidget(nPlugin,nFunc);
-
+        SWidgetData data;
+        m_pImpl->m_pManager->CreateWidget(nPlugin,nFunc,data);
     }
 }
 

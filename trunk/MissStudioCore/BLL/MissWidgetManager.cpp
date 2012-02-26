@@ -49,7 +49,7 @@ std::vector<shared_ptr<SWidget> >& MissWidgetManager::GetWidgetData()
     return m_pImpl->m_vecWidgets;
 }
 
-void MissWidgetManager::CreateWidget(unsigned int nPlugin, unsigned int nWidget)
+void MissWidgetManager::CreateWidget(unsigned int nPlugin, unsigned int nWidget, const SWidgetData& data)
 {
     if(nPlugin < m_pImpl->m_vecWidgets.size() &&
        nWidget < m_pImpl->m_vecWidgets[nPlugin]->vecWidgetName.size())
@@ -57,8 +57,9 @@ void MissWidgetManager::CreateWidget(unsigned int nPlugin, unsigned int nWidget)
         MissWidgetFuncBase* pFunc = m_pImpl->m_vecWidgets[nPlugin]
             ->pFactory->CreateWidgetFunc(nWidget);
         shared_ptr<MissWidget> p(new MissWidget(pFunc,0));
+        p->InitData(data);
         p->Show();
-        m_pImpl->m_vecWidgets[nPlugin]->pFactory->CreateSuccessed((MissTimerFuncBase*)p.get());
         m_pImpl->m_vecRunWidgets.push_back(p);
+        m_pImpl->m_vecWidgets[nPlugin]->pFactory->CreateSuccessed((MissTimerFuncBase*)p.get());
     }
 }

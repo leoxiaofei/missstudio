@@ -25,10 +25,14 @@ m_pFunc(pFunc)
     this->Connect( wxEVT_LEFT_DOWN, wxMouseEventHandler( MissWidget::OnLeftDown ) );
 	this->Connect( wxEVT_RIGHT_UP, wxMouseEventHandler( MissWidget::OnRightUp ) );
 
-	m_pFunc->InitWidget(this);
+}
 
-	SetScale(1);
-	SetOpacity(150);
+void MissWidget::InitData(const SWidgetData& data)
+{
+    m_pFunc->InitWidget(data.m_vecPata, this);
+	SetScale(data.m_dZome);
+	SetOpacity(data.m_nOpacity);
+	Move(data.m_ptPos);
 }
 
 void MissWidget::TimeUp(const tm* tmNow, MissTimerType eType)
@@ -95,4 +99,14 @@ void MissWidget::SetOpacity(int nOpacity)
 {
     ///指定用于整张源位图的Alpha透明度值。(0~255)
     m_Blend.SourceConstantAlpha = nOpacity;
+}
+
+const double& MissWidget::GetScale() const
+{
+    return m_dZoom;
+}
+
+int MissWidget::GetOpacity() const
+{
+    return static_cast<int>(m_Blend.SourceConstantAlpha);
 }

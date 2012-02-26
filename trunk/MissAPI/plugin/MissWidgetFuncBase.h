@@ -3,13 +3,16 @@
 
 #include <wx/event.h>
 #include "../interface/IMissPlugin.h"
+#include <vector>
+
+typedef std::vector<std::pair<wxString, wxString> > WidgetParas;
 
 class MissWidgetFuncBase : public wxEvtHandler, public IMissPlugin
 {
     public:
         MissWidgetFuncBase(MissPluginBase* pPlugin):IMissPlugin(pPlugin){};
         virtual ~MissWidgetFuncBase() {}
-        virtual void InitWidget(wxFrame* pWidget){};
+        virtual void InitWidget(const WidgetParas& para, wxFrame* pWidget){};
         virtual void UpdateUI(wxDC &dc, const tm* tmNow) = 0;
         virtual wxSize GetSize() = 0;
     protected:

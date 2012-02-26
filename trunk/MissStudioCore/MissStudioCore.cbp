@@ -87,6 +87,8 @@
 		<Unit filename="BLL\MissPluginManager.h" />
 		<Unit filename="BLL\MissWidgetManager.cpp" />
 		<Unit filename="BLL\MissWidgetManager.h" />
+		<Unit filename="DAL\MissWidgetsDAL.cpp" />
+		<Unit filename="DAL\MissWidgetsDAL.h" />
 		<Unit filename="Generated\GUIFrame.cpp" />
 		<Unit filename="Generated\GUIFrame.h" />
 		<Unit filename="Main\MissHotKeyFrame.cpp" />
