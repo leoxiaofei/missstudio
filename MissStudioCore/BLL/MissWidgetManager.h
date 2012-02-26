@@ -3,6 +3,8 @@
 
 #include "../../MissAPI/interface/IMissWidget.h"
 
+struct SWidgetData;
+
 struct SWidget
 {
     SWidget(MissWidgetFactoryBase* widget,const std::vector<wxString>& vecWidget):
@@ -20,7 +22,7 @@ class MissWidgetManager: public IMissWidget
         virtual ~MissWidgetManager();
 
         //MissWidgetUpdateFunc* CreateWidget(MissWidgetFuncBase * pFunc);
-        void CreateWidget(unsigned int nPlugin, unsigned int nWidget);
+        void CreateWidget(unsigned int nPlugin, unsigned int nWidget, const SWidgetData& data);
 
         std::vector<shared_ptr<SWidget> >& GetWidgetData();
 
