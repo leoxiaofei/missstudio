@@ -56,6 +56,7 @@ bool ProcPwCore::StartProc(const char* szDataSrc, short nLenSrc, char* szDataDes
     for(int ix = 0; ix < m_nLen; ++ix)
     {
         szDataDes[ix] = ConfuseChar(GetCharByHexInt((unsigned char)szHashCache[nTemp] % 16));
+        //szDataDes[ix] =
         if(++nTemp >= nHashLen)
         {
             nTemp = 0;

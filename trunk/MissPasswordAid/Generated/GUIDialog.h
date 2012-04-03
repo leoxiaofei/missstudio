@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////
-// C++ code generated with wxFormBuilder (version Dec  2 2011)
+// C++ code generated with wxFormBuilder (version Feb  9 2012)
 // http://www.wxformbuilder.org/
 //
 // PLEASE DO "NOT" EDIT THIS FILE!
@@ -19,6 +19,7 @@
 #include <wx/textctrl.h>
 #include <wx/spinctrl.h>
 #include <wx/sizer.h>
+#include <wx/choice.h>
 #include <wx/button.h>
 #include <wx/dialog.h>
 
@@ -32,11 +33,13 @@ class GUIDialog : public wxDialog
 	private:
 	
 	protected:
-		wxStaticText* m_staticText4;
+		wxStaticText* m_lblPassword;
 		wxTextCtrl* m_edtPassword;
-		wxStaticText* m_staticText3;
+		wxStaticText* m_lblLen;
 		wxSpinCtrl* m_spLen;
-		wxStaticText* m_staticText2;
+		wxStaticText* m_lblPassType;
+		wxChoice* m_cboxPassType;
+		wxStaticText* m_lblVersion;
 		wxSpinCtrl* m_spVersion;
 		wxButton* m_btnGenerate;
 		wxTextCtrl* m_edtOut;
