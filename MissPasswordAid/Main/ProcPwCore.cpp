@@ -2,17 +2,34 @@
 #include <memory.h>
 #include "../Tools/HashFactory.h"
 #include "../Tools/IHash.h"
+#include <algorithm>
 
 ProcPwCore::ProcPwCore(short nLen, short nEdition):
 m_nLen(nLen),
 m_nEdition(nEdition)
 {
     //ctor
+    InitConfuse();
 }
 
 ProcPwCore::~ProcPwCore()
 {
     //dtor
+}
+
+void ProcPwCore::InitConfuse()
+{
+    m_szConfuse[0] = ConfuseLower;
+    m_szConfuse[1] = ConfuseUpper;
+    m_szConfuse[2] = ConfuseNumeric;
+    m_szConfuse[3] = ConfuseAdditional;
+    /*
+    m_vecConfuse.clear();
+    m_vecConfuse.push_back(ConfuseLower);
+    m_vecConfuse.push_back(ConfuseUpper);
+    m_vecConfuse.push_back(ConfuseNumeric);
+    m_vecConfuse.push_back(ConfuseAdditional);
+    */
 }
 
 void ProcPwCore::SetOutLen(short nLen)
@@ -51,52 +68,25 @@ bool ProcPwCore::StartProc(const char* szDataSrc, short nLenSrc, char* szDataDes
     hTool->ProcessMessage(szTemp, nLenSrc + 1, szHashCache, nHashLen);
     delete hTool; hTool = NULL;
 
+    ///准备加密器
+    short nCount = szHashCache[19] % 24;
+    while(nCount)
+    {
+        std::next_permutation(m_szConfuse, m_szConfuse+4);
+        --nCount;
+    }
+
     ///按所需密码长度，截取Hash值
     int nTemp(0);
     for(int ix = 0; ix < m_nLen; ++ix)
     {
-        szDataDes[ix] = ConfuseChar(GetCharByHexInt((unsigned char)szHashCache[nTemp] % 16));
-        //szDataDes[ix] =
+        szDataDes[ix] = m_szConfuse[ix%4]((unsigned char)szHashCache[nTemp]);
         if(++nTemp >= nHashLen)
         {
             nTemp = 0;
         }
     }
 
-    /*
-    ///按所需密码长度，截取Hash值
-    char szHexTemp[2];
-    int nTemp(0);
-    for(int ix = 0; ix < nHashLen; )
-    {
-        CharToHex(szHashCache[ix],szHexTemp);
-        if(nTemp < m_nLen)
-        {
-            szDataDes[nTemp] = ConfuseChar(szHexTemp[0]);
-        }
-        else
-        {
-            break;
-        }
-        ++nTemp;
-
-        if(nTemp < m_nLen)
-        {
-            szDataDes[nTemp] = ConfuseChar(szHexTemp[1]);
-        }
-        else
-        {
-            break;
-        }
-        ++nTemp;
-
-        ++ix;
-        if(ix >= nHashLen)
-        {
-            ix = 0;
-        }
-    }
-    */
     return true;
 }
 
@@ -122,26 +112,28 @@ char ProcPwCore::GetCharByHexInt(int nSrc)
     }
 }
 
-char ProcPwCore::ConfuseChar(char cSrc)
+char ProcPwCore::ConfuseLower(unsigned char cSrc)
 {
-    char cRet(cSrc);
-    switch(cSrc)
-    {
-    case '6':
-        cRet = '!';
-        break;
-    case '7':
-        cRet = '@';
-        break;
-    case '8':
-        cRet = '#';
-        break;
-    case '9':
-        cRet = '$';
-        break;
-    case '0':
-        cRet = '%';
-        break;
-    }
-    return cRet;
+    cSrc %= 6;
+    return 'a' + cSrc;
+}
+
+char ProcPwCore::ConfuseUpper(unsigned char cSrc)
+{
+    cSrc %= 6;
+    return 'A' + cSrc;
+}
+
+char ProcPwCore::ConfuseNumeric(unsigned char cSrc)
+{
+    cSrc %= 5;
+    return '1' + cSrc;
+}
+
+const char ProcPwCore::s_szAdditional[] = {'!','@','#','$','%'};
+
+char ProcPwCore::ConfuseAdditional(unsigned char cSrc)
+{
+    int nSrc = cSrc % 5;
+    return s_szAdditional[nSrc];
 }
