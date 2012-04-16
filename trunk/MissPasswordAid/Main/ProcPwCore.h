@@ -1,7 +1,6 @@
 #ifndef PROCPWCORE_H
 #define PROCPWCORE_H
 
-
 class ProcPwCore
 {
     public:
@@ -53,17 +52,26 @@ class ProcPwCore
          */
         char GetCharByHexInt(int nSrc);
 
+        void InitConfuse();
+
         /** \brief 字符混淆处理
          *
          * \param cSrc char    待混淆字符
          * \return char        输出混淆后的字符
          *
          */
-        char ConfuseChar(char cSrc);
+        static char ConfuseLower(unsigned char cSrc);
+        static char ConfuseUpper(unsigned char cSrc);
+        static char ConfuseNumeric(unsigned char cSrc);
+        static char ConfuseAdditional(unsigned char cSrc);
 
     private:
         short m_nLen;       /**< 输出密码的长度 */
         short m_nEdition;   /**< 密码版本 */
+
+        static const char s_szAdditional[];
+        typedef char (*ConfuseFun)(unsigned char);
+        ConfuseFun m_szConfuse[4];
 };
 
 #endif // PROCPWCORE_H
