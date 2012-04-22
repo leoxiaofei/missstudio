@@ -17,19 +17,19 @@
 
 class MissTaskBarIcon : public wxTaskBarIcon, public IMissTaskIcon
 {
-    public:
-        /** Default constructor */
-        MissTaskBarIcon();
-        /** Default destructor */
-        virtual ~MissTaskBarIcon();
+public:
+    /** Default constructor */
+    MissTaskBarIcon();
+    /** Default destructor */
+    virtual ~MissTaskBarIcon();
 
-        bool ShowBalloon(const wxString &strTitle,
-                         const wxString &strMsg,
-                         int iconID = NIIF_INFO,
-                         unsigned int timeout = 3000);
+    bool ShowBalloon(const wxString &strTitle,
+                     const wxString &strMsg,
+                     int iconID = NIIF_INFO,
+                     unsigned int timeout = 3000);
 
-    protected:
-    private:
+protected:
+private:
 };
 
 #endif // MISSTASKBARICON_H

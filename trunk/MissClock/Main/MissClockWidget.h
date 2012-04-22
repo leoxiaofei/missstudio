@@ -12,9 +12,10 @@ class MissClockWidget : public MissWidgetFuncBase
         virtual ~MissClockWidget();
 
         void LoadSkin();
+
     ///接口实现
     public:
-        virtual void InitWidget(wxFrame* pWidget);
+        virtual void InitWidget(const WidgetParas& para, wxFrame* pWidget);
         virtual void UpdateUI(wxDC &dc, const tm* tmNow);
         virtual wxSize GetSize();
 

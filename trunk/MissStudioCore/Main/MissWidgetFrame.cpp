@@ -1,29 +1,29 @@
 #include "MissWidgetFrame.h"
 
 #include "../BLL/MissWidgetManager.h"
+#include "../BLL/MissPluginManager.h"
 #include "../Widget/MissWidget.h"
+#include "../Model/MissPluginTreeListData.h"
 #include "../../MissAPI/plugin/MissWidgetFactoryBase.h"
 #include "../../MissAPI/plugin/MissPluginBase.h"
 
 class MissWidgetFrame::MissWidgetFrameImpl
 {
 public:
-    MissWidgetManager* m_pManager;
+
 };
 
-MissWidgetFrame::MissWidgetFrame( wxWindow* parent, MissWidgetManager* pManager)
-:
-MissWidgetFrameBase( parent ),
-m_pImpl(new MissWidgetFrameImpl)
+MissWidgetFrame::MissWidgetFrame( wxWindow* parent)
+    : MissWidgetFrameBase( parent )
+    , m_pImpl(new MissWidgetFrameImpl)
 {
-    m_pImpl->m_pManager = pManager;
-
     InitUI();
-    Centre( wxBOTH );
+    CentreOnScreen();
 }
 
 void MissWidgetFrame::InitUI()
 {
+    /*
     m_listWidgets->InsertColumn(0,_T("ID"),wxLIST_FORMAT_LEFT,0);
     m_listWidgets->InsertColumn(1,_T("插件名称"),wxLIST_FORMAT_LEFT,100);
     m_listWidgets->InsertColumn(2,_T("小工具名称"),wxLIST_FORMAT_LEFT,100);
@@ -33,35 +33,52 @@ void MissWidgetFrame::InitUI()
     m_listRunWidgets->InsertColumn(2,_T("坐标"),wxLIST_FORMAT_LEFT,50);
     m_listRunWidgets->InsertColumn(3,_T("透明度"),wxLIST_FORMAT_LEFT,50);
     m_listRunWidgets->InsertColumn(4,_T("缩放"),wxLIST_FORMAT_LEFT,50);
+    */
 
-    int nItemIndex = 0;
+    wxTreeItemId idRoot = m_listWidgets->AddRoot(_T("Miss Studio"));
+    wxTreeItemId idParent, idItem;
+
     int nPluginIndex = 0;
-    int nFuncIndex = -1;
-    std::vector<shared_ptr<SWidget> >& datas = m_pImpl->m_pManager->GetWidgetData();
-    for(std::vector<shared_ptr<SWidget> >::iterator itor = datas.begin();
-        itor != datas.end(); ++itor)
+    int nFuncIndex   = 0;
+    std::vector<shared_ptr<SPluginWidgetData> >& datas =
+        MissPluginManager::Instance().GetWidgetManager().GetWidgetData();
+    for(std::vector<shared_ptr<SPluginWidgetData> >::iterator itor = datas.begin();
+            itor != datas.end(); ++itor)
     {
-        nFuncIndex = -2;
-        m_listWidgets->InsertItem(nItemIndex, wxEmptyString);
-        m_listWidgets->SetItem(nItemIndex,0,wxString::Format(wxT("%d:%d"),nPluginIndex,++nFuncIndex));
-        m_listWidgets->SetItem(nItemIndex,1,(*itor)->pFactory->GetPlugin()->GetPlugInfo().strPluginName);
-        ++nItemIndex;
-        for(std::vector<wxString>::iterator hkitor = (*itor)->vecWidgetName.begin();
-            hkitor != (*itor)->vecWidgetName.end(); ++hkitor)
-        {
-            m_listWidgets->InsertItem(nItemIndex, wxEmptyString);
-            //m_listHotKey->SetItem(nItemIndex,0,m_pImpl->m_pData->);
-            //m_listHotKey->SetItem(nItemIndex,1,wxString::Format(wxT("%d"),nItemIndex+1));
+        nFuncIndex = -1;
+        idParent = m_listWidgets->AppendItem(idRoot, wxEmptyString);
+        m_listWidgets->SetItemText(idParent, 0,
+                                   (*itor)->pFactory->GetPlugin()->GetPlugInfo().strPluginName);
 
-            m_listWidgets->SetItem(nItemIndex,0,wxString::Format(wxT("%d:%d"),nPluginIndex,++nFuncIndex));
-            m_listWidgets->SetItem(nItemIndex,1,wxT("    ┖┄┄┄┄"));
-            m_listWidgets->SetItem(nItemIndex,2,*hkitor);
-            ++nItemIndex;
+        for(std::vector<wxString>::iterator wnitor = (*itor)->vecWidgetName.begin();
+                wnitor != (*itor)->vecWidgetName.end(); ++wnitor)
+        {
+            idItem = m_listWidgets->AppendItem(idParent, wxEmptyString, -1, -1,
+                                               new MissPluginTreeListData(nPluginIndex, ++nFuncIndex));
+            m_listWidgets->SetItemText(idItem, 0, *wnitor);
         }
         ++nPluginIndex;
     }
 }
 
+void MissWidgetFrame::OnWidgetsListTreeItemActivated(wxTreeEvent& event)
+{
+    wxTreeItemId idItemIndex = event.GetItem();
+    MissPluginTreeListData* pData = static_cast<MissPluginTreeListData*>
+                                    (m_listWidgets->GetItemData(idItemIndex));
+    if(pData != NULL)
+    {
+        unsigned int nPlugin = pData->GetPluginIndex();
+        unsigned int nWidget = pData->GetFuncIndex();
+        SWidgetPara para;
+        ///TODO:读取参数
+
+        ///
+        MissPluginManager::Instance().GetWidgetManager().CreateWidget(nPlugin, nWidget, para);
+    }
+}
+
+/*
 void MissWidgetFrame::OnWidgetsListItemActivated( wxListEvent& event )
 {
 // TODO: Implement OnWidgetsListItemActivated
@@ -75,11 +92,11 @@ void MissWidgetFrame::OnWidgetsListItemActivated( wxListEvent& event )
     {
         long nPlugin = -1;
         strID.BeforeFirst(':').ToLong(&nPlugin);
-        SWidgetData data;
-        m_pImpl->m_pManager->CreateWidget(nPlugin,nFunc,data);
+        //SWidgetData data;
+        //m_pImpl->m_pManager->CreateWidget(nPlugin,nFunc,data);
     }
 }
-
+*/
 void MissWidgetFrame::OnRunWidgetsListItemActivated( wxListEvent& event )
 {
 // TODO: Implement OnRunWidgetsListItemActivated

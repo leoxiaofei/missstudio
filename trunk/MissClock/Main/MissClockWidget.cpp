@@ -23,15 +23,9 @@ void MissClockWidget::LoadSkin()
     MissXML::LoadSkin(m_pSkin.get(),wxGetCwd() + wxT("\\")+ GetPlugin()->GetPluginPath() + wxT("\\ClockSkin\\Default\\"));
 }
 
-void MissClockWidget::InitWidget(wxFrame* pWidget)
+void MissClockWidget::InitWidget(const WidgetParas& para, wxFrame* pWidget)
 {
-    //wxMemoryDC memdc(m_bpUI);
-    //memdc.SetBrush(*wxBLUE_BRUSH);
-    //memdc.DrawRectangle(0,0,300,300);
-    //memdc.SetUserScale(m_dZoom,m_dZoom);
-    //m_pSkin->DrawSkin(memdc, tmNow);
     LoadSkin();
-    std::wcout<<wxGetCwd().c_str()<<std::endl;
 }
 
 void MissClockWidget::UpdateUI(wxDC& dc, const tm* tmNow)

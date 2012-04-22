@@ -4,14 +4,14 @@
 
 class MissWidgetsDAL
 {
-    public:
-        MissWidgetsDAL();
-        virtual ~MissWidgetsDAL();
+public:
+    MissWidgetsDAL();
+    virtual ~MissWidgetsDAL();
 
-        bool SaveCurWidgets();
-        bool LoadCurWidgets();
-    protected:
-    private:
+    bool SaveCurWidgets();
+    bool LoadCurWidgets();
+protected:
+private:
 };
 
 #endif // MISSWIDGETSDAL_H

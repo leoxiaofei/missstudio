@@ -22,20 +22,22 @@
 
 #include <wx/frame.h>
 
-class wxTaskBarIconWindow: public wxFrame {
-    public:
-        wxTaskBarIconWindow(wxTaskBarIcon* icon): wxFrame(NULL, wxID_ANY,
-            wxEmptyString, wxDefaultPosition, wxDefaultSize, 0), m_icon(icon){}
+class wxTaskBarIconWindow: public wxFrame
+{
+public:
+    wxTaskBarIconWindow(wxTaskBarIcon* icon): wxFrame(NULL, wxID_ANY,
+                wxEmptyString, wxDefaultPosition, wxDefaultSize, 0), m_icon(icon) {}
 
-        WXLRESULT MSWWindowProc(WXUINT msg, WXWPARAM wParam, WXLPARAM lParam) {
-                return 0;
-        }
-    private:
-        wxTaskBarIcon* m_icon;
+    WXLRESULT MSWWindowProc(WXUINT msg, WXWPARAM wParam, WXLPARAM lParam)
+    {
+        return 0;
+    }
+private:
+    wxTaskBarIcon* m_icon;
 };
 
 MissTaskBarIcon::MissTaskBarIcon():
-wxTaskBarIcon()
+    wxTaskBarIcon()
 {
     //ctor
 }
@@ -72,9 +74,12 @@ bool MissTaskBarIcon::ShowBalloon(const wxString &strTitle,
     notifyData.uTimeout = timeout;
     notifyData.uID = 99;
 
-    if (m_iconAdded) {
+    if (m_iconAdded)
+    {
         return (Shell_NotifyIcon(NIM_MODIFY, &notifyData) != 0);
-    } else {
+    }
+    else
+    {
         return false;
     }
 }

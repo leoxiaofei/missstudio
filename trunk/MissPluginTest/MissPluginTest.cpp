@@ -54,16 +54,16 @@ void MissPluginTest::ModifiedHotKey(int nFuncIndex, const wxString& strHotKey)
 void MissPluginTest::LoadPlugin(const wxString& strPath)
 {
     MissPluginBase::LoadPlugin(strPath);
-    std::vector<SHotKey> vecHotKey(2);
+    std::vector<SHotKeyData> vecHotKey(2);
     std::tr1::shared_ptr<IMissConfig> config = GetMain()->GetConfig(this);
     //wxString strHotkey;
-    vecHotKey[0].strDescription = wxT("弹出气泡提示。");
+    vecHotKey[0].strFuncDesc = wxT("弹出气泡提示。");
     if(!config->Read(wxT("函数0"),vecHotKey[0].strHotKey))
     {
         vecHotKey[0].strHotKey = wxT("Win+Q");
     }
 
-    vecHotKey[1].strDescription = wxT("弹出气泡提示2。");
+    vecHotKey[1].strFuncDesc = wxT("弹出气泡提示2。");
     if(!config->Read(wxT("函数1"),vecHotKey[1].strHotKey))
     {
         vecHotKey[1].strHotKey = wxT("Win+W");

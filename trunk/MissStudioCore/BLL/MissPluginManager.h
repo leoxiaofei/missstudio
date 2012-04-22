@@ -3,37 +3,45 @@
 
 class wxDynamicLibrary;
 class MissPluginBase;
-class IMissMain;
 
-struct PluginData
-{
-    wxDynamicLibrary*      pDllHandle;
-    MissPluginBase*        pPlugin;
-};
+class MissHotKeyManager;
+class MissWidgetManager;
+class IMissMain;
 
 class MissPluginManager
 {
     class MissPluginManagerImpl;
 
-    public:
-        static MissPluginManager& GetInstance()
-        {
-            static MissPluginManager theSingleton;
-            return theSingleton;
-        }
-    private:
-        MissPluginManager();
-        virtual ~MissPluginManager();
-        MissPluginManager(const MissPluginManager&);
-        MissPluginManager& operator=(const MissPluginManager&);
+    struct SPluginData
+    {
+        wxDynamicLibrary*      pDllHandle;
+        MissPluginBase*        pPlugin;
+    };
 
-    public:
-        bool LoadDll(const wxString& strPath, IMissMain* pParent);
-        bool UnloadDll();
+public:
+    static MissPluginManager& Instance()
+    {
+        static MissPluginManager theSingleton;
+        return theSingleton;
+    }
 
-    protected:
-    private:
-        shared_ptr<MissPluginManagerImpl> m_pImpl;
+public:
+    void Init(wxWindow* pMainWindow);
+    bool LoadDll(const wxString& strPath, IMissMain* pParent);
+    bool UnloadDll();
+
+    MissHotKeyManager& GetHotKeyManager();
+    MissWidgetManager& GetWidgetManager();
+
+protected:
+private:
+    MissPluginManager();
+    virtual ~MissPluginManager();
+    MissPluginManager(const MissPluginManager&);
+    MissPluginManager& operator=(const MissPluginManager&);
+
+private:
+    shared_ptr<MissPluginManagerImpl> m_pImpl;
 };
 
 #endif // MISSPLUGINMANAGER_H

@@ -9,17 +9,23 @@
 class MissHotKeyManager::MissHotKeyManagerImpl
 {
 public:
-    MissHotKeyManagerImpl():m_nHotkeyStart(1000){}
-    wxWindow* m_pParent;
-    int m_nHotkeyStart;
-    std::vector<ChildData> m_vecChildData;
+    MissHotKeyManagerImpl()
+        :m_nHotkeyStart(1000) {}
+
+    wxWindow*                       m_pParent;
+    int                             m_nHotkeyStart;
+    std::vector<SPluginHotKeyData>  m_vecHotKeyData;
 };
 
 
-MissHotKeyManager::MissHotKeyManager(wxWindow* pParent):
-m_pImpl(new MissHotKeyManagerImpl)
+MissHotKeyManager::MissHotKeyManager():
+    m_pImpl(new MissHotKeyManagerImpl)
 {
     //ctor
+}
+
+void MissHotKeyManager::SetMainWindow(wxWindow* pParent)
+{
     m_pImpl->m_pParent = pParent;
 }
 
@@ -28,23 +34,23 @@ MissHotKeyManager::~MissHotKeyManager()
     //dtor
 }
 
-std::vector<ChildData>& MissHotKeyManager::GetChildData()
+std::vector<SPluginHotKeyData>& MissHotKeyManager::GetHotKeyData()
 {
-    return m_pImpl->m_vecChildData;
+    return m_pImpl->m_vecHotKeyData;
 }
 
 void MissHotKeyManager::RunFuncFromHotKey(int nHotKeyID)
 {
     int nFuncIndex;
-    for(std::vector<ChildData>::reverse_iterator ritor = m_pImpl->m_vecChildData.rbegin();
-        ritor != m_pImpl->m_vecChildData.rend(); ++ritor)
+    for(std::vector<SPluginHotKeyData>::reverse_iterator ritor = m_pImpl->m_vecHotKeyData.rbegin();
+            ritor != m_pImpl->m_vecHotKeyData.rend(); ++ritor)
     {
         nFuncIndex = nHotKeyID - ritor->nStartID;
         if(nFuncIndex >= 0)
         {
             if(static_cast<unsigned int>(nFuncIndex) < ritor->vecHotKey.size())
             {
-                ritor->pChild->RunFunc(nFuncIndex);
+                ritor->pHotKeyBase->RunFunc(nFuncIndex);
             }
             else
             {
@@ -55,12 +61,12 @@ void MissHotKeyManager::RunFuncFromHotKey(int nHotKeyID)
     }
 }
 
-bool MissHotKeyManager::RegHotKeys(const std::vector<SHotKey>& vecHotKey, MissHotKeyFuncBase* pChild)
+bool MissHotKeyManager::RegHotKeys(const std::vector<SHotKeyData>& vecHotKey, MissHotKeyFuncBase* pChild)
 {
-    ChildData data;
+    SPluginHotKeyData data;
     data.nStartID = m_pImpl->m_nHotkeyStart;
     data.vecHotKey = vecHotKey;
-    data.pChild = pChild;
+    data.pHotKeyBase = pChild;
 
     bool bRet(true);
 
@@ -73,34 +79,35 @@ bool MissHotKeyManager::RegHotKeys(const std::vector<SHotKey>& vecHotKey, MissHo
         }
     }
 
-    m_pImpl->m_vecChildData.push_back(data);
+    m_pImpl->m_vecHotKeyData.push_back(data);
     m_pImpl->m_nHotkeyStart += vecHotKey.size();
     return bRet;
 }
 
-bool MissHotKeyManager::ModifyHotKey(int nPlugin, int nFunc, const wxString& strHotKey)
+bool MissHotKeyManager::ModifyHotKey(unsigned int nPlugin, unsigned int nFunc,
+                                     const wxString& strHotKey)
 {
     std::cout << nPlugin << " " << nFunc << " " << strHotKey << std:: endl;
     bool bRet(false);
-    if((unsigned int)nPlugin < m_pImpl->m_vecChildData.size())
+    if(nPlugin < m_pImpl->m_vecHotKeyData.size())
     {
-        if((unsigned int)nFunc < m_pImpl->m_vecChildData[nPlugin].vecHotKey.size())
+        if(nFunc < m_pImpl->m_vecHotKeyData[nPlugin].vecHotKey.size())
         {
-            int nHotKeyID = m_pImpl->m_vecChildData[nPlugin].nStartID + nFunc;
+            int nHotKeyID = m_pImpl->m_vecHotKeyData[nPlugin].nStartID + nFunc;
             UnRegHotKey(nHotKeyID);
             if(strHotKey.IsEmpty() || RegHotKey(nHotKeyID,strHotKey))
             {
-                m_pImpl->m_vecChildData[nPlugin].vecHotKey[nFunc].strHotKey = strHotKey;
+                m_pImpl->m_vecHotKeyData[nPlugin].vecHotKey[nFunc].strHotKey = strHotKey;
                 bRet = true;
             }
             else
             {
-                m_pImpl->m_vecChildData[nPlugin].vecHotKey[nFunc].strHotKey.Clear();
+                m_pImpl->m_vecHotKeyData[nPlugin].vecHotKey[nFunc].strHotKey.Clear();
             }
 
             ///通知插件，快捷键已修改
-            m_pImpl->m_vecChildData[nPlugin].pChild->ModifiedHotKey(nFunc,
-                        m_pImpl->m_vecChildData[nPlugin].vecHotKey[nFunc].strHotKey);
+            m_pImpl->m_vecHotKeyData[nPlugin].pHotKeyBase->ModifiedHotKey(nFunc,
+                    m_pImpl->m_vecHotKeyData[nPlugin].vecHotKey[nFunc].strHotKey);
 
         }
     }
@@ -116,7 +123,7 @@ bool MissHotKeyManager::RegHotKey(int nHotKeyID, const wxString& strHotKey)
     if(m_pImpl->m_pParent->RegisterHotKey(nHotKeyID, nKeyModifier, nKeyCode))
     {
         m_pImpl->m_pParent->Connect( nHotKeyID, wxEVT_HOTKEY,
-                wxKeyEventHandler( MissStudioCoreFrame::OnHotKey ) );
+                                     wxKeyEventHandler( MissStudioCoreFrame::OnHotKey ) );
         bRet = true;
     }
     return bRet;
@@ -131,4 +138,15 @@ bool MissHotKeyManager::UnRegHotKey(int nHotKeyID)
         bRet = true;
     }
     return bRet;
+}
+
+bool MissHotKeyManager::GetHotkeyString(unsigned int nPlugin, unsigned int nFunc, wxString& strValue)
+{
+    std::vector<SPluginHotKeyData>& datas = m_pImpl->m_vecHotKeyData;
+    if(nPlugin < datas.size() && nFunc < datas[nPlugin].vecHotKey.size())
+    {
+        strValue = datas[nPlugin].vecHotKey[nFunc].strHotKey;
+        return true;
+    }
+    return false;
 }

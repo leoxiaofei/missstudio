@@ -12,7 +12,7 @@ class MissWidgetFuncBase : public wxEvtHandler, public IMissPlugin
     public:
         MissWidgetFuncBase(MissPluginBase* pPlugin):IMissPlugin(pPlugin){};
         virtual ~MissWidgetFuncBase() {}
-        virtual void InitWidget(const WidgetParas& para, wxFrame* pWidget){};
+        virtual void InitWidget(const WidgetParas& para, wxFrame* pWidget) = 0;
         virtual void UpdateUI(wxDC &dc, const tm* tmNow) = 0;
         virtual wxSize GetSize() = 0;
     protected:

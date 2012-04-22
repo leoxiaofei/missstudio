@@ -3,13 +3,15 @@
 
 #include "../../MissAPI/interface/IMissWidget.h"
 
-struct SWidgetData;
+struct SWidgetPara;
 
-struct SWidget
+struct SPluginWidgetData
 {
-    SWidget(MissWidgetFactoryBase* widget,const std::vector<wxString>& vecWidget):
-        pFactory(widget),
-        vecWidgetName(vecWidget){}
+    SPluginWidgetData(MissWidgetFactoryBase* widget,
+                      const std::vector<wxString>& vecWidget)
+    : pFactory(widget)
+    , vecWidgetName(vecWidget){}
+
     MissWidgetFactoryBase* pFactory;
     std::vector<wxString> vecWidgetName;
 };
@@ -22,9 +24,9 @@ class MissWidgetManager: public IMissWidget
         virtual ~MissWidgetManager();
 
         //MissWidgetUpdateFunc* CreateWidget(MissWidgetFuncBase * pFunc);
-        void CreateWidget(unsigned int nPlugin, unsigned int nWidget, const SWidgetData& data);
+        void CreateWidget(unsigned int nPlugin, unsigned int nWidget, const SWidgetPara& data);
 
-        std::vector<shared_ptr<SWidget> >& GetWidgetData();
+    std::vector<shared_ptr<SPluginWidgetData> >& GetWidgetData();
 
     ///接口实现
         void RegPluginWidget(MissWidgetFactoryBase* pFactory, const std::vector<wxString>& vecWidget);

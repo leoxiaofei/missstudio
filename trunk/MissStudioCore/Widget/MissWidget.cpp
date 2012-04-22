@@ -1,16 +1,15 @@
 #include "MissWidget.h"
-
 #include "../../MissAPI/plugin/MissWidgetFuncBase.h"
 
 MissWidget::MissWidget(MissWidgetFuncBase * pFunc,
                        wxWindow* parent,
-                        wxWindowID id,
-                        const wxString& title,
-                        const wxPoint& pos,
-                        const wxSize& size,
-                        long style):
-wxFrame(parent,id,title,pos,size,style),
-m_pFunc(pFunc)
+                       wxWindowID id,
+                       const wxString& title,
+                       const wxPoint& pos,
+                       const wxSize& size,
+                       long style):
+    wxFrame(parent, id, title, pos, size, style),
+    m_pFunc(pFunc)
 {
     m_hWnd = static_cast<HWND>(GetHandle());
 
@@ -23,16 +22,16 @@ m_pFunc(pFunc)
     m_Blend.AlphaFormat = AC_SRC_ALPHA; ///该成员控制源和目标位图被解释的方式。
 
     this->Connect( wxEVT_LEFT_DOWN, wxMouseEventHandler( MissWidget::OnLeftDown ) );
-	this->Connect( wxEVT_RIGHT_UP, wxMouseEventHandler( MissWidget::OnRightUp ) );
+    this->Connect( wxEVT_RIGHT_UP, wxMouseEventHandler( MissWidget::OnRightUp ) );
 
 }
 
-void MissWidget::InitData(const SWidgetData& data)
+void MissWidget::InitData(const SWidgetPara& data)
 {
     m_pFunc->InitWidget(data.m_vecPata, this);
-	SetScale(data.m_dZome);
-	SetOpacity(data.m_nOpacity);
-	Move(data.m_ptPos);
+    SetScale(data.m_dZone);
+    SetOpacity(data.m_nOpacity);
+    Move(data.m_ptPos);
 }
 
 void MissWidget::TimeUp(const tm* tmNow, MissTimerType eType)
@@ -59,13 +58,14 @@ void MissWidget::TimeUp(const tm* tmNow, MissTimerType eType)
 
     nPixCount = m_nPixCount;
     pBitmap = m_pBitmap;
+
     while (--nPixCount)
     {
         *pBitmap -= 0x01000000;
         ++pBitmap;
     }
     ::UpdateLayeredWindow(m_hWnd, s_hdcScreen, NULL, &m_SizeWindow, static_cast<HDC>(memdc.GetHDC()),
-        &s_ptSrc, 0, &m_Blend, ULW_ALPHA);
+                          &s_ptSrc, 0, &m_Blend, ULW_ALPHA);
 }
 
 void MissWidget::OnLeftDown(wxMouseEvent& event)
@@ -75,19 +75,22 @@ void MissWidget::OnLeftDown(wxMouseEvent& event)
 
 void MissWidget::OnRightUp(wxMouseEvent& event)
 {
-    /*
     Raise();
-    if(m_pOptionDlg == NULL)
-        PopupMenu(m_pMainMenu);
-    */
+    //if(m_pOptionDlg == NULL)
+    wxMenu* m_pWidgetMenu = new wxMenu();
+    wxMenuItem* m_mitemHotKeySetting;
+    m_mitemHotKeySetting = new wxMenuItem( m_pWidgetMenu, wxID_ANY, wxString( wxT("热键设置") ) , wxEmptyString, wxITEM_NORMAL );
+    m_pWidgetMenu->Append( m_mitemHotKeySetting );
+
+    PopupMenu(m_pWidgetMenu);
 }
 
 void MissWidget::SetScale(const double& dZoom)
 {
     m_dZoom = dZoom;
-
-    m_SizeWindow.cx = static_cast<int>(m_pFunc->GetSize().GetWidth() * dZoom);
-    m_SizeWindow.cy = static_cast<int>(m_pFunc->GetSize().GetHeight() * dZoom);
+    wxSize szBitmap = m_pFunc->GetSize();
+    m_SizeWindow.cx = static_cast<int>(szBitmap.GetWidth()  * dZoom);
+    m_SizeWindow.cy = static_cast<int>(szBitmap.GetHeight() * dZoom);
     m_bpUI = wxBitmap(m_SizeWindow.cx, m_SizeWindow.cy, 32);
     BITMAP bm;
     ::GetObject(static_cast<HBITMAP>(m_bpUI.GetHBITMAP()), sizeof(bm), &bm);
