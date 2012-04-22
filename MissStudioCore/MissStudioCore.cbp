@@ -28,6 +28,7 @@
 					<Add library="libwxzlibd.a" />
 					<Add library="libwxpngd.a" />
 					<Add library="libMissTools.a" />
+					<Add library="libwxtreelist28ud_gcc_custom.a" />
 					<Add directory="$(#wx)\lib\gcc_dll" />
 					<Add directory="$(TARGET_OUTPUT_DIR)" />
 				</Linker>
@@ -53,6 +54,7 @@
 					<Add library="libwxzlib.a" />
 					<Add library="libwxmsw28u_adv.a" />
 					<Add library="libMissTools.a" />
+					<Add library="libwxtreelist28u_gcc_custom.a" />
 					<Add directory="$(#wx)\lib\gcc_dll" />
 					<Add directory="$(TARGET_OUTPUT_DIR)" />
 				</Linker>
@@ -73,6 +75,7 @@
 			<Add directory="$(#wx)\include" />
 			<Add directory="$(#wx)\contrib\include" />
 			<Add directory="$(#miss)\hpp" />
+			<Add directory="$(#wxtreelist)\include" />
 		</Compiler>
 		<ResourceCompiler>
 			<Add directory="$(#wx)\include" />
@@ -80,6 +83,7 @@
 		<Linker>
 			<Add option="-mthreads" />
 			<Add library="libgdi32.a" />
+			<Add directory="$(#wxtreelist)\lib\gcc_dll" />
 		</Linker>
 		<Unit filename="BLL\MissHotKeyManager.cpp" />
 		<Unit filename="BLL\MissHotKeyManager.h" />
@@ -101,6 +105,8 @@
 		<Unit filename="Main\MissStudioCoreMain.h" />
 		<Unit filename="Main\MissWidgetFrame.cpp" />
 		<Unit filename="Main\MissWidgetFrame.h" />
+		<Unit filename="Model\MissPluginTreeListData.cpp" />
+		<Unit filename="Model\MissPluginTreeListData.h" />
 		<Unit filename="Widget\MissTaskBarIcon.cpp" />
 		<Unit filename="Widget\MissTaskBarIcon.h" />
 		<Unit filename="Widget\MissWidget.cpp" />

@@ -26,7 +26,8 @@ public:
     void OnKey(wxKeyEvent &);
 
     //! Returns TRUE if this window is containing a valid key combination.
-    bool IsValidKeyComb() const {
+    bool IsValidKeyComb() const
+    {
         return !GetValue().IsEmpty() && GetValue().Last() != '+';
     }
 

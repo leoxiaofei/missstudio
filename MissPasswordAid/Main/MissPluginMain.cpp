@@ -32,16 +32,16 @@ MissPluginMain::~MissPluginMain()
 void MissPluginMain::LoadPlugin(const wxString& strPath)
 {
     MissPluginBase::LoadPlugin(strPath);
-    std::vector<SHotKey> vecHotKey(2);
+    std::vector<SHotKeyData> vecHotKey(2);
     std::tr1::shared_ptr<IMissConfig> config = GetMain()->GetConfig(this);
     //wxString strHotkey;
-    vecHotKey[0].strDescription = wxT("打开密码助手");
+    vecHotKey[0].strFuncDesc = wxT("打开密码助手");
     if(!config->Read(wxT("热键/打开窗口"),vecHotKey[0].strHotKey))
     {
         vecHotKey[0].strHotKey = wxT("Win+C");
     }
 
-    vecHotKey[1].strDescription = wxT("自动输入");
+    vecHotKey[1].strFuncDesc = wxT("自动输入");
     if(!config->Read(wxT("热键/自动输入"),vecHotKey[1].strHotKey))
     {
         vecHotKey[1].strHotKey = wxT("Win+V");

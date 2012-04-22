@@ -12,7 +12,7 @@ MissWidgetFunc::~MissWidgetFunc()
     //dtor
 }
 
-void MissWidgetFunc::InitWidget(wxFrame* pWidget)
+void MissWidgetFunc::InitWidget(const WidgetParas& para, wxFrame* pWidget)
 {
     //wxMemoryDC memdc(m_bpUI);
     //memdc.SetBrush(*wxBLUE_BRUSH);

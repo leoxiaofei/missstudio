@@ -14,8 +14,8 @@
 
 class MissStudioCoreApp : public wxApp
 {
-    public:
-        virtual bool OnInit();
+public:
+    virtual bool OnInit();
 };
 
 #endif // MISSSTUDIOCOREAPP_H

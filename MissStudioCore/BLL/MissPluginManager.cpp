@@ -1,5 +1,8 @@
 #include "MissPluginManager.h"
 
+#include "../BLL/MissWidgetManager.h"
+#include "../BLL/MissHotKeyManager.h"
+
 #include <wx/dynlib.h>
 #include "../../MissAPI/plugin/MissPluginBase.h"
 
@@ -8,11 +11,13 @@
 class MissPluginManager::MissPluginManagerImpl
 {
 public:
-    std::vector<PluginData> m_vecPlugin;
+    std::vector<SPluginData> m_vecPlugin;
+    MissHotKeyManager    m_HotKeyManager;
+    MissWidgetManager    m_WidgetManager;
 };
 
 MissPluginManager::MissPluginManager():
-m_pImpl(new MissPluginManagerImpl)
+    m_pImpl(new MissPluginManagerImpl)
 {
     //ctor
 }
@@ -22,9 +27,14 @@ MissPluginManager::~MissPluginManager()
     //dtor
 }
 
+void MissPluginManager::Init(wxWindow* pMainWindow)
+{
+    m_pImpl->m_HotKeyManager.SetMainWindow(pMainWindow);
+}
+
 bool MissPluginManager::LoadDll(const wxString& strPath, IMissMain* pParent)
 {
-    PluginData data;
+    SPluginData data;
     data.pDllHandle = new wxDynamicLibrary(strPath);
     do
     {
@@ -36,7 +46,7 @@ bool MissPluginManager::LoadDll(const wxString& strPath, IMissMain* pParent)
         ///验证插件API是否和主程序匹配
         typedef int (* PFN_GetAPIVersion)();
         PFN_GetAPIVersion pAPIFun = (PFN_GetAPIVersion)(
-                        data.pDllHandle->GetSymbol(wxT("GetAPIVersion")));
+                                        data.pDllHandle->GetSymbol(wxT("GetAPIVersion")));
         if(!pAPIFun || pAPIFun() != MissPluginBase::APIVersion() )
         {
             data.pDllHandle->Unload();
@@ -45,7 +55,7 @@ bool MissPluginManager::LoadDll(const wxString& strPath, IMissMain* pParent)
 
         typedef bool (* PFN_CreateMissStudioPlug)(void **, void* );
         PFN_CreateMissStudioPlug pFun = (PFN_CreateMissStudioPlug)(
-                        data.pDllHandle->GetSymbol(wxT("CreateMissStudioPlug")));
+                                            data.pDllHandle->GetSymbol(wxT("CreateMissStudioPlug")));
         if(!pFun)
         {
             data.pDllHandle->Unload();
@@ -65,4 +75,14 @@ bool MissPluginManager::LoadDll(const wxString& strPath, IMissMain* pParent)
     delete data.pDllHandle;
     assert(false);
     return false;
+}
+
+MissHotKeyManager& MissPluginManager::GetHotKeyManager()
+{
+    return m_pImpl->m_HotKeyManager;
+}
+
+MissWidgetManager& MissPluginManager::GetWidgetManager()
+{
+    return m_pImpl->m_WidgetManager;
 }

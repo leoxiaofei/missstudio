@@ -5,37 +5,41 @@
 
 class wxWindow;
 
-struct ChildData
+struct SPluginHotKeyData
 {
     int nStartID;
-    //int nCount;
-    //wxString strPluginName;
-    std::vector<SHotKey> vecHotKey;
-    MissHotKeyFuncBase* pChild;
+    std::vector<SHotKeyData> vecHotKey;
+    MissHotKeyFuncBase* pHotKeyBase;
 };
 
 class MissHotKeyManager : public IMissHotKey
 {
     class MissHotKeyManagerImpl;
-    public:
-        MissHotKeyManager(wxWindow* pParent);
-        virtual ~MissHotKeyManager();
+public:
+    MissHotKeyManager();
+    virtual ~MissHotKeyManager();
 
-        std::vector<ChildData>& GetChildData();
+    void SetMainWindow(wxWindow* pParent);
+    bool GetHotkeyString(unsigned int nPlugin, unsigned int nFunc,
+                         wxString& strValue);
 
-        void RunFuncFromHotKey(int nHotKeyID);
+    std::vector<SPluginHotKeyData>& GetHotKeyData();
 
-        bool RegHotKey(int nHotKeyID, const wxString &strHotKey);
-        bool UnRegHotKey(int nHotKeyID);
 
-        bool ModifyHotKey(int nPlugin, int nFunc, const wxString &strHotKey);
+    void RunFuncFromHotKey(int nHotKeyID);
 
-        ///接口实现
-        bool RegHotKeys(const std::vector<SHotKey>& vecHotKey, MissHotKeyFuncBase* pChild);
+    bool RegHotKey(int nHotKeyID, const wxString &strHotKey);
+    bool UnRegHotKey(int nHotKeyID);
 
-    protected:
-    private:
-        shared_ptr<MissHotKeyManagerImpl> m_pImpl;
+    bool ModifyHotKey(unsigned int nPlugin, unsigned int nFunc,
+                      const wxString &strHotKey);
+
+    ///接口实现
+    bool RegHotKeys(const std::vector<SHotKeyData>& vecHotKey, MissHotKeyFuncBase* pChild);
+
+protected:
+private:
+    shared_ptr<MissHotKeyManagerImpl> m_pImpl;
 };
 
 #endif // MISSHOTKEYMANAGER_H

@@ -1,8 +1,8 @@
 #include "MissSetHotKey.h"
 
 MissSetHotKey::MissSetHotKey(const wxString& strHotKey, wxWindow* parent )
-:
-SetHotKeyBase( parent )
+    :
+    SetHotKeyBase( parent )
 {
     m_kedtHotKey->SetValue(strHotKey);
 }

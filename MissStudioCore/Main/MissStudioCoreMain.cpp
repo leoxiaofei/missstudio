@@ -19,8 +19,8 @@
 #include "MissHotKeyFrame.h"
 #include "MissWidgetFrame.h"
 #include "../Widget/MissTaskBarIcon.h"
-#include "../BLL/MissHotKeyManager.h"
 #include "../BLL/MissPluginManager.h"
+#include "../BLL/MissHotKeyManager.h"
 #include "../BLL/MissWidgetManager.h"
 #include "../../MissTools/MissConfigFile.h"
 #include "../../MissAPI/plugin/MissPluginBase.h"
@@ -37,8 +37,10 @@
 DEFINE_LOCAL_EVENT_TYPE(wxEVT_INITIALIZE);
 
 //helper functions
-enum wxbuildinfoformat {
-    short_f, long_f };
+enum wxbuildinfoformat
+{
+    short_f, long_f
+};
 
 wxString wxbuildinfo(wxbuildinfoformat format)
 {
@@ -67,11 +69,11 @@ wxString wxbuildinfo(wxbuildinfoformat format)
 
 MissStudioCoreFrame::MissStudioCoreFrame(wxFrame *frame)
     : GUIFrame(frame),
-    m_pTaskBarIcon(new MissTaskBarIcon),
-    m_pHotKeyManager(new MissHotKeyManager(this)),
-    m_pWidgetManager(new MissWidgetManager),
-    m_pMainTimer(new wxTimer(this))
+      m_pTaskBarIcon(new MissTaskBarIcon),
+      m_pMainTimer(new wxTimer(this))
 {
+    MissPluginManager::Instance().Init(this);
+
     m_pTaskBarIcon->SetIcon(wxICON(RC_STUDIO_ICON), wxT("迷失工作室"));
 
     ///初始化事件
@@ -93,9 +95,9 @@ void MissStudioCoreFrame::InitEvent()
 {
     this->Connect(wxEVT_TIMER, wxTimerEventHandler(MissStudioCoreFrame::OnTimer));
     this->Connect(wxEVT_INITIALIZE, wxCommandEventHandler(
-                                    MissStudioCoreFrame::OnInitWindow), NULL, this);
+                      MissStudioCoreFrame::OnInitWindow), NULL, this);
     m_pTaskBarIcon->Connect(wxEVT_TASKBAR_RIGHT_UP, wxMouseEventHandler(
-                                    MissStudioCoreFrame::OnRightUp), NULL, this);
+                                MissStudioCoreFrame::OnRightUp), NULL, this);
     //m_pTaskBarIcon->Connect(wxEVT_TASKBAR_LEFT_UP, (wxObjectEventFunction)&MissStudioCoreFrame::OnTaskBarIconLeftUP, NULL, this);
 }
 
@@ -109,7 +111,7 @@ void MissStudioCoreFrame::InitPlugin()
         bool cont = dir.GetFirst(&filename, wxEmptyString, wxDIR_FILES);
         while (cont)
         {
-            MissPluginManager::GetInstance().LoadDll(diraddr + filename, this);
+            MissPluginManager::Instance().LoadDll(diraddr + filename, this);
             cont = dir.GetNext(&filename);
         }
     }
@@ -135,7 +137,7 @@ void MissStudioCoreFrame::OnTimer(wxTimerEvent& event)
 
     ///秒钟定时器
     for(std::vector<MissTimerFuncBase*>::iterator itor = m_vecSecUp.begin();
-        itor != m_vecSecUp.end(); ++itor)
+            itor != m_vecSecUp.end(); ++itor)
     {
         (*itor)->TimeUp(m_tmNow,MTT_SEC);
     }
@@ -145,7 +147,7 @@ void MissStudioCoreFrame::OnTimer(wxTimerEvent& event)
     {
         s_savemin = m_tmNow->tm_min;
         for(std::vector<MissTimerFuncBase*>::iterator itor = m_vecMinUp.begin();
-            itor != m_vecMinUp.end(); ++itor)
+                itor != m_vecMinUp.end(); ++itor)
         {
             (*itor)->TimeUp(m_tmNow,MTT_MIN);
         }
@@ -154,13 +156,14 @@ void MissStudioCoreFrame::OnTimer(wxTimerEvent& event)
 
 void MissStudioCoreFrame::OnMenuHotKeySettingSelection(wxCommandEvent& event)
 {
-    MissHotKeyFrame* hotkey = new MissHotKeyFrame(this, m_pHotKeyManager.get());
+    MissHotKeyFrame* hotkey = new MissHotKeyFrame(this);
     hotkey->Show();
+    //hotkey->Move( 100, 100);
 }
 
 void MissStudioCoreFrame::OnMenuWidgetsSettingSelection(wxCommandEvent& event)
 {
-    MissWidgetFrame* widget = new MissWidgetFrame(this, m_pWidgetManager.get());
+    MissWidgetFrame* widget = new MissWidgetFrame(this);
     widget->Show();
 }
 
@@ -182,7 +185,7 @@ void MissStudioCoreFrame::OnHotKey(wxKeyEvent& event)
     int nID = event.GetId();
     if(nID >999)
     {
-        m_pHotKeyManager->RunFuncFromHotKey(event.GetId());
+        MissPluginManager::Instance().GetHotKeyManager().RunFuncFromHotKey(event.GetId());
     }
     //std::cout<<event.GetId()<<std::endl;
 }
@@ -207,18 +210,18 @@ IMissTaskIcon* MissStudioCoreFrame::GetTaskIcon()
 
 IMissHotKey* MissStudioCoreFrame::GetHotKey()
 {
-    return m_pHotKeyManager.get();
+    return &MissPluginManager::Instance().GetHotKeyManager();
 }
 
 IMissWidget* MissStudioCoreFrame::GetWidget()
 {
-    return m_pWidgetManager.get();
+    return &MissPluginManager::Instance().GetWidgetManager();
 }
 
 std::tr1::shared_ptr<IMissConfig> MissStudioCoreFrame::GetConfig(MissPluginBase* pPlugin)
 {
     std::tr1::shared_ptr<IMissConfig> conf(new MissConfigFile(wxT("config\\")
-        + pPlugin->GetPlugInfo().strPluginName +wxT(".ini")));
+                                           + pPlugin->GetPlugInfo().strPluginName +wxT(".ini")));
     return conf;
 }
 

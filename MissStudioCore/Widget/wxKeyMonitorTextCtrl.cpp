@@ -19,7 +19,8 @@ END_EVENT_TABLE()
 void wxKeyMonitorTextCtrl::OnKey(wxKeyEvent &event)
 {
     // backspace cannot be used as shortcut key...
-    if (event.GetKeyCode() == WXK_BACK) {
+    if (event.GetKeyCode() == WXK_BACK)
+    {
 
         // this text ctrl contains something and the user pressed backspace...
         // we must delete the keypress...
@@ -28,7 +29,8 @@ void wxKeyMonitorTextCtrl::OnKey(wxKeyEvent &event)
     }
 
     if (event.GetEventType() == wxEVT_KEY_DOWN ||
-        (event.GetEventType() == wxEVT_KEY_UP && !IsValidKeyComb())) {
+            (event.GetEventType() == wxEVT_KEY_UP && !IsValidKeyComb()))
+    {
 
         // the user pressed some key combination which must be displayed
         // in this text control.... or he has just stopped pressing a
@@ -44,7 +46,7 @@ wxString wxKeyBind::GetKeyStrokeString(wxKeyEvent& event)
 {
     // key stroke string = key modifiers (Ctrl, Alt or Shift) + key code
     return KeyModifierToString(GetKeyModifier(event)) +
-        KeyCodeToString(event.GetKeyCode());
+           KeyCodeToString(event.GetKeyCode());
 }
 
 int wxKeyBind::GetKeyModifier(wxKeyEvent& event)
@@ -107,18 +109,30 @@ wxString wxKeyBind::KeyCodeToString(int keyCode)
         // FUNCTION KEYS
         // ---------------------------
 
-    case WXK_F1: case WXK_F2:
-    case WXK_F3: case WXK_F4:
-    case WXK_F5: case WXK_F6:
-    case WXK_F7: case WXK_F8:
-    case WXK_F9: case WXK_F10:
-    case WXK_F11: case WXK_F12:
-    case WXK_F13: case WXK_F14:
-    case WXK_F15: case WXK_F16:
-    case WXK_F17: case WXK_F18:
-    case WXK_F19: case WXK_F20:
-    case WXK_F21: case WXK_F22:
-    case WXK_F23: case WXK_F24:
+    case WXK_F1:
+    case WXK_F2:
+    case WXK_F3:
+    case WXK_F4:
+    case WXK_F5:
+    case WXK_F6:
+    case WXK_F7:
+    case WXK_F8:
+    case WXK_F9:
+    case WXK_F10:
+    case WXK_F11:
+    case WXK_F12:
+    case WXK_F13:
+    case WXK_F14:
+    case WXK_F15:
+    case WXK_F16:
+    case WXK_F17:
+    case WXK_F18:
+    case WXK_F19:
+    case WXK_F20:
+    case WXK_F21:
+    case WXK_F22:
+    case WXK_F23:
+    case WXK_F24:
         res << wxT('F') << keyCode - WXK_F1 + 1;
         break;
 
@@ -128,63 +142,92 @@ wxString wxKeyBind::KeyCodeToString(int keyCode)
         // ---------------------------
 
     case WXK_BACK:
-        res << wxT("BACK"); break;
+        res << wxT("BACK");
+        break;
     case WXK_TAB:
-        res << wxT("TAB"); break;
+        res << wxT("TAB");
+        break;
     case WXK_RETURN:
-        res << wxT("RETURN"); break;
+        res << wxT("RETURN");
+        break;
     case WXK_ESCAPE:
-        res << wxT("ESCAPE"); break;
+        res << wxT("ESCAPE");
+        break;
     case WXK_SPACE:
-        res << wxT("SPACE"); break;
+        res << wxT("SPACE");
+        break;
     case WXK_DELETE:
-        res << wxT("DELETE"); break;
+        res << wxT("DELETE");
+        break;
     case WXK_MULTIPLY:
-        res << wxT("*"); break;
+        res << wxT("*");
+        break;
     case WXK_ADD:
-        res << wxT("+"); break;
+        res << wxT("+");
+        break;
     case WXK_SEPARATOR:
-        res << wxT("SEPARATOR"); break;
+        res << wxT("SEPARATOR");
+        break;
     case WXK_SUBTRACT:
-        res << wxT("-"); break;
+        res << wxT("-");
+        break;
     case WXK_DECIMAL:
-        res << wxT("."); break;
+        res << wxT(".");
+        break;
     case WXK_DIVIDE:
-        res << wxT("/"); break;
+        res << wxT("/");
+        break;
     case WXK_PAGEUP:
-        res << wxT("PAGEUP"); break;
+        res << wxT("PAGEUP");
+        break;
     case WXK_PAGEDOWN:
-        res << wxT("PAGEDOWN"); break;
+        res << wxT("PAGEDOWN");
+        break;
     case WXK_LEFT:
-        res << wxT("LEFT"); break;
+        res << wxT("LEFT");
+        break;
     case WXK_UP:
-        res << wxT("UP"); break;
+        res << wxT("UP");
+        break;
     case WXK_RIGHT:
-        res << wxT("RIGHT"); break;
+        res << wxT("RIGHT");
+        break;
     case WXK_DOWN:
-        res << wxT("DOWN"); break;
+        res << wxT("DOWN");
+        break;
     case WXK_SELECT:
-        res << wxT("SELECT"); break;
+        res << wxT("SELECT");
+        break;
     case WXK_PRINT:
-        res << wxT("PRINT"); break;
+        res << wxT("PRINT");
+        break;
     case WXK_EXECUTE:
-        res << wxT("EXECUTE"); break;
+        res << wxT("EXECUTE");
+        break;
     case WXK_SNAPSHOT:
-        res << wxT("SNAPSHOT"); break;
+        res << wxT("SNAPSHOT");
+        break;
     case WXK_INSERT:
-        res << wxT("INSERT"); break;
+        res << wxT("INSERT");
+        break;
     case WXK_HELP:
-        res << wxT("HELP"); break;
+        res << wxT("HELP");
+        break;
     case WXK_CANCEL:
-        res << wxT("CANCEL"); break;
+        res << wxT("CANCEL");
+        break;
     case WXK_MENU:
-        res << wxT("MENU"); break;
+        res << wxT("MENU");
+        break;
     case WXK_CAPITAL:
-        res << wxT("CAPITAL"); break;
+        res << wxT("CAPITAL");
+        break;
     case WXK_END:
-        res << wxT("END"); break;
+        res << wxT("END");
+        break;
     case WXK_HOME:
-        res << wxT("HOME"); break;
+        res << wxT("HOME");
+        break;
 
 
 
@@ -196,12 +239,16 @@ wxString wxKeyBind::KeyCodeToString(int keyCode)
             res << (wxChar)keyCode;
             break;
 
-        } else if ((res=NumpadKeyCodeToString(keyCode)) != wxEmptyString) {
+        }
+        else if ((res=NumpadKeyCodeToString(keyCode)) != wxEmptyString)
+        {
 
             res << wxT(" (numpad)");        // so it is clear it's different from other keys
             break;
 
-        } else {
+        }
+        else
+        {
 
             // we couldn't create a description for the given keycode...
             //wxKBLogDebug(wxT("wxKeyBind::KeyCodeToString - unknown key: [%d]"), keyCode);
@@ -250,11 +297,14 @@ wxString wxKeyBind::NumpadKeyCodeToString(int keyCode)
         break;
 
     case WXK_NUMPAD_SPACE:
-        res << wxT("SPACE"); break;
+        res << wxT("SPACE");
+        break;
     case WXK_NUMPAD_TAB:
-        res << wxT("TAB"); break;
+        res << wxT("TAB");
+        break;
     case WXK_NUMPAD_ENTER:
-        res << wxT("ENTER"); break;
+        res << wxT("ENTER");
+        break;
 
     case WXK_NUMPAD_F1:
     case WXK_NUMPAD_F2:
@@ -264,42 +314,60 @@ wxString wxKeyBind::NumpadKeyCodeToString(int keyCode)
         break;
 
     case WXK_NUMPAD_LEFT:
-        res << wxT("LEFT"); break;
+        res << wxT("LEFT");
+        break;
     case WXK_NUMPAD_UP:
-        res << wxT("UP"); break;
+        res << wxT("UP");
+        break;
     case WXK_NUMPAD_RIGHT:
-        res << wxT("RIGHT"); break;
+        res << wxT("RIGHT");
+        break;
     case WXK_NUMPAD_DOWN:
-        res << wxT("DOWN"); break;
+        res << wxT("DOWN");
+        break;
 
     case WXK_NUMPAD_HOME:
-        res << wxT("HOME"); break;
+        res << wxT("HOME");
+        break;
     case WXK_NUMPAD_PAGEUP:
-        res << wxT("PAGEUP"); break;
+        res << wxT("PAGEUP");
+        break;
     case WXK_NUMPAD_PAGEDOWN:
-        res << wxT("PAGEDOWN"); break;
+        res << wxT("PAGEDOWN");
+        break;
     case WXK_NUMPAD_END:
-        res << wxT("END"); break;
+        res << wxT("END");
+        break;
     case WXK_NUMPAD_BEGIN:
-        res << wxT("BEGIN"); break;
+        res << wxT("BEGIN");
+        break;
     case WXK_NUMPAD_INSERT:
-        res << wxT("INSERT"); break;
+        res << wxT("INSERT");
+        break;
     case WXK_NUMPAD_DELETE:
-        res << wxT("DELETE"); break;
+        res << wxT("DELETE");
+        break;
     case WXK_NUMPAD_EQUAL:
-        res << wxT("="); break;
+        res << wxT("=");
+        break;
     case WXK_NUMPAD_MULTIPLY:
-        res << wxT("*"); break;
+        res << wxT("*");
+        break;
     case WXK_NUMPAD_ADD:
-        res << wxT("+"); break;
+        res << wxT("+");
+        break;
     case WXK_NUMPAD_SEPARATOR:
-        res << wxT("SEPARATOR"); break;
+        res << wxT("SEPARATOR");
+        break;
     case WXK_NUMPAD_SUBTRACT:
-        res << wxT("-"); break;
+        res << wxT("-");
+        break;
     case WXK_NUMPAD_DECIMAL:
-        res << wxT("."); break;
+        res << wxT(".");
+        break;
     case WXK_NUMPAD_DIVIDE:
-        res << wxT("/"); break;
+        res << wxT("/");
+        break;
     }
 
     return res;
@@ -309,7 +377,8 @@ int wxKeyBind::StringToKeyCode(const wxString& keys)
 {
     wxString keyName = keys.AfterLast('+').AfterLast('-');
     // a function key ?
-    if (keyName.StartsWith(wxT("F")) && keyName.Len() > 1) {
+    if (keyName.StartsWith(wxT("F")) && keyName.Len() > 1)
+    {
 
         long n;
         keyName.Right(keyName.Len()-1).ToLong(&n);

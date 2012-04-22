@@ -19,19 +19,19 @@
 #include <wx/wxprec.h>
 
 #ifdef __BORLANDC__
-    #pragma hdrstop
+#pragma hdrstop
 #endif
 
 #ifndef WX_PRECOMP
-    #include <wx/wx.h>
+#include <wx/wx.h>
 #endif
 
 #ifdef WX_PRECOMP
-    // put here all your rarely-changing header files
-    #include <vector>
-    #include <tr1/memory>
+// put here all your rarely-changing header files
+#include <vector>
+#include <tr1/memory>
 
-    using std::tr1::shared_ptr;
+using std::tr1::shared_ptr;
 
 #endif // WX_PRECOMP
 

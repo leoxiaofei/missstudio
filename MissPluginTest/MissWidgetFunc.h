@@ -10,7 +10,7 @@ class MissWidgetFunc : public MissWidgetFuncBase
         MissWidgetFunc(MissPluginBase* pPlugin);
         virtual ~MissWidgetFunc();
 
-        virtual void InitWidget(wxFrame* pWidget);
+        virtual void InitWidget(const WidgetParas& para, wxFrame* pWidget);
         virtual void UpdateUI(wxDC &dc, const tm* tmNow);
         virtual wxSize GetSize(){return wxSize(300,300);}
 
