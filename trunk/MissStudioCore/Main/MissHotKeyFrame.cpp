@@ -45,8 +45,8 @@ void MissHotKeyFrame::InitUI()
             idItem = m_listHotKey->AppendItem(idParent, wxEmptyString, -1, -1,
                     new MissPluginTreeListData(nPluginIndex, ++nFuncIndex));
             m_listHotKey->SetItemText(idItem, 0, hkitor->strFuncName);
-            m_listHotKey->SetItemText(idItem, 1, hkitor->strFuncDesc);
-            m_listHotKey->SetItemText(idItem, 2, hkitor->strHotKey);
+            m_listHotKey->SetItemText(idItem, 1, hkitor->strHotKey);
+            m_listHotKey->SetItemText(idItem, 2, hkitor->strFuncDesc);
         }
         ++nPluginIndex;
     }
@@ -76,7 +76,7 @@ void MissHotKeyFrame::OnHotKeyTreeItemActivated(wxTreeEvent& event)
                     strHotkey.Clear();
                     wxMessageBox(wxT("抱歉，快捷键冲突，请重新设置。"));
                 }
-                m_listHotKey->SetItemText(idItemIndex,2,strHotkey);
+                m_listHotKey->SetItemText(idItemIndex,1,strHotkey);
             }
         }
     }
