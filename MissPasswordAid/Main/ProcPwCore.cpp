@@ -9,7 +9,6 @@ m_nLen(nLen),
 m_nEdition(nEdition)
 {
     //ctor
-    InitConfuse();
 }
 
 ProcPwCore::~ProcPwCore()
@@ -69,6 +68,7 @@ bool ProcPwCore::StartProc(const char* szDataSrc, short nLenSrc, char* szDataDes
     delete hTool; hTool = NULL;
 
     ///准备加密器
+    InitConfuse();
     short nCount = szHashCache[19] % 24;
     while(nCount)
     {

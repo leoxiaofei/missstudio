@@ -18,6 +18,9 @@
 #include "MissStudioCoreApp.h"
 #include "MissStudioCoreMain.h"
 
+#include <wx/filename.h>
+#include <wx/dir.h>
+
 #include <mSystem.hpp>
 
 IMPLEMENT_APP(MissStudioCoreApp);
@@ -26,6 +29,11 @@ bool MissStudioCoreApp::OnInit()
 {
     wxSetWorkingDirectory(Miss::GetAppExePath());
     wxImage::AddHandler( new wxPNGHandler );
+
+    if(!wxDir::Exists(wxT("config")))
+    {
+        wxFileName::Mkdir(wxT("config"));
+    }
 
     MissStudioCoreFrame* frame = new MissStudioCoreFrame(0L);
     frame->SetIcon(wxICON(RC_STUDIO_ICON)); // To Set App Icon

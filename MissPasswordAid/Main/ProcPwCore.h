@@ -52,6 +52,11 @@ class ProcPwCore
          */
         char GetCharByHexInt(int nSrc);
 
+        /** \brief 初始化混淆器
+         *
+         * \return void
+         *
+         */
         void InitConfuse();
 
         /** \brief 字符混淆处理

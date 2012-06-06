@@ -21,8 +21,8 @@ class PasswordAidDialog: public GUIDialog
         ~PasswordAidDialog();
 
     private:
-        //virtual void OnClose(wxCloseEvent& event);
-        //virtual void OnQuit(wxCommandEvent& event);
+		virtual void OnCheckAutoCloseBox( wxCommandEvent& event ) ;
+		virtual void OnCheckShowPassBox( wxCommandEvent& event ) ;
         virtual void OnBtnGenerateClick( wxCommandEvent& event ) ;
 };
 #endif // PASSWORDAIDMAIN_H
