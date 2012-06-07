@@ -32,6 +32,8 @@
 #include <wx/button.h>
 #include <wx/textctrl.h>
 #include <wx/dialog.h>
+#include <wx/statbmp.h>
+#include <wx/stattext.h>
 
 ///////////////////////////////////////////////////////////////////////////
 
@@ -150,6 +152,28 @@ class SetHotKeyBase : public wxDialog
 		
 		SetHotKeyBase( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxT("设置热键"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 264,96 ), long style = wxDEFAULT_DIALOG_STYLE ); 
 		~SetHotKeyBase();
+	
+};
+
+///////////////////////////////////////////////////////////////////////////////
+/// Class MissStudioAbout
+///////////////////////////////////////////////////////////////////////////////
+class MissStudioAbout : public wxDialog 
+{
+	private:
+	
+	protected:
+		wxStaticBitmap* m_bitmap1;
+		wxStaticText* m_staticText1;
+		wxStaticText* m_staticText2;
+		wxStaticText* m_staticText3;
+		wxStdDialogButtonSizer* m_sdbSizer2;
+		wxButton* m_sdbSizer2OK;
+	
+	public:
+		
+		MissStudioAbout( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxEmptyString, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 396,196 ), long style = wxDEFAULT_DIALOG_STYLE ); 
+		~MissStudioAbout();
 	
 };
 

@@ -4,9 +4,10 @@
 #include "../Tools/IHash.h"
 #include <algorithm>
 
-ProcPwCore::ProcPwCore(short nLen, short nEdition):
-m_nLen(nLen),
-m_nEdition(nEdition)
+ProcPwCore::ProcPwCore(short nLen, short nEdition, PWTYPE eType)
+: m_nLen(nLen)
+, m_nEdition(nEdition)
+, m_eType(eType)
 {
     //ctor
 }
@@ -16,12 +17,26 @@ ProcPwCore::~ProcPwCore()
     //dtor
 }
 
-void ProcPwCore::InitConfuse()
+int ProcPwCore::InitConfuse()
 {
-    m_szConfuse[0] = ConfuseLower;
-    m_szConfuse[1] = ConfuseUpper;
-    m_szConfuse[2] = ConfuseNumeric;
-    m_szConfuse[3] = ConfuseAdditional;
+    int nRet(0);
+    switch(m_eType)
+    {
+    case PW_HAS1_STANDARD:
+        m_szConfuse[0] = ConfuseLower;
+        m_szConfuse[1] = ConfuseUpper;
+        m_szConfuse[2] = ConfuseNumericFront;
+        m_szConfuse[3] = ConfuseAdditional;
+        nRet           = 4;
+        break;
+    case PW_HAS1_NUMERIC:
+        m_szConfuse[0] = ConfuseNumeric;
+        nRet           = 1;
+        break;
+    default:
+        break;
+    }
+    return nRet;
     /*
     m_vecConfuse.clear();
     m_vecConfuse.push_back(ConfuseLower);
@@ -68,11 +83,11 @@ bool ProcPwCore::StartProc(const char* szDataSrc, short nLenSrc, char* szDataDes
     delete hTool; hTool = NULL;
 
     ///准备加密器
-    InitConfuse();
+    int nConfuseCount = InitConfuse();
     short nCount = szHashCache[19] % 24;
     while(nCount)
     {
-        std::next_permutation(m_szConfuse, m_szConfuse+4);
+        std::next_permutation(m_szConfuse, m_szConfuse+nConfuseCount);
         --nCount;
     }
 
@@ -80,7 +95,7 @@ bool ProcPwCore::StartProc(const char* szDataSrc, short nLenSrc, char* szDataDes
     int nTemp(0);
     for(int ix = 0; ix < m_nLen; ++ix)
     {
-        szDataDes[ix] = m_szConfuse[ix%4]((unsigned char)szHashCache[nTemp]);
+        szDataDes[ix] = m_szConfuse[ix % nConfuseCount]((unsigned char)szHashCache[nTemp]);
         if(++nTemp >= nHashLen)
         {
             nTemp = 0;
@@ -124,10 +139,16 @@ char ProcPwCore::ConfuseUpper(unsigned char cSrc)
     return 'A' + cSrc;
 }
 
-char ProcPwCore::ConfuseNumeric(unsigned char cSrc)
+char ProcPwCore::ConfuseNumericFront(unsigned char cSrc)
 {
     cSrc %= 5;
     return '1' + cSrc;
+}
+
+char ProcPwCore::ConfuseNumeric(unsigned char cSrc)
+{
+    cSrc %= 10;
+    return '0' + cSrc;
 }
 
 const char ProcPwCore::s_szAdditional[] = {'!','@','#','$','%'};

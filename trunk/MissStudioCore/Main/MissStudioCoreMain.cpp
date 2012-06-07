@@ -169,10 +169,8 @@ void MissStudioCoreFrame::OnMenuWidgetsSettingSelection(wxCommandEvent& event)
 
 void MissStudioCoreFrame::OnMenuAboutSelection(wxCommandEvent& event)
 {
-    //MissWidgetFunc* cs = new MissWidgetFunc;
-    //MissWidget *a = new MissWidget(cs,this);
-    //RegSecTimer(a);
-    //a->Show();
+    MissStudioAbout* about = new MissStudioAbout(this);
+    about->ShowModal();
 }
 
 void MissStudioCoreFrame::OnMenuExitSelection(wxCommandEvent& event)

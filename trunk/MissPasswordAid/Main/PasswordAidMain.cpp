@@ -35,37 +35,19 @@ PasswordAidDialog::~PasswordAidDialog()
 
 void PasswordAidDialog::OnBtnGenerateClick(wxCommandEvent& event)
 {
-    int nLen = m_spLen->GetValue();
-    int nVersion = m_spVersion->GetValue();
-    wxString strPW = m_edtPassword->GetValue();
+    int nLen           = m_spLen->GetValue();
+    int nVersion       = m_spVersion->GetValue();
+    int nType          = m_cboxPassType->GetCurrentSelection();
+    wxString strPW     = m_edtPassword->GetValue();
     wxCharBuffer bufIn = strPW.mb_str();
     wxCharBuffer bufOut(nLen);
-    ProcPwCore pwCore(nLen, nVersion);
+    ProcPwCore pwCore(nLen, nVersion, static_cast<ProcPwCore::PWTYPE>(nType));
     pwCore.StartProc(bufIn.data(),strlen(bufIn.data()),bufOut.data(),nLen);
     MissGlobal::strClipbrd = wxString(bufOut.data(), wxConvLocal);
-    m_edtOut->SetValue(MissGlobal::strClipbrd);
     if(m_cboxAutoClose->GetValue())
     {
         EndModal(wxID_OK);
     }
-    /*
-    MissAutoInputThread* m_pThread = new MissAutoInputThread();
-    if ( m_pThread->Create() != wxTHREAD_NO_ERROR )
-        {
-            wxLogError("Can't create the thread!");
-            delete m_pThread;
-            m_pThread = NULL;
-        }
-        else
-        {
-            if (m_pThread->Run() != wxTHREAD_NO_ERROR )
-            {
-                wxLogError("Can't create the thread!");
-                delete m_pThread;
-                m_pThread = NULL;
-            }
-        }
-    */
     //m_edtOut->SetValue(MissGlobal::strClipbrd);
 }
 
@@ -76,5 +58,6 @@ void PasswordAidDialog::OnCheckAutoCloseBox(wxCommandEvent& event)
 void PasswordAidDialog::OnCheckShowPassBox(wxCommandEvent& event)
 {
     m_edtOut->Show(event.IsChecked());
+    m_edtOut->SetValue(MissGlobal::strClipbrd);
     Layout();
 }

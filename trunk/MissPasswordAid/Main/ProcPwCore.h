@@ -4,7 +4,14 @@
 class ProcPwCore
 {
     public:
-        ProcPwCore(short nLen = 8, short nEdition = 1);
+
+        enum PWTYPE
+        {
+            PW_HAS1_STANDARD,
+            PW_HAS1_NUMERIC
+        };
+
+        ProcPwCore(short nLen = 8, short nEdition = 1, PWTYPE eType = PW_HAS1_STANDARD);
         virtual ~ProcPwCore();
 
         /** \brief 设置输出密码的长度
@@ -54,10 +61,10 @@ class ProcPwCore
 
         /** \brief 初始化混淆器
          *
-         * \return void
+         * \return int 返回混淆器数量
          *
          */
-        void InitConfuse();
+        int InitConfuse();
 
         /** \brief 字符混淆处理
          *
@@ -67,12 +74,14 @@ class ProcPwCore
          */
         static char ConfuseLower(unsigned char cSrc);
         static char ConfuseUpper(unsigned char cSrc);
+        static char ConfuseNumericFront(unsigned char cSrc);
         static char ConfuseNumeric(unsigned char cSrc);
         static char ConfuseAdditional(unsigned char cSrc);
 
     private:
-        short m_nLen;       /**< 输出密码的长度 */
-        short m_nEdition;   /**< 密码版本 */
+        short   m_nLen;       /**< 输出密码的长度 */
+        short   m_nEdition;   /**< 密码版本 */
+        PWTYPE  m_eType;      /**< 密码类型 */
 
         static const char s_szAdditional[];
         typedef char (*ConfuseFun)(unsigned char);

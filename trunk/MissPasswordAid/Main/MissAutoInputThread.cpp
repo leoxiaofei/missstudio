@@ -6,8 +6,8 @@
 #include <windows.h>
 //#include <atlconv.h>
 
-MissAutoInputThread::MissAutoInputThread():
-    wxThread(wxTHREAD_DETACHED)
+MissAutoInputThread::MissAutoInputThread()
+: wxThread(wxTHREAD_DETACHED)
 {
     //ctor
 }
