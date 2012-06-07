@@ -126,7 +126,7 @@ MissWidgetFrameBase::MissWidgetFrameBase( wxWindow* parent, wxWindowID id, const
 	
 	m_listWidgets = new wxTreeListCtrl( m_panel1, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTR_DEFAULT_STYLE|wxTR_FULL_ROW_HIGHLIGHT|wxTR_HIDE_ROOT|wxTR_TWIST_BUTTONS );
 	
-	m_listWidgets->AddColumn( wxT("小工具名称"), 100, wxALIGN_LEFT, -1, true, false); 
+	m_listWidgets->AddColumn( wxT("小工具名称"), 184, wxALIGN_LEFT, -1, true, false); 
 	
 	sbSizer2->Add( m_listWidgets, 1, wxEXPAND | wxALL, 5 );
 	
@@ -226,4 +226,56 @@ SetHotKeyBase::~SetHotKeyBase()
 	// Disconnect Events
 	m_btnClear->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( SetHotKeyBase::OnBtnClearClick ), NULL, this );
 	
+}
+
+MissStudioAbout::MissStudioAbout( wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style ) : wxDialog( parent, id, title, pos, size, style )
+{
+	this->SetSizeHints( wxDefaultSize, wxDefaultSize );
+	
+	wxBoxSizer* bSizer5;
+	bSizer5 = new wxBoxSizer( wxVERTICAL );
+	
+	wxBoxSizer* bSizer6;
+	bSizer6 = new wxBoxSizer( wxHORIZONTAL );
+	
+	m_bitmap1 = new wxStaticBitmap( this, wxID_ANY, wxNullBitmap, wxDefaultPosition, wxDefaultSize, 0 );
+	bSizer6->Add( m_bitmap1, 0, wxALL|wxALIGN_CENTER_VERTICAL, 5 );
+	
+	wxBoxSizer* bSizer7;
+	bSizer7 = new wxBoxSizer( wxVERTICAL );
+	
+	m_staticText1 = new wxStaticText( this, wxID_ANY, wxT("MyLabel"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText1->Wrap( -1 );
+	bSizer7->Add( m_staticText1, 0, wxALL, 5 );
+	
+	m_staticText2 = new wxStaticText( this, wxID_ANY, wxT("MyLabel"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText2->Wrap( -1 );
+	bSizer7->Add( m_staticText2, 0, wxALL, 5 );
+	
+	m_staticText3 = new wxStaticText( this, wxID_ANY, wxT("MyLabel"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText3->Wrap( -1 );
+	bSizer7->Add( m_staticText3, 0, wxALL, 5 );
+	
+	
+	bSizer6->Add( bSizer7, 1, wxEXPAND, 5 );
+	
+	
+	bSizer5->Add( bSizer6, 1, wxEXPAND|wxTOP|wxBOTTOM, 5 );
+	
+	m_sdbSizer2 = new wxStdDialogButtonSizer();
+	m_sdbSizer2OK = new wxButton( this, wxID_OK );
+	m_sdbSizer2->AddButton( m_sdbSizer2OK );
+	m_sdbSizer2->Realize();
+	
+	bSizer5->Add( m_sdbSizer2, 0, wxALIGN_CENTER_HORIZONTAL|wxTOP|wxBOTTOM, 5 );
+	
+	
+	this->SetSizer( bSizer5 );
+	this->Layout();
+	
+	this->Centre( wxBOTH );
+}
+
+MissStudioAbout::~MissStudioAbout()
+{
 }
