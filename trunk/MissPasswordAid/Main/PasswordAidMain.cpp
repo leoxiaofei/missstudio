@@ -44,6 +44,10 @@ void PasswordAidDialog::OnBtnGenerateClick(wxCommandEvent& event)
     ProcPwCore pwCore(nLen, nVersion, static_cast<ProcPwCore::PWTYPE>(nType));
     pwCore.StartProc(bufIn.data(),strlen(bufIn.data()),bufOut.data(),nLen);
     MissGlobal::strClipbrd = wxString(bufOut.data(), wxConvLocal);
+    if(m_cboxShowPass->GetValue())
+    {
+        m_edtOut->SetValue(MissGlobal::strClipbrd);
+    }
     if(m_cboxAutoClose->GetValue())
     {
         EndModal(wxID_OK);
@@ -57,7 +61,11 @@ void PasswordAidDialog::OnCheckAutoCloseBox(wxCommandEvent& event)
 
 void PasswordAidDialog::OnCheckShowPassBox(wxCommandEvent& event)
 {
-    m_edtOut->Show(event.IsChecked());
-    m_edtOut->SetValue(MissGlobal::strClipbrd);
+    bool bShow = event.IsChecked();
+    m_edtOut->Show(bShow);
+    if(bShow)
+    {
+        m_edtOut->SetValue(MissGlobal::strClipbrd);
+    }
     Layout();
 }

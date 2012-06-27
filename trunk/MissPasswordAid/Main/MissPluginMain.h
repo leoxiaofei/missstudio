@@ -3,9 +3,11 @@
 
 #include "../../MissAPI/plugin/MissPluginBase.h"
 #include "../../MissAPI/plugin/MissHotKeyFuncBase.h"
+#include <tr1/memory>
 
 class MissPluginMain : public MissPluginBase, public MissHotKeyFuncBase
 {
+    class MissPluginMainImpl;
     public:
         MissPluginMain(IMissMain* pParent);
         virtual ~MissPluginMain();
@@ -19,6 +21,7 @@ class MissPluginMain : public MissPluginBase, public MissHotKeyFuncBase
 
     protected:
     private:
+        std::tr1::shared_ptr<MissPluginMainImpl> m_pImpl;
 };
 
 #endif // MISSPLUGINMAIN_H

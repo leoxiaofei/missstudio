@@ -72,6 +72,7 @@ public:
     virtual IMissHotKey   *GetHotKey();
     virtual IMissWidget   *GetWidget();
     virtual std::tr1::shared_ptr<IMissConfig> GetConfig(MissPluginBase* pPlugin);
+    virtual std::tr1::shared_ptr<wxSQLite3Database> GetDataBase(MissPluginBase* pPlugin);
     virtual void RegSecTimer(MissTimerFuncBase* pPlugin);
     virtual void RegMinTimer(MissTimerFuncBase* pPlugin);
 };
