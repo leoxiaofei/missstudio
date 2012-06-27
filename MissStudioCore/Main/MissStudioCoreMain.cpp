@@ -28,6 +28,7 @@
 #include "../Widget/MissWidget.h"
 
 #include <wx/dir.h>
+#include <wx/wxsqlite3.h>
 #include <algorithm>
 
 #include <iostream>
@@ -221,6 +222,13 @@ std::tr1::shared_ptr<IMissConfig> MissStudioCoreFrame::GetConfig(MissPluginBase*
     std::tr1::shared_ptr<IMissConfig> conf(new MissConfigFile(wxT("config\\")
                                            + pPlugin->GetPlugInfo().strPluginName +wxT(".ini")));
     return conf;
+}
+
+std::tr1::shared_ptr<wxSQLite3Database> MissStudioCoreFrame::GetDataBase(MissPluginBase* pPlugin)
+{
+    std::tr1::shared_ptr<wxSQLite3Database> db(new wxSQLite3Database);
+    db->Open(wxT("database\\") + pPlugin->GetPlugInfo().strPluginName + wxT(".db3"));
+    return db;
 }
 
 void MissStudioCoreFrame::RegSecTimer(MissTimerFuncBase* pPlugin)

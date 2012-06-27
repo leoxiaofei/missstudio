@@ -29,6 +29,7 @@
 					<Add library="libwxpngd.a" />
 					<Add library="libMissTools.a" />
 					<Add library="libwxtreelist28ud_gcc_custom.a" />
+					<Add library="libwxcode_msw28ud_wxsqlite3.a" />
 					<Add directory="$(#wx)\lib\gcc_dll" />
 					<Add directory="$(TARGET_OUTPUT_DIR)" />
 				</Linker>
@@ -55,6 +56,7 @@
 					<Add library="libwxmsw28u_adv.a" />
 					<Add library="libMissTools.a" />
 					<Add library="libwxtreelist28u_gcc_custom.a" />
+					<Add library="libwxcode_msw28u_wxsqlite3.a" />
 					<Add directory="$(#wx)\lib\gcc_dll" />
 					<Add directory="$(TARGET_OUTPUT_DIR)" />
 				</Linker>
@@ -76,6 +78,7 @@
 			<Add directory="$(#wx)\contrib\include" />
 			<Add directory="$(#miss)\hpp" />
 			<Add directory="$(#wxtreelist)\include" />
+			<Add directory="$(#wxSqlite)\include" />
 		</Compiler>
 		<ResourceCompiler>
 			<Add directory="$(#wx)\include" />
@@ -84,6 +87,7 @@
 			<Add option="-mthreads" />
 			<Add library="libgdi32.a" />
 			<Add directory="$(#wxtreelist)\lib\gcc_dll" />
+			<Add directory="$(#wxSqlite)\lib\gcc_dll" />
 		</Linker>
 		<Unit filename="BLL\MissHotKeyManager.cpp" />
 		<Unit filename="BLL\MissHotKeyManager.h" />

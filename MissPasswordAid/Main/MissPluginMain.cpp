@@ -9,9 +9,20 @@
 #include "../../MissAPI/interface/IMissConfig.h"
 
 
-MissPluginMain::MissPluginMain(IMissMain* pParent):
-MissPluginBase(pParent),
-MissHotKeyFuncBase(this)
+class MissPluginMain::MissPluginMainImpl
+{
+public:
+    static const wxString strFuncNames[];
+};
+
+const wxString MissPluginMain::MissPluginMainImpl::strFuncNames[] = {
+    wxT("热键/打开窗口"),
+    wxT("热键/自动输入")
+};
+
+MissPluginMain::MissPluginMain(IMissMain* pParent)
+: MissPluginBase(pParent)
+, MissHotKeyFuncBase(this)
 {
     //ctor
     SPlugInfo info;
@@ -34,17 +45,17 @@ void MissPluginMain::LoadPlugin(const wxString& strPath)
     MissPluginBase::LoadPlugin(strPath);
     std::vector<SHotKeyData> vecHotKey(2);
     std::tr1::shared_ptr<IMissConfig> config = GetMain()->GetConfig(this);
-    //wxString strHotkey;
+
     vecHotKey[0].strFuncName = wxT("打开密码助手");
     vecHotKey[0].strFuncDesc = wxT("打开密码助手窗口，用来输入原文。");
-    if(!config->Read(wxT("热键/打开窗口"),vecHotKey[0].strHotKey))
+    if(!config->Read(m_pImpl->strFuncNames[0],vecHotKey[0].strHotKey))
     {
         vecHotKey[0].strHotKey = wxT("Win+C");
     }
 
     vecHotKey[1].strFuncName = wxT("自动输入");
     vecHotKey[1].strFuncDesc = wxT("自动输入生成的密码到光标处");
-    if(!config->Read(wxT("热键/自动输入"),vecHotKey[1].strHotKey))
+    if(!config->Read(m_pImpl->strFuncNames[1],vecHotKey[1].strHotKey))
     {
         vecHotKey[1].strHotKey = wxT("Win+V");
     }
@@ -59,6 +70,7 @@ void MissPluginMain::RunFunc(int nFuncIndex)
     case 0:
         {
             PasswordAidDialog dlg(0L);
+            dlg.Raise();
             dlg.ShowModal();
         }
         break;
@@ -87,4 +99,6 @@ void MissPluginMain::RunFunc(int nFuncIndex)
 
 void MissPluginMain::ModifiedHotKey(int nFuncIndex, const wxString& strHotKey)
 {
+    std::tr1::shared_ptr<IMissConfig> config = GetMain()->GetConfig(this);
+    config->Write(wxString::Format(m_pImpl->strFuncNames[nFuncIndex],nFuncIndex), strHotKey);
 }
