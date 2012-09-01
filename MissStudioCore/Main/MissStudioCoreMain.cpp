@@ -23,7 +23,6 @@
 #include "../BLL/MissHotKeyManager.h"
 #include "../BLL/MissWidgetManager.h"
 #include "../../MissTools/MissConfigFile.h"
-#include "../../MissAPI/plugin/MissPluginBase.h"
 #include "../../MissAPI/plugin/MissTimerFuncBase.h"
 #include "../Widget/MissWidget.h"
 
@@ -202,33 +201,9 @@ void MissStudioCoreFrame::ExitApp()
     AddPendingEvent(send);
 }
 
-IMissTaskIcon* MissStudioCoreFrame::GetTaskIcon()
+MissTaskBarIcon* MissStudioCoreFrame::GetTaskIcon()
 {
     return m_pTaskBarIcon.get();
-}
-
-IMissHotKey* MissStudioCoreFrame::GetHotKey()
-{
-    return &MissPluginManager::Instance().GetHotKeyManager();
-}
-
-IMissWidget* MissStudioCoreFrame::GetWidget()
-{
-    return &MissPluginManager::Instance().GetWidgetManager();
-}
-
-std::tr1::shared_ptr<IMissConfig> MissStudioCoreFrame::GetConfig(MissPluginBase* pPlugin)
-{
-    std::tr1::shared_ptr<IMissConfig> conf(new MissConfigFile(wxT("config\\")
-                                           + pPlugin->GetPlugInfo().strPluginName +wxT(".ini")));
-    return conf;
-}
-
-std::tr1::shared_ptr<wxSQLite3Database> MissStudioCoreFrame::GetDataBase(MissPluginBase* pPlugin)
-{
-    std::tr1::shared_ptr<wxSQLite3Database> db(new wxSQLite3Database);
-    db->Open(wxT("database\\") + pPlugin->GetPlugInfo().strPluginName + wxT(".db3"));
-    return db;
 }
 
 void MissStudioCoreFrame::RegSecTimer(MissTimerFuncBase* pPlugin)

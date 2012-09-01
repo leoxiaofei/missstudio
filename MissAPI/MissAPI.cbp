@@ -31,12 +31,13 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="MissApiDef.h" />
 		<Unit filename="interface\IMissConfig.h" />
 		<Unit filename="interface\IMissHotKey.h" />
 		<Unit filename="interface\IMissMain.h" />
 		<Unit filename="interface\IMissPlugin.h" />
 		<Unit filename="interface\IMissTaskIcon.h" />
-		<Unit filename="interface\IMissWidget.h" />
+		<Unit filename="interface\IMissWidgetManager.h" />
 		<Unit filename="plugin\MissHotKeyFuncBase.h" />
 		<Unit filename="plugin\MissPluginBase.h" />
 		<Unit filename="plugin\MissTimerFuncBase.h" />

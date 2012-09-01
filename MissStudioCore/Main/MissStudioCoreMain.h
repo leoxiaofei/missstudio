@@ -10,11 +10,7 @@
 #ifndef MISSSTUDIOCOREMAIN_H
 #define MISSSTUDIOCOREMAIN_H
 
-
-
 #include "MissStudioCoreApp.h"
-#include "../../MissAPI/interface/IMissMain.h"
-
 
 #include "../Generated/GUIFrame.h"
 
@@ -23,11 +19,12 @@ class MissTaskBarIcon;
 class MissHotKeyManager;
 class MissPluginManager;
 class MissWidgetManager;
-class IMissTaskIcon;
+class MissTimerFuncBase;
 class IMissHotKey;
+class IMissWidget;
 class wxTimer;
 
-class MissStudioCoreFrame: public GUIFrame, public IMissMain
+class MissStudioCoreFrame: public GUIFrame
 {
 public:
     MissStudioCoreFrame(wxFrame *frame);
@@ -62,17 +59,13 @@ private:
     shared_ptr<MissTaskBarIcon>      m_pTaskBarIcon;
     shared_ptr<wxTimer>              m_pMainTimer;
 
-
     std::vector<MissTimerFuncBase*>  m_vecSecUp;
     std::vector<MissTimerFuncBase*>  m_vecMinUp;
+
     ///以下是接口实现
 public:
     virtual void           ExitApp();
-    virtual IMissTaskIcon *GetTaskIcon();
-    virtual IMissHotKey   *GetHotKey();
-    virtual IMissWidget   *GetWidget();
-    virtual std::tr1::shared_ptr<IMissConfig> GetConfig(MissPluginBase* pPlugin);
-    virtual std::tr1::shared_ptr<wxSQLite3Database> GetDataBase(MissPluginBase* pPlugin);
+    MissTaskBarIcon       *GetTaskIcon();
     virtual void RegSecTimer(MissTimerFuncBase* pPlugin);
     virtual void RegMinTimer(MissTimerFuncBase* pPlugin);
 };

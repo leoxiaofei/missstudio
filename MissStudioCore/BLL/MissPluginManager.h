@@ -6,7 +6,7 @@ class MissPluginBase;
 
 class MissHotKeyManager;
 class MissWidgetManager;
-class IMissMain;
+class MissStudioCoreFrame;
 
 class MissPluginManager
 {
@@ -16,6 +16,7 @@ class MissPluginManager
     {
         wxDynamicLibrary*      pDllHandle;
         MissPluginBase*        pPlugin;
+        wxString               strPath;
     };
 
 public:
@@ -27,11 +28,15 @@ public:
 
 public:
     void Init(wxWindow* pMainWindow);
-    bool LoadDll(const wxString& strPath, IMissMain* pParent);
+    bool LoadDll(const wxString& strPath, MissStudioCoreFrame* pParent);
     bool UnloadDll();
 
+    bool FindPluginPath(const MissPluginBase* pPlugin, wxString& strPath) const;
     MissHotKeyManager& GetHotKeyManager();
     MissWidgetManager& GetWidgetManager();
+
+    MissPluginBase* QueryPluginByInterface(void* pInterface);
+    void RegPluginInterface(MissPluginBase* pPlugin, void* pInterface);
 
 protected:
 private:

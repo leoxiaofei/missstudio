@@ -1,12 +1,10 @@
 #ifndef MISSHOTKEYFUNCBASE_H
 #define MISSHOTKEYFUNCBASE_H
 
-#include "../interface/IMissPlugin.h"
-
-class MissHotKeyFuncBase: public IMissPlugin
+class MissHotKeyFuncBase
 {
     public:
-        MissHotKeyFuncBase(MissPluginBase* pPlugin):IMissPlugin(pPlugin){};
+        MissHotKeyFuncBase(){};
         virtual ~MissHotKeyFuncBase() {}
 
         virtual void RunFunc(int nFuncIndex) = 0;

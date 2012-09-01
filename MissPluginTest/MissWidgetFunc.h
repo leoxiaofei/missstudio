@@ -7,7 +7,7 @@
 class MissWidgetFunc : public MissWidgetFuncBase
 {
     public:
-        MissWidgetFunc(MissPluginBase* pPlugin);
+        MissWidgetFunc();
         virtual ~MissWidgetFunc();
 
         virtual void InitWidget(const WidgetParas& para, wxFrame* pWidget);

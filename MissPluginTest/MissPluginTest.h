@@ -9,11 +9,11 @@
 class MissPluginTest : public MissPluginBase, public MissHotKeyFuncBase, public MissWidgetFactoryBase
 {
     public:
-        MissPluginTest(IMissMain* pParent);
+        MissPluginTest();
         virtual ~MissPluginTest();
 
         ///初始化插件
-        void LoadPlugin(const wxString& strPath);
+        void LoadPlugin(const std::tr1::shared_ptr<IMissMain>& pParent);
 
         ///热键方法实现
         void RunFunc(int nFuncIndex);

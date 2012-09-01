@@ -2,15 +2,14 @@
 #define MISSWIDGETFUNCBASE_H
 
 #include <wx/event.h>
-#include "../interface/IMissPlugin.h"
 #include <vector>
 
 typedef std::vector<std::pair<wxString, wxString> > WidgetParas;
 
-class MissWidgetFuncBase : public wxEvtHandler, public IMissPlugin
+class MissWidgetFuncBase : public wxEvtHandler
 {
     public:
-        MissWidgetFuncBase(MissPluginBase* pPlugin):IMissPlugin(pPlugin){};
+        MissWidgetFuncBase(){};
         virtual ~MissWidgetFuncBase() {}
         virtual void InitWidget(const WidgetParas& para, wxFrame* pWidget) = 0;
         virtual void UpdateUI(wxDC &dc, const tm* tmNow) = 0;

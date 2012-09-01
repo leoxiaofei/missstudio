@@ -2,31 +2,30 @@
 #define IMISSMAIN_H
 
 #include <tr1/memory>
+#include "../MissApiDef.h"
 
 class IMissTaskIcon;
 class IMissHotKey;
-class IMissWidget;
+class IMissWidgetManager;
 class IMissConfig;
 class MissPluginBase;
 class MissTimerFuncBase;
 class wxSQLite3Database;
 
 
-class IMissMain
-{
-    public:
-        virtual ~IMissMain() {}
-        virtual void ExitApp() = 0;
-        virtual IMissTaskIcon *GetTaskIcon() = 0;
-        virtual IMissHotKey   *GetHotKey()   = 0;
-        virtual IMissWidget   *GetWidget()   = 0;
-        virtual std::tr1::shared_ptr<IMissConfig> GetConfig(MissPluginBase* pPlugin) = 0;
-        virtual std::tr1::shared_ptr<wxSQLite3Database> GetDataBase(MissPluginBase* pPlugin) = 0;
-        virtual void RegSecTimer(MissTimerFuncBase* pPlugin) = 0;
-        virtual void RegMinTimer(MissTimerFuncBase* pPlugin) = 0;
+INTERFACE_BEGIN(IMissMain)
 
-    protected:
-    private:
-};
+IDEF( void ExitApp()                                               )
+IDEF( void RegSecTimer(MissTimerFuncBase* pPlugin)                 )
+IDEF( void RegMinTimer(MissTimerFuncBase* pPlugin)                 )
+IDEF( wxString GetPluginPath()                                     )
+IDEF( std::tr1::shared_ptr<IMissTaskIcon>      GetTaskIcon()       )
+IDEF( std::tr1::shared_ptr<IMissHotKey>        GetHotKey()         )
+IDEF( std::tr1::shared_ptr<IMissWidgetManager> GetWidgetManager()  )
+IDEF( std::tr1::shared_ptr<IMissConfig>        GetConfig()         )
+IDEF( std::tr1::shared_ptr<wxSQLite3Database>  GetDataBase()       )
+
+INTERFACE_END
+
 
 #endif // IMISSMAIN_H

@@ -20,9 +20,9 @@ const wxString MissPluginMain::MissPluginMainImpl::strFuncNames[] = {
     wxT("热键/自动输入")
 };
 
-MissPluginMain::MissPluginMain(IMissMain* pParent)
-: MissPluginBase(pParent)
-, MissHotKeyFuncBase(this)
+MissPluginMain::MissPluginMain()
+: MissPluginBase()
+, MissHotKeyFuncBase()
 {
     //ctor
     SPlugInfo info;
@@ -40,11 +40,11 @@ MissPluginMain::~MissPluginMain()
     //dtor
 }
 
-void MissPluginMain::LoadPlugin(const wxString& strPath)
+void MissPluginMain::LoadPlugin(const std::tr1::shared_ptr<IMissMain>& pParent)
 {
-    MissPluginBase::LoadPlugin(strPath);
-    std::vector<SHotKeyData> vecHotKey(2);
-    std::tr1::shared_ptr<IMissConfig> config = GetMain()->GetConfig(this);
+    MissPluginBase::LoadPlugin(pParent);
+    HotKeyDataSet vecHotKey(2);
+    std::tr1::shared_ptr<IMissConfig> config = GetMain()->GetConfig();
 
     vecHotKey[0].strFuncName = wxT("打开密码助手");
     vecHotKey[0].strFuncDesc = wxT("打开密码助手窗口，用来输入原文。");
@@ -99,6 +99,6 @@ void MissPluginMain::RunFunc(int nFuncIndex)
 
 void MissPluginMain::ModifiedHotKey(int nFuncIndex, const wxString& strHotKey)
 {
-    std::tr1::shared_ptr<IMissConfig> config = GetMain()->GetConfig(this);
+    std::tr1::shared_ptr<IMissConfig> config = GetMain()->GetConfig();
     config->Write(wxString::Format(m_pImpl->strFuncNames[nFuncIndex],nFuncIndex), strHotKey);
 }

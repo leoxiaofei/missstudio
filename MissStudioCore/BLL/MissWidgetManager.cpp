@@ -36,7 +36,7 @@ MissWidgetUpdateFunc* MissWidgetManager::CreateWidget(MissWidgetFuncBase * pFunc
     //return new MissWidget(0);
 }
 */
-void MissWidgetManager::RegPluginWidget(MissWidgetFactoryBase* pFactory,
+void MissWidgetManager::RegWidgetFactory(MissWidgetFactoryBase* pFactory,
                                         const std::vector<wxString>& vecWidget)
 {
     std::cout<<"RegPluginWidget:"<<vecWidget.size()<<std::endl;

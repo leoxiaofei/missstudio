@@ -35,6 +35,7 @@ void MissWidgetFrame::InitUI()
     m_listRunWidgets->InsertColumn(4,_T("缩放"),wxLIST_FORMAT_LEFT,50);
     */
 
+    MissPluginBase* pPlugMain(NULL);
     wxTreeItemId idRoot = m_listWidgets->AddRoot(_T("Miss Studio"));
     wxTreeItemId idParent, idItem;
 
@@ -45,19 +46,24 @@ void MissWidgetFrame::InitUI()
     for(std::vector<shared_ptr<SPluginWidgetData> >::iterator itor = datas.begin();
             itor != datas.end(); ++itor)
     {
-        nFuncIndex = -1;
-        idParent = m_listWidgets->AppendItem(idRoot, wxEmptyString);
-        m_listWidgets->SetItemText(idParent, 0,
-                                   (*itor)->pFactory->GetPlugin()->GetPlugInfo().strPluginName);
-
-        for(std::vector<wxString>::iterator wnitor = (*itor)->vecWidgetName.begin();
-                wnitor != (*itor)->vecWidgetName.end(); ++wnitor)
+        pPlugMain = MissPluginManager::Instance().QueryPluginByInterface((*itor)->pFactory);
+        if(pPlugMain)
         {
-            idItem = m_listWidgets->AppendItem(idParent, wxEmptyString, -1, -1,
-                                               new MissPluginTreeListData(nPluginIndex, ++nFuncIndex));
-            m_listWidgets->SetItemText(idItem, 0, *wnitor);
+            nFuncIndex = -1;
+            idParent = m_listWidgets->AppendItem(idRoot, wxEmptyString);
+            m_listWidgets->SetItemText(idParent, 0,
+                                       pPlugMain->GetPlugInfo().strPluginName);
+
+            for(std::vector<wxString>::iterator wnitor = (*itor)->vecWidgetName.begin();
+                    wnitor != (*itor)->vecWidgetName.end(); ++wnitor)
+            {
+                idItem = m_listWidgets->AppendItem(idParent, wxEmptyString, -1, -1,
+                                                   new MissPluginTreeListData(nPluginIndex, ++nFuncIndex));
+                m_listWidgets->SetItemText(idItem, 0, *wnitor);
+            }
+            ++nPluginIndex;
         }
-        ++nPluginIndex;
+
     }
 }
 
