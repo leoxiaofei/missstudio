@@ -3,17 +3,17 @@
 #include "../../MissAPI/interface/IMissTaskIcon.h"
 #include "../../MissAPI/interface/IMissHotKey.h"
 #include "../../MissAPI/interface/IMissConfig.h"
-#include "../../MissAPI/interface/IMissWidget.h"
+#include "../../MissAPI/interface/IMissWidgetManager.h"
 
 #include <vector>
 
 #include "MissClockWidget.h"
 
 
-MissClockPlugin::MissClockPlugin(IMissMain* pParent):
-MissPluginBase(pParent),
-MissHotKeyFuncBase(this),
-MissWidgetFactoryBase(this)
+MissClockPlugin::MissClockPlugin():
+MissPluginBase(),
+MissHotKeyFuncBase(),
+MissWidgetFactoryBase()
 {
     //ctor
     SPlugInfo info;
@@ -33,7 +33,7 @@ MissClockPlugin::~MissClockPlugin()
 
 void MissClockPlugin::RunFunc(int nFuncIndex)
 {
-    GetMain()->GetTaskIcon()->ShowBalloon(wxT("标题测试"),wxString::Format(wxT("内容%d测试。"),nFuncIndex));
+    GetMain()->GetTaskIcon()->ShowBalloon(wxString::Format(wxT("内容%d测试。"),nFuncIndex));
     /*
     if(nFuncIndex == 1)
     {
@@ -46,15 +46,15 @@ void MissClockPlugin::RunFunc(int nFuncIndex)
 
 void MissClockPlugin::ModifiedHotKey(int nFuncIndex, const wxString& strHotKey)
 {
-    std::tr1::shared_ptr<IMissConfig> config = GetMain()->GetConfig(this);
+    std::tr1::shared_ptr<IMissConfig> config = GetMain()->GetConfig();
     config->Write(wxString::Format(wxT("函数%d"),nFuncIndex), strHotKey);
 }
 
-void MissClockPlugin::LoadPlugin(const wxString& strPath)
+void MissClockPlugin::LoadPlugin(const std::tr1::shared_ptr<IMissMain>& pParent)
 {
-    MissPluginBase::LoadPlugin(strPath);
-    std::vector<SHotKeyData> vecHotKey(2);
-    std::tr1::shared_ptr<IMissConfig> config = GetMain()->GetConfig(this);
+    MissPluginBase::LoadPlugin(pParent);
+    HotKeyDataSet vecHotKey(2);
+    std::tr1::shared_ptr<IMissConfig> config = GetMain()->GetConfig();
     //wxString strHotkey;
     vecHotKey[0].strFuncDesc = wxT("弹出气泡提示。");
     if(!config->Read(wxT("函数0"),vecHotKey[0].strHotKey))
@@ -70,13 +70,13 @@ void MissClockPlugin::LoadPlugin(const wxString& strPath)
 
     std::vector<wxString> vecWidgetName;
     vecWidgetName.push_back(wxT("日历时钟"));
-    GetMain()->GetWidget()->RegPluginWidget(this,vecWidgetName);
+    GetMain()->GetWidgetManager()->RegWidgetFactory(this,vecWidgetName);
     //GetMain()->GetHotKey()->RegHotKeys(vecHotKey,this);
 }
 
 MissWidgetFuncBase* MissClockPlugin::CreateWidgetFunc(unsigned int nIndex)
 {
-    return new MissClockWidget(this);
+    return new MissClockWidget();
 }
 
 void MissClockPlugin::CreateSuccessed(MissWidgetUpdateFunc* pUpdate)

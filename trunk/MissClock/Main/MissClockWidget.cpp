@@ -5,8 +5,8 @@
 #include "../../MissAPI/plugin/MissPluginBase.h"
 #include <iostream>
 
-MissClockWidget::MissClockWidget(MissPluginBase* pPlugin):
-    MissWidgetFuncBase(pPlugin),
+MissClockWidget::MissClockWidget():
+    MissWidgetFuncBase(),
     m_pSkin(new MissSkin)
 {
     //ctor
@@ -20,7 +20,7 @@ MissClockWidget::~MissClockWidget()
 void MissClockWidget::LoadSkin()
 {
     //GetPlugin()->GetPluginPath() + wxT("\\ClockSkin\\Default");
-    MissXML::LoadSkin(m_pSkin.get(),wxGetCwd() + wxT("\\")+ GetPlugin()->GetPluginPath() + wxT("\\ClockSkin\\Default\\"));
+    //MissXML::LoadSkin(m_pSkin.get(),wxGetCwd() + wxT("\\")+ GetPlugin()->GetPluginPath() + wxT("\\ClockSkin\\Default\\"));
 }
 
 void MissClockWidget::InitWidget(const WidgetParas& para, wxFrame* pWidget)

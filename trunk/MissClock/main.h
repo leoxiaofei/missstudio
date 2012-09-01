@@ -18,7 +18,7 @@ extern "C"
 {
 #endif
 
-bool DLL_EXPORT CreateMissStudioPlug(void ** pobj, void* pParent);
+bool DLL_EXPORT CreateMissStudioPlug(void ** pobj);
 
 int DLL_EXPORT GetAPIVersion();
 

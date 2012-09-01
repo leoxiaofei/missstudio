@@ -2,25 +2,26 @@
 #define IMISSHOTKEY_H
 
 #include <vector>
+#include "../MissApiDef.h"
+
 class MissHotKeyFuncBase;
 
 struct SHotKeyData
 {
+    int      nID;
     wxString strFuncName;    ///功能名
     wxString strFuncDesc;    ///功能描述
     wxString strHotKey;      ///功能快捷键
 };
 
-class IMissHotKey
-{
-    public:
-        virtual ~IMissHotKey() {}
+typedef std::vector<SHotKeyData> HotKeyDataSet;
 
-        virtual bool RegHotKeys(const std::vector<SHotKeyData>& vecHotKey,
-                                MissHotKeyFuncBase* pChild) = 0;
 
-    protected:
-    private:
-};
+INTERFACE_BEGIN(IMissHotKey)
+
+IDEF( bool RegHotKeys(const HotKeyDataSet& vecHotKey,
+            MissHotKeyFuncBase* pChild) )
+
+INTERFACE_END
 
 #endif // IMISSHOTKEY_H

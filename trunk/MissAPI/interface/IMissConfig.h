@@ -1,23 +1,20 @@
 #ifndef IMISSCONFIG_H
 #define IMISSCONFIG_H
 
+#include "../MissApiDef.h"
 
-class IMissConfig
-{
-    public:
-        virtual ~IMissConfig() {}
-        virtual bool Write(const wxString& key, const wxString& value) = 0;
-        virtual bool Write(const wxString& key, long value) = 0;
-        virtual bool Write(const wxString& key, double value) = 0;
-        virtual bool Write(const wxString& key, bool value) = 0;
+INTERFACE_BEGIN(IMissConfig)
 
-        virtual bool Read(const wxString& key, wxString& value) const = 0;
-        virtual bool Read(const wxString& key, long& value) const = 0;
-        virtual bool Read(const wxString& key, double& value) const = 0;
-        virtual bool Read(const wxString& key, bool& value) const = 0;
+IDEF( bool Write(const wxString& key, const wxString& value) )
+IDEF( bool Write(const wxString& key, long value) )
+IDEF( bool Write(const wxString& key, double value) )
+IDEF( bool Write(const wxString& key, bool value) )
 
-    protected:
-    private:
-};
+IDEF( bool Read(const wxString& key, wxString& value) const )
+IDEF( bool Read(const wxString& key, long& value) const )
+IDEF( bool Read(const wxString& key, double& value) const )
+IDEF( bool Read(const wxString& key, bool& value) const )
+
+INTERFACE_END
 
 #endif // IMISSCONFIG_H

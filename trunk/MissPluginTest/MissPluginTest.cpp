@@ -3,17 +3,17 @@
 #include "../MissAPI/interface/IMissTaskIcon.h"
 #include "../MissAPI/interface/IMissHotKey.h"
 #include "../MissAPI/interface/IMissConfig.h"
-#include "../MissAPI/interface/IMissWidget.h"
+#include "../MissAPI/interface/IMissWidgetManager.h"
 
 #include <vector>
 
 #include "MissWidgetFunc.h"
 
 
-MissPluginTest::MissPluginTest(IMissMain* pParent):
-MissPluginBase(pParent),
-MissHotKeyFuncBase(this),
-MissWidgetFactoryBase(this)
+MissPluginTest::MissPluginTest():
+MissPluginBase(),
+MissHotKeyFuncBase(),
+MissWidgetFactoryBase()
 {
     //ctor
     SPlugInfo info;
@@ -35,10 +35,10 @@ void MissPluginTest::RunFunc(int nFuncIndex)
 {
     if(nFuncIndex == 1)
     {
-        GetMain()->GetTaskIcon()->ShowBalloon(wxT("标题测试"),wxString::Format(wxT("内容%d测试。"),nFuncIndex));
+        GetMain()->GetTaskIcon()->ShowBalloon(wxString::Format(wxT("内容%d测试。"),nFuncIndex));
         std::vector<wxString> vecWidgetName;
         vecWidgetName.push_back(wxT("Widget测试"));
-        GetMain()->GetWidget()->RegPluginWidget(this,vecWidgetName);
+        GetMain()->GetWidgetManager()->RegWidgetFactory(this, vecWidgetName);
 //        MissWidgetFunc *pFunc = new MissWidgetFunc();
 //        MissWidgetUpdateFunc *pUpdate= GetMain()->GetWidget()->CreateWidget(pFunc);
 //        GetMain()->RegSecTimer(pUpdate);
@@ -47,15 +47,15 @@ void MissPluginTest::RunFunc(int nFuncIndex)
 
 void MissPluginTest::ModifiedHotKey(int nFuncIndex, const wxString& strHotKey)
 {
-    std::tr1::shared_ptr<IMissConfig> config = GetMain()->GetConfig(this);
+    std::tr1::shared_ptr<IMissConfig> config = GetMain()->GetConfig();
     config->Write(wxString::Format(wxT("函数%d"),nFuncIndex), strHotKey);
 }
 
-void MissPluginTest::LoadPlugin(const wxString& strPath)
+void MissPluginTest::LoadPlugin(const std::tr1::shared_ptr<IMissMain>& pParent)
 {
-    MissPluginBase::LoadPlugin(strPath);
-    std::vector<SHotKeyData> vecHotKey(2);
-    std::tr1::shared_ptr<IMissConfig> config = GetMain()->GetConfig(this);
+    MissPluginBase::LoadPlugin(pParent);
+    HotKeyDataSet vecHotKey(2);
+    std::tr1::shared_ptr<IMissConfig> config = GetMain()->GetConfig();
     //wxString strHotkey;
     vecHotKey[0].strFuncDesc = wxT("弹出气泡提示。");
     if(!config->Read(wxT("函数0"),vecHotKey[0].strHotKey))
@@ -74,7 +74,7 @@ void MissPluginTest::LoadPlugin(const wxString& strPath)
 
 MissWidgetFuncBase* MissPluginTest::CreateWidgetFunc(unsigned int nIndex)
 {
-    return new MissWidgetFunc(this);
+    return new MissWidgetFunc();
 }
 
 void MissPluginTest::CreateSuccessed(MissWidgetUpdateFunc* pUpdate)

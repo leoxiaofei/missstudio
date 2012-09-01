@@ -11,11 +11,11 @@
 #define MISSTASKBARICON_H
 
 #include <wx/taskbar.h>
-#include "../../MissAPI/interface/IMissTaskIcon.h"
+
 
 //#define NIIF_INFO  0x00000001
 
-class MissTaskBarIcon : public wxTaskBarIcon, public IMissTaskIcon
+class MissTaskBarIcon : public wxTaskBarIcon
 {
 public:
     /** Default constructor */

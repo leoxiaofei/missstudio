@@ -2,6 +2,7 @@
 #define MISSPLUGINBASE_H
 
 #include <wx/string.h>
+#include <tr1/memory>
 
 struct SPlugInfo
 {
@@ -19,18 +20,23 @@ class MissPluginBase
 {
     public:
         virtual ~MissPluginBase(){}
-        virtual void LoadPlugin(const wxString& strPath){m_PluginPath = strPath;}
+
+        virtual void LoadPlugin(const std::tr1::shared_ptr<IMissMain>& pParent)
+        {
+            m_pParent = pParent;
+        }
+
         virtual void UnloadPlugin(){}
+
         const SPlugInfo& GetPlugInfo() const {return m_Info;}
-        const wxString & GetPluginPath() const {return m_PluginPath;}
+        //const wxString & GetPluginPath() const {return m_PluginPath;}
         static int APIVersion(){return 1;}
 
     protected:
         /** \brief 虚基类，需要继承后才可使用。
          *
-         *
          */
-        MissPluginBase(IMissMain* pParent):m_pParent(pParent){}
+        MissPluginBase(){}
 
         /** \brief 初始化插件信息，请在子类构造函数中调用
          *
@@ -42,15 +48,15 @@ class MissPluginBase
 
         /** \brief 得到主接口
          *
-         * \return IMissMain*
+         * \return const std::tr1::shared_ptr<IMissMain>&
          *
          */
-        IMissMain* GetMain(){return m_pParent;}
+        const std::tr1::shared_ptr<IMissMain>& GetMain(){return m_pParent;}
 
     private:
         SPlugInfo  m_Info;
-        IMissMain* m_pParent;
-        wxString   m_PluginPath;
+        std::tr1::shared_ptr<IMissMain> m_pParent;
+        //wxString   m_PluginPath;
 };
 
 #endif // MISSPLUGINBASE_H

@@ -4,15 +4,17 @@
 #include "../../MissAPI/interface/IMissHotKey.h"
 
 class wxWindow;
+class MissHotKeyFuncBase;
 
 struct SPluginHotKeyData
 {
-    int nStartID;
-    std::vector<SHotKeyData> vecHotKey;
+    int                 nStartID;
+    HotKeyDataSet       vecHotKey;
     MissHotKeyFuncBase* pHotKeyBase;
 };
 
-class MissHotKeyManager : public IMissHotKey
+
+class MissHotKeyManager
 {
     class MissHotKeyManagerImpl;
 public:
@@ -34,8 +36,8 @@ public:
     bool ModifyHotKey(unsigned int nPlugin, unsigned int nFunc,
                       const wxString &strHotKey);
 
-    ///接口实现
-    bool RegHotKeys(const std::vector<SHotKeyData>& vecHotKey, MissHotKeyFuncBase* pChild);
+    bool RegHotKeys(const HotKeyDataSet& vecHotKey, MissHotKeyFuncBase* pChild);
+    bool UnRegHotKeys(MissHotKeyFuncBase* pChild);
 
 protected:
 private:

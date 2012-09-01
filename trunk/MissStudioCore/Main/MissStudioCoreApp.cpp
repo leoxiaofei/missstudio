@@ -31,7 +31,6 @@ bool MissStudioCoreApp::OnInit()
 {
     wxSetWorkingDirectory(Miss::GetAppExePath());
     wxImage::AddHandler( new wxPNGHandler );
-    MissWidgetsDAL aa;
     if(!wxDir::Exists(wxT("config")))
     {
         wxFileName::Mkdir(wxT("config"));

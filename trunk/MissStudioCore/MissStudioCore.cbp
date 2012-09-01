@@ -99,6 +99,14 @@
 		<Unit filename="DAL\MissWidgetsDAL.h" />
 		<Unit filename="Generated\GUIFrame.cpp" />
 		<Unit filename="Generated\GUIFrame.h" />
+		<Unit filename="Impl\ImplMissHotKey.cpp" />
+		<Unit filename="Impl\ImplMissHotKey.h" />
+		<Unit filename="Impl\ImplMissMain.cpp" />
+		<Unit filename="Impl\ImplMissMain.h" />
+		<Unit filename="Impl\ImplMissTaskIcon.cpp" />
+		<Unit filename="Impl\ImplMissTaskIcon.h" />
+		<Unit filename="Impl\ImplMissWidgetManager.cpp" />
+		<Unit filename="Impl\ImplMissWidgetManager.h" />
 		<Unit filename="Main\MissHotKeyFrame.cpp" />
 		<Unit filename="Main\MissHotKeyFrame.h" />
 		<Unit filename="Main\MissSetHotKey.cpp" />

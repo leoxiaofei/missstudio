@@ -1,9 +1,8 @@
 #ifndef MISSWIDGETMANAGER_H
 #define MISSWIDGETMANAGER_H
 
-#include "../../MissAPI/interface/IMissWidget.h"
-
 struct SWidgetPara;
+class MissWidgetFactoryBase;
 
 struct SPluginWidgetData
 {
@@ -16,7 +15,7 @@ struct SPluginWidgetData
     std::vector<wxString> vecWidgetName;
 };
 
-class MissWidgetManager: public IMissWidget
+class MissWidgetManager
 {
     class MissWidgetManagerImpl;
     public:
@@ -26,10 +25,9 @@ class MissWidgetManager: public IMissWidget
         //MissWidgetUpdateFunc* CreateWidget(MissWidgetFuncBase * pFunc);
         void CreateWidget(unsigned int nPlugin, unsigned int nWidget, const SWidgetPara& data);
 
-    std::vector<shared_ptr<SPluginWidgetData> >& GetWidgetData();
+        std::vector<shared_ptr<SPluginWidgetData> >& GetWidgetData();
 
-    ///接口实现
-        void RegPluginWidget(MissWidgetFactoryBase* pFactory, const std::vector<wxString>& vecWidget);
+        void RegWidgetFactory(MissWidgetFactoryBase* pFactory, const std::vector<wxString>& vecWidget);
 
     protected:
     private:

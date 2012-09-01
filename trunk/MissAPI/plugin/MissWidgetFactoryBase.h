@@ -1,16 +1,14 @@
 #ifndef MISSCREATEWIDGETBASE_H
 #define MISSCREATEWIDGETBASE_H
 
-#include "../interface/IMissPlugin.h"
-
 class MissWidgetFuncBase;
 class MissTimerFuncBase;
 typedef MissTimerFuncBase MissWidgetUpdateFunc;
 
-class MissWidgetFactoryBase: public IMissPlugin
+class MissWidgetFactoryBase
 {
     public:
-        MissWidgetFactoryBase(MissPluginBase* pPlugin):IMissPlugin(pPlugin){};
+        MissWidgetFactoryBase(){};
         virtual ~MissWidgetFactoryBase() {}
         virtual MissWidgetFuncBase* CreateWidgetFunc(unsigned int nIndex) = 0;
         virtual void CreateSuccessed(MissWidgetUpdateFunc* pUpdate) = 0;

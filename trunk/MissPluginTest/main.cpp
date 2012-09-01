@@ -2,9 +2,9 @@
 #include "MissPluginTest.h"
 
 // a sample exported function
-bool DLL_EXPORT CreateMissStudioPlug(void ** pobj, void* pParent)
+bool DLL_EXPORT CreateMissStudioPlug(void ** pobj)
 {
-    *pobj = new MissPluginTest((IMissMain*)pParent);
+    *pobj = new MissPluginTest();
     return *pobj != NULL;
 }
 
