@@ -1,23 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_workspace_file>
 	<Workspace title="Workspace">
-		<Project filename="MissStudioCore/MissStudioCore.cbp" active="1">
+		<Project filename="MissStudioCore/MissStudioCore.cbp">
 			<Depends filename="MissTools/MissAPI.cbp" />
 			<Depends filename="MissAPI/MissAPI.cbp" />
-			<Depends filename="MissPluginTest/MissPluginTest.cbp" />
 			<Depends filename="MissPasswordAid/MissPasswordAid.cbp" />
 			<Depends filename="MissClock/MissClock.cbp" />
 		</Project>
 		<Project filename="MissTools/MissAPI.cbp" />
 		<Project filename="MissAPI/MissAPI.cbp" />
-		<Project filename="MissPluginTest/MissPluginTest.cbp">
-			<Depends filename="MissAPI/MissAPI.cbp" />
-		</Project>
 		<Project filename="MissPasswordAid/MissPasswordAid.cbp">
 			<Depends filename="MissAPI/MissAPI.cbp" />
 		</Project>
 		<Project filename="MissClock/MissClock.cbp">
 			<Depends filename="MissAPI/MissAPI.cbp" />
 		</Project>
+		<Project filename="MissPluginTest/MissPluginTest.cbp" />
 	</Workspace>
 </CodeBlocks_workspace_file>

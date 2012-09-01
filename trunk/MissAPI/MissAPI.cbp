@@ -35,7 +35,6 @@
 		<Unit filename="interface\IMissConfig.h" />
 		<Unit filename="interface\IMissHotKey.h" />
 		<Unit filename="interface\IMissMain.h" />
-		<Unit filename="interface\IMissPlugin.h" />
 		<Unit filename="interface\IMissTaskIcon.h" />
 		<Unit filename="interface\IMissWidgetManager.h" />
 		<Unit filename="plugin\MissHotKeyFuncBase.h" />
