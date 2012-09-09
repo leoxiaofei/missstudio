@@ -117,10 +117,26 @@ void MissStudioCoreFrame::InitPlugin()
     }
 }
 
+void MissStudioCoreFrame::InitAboutMenu()
+{
+    std::vector<wxString> vecNames;
+    MissPluginManager::Instance().GetPluginNameList(vecNames);
+
+    for(std::vector<wxString>::const_iterator citor = vecNames.begin();
+        citor != vecNames.end(); ++citor)
+    {
+        wxMenuItem* item = new wxMenuItem( m_mnuPluginAbout, wxID_ANY, *citor , wxEmptyString, wxITEM_NORMAL );
+        m_mnuPluginAbout->Append(item);
+        this->Connect( item->GetId(), wxEVT_COMMAND_MENU_SELECTED,
+                      wxCommandEventHandler( MissStudioCoreFrame::OnMenuPluginAboutSelection ) );
+    }
+}
+
 void MissStudioCoreFrame::OnInitWindow(wxCommandEvent& event)
 {
     //wxString strPath = wxGetCwd() + wxT("\\plugin\\MissPluginTest.dll");
     InitPlugin();
+    InitAboutMenu();
 }
 
 void MissStudioCoreFrame::OnClose(wxCloseEvent &event)
@@ -168,6 +184,12 @@ void MissStudioCoreFrame::OnMenuWidgetsSettingSelection(wxCommandEvent& event)
 }
 
 void MissStudioCoreFrame::OnMenuAboutSelection(wxCommandEvent& event)
+{
+    MissStudioAbout* about = new MissStudioAbout(this);
+    about->ShowModal();
+}
+
+void MissStudioCoreFrame::OnMenuPluginAboutSelection(wxCommandEvent& event)
 {
     MissStudioAbout* about = new MissStudioAbout(this);
     about->ShowModal();

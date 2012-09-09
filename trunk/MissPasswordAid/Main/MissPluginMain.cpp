@@ -40,9 +40,8 @@ MissPluginMain::~MissPluginMain()
     //dtor
 }
 
-void MissPluginMain::LoadPlugin(const std::tr1::shared_ptr<IMissMain>& pParent)
+void MissPluginMain::LoadPlugin()
 {
-    MissPluginBase::LoadPlugin(pParent);
     HotKeyDataSet vecHotKey(2);
     std::tr1::shared_ptr<IMissConfig> config = GetMain()->GetConfig();
 

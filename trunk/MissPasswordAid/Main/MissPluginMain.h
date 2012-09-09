@@ -12,14 +12,14 @@ class MissPluginMain : public MissPluginBase, public MissHotKeyFuncBase
         MissPluginMain();
         virtual ~MissPluginMain();
 
-        ///初始化插件
-        virtual void LoadPlugin(const std::tr1::shared_ptr<IMissMain>& pParent);
-
         ///热键方法实现
         void RunFunc(int nFuncIndex);
         void ModifiedHotKey(int nFuncIndex, const wxString& strHotKey);
 
     protected:
+        ///初始化插件
+        virtual void LoadPlugin();
+
     private:
         std::tr1::shared_ptr<MissPluginMainImpl> m_pImpl;
 };

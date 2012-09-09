@@ -3,6 +3,7 @@
 #include "../Data/MissXML.h"
 #include "../Data/MissSkin.h"
 #include "../../MissAPI/plugin/MissPluginBase.h"
+#include "../../MissAPI/interface/IMissMain.h"
 #include <iostream>
 
 MissClockWidget::MissClockWidget():
@@ -20,7 +21,7 @@ MissClockWidget::~MissClockWidget()
 void MissClockWidget::LoadSkin()
 {
     //GetPlugin()->GetPluginPath() + wxT("\\ClockSkin\\Default");
-    //MissXML::LoadSkin(m_pSkin.get(),wxGetCwd() + wxT("\\")+ GetPlugin()->GetPluginPath() + wxT("\\ClockSkin\\Default\\"));
+    MissXML::LoadSkin(m_pSkin.get(),wxGetCwd() + wxT("\\")+ Msp->GetMain()->GetPluginPath() + wxT("\\ClockSkin\\Default\\"));
 }
 
 void MissClockWidget::InitWidget(const WidgetParas& para, wxFrame* pWidget)

@@ -11,9 +11,6 @@ class MissClockPlugin : public MissPluginBase, public MissHotKeyFuncBase, public
         MissClockPlugin();
         virtual ~MissClockPlugin();
 
-        ///初始化插件
-        void LoadPlugin(const std::tr1::shared_ptr<IMissMain>& pParent);
-
         ///热键方法实现
         void RunFunc(int nFuncIndex);
         void ModifiedHotKey(int nFuncIndex, const wxString& strHotKey);
@@ -23,6 +20,9 @@ class MissClockPlugin : public MissPluginBase, public MissHotKeyFuncBase, public
         void CreateSuccessed(MissWidgetUpdateFunc* pUpdate);
 
     protected:
+        ///初始化插件
+        void LoadPlugin();
+
     private:
 };
 

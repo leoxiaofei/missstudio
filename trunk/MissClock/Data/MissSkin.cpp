@@ -31,21 +31,24 @@ void MissSkin::DrawSkin(wxDC& dc, const tm* tmNow)
     static char str[100];
     static wxCoord width;
     static wxString strOut;
-    dc.DrawBitmap(m_pImpl->m_ClockBGPic,0,0);
-
-    for (size_t ix = 0;ix != m_pImpl->m_Element.size(); ++ix)
+    if(m_pImpl->m_ClockBGPic.IsOk())
     {
-        if (m_pImpl->m_Element[ix].m_Show)
+        dc.DrawBitmap(m_pImpl->m_ClockBGPic,0,0);
+        for (size_t ix = 0; ix != m_pImpl->m_Element.size(); ++ix)
         {
-            dc.SetFont(m_pImpl->m_Element[ix].m_Font);
-            dc.SetTextForeground(m_pImpl->m_Element[ix].m_Colour);
-            strftime (str,100, m_pImpl->m_Element[ix].m_Content.c_str(),tmNow);
+            if (m_pImpl->m_Element[ix].m_Show)
+            {
+                dc.SetFont(m_pImpl->m_Element[ix].m_Font);
+                dc.SetTextForeground(m_pImpl->m_Element[ix].m_Colour);
+                strftime (str,100, m_pImpl->m_Element[ix].m_Content.c_str(),tmNow);
 
-            strOut = wxString(str,wxConvLocal);
-            dc.GetTextExtent(strOut,&width,NULL,NULL,NULL,NULL);
-            dc.DrawText(strOut,m_pImpl->m_Element[ix].m_X-width*m_pImpl->m_Element[ix].m_Alignment, m_pImpl->m_Element[ix].m_Y);
+                strOut = wxString(str,wxConvLocal);
+                dc.GetTextExtent(strOut,&width,NULL,NULL,NULL,NULL);
+                dc.DrawText(strOut,m_pImpl->m_Element[ix].m_X-width*m_pImpl->m_Element[ix].m_Alignment, m_pImpl->m_Element[ix].m_Y);
+            }
         }
     }
+
 }
 
 MissElement& MissSkin::GetElement(int nIndex) const

@@ -1,10 +1,13 @@
 #include "main.h"
 #include "./Main/MissClockPlugin.h"
 
+MissPluginBase* Msp = NULL;
+
 // a sample exported function
 bool DLL_EXPORT CreateMissStudioPlug(void ** pobj)
 {
-    *pobj = new MissClockPlugin();
+    Msp = new MissClockPlugin();
+    *pobj  = Msp;
     return *pobj != NULL;
 }
 

@@ -38,6 +38,8 @@ public:
     MissPluginBase* QueryPluginByInterface(void* pInterface);
     void RegPluginInterface(MissPluginBase* pPlugin, void* pInterface);
 
+    void GetPluginNameList(std::vector<wxString>& vecNames);
+
 protected:
 private:
     MissPluginManager();

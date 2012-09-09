@@ -50,9 +50,8 @@ void MissClockPlugin::ModifiedHotKey(int nFuncIndex, const wxString& strHotKey)
     config->Write(wxString::Format(wxT("函数%d"),nFuncIndex), strHotKey);
 }
 
-void MissClockPlugin::LoadPlugin(const std::tr1::shared_ptr<IMissMain>& pParent)
+void MissClockPlugin::LoadPlugin()
 {
-    MissPluginBase::LoadPlugin(pParent);
     HotKeyDataSet vecHotKey(2);
     std::tr1::shared_ptr<IMissConfig> config = GetMain()->GetConfig();
     //wxString strHotkey;
