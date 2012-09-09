@@ -35,6 +35,7 @@ public:
 protected:
     void InitEvent();
     void InitPlugin();
+    void InitAboutMenu();
 
 private:
     ///UI事件
@@ -44,6 +45,7 @@ private:
     virtual void OnMenuWidgetsSettingSelection( wxCommandEvent& event );
     virtual void OnMenuExitSelection(wxCommandEvent& event);
     virtual void OnMenuAboutSelection( wxCommandEvent& event );
+    virtual void OnMenuPluginAboutSelection( wxCommandEvent& event );
 
     ///自定义事件
     void OnInitWindow(wxCommandEvent& event);

@@ -7,9 +7,11 @@ MissWidget::MissWidget(MissWidgetFuncBase * pFunc,
                        const wxString& title,
                        const wxPoint& pos,
                        const wxSize& size,
-                       long style):
-    wxFrame(parent, id, title, pos, size, style),
-    m_pFunc(pFunc)
+                       long style)
+: wxFrame(parent, id, title, pos, size, style)
+, m_pFunc(pFunc)
+, m_pBitmap(NULL)
+, m_nPixCount(0)
 {
     m_hWnd = static_cast<HWND>(GetHandle());
 
@@ -42,7 +44,7 @@ void MissWidget::TimeUp(const tm* tmNow, MissTimerType eType)
     static int nPixCount;
     static unsigned int* pBitmap;
 
-    nPixCount = m_nPixCount;
+    nPixCount = m_nPixCount + 1;
     pBitmap = m_pBitmap;
 
     while (--nPixCount)
@@ -56,7 +58,7 @@ void MissWidget::TimeUp(const tm* tmNow, MissTimerType eType)
 
     m_pFunc->UpdateUI(memdc,tmNow);
 
-    nPixCount = m_nPixCount;
+    nPixCount = m_nPixCount + 1;
     pBitmap = m_pBitmap;
 
     while (--nPixCount)
@@ -92,10 +94,13 @@ void MissWidget::SetScale(const double& dZoom)
     m_SizeWindow.cx = static_cast<int>(szBitmap.GetWidth()  * dZoom);
     m_SizeWindow.cy = static_cast<int>(szBitmap.GetHeight() * dZoom);
     m_bpUI = wxBitmap(m_SizeWindow.cx, m_SizeWindow.cy, 32);
-    BITMAP bm;
-    ::GetObject(static_cast<HBITMAP>(m_bpUI.GetHBITMAP()), sizeof(bm), &bm);
-    m_nPixCount = bm.bmWidth * bm.bmHeight;
-    m_pBitmap = static_cast<unsigned int*>(bm.bmBits);
+    if(m_bpUI.IsOk())
+    {
+        BITMAP bm;
+        ::GetObject(static_cast<HBITMAP>(m_bpUI.GetHBITMAP()), sizeof(bm), &bm);
+        m_nPixCount = bm.bmWidth * bm.bmHeight;
+        m_pBitmap = static_cast<unsigned int*>(bm.bmBits);
+    }
 }
 
 void MissWidget::SetOpacity(int nOpacity)

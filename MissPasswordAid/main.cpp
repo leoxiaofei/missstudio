@@ -1,10 +1,12 @@
 #include "main.h"
 #include "Main/MissPluginMain.h"
 
+MissPluginBase* Msp = NULL;
 // a sample exported function
 bool DLL_EXPORT CreateMissStudioPlug(void ** pobj)
 {
-    *pobj = new MissPluginMain();
+    Msp = new MissPluginMain();
+    *pobj = Msp;
     return *pobj != NULL;
 }
 

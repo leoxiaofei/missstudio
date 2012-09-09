@@ -37,7 +37,6 @@ void MissPluginManager::Init(wxWindow* pMainWindow)
 bool MissPluginManager::LoadDll(const wxString& strPath, MissStudioCoreFrame* pParent)
 {
     SPluginData data;
-    data.strPath = strPath;
     data.pDllHandle = new wxDynamicLibrary(strPath);
     do
     {
@@ -68,9 +67,10 @@ bool MissPluginManager::LoadDll(const wxString& strPath, MissStudioCoreFrame* pP
         {
             break;
         }
+        data.strPath = strPath.Left(strPath.rfind('.'));
         m_pImpl->m_vecPlugin.push_back(data);
-        ///调用初始化函数；//strPath.Left(strPath.rfind('.'))
-        data.pPlugin->LoadPlugin(std::tr1::shared_ptr<IMissMain>(
+        ///调用初始化函数；
+        data.pPlugin->InitPlugin(std::tr1::shared_ptr<IMissMain>(
                         new ImplMissMain(pParent, data.pPlugin)));
         //std::wcout<<strPath.Left(strPath.rfind('.')).c_str()<<std::endl;
         return true;
@@ -111,7 +111,7 @@ MissPluginBase* MissPluginManager::QueryPluginByInterface(void* pInterface)
     MissPluginBase* pRet(NULL);
     std::map<void*, MissPluginBase*>::iterator itor =
     m_pImpl->m_mapPluginQuery.find(pInterface);
-    if( itor != m_pImpl->m_mapPluginQuery.begin() )
+    if( itor != m_pImpl->m_mapPluginQuery.end() )
     {
         pRet = itor->second;
     }
@@ -123,3 +123,11 @@ void MissPluginManager::RegPluginInterface(MissPluginBase* pPlugin, void* pInter
     m_pImpl->m_mapPluginQuery[pInterface] = pPlugin;
 }
 
+void MissPluginManager::GetPluginNameList(std::vector<wxString>& vecNames)
+{
+    for(std::vector<SPluginData>::iterator itor = m_pImpl->m_vecPlugin.begin();
+        itor != m_pImpl->m_vecPlugin.end(); ++itor)
+    {
+        vecNames.push_back(itor->pPlugin->GetPlugInfo().strPluginName);
+    }
+}

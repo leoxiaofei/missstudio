@@ -4,6 +4,8 @@
 #include <wx/string.h>
 #include <tr1/memory>
 
+class IMissMain;
+
 struct SPlugInfo
 {
     wxString strPluginName;
@@ -14,22 +16,40 @@ struct SPlugInfo
     wxString strSpecification;
 };
 
-class IMissMain;
-
 class MissPluginBase
 {
     public:
         virtual ~MissPluginBase(){}
 
-        virtual void LoadPlugin(const std::tr1::shared_ptr<IMissMain>& pParent)
+        /** \brief 初始化控件由主程序调用
+         *
+         * \param pParent const std::tr1::shared_ptr<IMissMain>&
+         * \return void
+         *
+         */
+        void InitPlugin(const std::tr1::shared_ptr<IMissMain>& pParent)
         {
             m_pParent = pParent;
+            LoadPlugin();
         }
 
-        virtual void UnloadPlugin(){}
+        /** \brief 得到主接口对象
+         *
+         * \return const std::tr1::shared_ptr<IMissMain>&
+         *
+         */
+        const std::tr1::shared_ptr<IMissMain>& GetMain()
+        {
+            return m_pParent;
+        }
 
+        /** \brief 得到插件基本信息
+         *
+         * \return const SPlugInfo&
+         *
+         */
         const SPlugInfo& GetPlugInfo() const {return m_Info;}
-        //const wxString & GetPluginPath() const {return m_PluginPath;}
+
         static int APIVersion(){return 1;}
 
     protected:
@@ -46,17 +66,26 @@ class MissPluginBase
          */
         void SetPlugInfo(const SPlugInfo& info){m_Info = info;}
 
-        /** \brief 得到主接口
+        /** \brief 初始化插件接口
          *
-         * \return const std::tr1::shared_ptr<IMissMain>&
+         * \return virtual void
          *
          */
-        const std::tr1::shared_ptr<IMissMain>& GetMain(){return m_pParent;}
+        virtual void LoadPlugin(){}
+
+        /** \brief 卸载插件接口
+         *
+         * \return virtual void
+         *
+         */
+        virtual void UnloadPlugin(){}
 
     private:
         SPlugInfo  m_Info;
         std::tr1::shared_ptr<IMissMain> m_pParent;
         //wxString   m_PluginPath;
 };
+
+extern MissPluginBase* Msp;
 
 #endif // MISSPLUGINBASE_H
