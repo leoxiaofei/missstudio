@@ -51,9 +51,8 @@ void MissPluginTest::ModifiedHotKey(int nFuncIndex, const wxString& strHotKey)
     config->Write(wxString::Format(wxT("函数%d"),nFuncIndex), strHotKey);
 }
 
-void MissPluginTest::LoadPlugin(const std::tr1::shared_ptr<IMissMain>& pParent)
+void MissPluginTest::LoadPlugin()
 {
-    MissPluginBase::LoadPlugin(pParent);
     HotKeyDataSet vecHotKey(2);
     std::tr1::shared_ptr<IMissConfig> config = GetMain()->GetConfig();
     //wxString strHotkey;

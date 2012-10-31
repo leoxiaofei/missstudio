@@ -4,20 +4,10 @@
 #include "../../MissAPI/plugin/MissTimerFuncBase.h"
 
 class MissWidgetFuncBase;
-
-typedef std::vector<std::pair<wxString, wxString> > CustomPara;
-struct SWidgetPara
+namespace DTD
 {
-    SWidgetPara()
-    : m_dZone(1)
-    , m_nOpacity(255)
-    , m_ptPos(0,0)
-    {}
-    double      m_dZone;
-    int         m_nOpacity;
-    wxPoint     m_ptPos;
-    CustomPara  m_vecPata;
-};
+    struct SWidgetPara;
+}
 
 class MissWidget : public wxFrame, public MissTimerFuncBase
 {
@@ -30,12 +20,16 @@ public:
                 const wxSize& size = wxSize( 200,200 ),
                 long style = 0|wxTAB_TRAVERSAL );
 
-    void InitData(const SWidgetPara& data);
+    void InitData(const DTD::SWidgetPara& data);
+    void GetData(DTD::SWidgetPara& data);
 
-    void SetScale(const double& dZoom);
+    int  GetWidgetID() const;
+    void SetWidgetID(int nID);
+
+    void SetScale(const float& dZoom);
     void SetOpacity(int nOpacity);
 
-    const double& GetScale() const;
+    const float& GetScale() const;
     int           GetOpacity() const;
 
 private:
@@ -48,13 +42,14 @@ private:
 private:
     std::tr1::shared_ptr<MissWidgetFuncBase> m_pFunc;
     BLENDFUNCTION      m_Blend;
-    double             m_dZoom;
+    float              m_dZoom;
     SIZE               m_SizeWindow;
     HWND               m_hWnd;
 
     wxBitmap           m_bpUI;
     unsigned int      *m_pBitmap;
     int                m_nPixCount;
+    int                m_nWidgetID;
 };
 
 #endif // __MissWidget__

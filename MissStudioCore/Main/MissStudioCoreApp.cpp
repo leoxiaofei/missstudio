@@ -23,7 +23,6 @@
 
 #include <mSystem.hpp>
 
-#include "../DAL/MissWidgetsDAL.h"
 
 IMPLEMENT_APP(MissStudioCoreApp);
 

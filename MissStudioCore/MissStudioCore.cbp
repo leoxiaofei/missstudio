@@ -95,6 +95,8 @@
 		<Unit filename="BLL\MissPluginManager.h" />
 		<Unit filename="BLL\MissWidgetManager.cpp" />
 		<Unit filename="BLL\MissWidgetManager.h" />
+		<Unit filename="DAL\MissDataTypeDef.cpp" />
+		<Unit filename="DAL\MissDataTypeDef.h" />
 		<Unit filename="DAL\MissWidgetsDAL.cpp" />
 		<Unit filename="DAL\MissWidgetsDAL.h" />
 		<Unit filename="Generated\GUIFrame.cpp" />

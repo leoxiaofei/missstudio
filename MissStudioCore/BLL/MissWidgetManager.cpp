@@ -50,7 +50,7 @@ std::vector<shared_ptr<SPluginWidgetData> >& MissWidgetManager::GetWidgetData()
     return m_pImpl->m_vecWidgets;
 }
 
-void MissWidgetManager::CreateWidget(unsigned int nPlugin, unsigned int nWidget, const SWidgetPara& data)
+void MissWidgetManager::CreateWidget(unsigned int nPlugin, unsigned int nWidget, const DTD::SWidgetPara& data)
 {
     if(nPlugin < m_pImpl->m_vecWidgets.size() &&
             nWidget < m_pImpl->m_vecWidgets[nPlugin]->vecWidgetName.size())

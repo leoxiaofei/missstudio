@@ -13,7 +13,8 @@ class MissPluginTest : public MissPluginBase, public MissHotKeyFuncBase, public 
         virtual ~MissPluginTest();
 
         ///初始化插件
-        void LoadPlugin(const std::tr1::shared_ptr<IMissMain>& pParent);
+        //void LoadPlugin(const std::tr1::shared_ptr<IMissMain>& pParent);
+        virtual void LoadPlugin();
 
         ///热键方法实现
         void RunFunc(int nFuncIndex);
