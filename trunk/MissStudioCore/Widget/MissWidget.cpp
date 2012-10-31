@@ -1,5 +1,8 @@
 #include "MissWidget.h"
 #include "../../MissAPI/plugin/MissWidgetFuncBase.h"
+#include "../DAL/MissDataTypeDef.h"
+
+#include <iostream>
 
 MissWidget::MissWidget(MissWidgetFuncBase * pFunc,
                        wxWindow* parent,
@@ -12,6 +15,7 @@ MissWidget::MissWidget(MissWidgetFuncBase * pFunc,
 , m_pFunc(pFunc)
 , m_pBitmap(NULL)
 , m_nPixCount(0)
+, m_nWidgetID(-1)
 {
     m_hWnd = static_cast<HWND>(GetHandle());
 
@@ -28,10 +32,10 @@ MissWidget::MissWidget(MissWidgetFuncBase * pFunc,
 
 }
 
-void MissWidget::InitData(const SWidgetPara& data)
+void MissWidget::InitData(const DTD::SWidgetPara& data)
 {
     m_pFunc->InitWidget(data.m_vecPata, this);
-    SetScale(data.m_dZone);
+    SetScale(data.m_nZone / 100.0);
     SetOpacity(data.m_nOpacity);
     Move(data.m_ptPos);
 }
@@ -79,15 +83,38 @@ void MissWidget::OnRightUp(wxMouseEvent& event)
 {
     Raise();
     //if(m_pOptionDlg == NULL)
-    wxMenu* m_pWidgetMenu = new wxMenu();
-    wxMenuItem* m_mitemHotKeySetting;
-    m_mitemHotKeySetting = new wxMenuItem( m_pWidgetMenu, wxID_ANY, wxString( wxT("热键设置") ) , wxEmptyString, wxITEM_NORMAL );
-    m_pWidgetMenu->Append( m_mitemHotKeySetting );
+    static wxMenu* pWidgetMenu(NULL);// = new wxMenu();
+    if( pWidgetMenu == NULL )
+    {
+        pWidgetMenu = new wxMenu();
 
-    PopupMenu(m_pWidgetMenu);
+        wxMenuItem* mItem;
+        mItem = new wxMenuItem( pWidgetMenu, wxID_ANY, wxString( wxT("固定位置") ) , wxEmptyString, wxITEM_NORMAL );
+        pWidgetMenu->Append( mItem );
+
+        mItem = new wxMenuItem( pWidgetMenu, wxID_ANY, wxString( wxT("有影无形") ) , wxEmptyString, wxITEM_NORMAL );
+        pWidgetMenu->Append( mItem );
+
+        mItem = new wxMenuItem( pWidgetMenu, wxID_ANY, wxString( wxT("总在最前") ) , wxEmptyString, wxITEM_NORMAL );
+        pWidgetMenu->Append( mItem );
+
+
+        mItem = new wxMenuItem( pWidgetMenu, wxID_ANY, wxString( wxT("通用选项") ) , wxEmptyString, wxITEM_NORMAL );
+        pWidgetMenu->Append( mItem );
+
+        pWidgetMenu->AppendSeparator();
+
+
+        mItem = new wxMenuItem( pWidgetMenu, wxID_ANY, wxString( wxT("关闭") ) , wxEmptyString, wxITEM_NORMAL );
+        pWidgetMenu->Append( mItem );
+    }
+
+
+    PopupMenu(pWidgetMenu);
+    std::cout<<"OnRightUp"<<std::endl;
 }
 
-void MissWidget::SetScale(const double& dZoom)
+void MissWidget::SetScale(const float& dZoom)
 {
     m_dZoom = dZoom;
     wxSize szBitmap = m_pFunc->GetSize();
@@ -109,7 +136,7 @@ void MissWidget::SetOpacity(int nOpacity)
     m_Blend.SourceConstantAlpha = nOpacity;
 }
 
-const double& MissWidget::GetScale() const
+const float& MissWidget::GetScale() const
 {
     return m_dZoom;
 }
@@ -117,4 +144,15 @@ const double& MissWidget::GetScale() const
 int MissWidget::GetOpacity() const
 {
     return static_cast<int>(m_Blend.SourceConstantAlpha);
+}
+
+int MissWidget::GetWidgetID() const
+{
+    assert(m_nWidgetID != -1);
+    return m_nWidgetID;
+}
+
+void MissWidget::SetWidgetID(int nID)
+{
+    m_nWidgetID = nID;
 }

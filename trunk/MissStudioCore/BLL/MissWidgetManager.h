@@ -1,7 +1,11 @@
 #ifndef MISSWIDGETMANAGER_H
 #define MISSWIDGETMANAGER_H
 
-struct SWidgetPara;
+namespace DTD
+{
+    struct SWidgetPara;
+}
+
 class MissWidgetFactoryBase;
 
 struct SPluginWidgetData
@@ -23,7 +27,7 @@ class MissWidgetManager
         virtual ~MissWidgetManager();
 
         //MissWidgetUpdateFunc* CreateWidget(MissWidgetFuncBase * pFunc);
-        void CreateWidget(unsigned int nPlugin, unsigned int nWidget, const SWidgetPara& data);
+        void CreateWidget(unsigned int nPlugin, unsigned int nWidget, const DTD::SWidgetPara& data);
 
         std::vector<shared_ptr<SPluginWidgetData> >& GetWidgetData();
 

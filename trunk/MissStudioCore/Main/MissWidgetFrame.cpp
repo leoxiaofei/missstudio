@@ -6,6 +6,8 @@
 #include "../Model/MissPluginTreeListData.h"
 #include "../../MissAPI/plugin/MissWidgetFactoryBase.h"
 #include "../../MissAPI/plugin/MissPluginBase.h"
+#include "../DAL/MissDataTypeDef.h"
+#include "../DAL/MissWidgetsDAL.h"
 
 class MissWidgetFrame::MissWidgetFrameImpl
 {
@@ -76,7 +78,7 @@ void MissWidgetFrame::OnWidgetsListTreeItemActivated(wxTreeEvent& event)
     {
         unsigned int nPlugin = pData->GetPluginIndex();
         unsigned int nWidget = pData->GetFuncIndex();
-        SWidgetPara para;
+        DTD::SWidgetPara para;
         ///TODO:读取参数
 
         ///

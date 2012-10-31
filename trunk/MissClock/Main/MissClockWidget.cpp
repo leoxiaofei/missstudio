@@ -29,6 +29,11 @@ void MissClockWidget::InitWidget(const WidgetParas& para, wxFrame* pWidget)
     LoadSkin();
 }
 
+void MissClockWidget::GetWidgetParas(WidgetParas& para)
+{
+
+}
+
 void MissClockWidget::UpdateUI(wxDC& dc, const tm* tmNow)
 {
     m_pSkin->DrawSkin(dc, tmNow);

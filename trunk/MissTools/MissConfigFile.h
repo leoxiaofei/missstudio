@@ -5,7 +5,7 @@
 #include <tr1/memory>
 #include "../MissAPI/interface/IMissConfig.h"
 
-class MissConfigFile:public IMissConfig
+class MissConfigFile : public IMissConfig
 {
     class MissConfigFileImpl;
 
