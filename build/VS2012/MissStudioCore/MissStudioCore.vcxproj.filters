@@ -1,0 +1,247 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\UI">
+      <UniqueIdentifier>{f284e938-40e6-4acb-9664-7ab138346e3a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\UI">
+      <UniqueIdentifier>{165229a4-710c-430c-9413-5c6cef795553}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Generated">
+      <UniqueIdentifier>{7fe06072-c8ab-4f09-a96e-d84a29a9bd5c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Generated">
+      <UniqueIdentifier>{5f29942d-3092-4201-968c-d1e5391e50fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Widget">
+      <UniqueIdentifier>{ea75db80-ce1c-418e-ab38-c4b1cd6be7c1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Widget">
+      <UniqueIdentifier>{10c7fc3c-e889-4087-afca-e9b324aeb836}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Impl">
+      <UniqueIdentifier>{9084813a-0180-4d3b-ae7c-552cb498cd58}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Impl">
+      <UniqueIdentifier>{b4e0e698-46a8-4542-99de-7df4019451c8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\BLL">
+      <UniqueIdentifier>{f775e002-6969-4f81-a8ef-ed3da0270d2d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\BLL">
+      <UniqueIdentifier>{c76de111-1e96-4186-b08e-be4ca8d401f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Model">
+      <UniqueIdentifier>{b0ff3642-0abe-4a60-9ddf-9899fdd0f917}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Model">
+      <UniqueIdentifier>{6d6df10f-47d5-4c70-90cf-d67e3dbc996e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\DAL">
+      <UniqueIdentifier>{431452f6-f78b-4d7e-b7dd-bbfb88600ef1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\DAL">
+      <UniqueIdentifier>{3027cead-ecb7-4bd9-aea4-a91e9452e5af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Common">
+      <UniqueIdentifier>{924c82fa-767a-4f65-b99e-a1fcb4a94dad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Common">
+      <UniqueIdentifier>{0bb4ea61-f009-431b-b01f-fd894ec5c50c}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\src\MissStudioCore\UI\MissCoreFrame.cpp">
+      <Filter>Source Files\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\MissStudioCore\UI\MissCoreApp.cpp">
+      <Filter>Source Files\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\MissStudioCore\Generated\GUIFrame.cpp">
+      <Filter>Source Files\Generated</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\MissStudioCore\Impl\MissMainEntry.cpp">
+      <Filter>Source Files\Impl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\MissStudioCore\BLL\MissPluginManager.cpp">
+      <Filter>Source Files\BLL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\MissStudioCore\BLL\MissHotKeyManager.cpp">
+      <Filter>Source Files\BLL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\MissStudioCore\Impl\ImplMissStorage.cpp">
+      <Filter>Source Files\Impl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\MissStudioCore\UI\MissTaskBarIcon.cpp">
+      <Filter>Source Files\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\MissStudioCore\Widget\wxKeyMonitorTextCtrl.cpp">
+      <Filter>Source Files\Widget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\MissStudioCore\UI\MissPluginOption.cpp">
+      <Filter>Source Files\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\MissStudioCore\Model\MissHotKeyModel.cpp">
+      <Filter>Source Files\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\MissStudioCore\Model\IndexTreeData.cpp">
+      <Filter>Source Files\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\MissStudioCore\UI\MissHotKeySetting.cpp">
+      <Filter>Source Files\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\MissStudioCore\BLL\MissCoreConfig.cpp">
+      <Filter>Source Files\BLL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\MissStudioCore\BLL\MissFunctor.cpp">
+      <Filter>Source Files\BLL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\MissStudioCore\Impl\ImplMissHotKeyMgr.cpp">
+      <Filter>Source Files\Impl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\MissStudioCore\Impl\ImplMissWidgetMgr.cpp">
+      <Filter>Source Files\Impl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\MissStudioCore\BLL\MissWidgetManager.cpp">
+      <Filter>Source Files\BLL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\MissStudioCore\Widget\MissWidget.cpp">
+      <Filter>Source Files\Widget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\MissStudioCore\Impl\ImplMissWidget.cpp">
+      <Filter>Source Files\Impl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\MissStudioCore\Impl\ImplMissTimer.cpp">
+      <Filter>Source Files\Impl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\MissStudioCore\BLL\MissTimerManager.cpp">
+      <Filter>Source Files\BLL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\MissStudioCore\DAL\MissWidgetsDAL.cpp">
+      <Filter>Source Files\DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\MissStudioCore\Common\MissPaths.cpp">
+      <Filter>Source Files\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\MissStudioCore\UI\MissDesktopTools.cpp">
+      <Filter>Source Files\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\MissStudioCore\Model\MissInstalledModel.cpp">
+      <Filter>Source Files\Model</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\src\MissStudioCore\UI\MissCoreFrame.h">
+      <Filter>Header Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\MissStudioCore\UI\MissCoreApp.h">
+      <Filter>Header Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\MissStudioCore\Generated\GUIFrame.h">
+      <Filter>Header Files\Generated</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\MissStudioCore\Impl\MissMainEntry.h">
+      <Filter>Header Files\Impl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\MissStudioCore\BLL\MissPluginManager.h">
+      <Filter>Header Files\BLL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\MissStudioCore\BLL\MissHotKeyManager.h">
+      <Filter>Header Files\BLL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\MissStudioCore\Widget\wxKeyMonitorTextCtrl.h">
+      <Filter>Header Files\Widget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\MissStudioCore\Impl\ImplMissStorage.h">
+      <Filter>Header Files\Impl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\MissStudioCore\UI\MissTaskBarIcon.h">
+      <Filter>Header Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\MissStudioCore\UI\MissPluginOption.h">
+      <Filter>Header Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\MissStudioCore\Model\IndexTreeData.h">
+      <Filter>Header Files\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\MissStudioCore\UI\MissHotKeySetting.h">
+      <Filter>Header Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\MissStudioCore\BLL\MissCoreConfig.h">
+      <Filter>Header Files\BLL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\MissStudioCore\BLL\MissFuncFinder.h">
+      <Filter>Header Files\BLL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\MissStudioCore\BLL\MissFunctor.h">
+      <Filter>Header Files\BLL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\MissStudioCore\Impl\ImplMissHotKeyMgr.h">
+      <Filter>Header Files\Impl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\MissStudioCore\Impl\ImplMissWidgetMgr.h">
+      <Filter>Header Files\Impl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\MissStudioCore\BLL\MissWidgetManager.h">
+      <Filter>Header Files\BLL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\MissStudioCore\Widget\MissWidget.h">
+      <Filter>Header Files\Widget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\MissStudioCore\Impl\ImplMissWidget.h">
+      <Filter>Header Files\Impl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\MissStudioCore\Impl\ImplMissTimer.h">
+      <Filter>Header Files\Impl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\MissStudioCore\BLL\MissTimerManager.h">
+      <Filter>Header Files\BLL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\MissStudioCore\DAL\MissWidgetsDAL.h">
+      <Filter>Header Files\DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\MissStudioCore\Common\CustomId.h">
+      <Filter>Header Files\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\MissStudioCore\Common\Targetver.h">
+      <Filter>Header Files\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\MissStudioCore\Common\MissPaths.h">
+      <Filter>Header Files\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\MissStudioCore\Common\WidgetDef.h">
+      <Filter>Header Files\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\MissStudioCore\UI\MissDesktopTools.h">
+      <Filter>Header Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\MissStudioCore\Model\MissHotKeyModel.h">
+      <Filter>Header Files\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\MissStudioCore\Model\MissInstalledModel.h">
+      <Filter>Header Files\Model</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="..\..\..\src\MissStudioCore\Res\resource.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\src\MissStudioCore\Res\MissStudioCore.fbp">
+      <Filter>Resource Files</Filter>
+    </None>
+  </ItemGroup>
+</Project>

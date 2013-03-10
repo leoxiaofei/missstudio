@@ -1,3 +1,0 @@
-RC_STUDIO_ICON ICON "Res/MissStudio.ico"
-
-#include "wx/msw/wx.rc"

@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files\Impl">
+      <UniqueIdentifier>{11a33b36-071f-41f9-af62-3a7111c5d9bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Impl">
+      <UniqueIdentifier>{2a0a6e19-19b3-47d1-9ea3-778fd85129d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\UI">
+      <UniqueIdentifier>{8f453d3b-b823-42a4-931e-52a0f9bdd0ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\UI">
+      <UniqueIdentifier>{905b03a4-9599-43a8-9bf7-eb83f404601a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Generated">
+      <UniqueIdentifier>{2fb53066-7d8b-48cc-80a9-ad1f9e5af1b9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Generated">
+      <UniqueIdentifier>{8c8aa8ff-81ad-4bfa-80f3-ae63d98b79d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Common">
+      <UniqueIdentifier>{d25c6bf7-d522-451d-b952-7fa8db649dc8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Common">
+      <UniqueIdentifier>{886b5cb5-41e2-4d35-95a7-0a0d7acd4a9e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\BLL">
+      <UniqueIdentifier>{9485b412-f009-45d1-8c97-36d54ed12968}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\BLL">
+      <UniqueIdentifier>{cf08a7d2-0950-47d0-b883-e984be564049}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\DAL">
+      <UniqueIdentifier>{bbd33333-6f07-41d4-87e8-2ee4b075abc9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\DAL">
+      <UniqueIdentifier>{be4f77b5-0cf8-432a-a6fe-2f1b17288e95}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\src\MissClock\dllmain.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\MissClock\Impl\MissPluginMain.cpp">
+      <Filter>Source Files\Impl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\MissClock\Impl\MissWidgetFactory.cpp">
+      <Filter>Source Files\Impl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\MissClock\Impl\MissClockWidgetFunc.cpp">
+      <Filter>Source Files\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\MissClock\BLL\MissSkin.cpp">
+      <Filter>Source Files\BLL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\MissClock\DAL\MissXML.cpp">
+      <Filter>Source Files\DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\MissClock\Impl\MissWidgetRefresh.cpp">
+      <Filter>Source Files\Impl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\MissClock\BLL\MissWidgetFuncMgr.cpp">
+      <Filter>Source Files\BLL</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\src\MissClock\Impl\MissPluginMain.h">
+      <Filter>Header Files\Impl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\MissClock\Impl\MissWidgetFactory.h">
+      <Filter>Header Files\Impl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\MissClock\Impl\MissClockWidgetFunc.h">
+      <Filter>Header Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\MissClock\BLL\MissSkin.h">
+      <Filter>Header Files\BLL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\MissClock\DAL\MissXML.h">
+      <Filter>Header Files\DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\MissClock\Impl\MissWidgetRefresh.h">
+      <Filter>Header Files\Impl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\MissClock\BLL\MissWidgetFuncMgr.h">
+      <Filter>Header Files\BLL</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
