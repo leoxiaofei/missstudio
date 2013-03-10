@@ -1,0 +1,167 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\src\MissStudioCore\BLL\MissCoreConfig.cpp" />
+    <ClCompile Include="..\..\..\src\MissStudioCore\BLL\MissFunctor.cpp" />
+    <ClCompile Include="..\..\..\src\MissStudioCore\BLL\MissHotKeyManager.cpp" />
+    <ClCompile Include="..\..\..\src\MissStudioCore\BLL\MissPluginManager.cpp" />
+    <ClCompile Include="..\..\..\src\MissStudioCore\BLL\MissTimerManager.cpp" />
+    <ClCompile Include="..\..\..\src\MissStudioCore\BLL\MissWidgetManager.cpp" />
+    <ClCompile Include="..\..\..\src\MissStudioCore\Common\MissPaths.cpp" />
+    <ClCompile Include="..\..\..\src\MissStudioCore\DAL\MissWidgetsDAL.cpp" />
+    <ClCompile Include="..\..\..\src\MissStudioCore\Generated\GUIFrame.cpp" />
+    <ClCompile Include="..\..\..\src\MissStudioCore\Impl\ImplMissStorage.cpp" />
+    <ClCompile Include="..\..\..\src\MissStudioCore\Impl\ImplMissHotKeyMgr.cpp" />
+    <ClCompile Include="..\..\..\src\MissStudioCore\Impl\ImplMissTimer.cpp" />
+    <ClCompile Include="..\..\..\src\MissStudioCore\Impl\ImplMissWidget.cpp" />
+    <ClCompile Include="..\..\..\src\MissStudioCore\Impl\ImplMissWidgetMgr.cpp" />
+    <ClCompile Include="..\..\..\src\MissStudioCore\Impl\MissMainEntry.cpp" />
+    <ClCompile Include="..\..\..\src\MissStudioCore\Model\IndexTreeData.cpp" />
+    <ClCompile Include="..\..\..\src\MissStudioCore\Model\MissHotKeyModel.cpp" />
+    <ClCompile Include="..\..\..\src\MissStudioCore\Model\MissInstalledModel.cpp" />
+    <ClCompile Include="..\..\..\src\MissStudioCore\UI\MissCoreFrame.cpp" />
+    <ClCompile Include="..\..\..\src\MissStudioCore\UI\MissCoreApp.cpp" />
+    <ClCompile Include="..\..\..\src\MissStudioCore\UI\MissDesktopTools.cpp" />
+    <ClCompile Include="..\..\..\src\MissStudioCore\UI\MissHotKeySetting.cpp" />
+    <ClCompile Include="..\..\..\src\MissStudioCore\UI\MissPluginOption.cpp" />
+    <ClCompile Include="..\..\..\src\MissStudioCore\UI\MissTaskBarIcon.cpp" />
+    <ClCompile Include="..\..\..\src\MissStudioCore\Widget\MissWidget.cpp" />
+    <ClCompile Include="..\..\..\src\MissStudioCore\Widget\wxKeyMonitorTextCtrl.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\src\MissStudioCore\BLL\MissCoreConfig.h" />
+    <ClInclude Include="..\..\..\src\MissStudioCore\BLL\MissFuncFinder.h" />
+    <ClInclude Include="..\..\..\src\MissStudioCore\BLL\MissFunctor.h" />
+    <ClInclude Include="..\..\..\src\MissStudioCore\BLL\MissHotKeyManager.h" />
+    <ClInclude Include="..\..\..\src\MissStudioCore\BLL\MissPluginManager.h" />
+    <ClInclude Include="..\..\..\src\MissStudioCore\BLL\MissTimerManager.h" />
+    <ClInclude Include="..\..\..\src\MissStudioCore\BLL\MissWidgetManager.h" />
+    <ClInclude Include="..\..\..\src\MissStudioCore\Common\CustomId.h" />
+    <ClInclude Include="..\..\..\src\MissStudioCore\Common\MissPaths.h" />
+    <ClInclude Include="..\..\..\src\MissStudioCore\Common\Targetver.h" />
+    <ClInclude Include="..\..\..\src\MissStudioCore\Common\WidgetDef.h" />
+    <ClInclude Include="..\..\..\src\MissStudioCore\DAL\MissWidgetsDAL.h" />
+    <ClInclude Include="..\..\..\src\MissStudioCore\Generated\GUIFrame.h" />
+    <ClInclude Include="..\..\..\src\MissStudioCore\Impl\ImplMissStorage.h" />
+    <ClInclude Include="..\..\..\src\MissStudioCore\Impl\ImplMissHotKeyMgr.h" />
+    <ClInclude Include="..\..\..\src\MissStudioCore\Impl\ImplMissTimer.h" />
+    <ClInclude Include="..\..\..\src\MissStudioCore\Impl\ImplMissWidget.h" />
+    <ClInclude Include="..\..\..\src\MissStudioCore\Impl\ImplMissWidgetMgr.h" />
+    <ClInclude Include="..\..\..\src\MissStudioCore\Impl\MissMainEntry.h" />
+    <ClInclude Include="..\..\..\src\MissStudioCore\Model\IndexTreeData.h" />
+    <ClInclude Include="..\..\..\src\MissStudioCore\Model\MissHotKeyModel.h" />
+    <ClInclude Include="..\..\..\src\MissStudioCore\Model\MissInstalledModel.h" />
+    <ClInclude Include="..\..\..\src\MissStudioCore\UI\MissCoreFrame.h" />
+    <ClInclude Include="..\..\..\src\MissStudioCore\UI\MissCoreApp.h" />
+    <ClInclude Include="..\..\..\src\MissStudioCore\UI\MissDesktopTools.h" />
+    <ClInclude Include="..\..\..\src\MissStudioCore\UI\MissHotKeySetting.h" />
+    <ClInclude Include="..\..\..\src\MissStudioCore\UI\MissPluginOption.h" />
+    <ClInclude Include="..\..\..\src\MissStudioCore\UI\MissTaskBarIcon.h" />
+    <ClInclude Include="..\..\..\src\MissStudioCore\Widget\MissWidget.h" />
+    <ClInclude Include="..\..\..\src\MissStudioCore\Widget\wxKeyMonitorTextCtrl.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="..\..\..\src\MissStudioCore\Res\resource.rc">
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">wxUSE_NO_MANIFEST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\src\MissStudioCore\Res\MissStudioCore.fbp" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{1154EF12-6973-496C-89D9-AC1047031B65}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>MissStudio</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\GlobalProperty.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\GlobalProperty.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>$(wx29)lib\vc_dll\mswud;$(SolutionDir)..\..\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(LibraryPath)</LibraryPath>
+    <SourcePath>$(SourcePath)</SourcePath>
+    <GenerateManifest>true</GenerateManifest>
+    <OutDir>$(SolutionDir)$(Configuration)\Bin\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(SolutionDir)$(Configuration)\Bin\</OutDir>
+    <IncludePath>$(wx29)lib\vc_dll\mswu;$(SolutionDir)..\..\include;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;__WXMSW__;__WXDEBUG__;_CRT_SECURE_NO_WARNINGS;WXUSINGDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeaderFile>
+      </PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile />
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>wxmsw29ud_core.lib;wxbase29ud.lib;wxmsw29ud_adv.lib;wxexpatd.lib;wxmsw29ud_stc.lib;wxscintillad.lib;MissTools.lib;wxcode_msw29ud_wxsqlite3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)$(Configuration)\Bin\</AdditionalLibraryDirectories>
+    </Link>
+    <PostBuildEvent>
+      <Command>editbin /SUBSYSTEM:CONSOLE $(OUTDIR)\$(TargetName).exe</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;__WXMSW__;WXUSINGDLL;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>$(SolutionDir)$(Configuration)\Bin\</AdditionalLibraryDirectories>
+      <AdditionalDependencies>wxmsw29u_core.lib;wxbase29u.lib;wxmsw29u_adv.lib;wxexpat.lib;wxmsw29u_stc.lib;wxscintilla.lib;MissTools.lib;wxcode_msw29u_wxsqlite3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
