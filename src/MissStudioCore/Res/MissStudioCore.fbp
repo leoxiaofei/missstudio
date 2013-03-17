@@ -43,7 +43,7 @@
             <property name="name">PluginOptionBase</property>
             <property name="pos"></property>
             <property name="size">598,388</property>
-            <property name="style">wxDEFAULT_DIALOG_STYLE</property>
+            <property name="style">wxDEFAULT_DIALOG_STYLE|wxRESIZE_BORDER</property>
             <property name="subclass"></property>
             <property name="title">插件设置</property>
             <property name="tooltip"></property>

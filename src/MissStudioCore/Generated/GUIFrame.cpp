@@ -169,7 +169,7 @@ DesktopToolsBase::DesktopToolsBase( wxWindow* parent, wxWindowID id, const wxStr
 	sbSizerPreview = new wxStaticBoxSizer( new wxStaticBox( panViewer, wxID_ANY, _("预览") ), wxVERTICAL );
 	
 	
-	bSizerViewer->Add( sbSizerPreview, 1, wxEXPAND, 5 );
+	bSizerViewer->Add( sbSizerPreview, 1, 0, 5 );
 	
 	
 	panViewer->SetSizer( bSizerViewer );

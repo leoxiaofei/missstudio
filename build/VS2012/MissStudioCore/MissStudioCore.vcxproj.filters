@@ -141,6 +141,9 @@
     <ClCompile Include="..\..\..\src\MissStudioCore\Model\MissInstalledModel.cpp">
       <Filter>Source Files\Model</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\src\MissStudioCore\Common\AutoColumnWidth.cpp">
+      <Filter>Source Files\Common</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\src\MissStudioCore\UI\MissCoreFrame.h">
@@ -232,6 +235,9 @@
     </ClInclude>
     <ClInclude Include="..\..\..\src\MissStudioCore\Model\MissInstalledModel.h">
       <Filter>Header Files\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\MissStudioCore\Common\AutoColumnWidth.h">
+      <Filter>Header Files\Common</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

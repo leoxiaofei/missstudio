@@ -7,7 +7,7 @@
 class IndexTreeData : public TreeData
 {
 public:
-    IndexTreeData(void);
+    IndexTreeData(unsigned int nSize);
     virtual ~IndexTreeData(void);
 
     int& operator [] (unsigned int eType);

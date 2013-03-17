@@ -55,7 +55,7 @@ class PluginOptionBase : public wxDialog
 	
 	public:
 		
-		PluginOptionBase( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = _("插件设置"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 598,388 ), long style = wxDEFAULT_DIALOG_STYLE ); 
+		PluginOptionBase( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = _("插件设置"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 598,388 ), long style = wxDEFAULT_DIALOG_STYLE|wxRESIZE_BORDER ); 
 		~PluginOptionBase();
 	
 };

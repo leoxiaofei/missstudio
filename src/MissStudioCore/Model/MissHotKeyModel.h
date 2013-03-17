@@ -20,7 +20,8 @@ public:
     virtual bool IsContainer( const wxDataViewItem &item ) const;
     virtual unsigned int GetChildren( const wxDataViewItem &item, wxDataViewItemArray &children ) const;
     
-    enum NodeType{NT_RELATION_INDEX, NT_HOTKEY_ID};
+    enum NodeType{NT_ROOT, NT_PLUGIN, NT_PLUGIN_HOTKEY};
+    enum NodeData{ND_RELATION_INDEX, ND_HOTKEY_ID};
 
     void LoadData();
     bool GetIndexData(const wxDataViewItem &item, unsigned int& uRelationIndex, unsigned int& uHotkeyId) const;
