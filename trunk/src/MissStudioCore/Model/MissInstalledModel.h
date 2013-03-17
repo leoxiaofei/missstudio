@@ -19,6 +19,13 @@ public:
     virtual bool IsContainer( const wxDataViewItem &item ) const;
     virtual unsigned int GetChildren( const wxDataViewItem &item, wxDataViewItemArray &children ) const;
 
+
+    enum NodeType{NT_ROOT, NT_PLUGIN, NT_PLUGIN_WIDGET};
+    enum NodeData{ND_RELATION_INDEX, ND_WIDGET_INDEX};
+
+protected:
+    void LoadData();
+
 private:
     std::tr1::shared_ptr<IndexTreeData> m_root;
 

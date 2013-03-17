@@ -33,6 +33,8 @@ public:
     }
 
     //MissWidgetUpdateFunc* CreateWidget(MissWidgetFuncBase * pFunc);
+    MissPluginBase* GetPluginBase(MissWidgetFactoryBase* pBase) const;
+
     void CreateWidget(unsigned int nPluginIndex, int nWidgetId, const DTD::SWidgetPara& data);
     void CreateWidget(const wxString& strGUID, int nWidgetId, const DTD::SWidgetPara& data);
 

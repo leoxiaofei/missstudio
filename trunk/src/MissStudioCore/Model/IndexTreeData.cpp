@@ -2,8 +2,9 @@
 #include <assert.h>
 
 
-IndexTreeData::IndexTreeData(void)
+IndexTreeData::IndexTreeData(unsigned int nSize)
 : TreeData()
+, vecData(nSize)
 {
 }
 
@@ -14,11 +15,7 @@ IndexTreeData::~IndexTreeData(void)
 
 int& IndexTreeData::operator[]( unsigned int eType )
 {
-    assert(eType < 1000);
-    if (eType >= vecData.size())
-    {
-        vecData.resize(eType + 1);
-    }
+    assert(eType < vecData.size());
     return vecData[eType];
 }
 

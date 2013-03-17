@@ -17,6 +17,7 @@
     <ClCompile Include="..\..\..\src\MissStudioCore\BLL\MissPluginManager.cpp" />
     <ClCompile Include="..\..\..\src\MissStudioCore\BLL\MissTimerManager.cpp" />
     <ClCompile Include="..\..\..\src\MissStudioCore\BLL\MissWidgetManager.cpp" />
+    <ClCompile Include="..\..\..\src\MissStudioCore\Common\AutoColumnWidth.cpp" />
     <ClCompile Include="..\..\..\src\MissStudioCore\Common\MissPaths.cpp" />
     <ClCompile Include="..\..\..\src\MissStudioCore\DAL\MissWidgetsDAL.cpp" />
     <ClCompile Include="..\..\..\src\MissStudioCore\Generated\GUIFrame.cpp" />
@@ -46,6 +47,7 @@
     <ClInclude Include="..\..\..\src\MissStudioCore\BLL\MissPluginManager.h" />
     <ClInclude Include="..\..\..\src\MissStudioCore\BLL\MissTimerManager.h" />
     <ClInclude Include="..\..\..\src\MissStudioCore\BLL\MissWidgetManager.h" />
+    <ClInclude Include="..\..\..\src\MissStudioCore\Common\AutoColumnWidth.h" />
     <ClInclude Include="..\..\..\src\MissStudioCore\Common\CustomId.h" />
     <ClInclude Include="..\..\..\src\MissStudioCore\Common\MissPaths.h" />
     <ClInclude Include="..\..\..\src\MissStudioCore\Common\Targetver.h" />

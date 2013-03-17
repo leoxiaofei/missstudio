@@ -1,32 +1,30 @@
 ﻿#include "MissDesktopTools.h"
 #include <wx/dataview.h>
+#include "../Model/MissInstalledModel.h"
 
 class MissDesktopTools::Impl
 {
 public:
     wxDataViewCtrl* pInstalledList;
-
+    wxObjectDataPtr<MissInstalledModel> ptInstalledModel;
 };
 
 MissDesktopTools::MissDesktopTools( wxWindow* parent )
 : DesktopToolsBase( parent )
 , m_pImpl(new Impl)
 {
-
+    InitUi();
 }
 
 void MissDesktopTools::InitUi()
 {
     wxDataViewCtrl* pInstalledList;
-    pInstalledList = new wxDataViewCtrl(panHotKey, wxID_ANY);
+    pInstalledList = new wxDataViewCtrl(panRuning, wxID_ANY);
 
-    m_pImpl->hotKeyModel = new MissHotKeyModel;
-    pInstalledList->AssociateModel( m_pImpl->hotKeyModel.get() );
-    pInstalledList->AppendTextColumn(wxT("插件名称"), 0);
-    pInstalledList->AppendTextColumn(wxT("功能描述"), 1);
-    pInstalledList->AppendTextColumn(wxT("快捷键"), 2);
-    pInstalledList->AppendToggleColumn (wxT("启用"), 3, wxDATAVIEW_CELL_ACTIVATABLE );
-    sizerHotKey->Add(pInstalledList, 1, wxEXPAND | wxALL, 5 );
-    sizerHotKey->Layout();
-    m_pImpl->pInstalledList = hotKeyModel;
+    m_pImpl->ptInstalledModel = new MissInstalledModel;
+    pInstalledList->AssociateModel( m_pImpl->ptInstalledModel.get() );
+    pInstalledList->AppendTextColumn(wxT("小工具名称"), 0);
+    bSizerRuning->Add(pInstalledList, 1, wxEXPAND | wxALL, 5 );
+    bSizerRuning->Layout();
+    m_pImpl->pInstalledList = pInstalledList;
 }

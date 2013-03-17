@@ -92,3 +92,8 @@ void MissWidgetManager::GenerateWidget( MissWidgetFactoryBase* pBase, int nWidge
         p->Show();
     }
 }
+
+MissPluginBase* MissWidgetManager::GetPluginBase( MissWidgetFactoryBase* pBase ) const
+{
+    return m_pImpl->funcFinder.QueryPluginByFunc(pBase);
+}

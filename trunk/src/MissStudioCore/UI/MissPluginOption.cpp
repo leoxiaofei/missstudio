@@ -3,13 +3,14 @@
 #include <wx/dataview.h>
 #include "../Model/MissHotKeyModel.h"
 #include "MissHotKeySetting.h"
+#include "../Common/AutoColumnWidth.h"
 
 class MissPluginOption::Impl
 {
 public:
     wxDataViewCtrl*                  pHotKeyList;
-    wxObjectDataPtr<MissHotKeyModel> hotKeyModel;
-    //void SetupUi(wxWindow* parent);
+    wxObjectDataPtr<MissHotKeyModel> ptHotKeyModel;
+    AutoColumnWidth                  acwHotKeyList;
 };
 
 
@@ -31,13 +32,15 @@ void MissPluginOption::InitUi()
 {
     wxDataViewCtrl* pHotKeyList;
     pHotKeyList = new wxDataViewCtrl(panHotKey, wxID_ANY);
-    
-    m_pImpl->hotKeyModel = new MissHotKeyModel;
-    pHotKeyList->AssociateModel( m_pImpl->hotKeyModel.get() );
-    pHotKeyList->AppendTextColumn(wxT("插件名称"), 0);
-    pHotKeyList->AppendTextColumn(wxT("功能描述"), 1);
-    pHotKeyList->AppendTextColumn(wxT("快捷键"), 2);
-    pHotKeyList->AppendToggleColumn (wxT("启用"), 3, wxDATAVIEW_CELL_ACTIVATABLE );
+    m_pImpl->acwHotKeyList.SetViewCtrl(pHotKeyList);
+    m_pImpl->acwHotKeyList.SetAutoColumn(1);
+    m_pImpl->acwHotKeyList.SetMinWidth(100);
+    m_pImpl->ptHotKeyModel = new MissHotKeyModel;
+    pHotKeyList->AssociateModel( m_pImpl->ptHotKeyModel.get() );
+    m_pImpl->acwHotKeyList << pHotKeyList->AppendTextColumn(wxT("插件名称"), 0, wxDATAVIEW_CELL_INERT, 120);
+    m_pImpl->acwHotKeyList << pHotKeyList->AppendTextColumn(wxT("功能描述"), 1, wxDATAVIEW_CELL_INERT, 200);
+    m_pImpl->acwHotKeyList << pHotKeyList->AppendTextColumn(wxT("快捷键"), 2, wxDATAVIEW_CELL_INERT, 90);
+    m_pImpl->acwHotKeyList << pHotKeyList->AppendToggleColumn (wxT("启用"), 3, wxDATAVIEW_CELL_ACTIVATABLE, wxCOL_WIDTH_AUTOSIZE );
     sizerHotKey->Add(pHotKeyList, 1, wxEXPAND | wxALL, 5 );
     sizerHotKey->Layout();
     m_pImpl->pHotKeyList = pHotKeyList;
@@ -67,7 +70,7 @@ void MissPluginOption::OnHotKeyItemActivated( wxDataViewEvent& event )
 {
     unsigned int uRelationIndex(0), uHotkeyId(0);
     wxDataViewItem Item = event.GetItem();
-    if(m_pImpl->hotKeyModel.get()->GetIndexData(Item, uRelationIndex, uHotkeyId))
+    if(m_pImpl->ptHotKeyModel->GetIndexData(Item, uRelationIndex, uHotkeyId))
     {
         wxVariant variant;
         event.GetModel()->GetValue(variant, Item, 2);

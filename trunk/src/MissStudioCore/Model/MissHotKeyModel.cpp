@@ -6,7 +6,7 @@
 
 #include <vector>
 #include <wx\dataview.h>
-#include "..\..\..\include\MissAPI\plugin\MissPluginBase.h"
+#include "MissAPI\plugin\MissPluginBase.h"
 
 
 MissHotKeyModel::MissHotKeyModel(void)
@@ -49,20 +49,20 @@ void MissHotKeyModel::GetValue( wxVariant &variant, const wxDataViewItem &item, 
         int nSize = data.IndexSize();
         if (nSize > 1)
         {
-            const SHotKeyMajor& hotKeyMajor = vecRelation[data[NT_RELATION_INDEX]].mapIdToMajor[data[NT_HOTKEY_ID]];
+            const SHotKeyMajor& hotKeyMajor = vecRelation[data[ND_RELATION_INDEX]].mapIdToMajor[data[ND_HOTKEY_ID]];
             switch (col)
             {
             case 0:
                 {
                     wxString strName;
-                    vecRelation[data[NT_RELATION_INDEX]].pHotKeyFunc->GetHotKeyName(hotKeyMajor.nFuncId, strName);
+                    vecRelation[data[ND_RELATION_INDEX]].pHotKeyFunc->GetHotKeyName(hotKeyMajor.nFuncId, strName);
                     variant = strName;
                 }
                 break;
             case 1:
                 {
                     wxString strDesc;
-                    vecRelation[data[NT_RELATION_INDEX]].pHotKeyFunc->GetHotkeyDesc(hotKeyMajor.nFuncId, strDesc);
+                    vecRelation[data[ND_RELATION_INDEX]].pHotKeyFunc->GetHotkeyDesc(hotKeyMajor.nFuncId, strDesc);
                     variant = strDesc;
                 }
                 break;
@@ -81,7 +81,7 @@ void MissHotKeyModel::GetValue( wxVariant &variant, const wxDataViewItem &item, 
             if (col == 0)
             {
                 MissPluginBase* pBase = MissHotKeyManager::Instance().
-                    GetPluginBase(vecRelation[data[NT_RELATION_INDEX]].pHotKeyFunc);
+                    GetPluginBase(vecRelation[data[ND_RELATION_INDEX]].pHotKeyFunc);
                 variant = pBase->GetPluginName();
             }
             else if(col == 3)
@@ -89,7 +89,6 @@ void MissHotKeyModel::GetValue( wxVariant &variant, const wxDataViewItem &item, 
                 variant = false;
             }
         }
-        
     }
 }
 
@@ -102,16 +101,16 @@ bool MissHotKeyModel::SetValue( const wxVariant &variant, const wxDataViewItem &
         if (data.IndexSize() > 1 )
         {
             std::vector<HotKeyRelation>& vecRelation = MissHotKeyManager::Instance().GetHotKeyRelation();
-            SHotKeyMajor hotKeyMajor = vecRelation[data[NT_RELATION_INDEX]].mapIdToMajor[data[NT_HOTKEY_ID]];
+            SHotKeyMajor hotKeyMajor = vecRelation[data[ND_RELATION_INDEX]].mapIdToMajor[data[ND_HOTKEY_ID]];
             switch (col)
             {
             case 2:
                 hotKeyMajor.strHotKey = variant.GetString();
-                bRet = MissHotKeyManager::Instance().ModifyHotKey(data[NT_RELATION_INDEX],data[NT_HOTKEY_ID], hotKeyMajor);
+                bRet = MissHotKeyManager::Instance().ModifyHotKey(data[ND_RELATION_INDEX],data[ND_HOTKEY_ID], hotKeyMajor);
                 break;
             case 3:
                 hotKeyMajor.bEnable = variant.GetBool();
-                bRet = MissHotKeyManager::Instance().ModifyHotKey(data[NT_RELATION_INDEX],data[NT_HOTKEY_ID], hotKeyMajor);
+                bRet = MissHotKeyManager::Instance().ModifyHotKey(data[ND_RELATION_INDEX],data[ND_HOTKEY_ID], hotKeyMajor);
                 break;
             default:
                 break;
@@ -163,19 +162,19 @@ unsigned int MissHotKeyModel::GetChildren( const wxDataViewItem &item, wxDataVie
 void MissHotKeyModel::LoadData()
 {
     std::vector<HotKeyRelation>& vecRelation = MissHotKeyManager::Instance().GetHotKeyRelation();
-    m_root = std::tr1::shared_ptr<IndexTreeData>(new IndexTreeData);
+    m_root = std::tr1::shared_ptr<IndexTreeData>(new IndexTreeData(NT_ROOT));
     IndexTreeData* pRelation(NULL);
     IndexTreeData* pHotkeyID(NULL);
     for (int ix = 0; ix != vecRelation.size(); ++ix)
     {
-        pRelation = new IndexTreeData;
-        (*pRelation)[NT_RELATION_INDEX] = ix;
+        pRelation = new IndexTreeData(NT_PLUGIN);
+        (*pRelation)[ND_RELATION_INDEX] = ix;
         for (std::map<unsigned int, SHotKeyMajor>::const_iterator citor = vecRelation[ix].mapIdToMajor.begin();
             citor != vecRelation[ix].mapIdToMajor.end(); ++citor)
         {
-            pHotkeyID = new IndexTreeData;
-            (*pHotkeyID)[NT_RELATION_INDEX] = ix;
-            (*pHotkeyID)[NT_HOTKEY_ID] = citor->first;
+            pHotkeyID = new IndexTreeData(NT_PLUGIN_HOTKEY);
+            (*pHotkeyID)[ND_RELATION_INDEX] = ix;
+            (*pHotkeyID)[ND_HOTKEY_ID] = citor->first;
             pRelation->AppendChild(pHotkeyID);
         }
         m_root->AppendChild(pRelation);
@@ -190,8 +189,8 @@ bool MissHotKeyModel::GetIndexData( const wxDataViewItem &item, unsigned int& uR
         IndexTreeData& data = (*static_cast<IndexTreeData*>(item.GetID()));
         if (data.IndexSize() > 1)
         {
-            uRelationIndex = data[NT_RELATION_INDEX];
-            uHotkeyId      = data[NT_HOTKEY_ID];
+            uRelationIndex = data[ND_RELATION_INDEX];
+            uHotkeyId      = data[ND_HOTKEY_ID];
             bRet = true;
         }
     }
