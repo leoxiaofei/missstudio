@@ -31,8 +31,13 @@ public:
 
 public:
     void LoadPlugin();
-    void UnloadPlugin(MissPluginBase* pPlugin);
-    void UnloadAll();
+    //void UnloadPlugin(MissPluginBase* pPlugin);
+    //void UnloadAll();
+    //void PreCloseALL();
+    void ClosePluginAll();
+    void UnloadDllALL();
+    void ClosePlugin(MissPluginBase* pPlugin);
+    void UnloadDll(MissPluginBase* pPlugin);
 
     bool GetPluginPath(const MissPluginBase* pPlugin, wxString& strPath) const;
     bool GetPluginConfigPath(const MissPluginBase* pPlugin, wxString& strPath) const;

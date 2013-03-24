@@ -7,6 +7,7 @@
 #include "MissAPI/interface/IMissStorage.h"
 #include "../UI/MissAutoInputThread.h"
 #include "MissHotKeyFunc.h"
+#include "../Common/MissGlobal.h"
 
 using std::tr1::shared_ptr;
 
@@ -30,6 +31,7 @@ MissPluginMain::~MissPluginMain()
 
 void MissPluginMain::LoadPlugin()
 {
+    MissGlobal::IMain = GetMain();
     shared_ptr<MissConfigFile> ptConfig;
     if (shared_ptr<IMissStorage> ptData = GetMain()->QueryIF<IMissStorage>(IF_STORAGE))
     {

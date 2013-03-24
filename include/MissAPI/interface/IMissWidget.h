@@ -2,11 +2,10 @@
 #define IMISSWIDGET_H
 
 #include "../MissApiDef.h"
-#include <wx/gdicmn.h>
 
 class wxFrame;
 class wxDC;
-
+class wxSize;
 
 INTERFACE_BEGIN(IMissWidget)
 
