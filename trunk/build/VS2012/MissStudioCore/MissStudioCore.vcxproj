@@ -30,18 +30,19 @@
     <ClCompile Include="..\..\..\src\MissStudioCore\Model\IndexTreeData.cpp" />
     <ClCompile Include="..\..\..\src\MissStudioCore\Model\MissHotKeyModel.cpp" />
     <ClCompile Include="..\..\..\src\MissStudioCore\Model\MissInstalledModel.cpp" />
+    <ClCompile Include="..\..\..\src\MissStudioCore\Model\MissRunningModel.cpp" />
     <ClCompile Include="..\..\..\src\MissStudioCore\UI\MissCoreFrame.cpp" />
     <ClCompile Include="..\..\..\src\MissStudioCore\UI\MissCoreApp.cpp" />
     <ClCompile Include="..\..\..\src\MissStudioCore\UI\MissDesktopTools.cpp" />
     <ClCompile Include="..\..\..\src\MissStudioCore\UI\MissHotKeySetting.cpp" />
     <ClCompile Include="..\..\..\src\MissStudioCore\UI\MissPluginOption.cpp" />
     <ClCompile Include="..\..\..\src\MissStudioCore\UI\MissTaskBarIcon.cpp" />
-    <ClCompile Include="..\..\..\src\MissStudioCore\Widget\MissWidget.cpp" />
+    <ClCompile Include="..\..\..\src\MissStudioCore\Widget\ILayeredDraw.cpp" />
+    <ClCompile Include="..\..\..\src\MissStudioCore\Widget\ManualDraw.cpp" />
     <ClCompile Include="..\..\..\src\MissStudioCore\Widget\wxKeyMonitorTextCtrl.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\src\MissStudioCore\BLL\MissCoreConfig.h" />
-    <ClInclude Include="..\..\..\src\MissStudioCore\BLL\MissFuncFinder.h" />
     <ClInclude Include="..\..\..\src\MissStudioCore\BLL\MissFunctor.h" />
     <ClInclude Include="..\..\..\src\MissStudioCore\BLL\MissHotKeyManager.h" />
     <ClInclude Include="..\..\..\src\MissStudioCore\BLL\MissPluginManager.h" />
@@ -49,6 +50,8 @@
     <ClInclude Include="..\..\..\src\MissStudioCore\BLL\MissWidgetManager.h" />
     <ClInclude Include="..\..\..\src\MissStudioCore\Common\AutoColumnWidth.h" />
     <ClInclude Include="..\..\..\src\MissStudioCore\Common\CustomId.h" />
+    <ClInclude Include="..\..\..\src\MissStudioCore\Common\IdCreater.hpp" />
+    <ClInclude Include="..\..\..\src\MissStudioCore\Common\MissFuncFinder.hpp" />
     <ClInclude Include="..\..\..\src\MissStudioCore\Common\MissPaths.h" />
     <ClInclude Include="..\..\..\src\MissStudioCore\Common\Targetver.h" />
     <ClInclude Include="..\..\..\src\MissStudioCore\Common\WidgetDef.h" />
@@ -63,13 +66,15 @@
     <ClInclude Include="..\..\..\src\MissStudioCore\Model\IndexTreeData.h" />
     <ClInclude Include="..\..\..\src\MissStudioCore\Model\MissHotKeyModel.h" />
     <ClInclude Include="..\..\..\src\MissStudioCore\Model\MissInstalledModel.h" />
+    <ClInclude Include="..\..\..\src\MissStudioCore\Model\MissRunningModel.h" />
     <ClInclude Include="..\..\..\src\MissStudioCore\UI\MissCoreFrame.h" />
     <ClInclude Include="..\..\..\src\MissStudioCore\UI\MissCoreApp.h" />
     <ClInclude Include="..\..\..\src\MissStudioCore\UI\MissDesktopTools.h" />
     <ClInclude Include="..\..\..\src\MissStudioCore\UI\MissHotKeySetting.h" />
     <ClInclude Include="..\..\..\src\MissStudioCore\UI\MissPluginOption.h" />
     <ClInclude Include="..\..\..\src\MissStudioCore\UI\MissTaskBarIcon.h" />
-    <ClInclude Include="..\..\..\src\MissStudioCore\Widget\MissWidget.h" />
+    <ClInclude Include="..\..\..\src\MissStudioCore\Widget\ILayeredDraw.h" />
+    <ClInclude Include="..\..\..\src\MissStudioCore\Widget\ManualDraw.h" />
     <ClInclude Include="..\..\..\src\MissStudioCore\Widget\wxKeyMonitorTextCtrl.h" />
   </ItemGroup>
   <ItemGroup>

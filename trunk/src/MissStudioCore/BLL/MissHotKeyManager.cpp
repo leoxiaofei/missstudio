@@ -7,7 +7,7 @@
 #include <wx/event.h>
 #include "../UI/MissCoreFrame.h"
 #include "../Common/CustomId.h"
-#include "MissFuncFinder.h"
+#include "../Common/MissFuncFinder.hpp"
 
 
 class MissHotKeyManager::Impl
@@ -104,7 +104,10 @@ bool MissHotKeyManager::UnRegHotKeys(MissHotKeyFuncBase* pFunc)
             for(std::map<unsigned int, SHotKeyMajor>::iterator itor = itorRelation->mapIdToMajor.begin();
                 itor != itorRelation->mapIdToMajor.end(); ++itor)
             {
-                UnRegHotKeyId(itor->first);
+                if (itor->second.bEnable)
+                {
+                    UnRegHotKeyId(itor->first);
+                }
             }
             m_pImpl->vecHotKeyRelation.erase(itorRelation);
             bRet = true;

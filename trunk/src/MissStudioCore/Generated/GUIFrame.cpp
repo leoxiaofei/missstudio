@@ -133,50 +133,22 @@ DesktopToolsBase::DesktopToolsBase( wxWindow* parent, wxWindowID id, const wxStr
 	splMain = new wxSplitterWindow( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxSP_3D );
 	splMain->Connect( wxEVT_IDLE, wxIdleEventHandler( DesktopToolsBase::splMainOnIdle ), NULL, this );
 	
-	panTree = new wxPanel( splMain, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );
-	wxBoxSizer* bSizerTree;
-	bSizerTree = new wxBoxSizer( wxVERTICAL );
-	
-	noteTree = new wxNotebook( panTree, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0 );
-	panRuning = new wxPanel( noteTree, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );
-	bSizerRuning = new wxBoxSizer( wxVERTICAL );
-	
-	
-	panRuning->SetSizer( bSizerRuning );
-	panRuning->Layout();
-	bSizerRuning->Fit( panRuning );
-	noteTree->AddPage( panRuning, _("运行中"), true );
-	panInstalled = new wxPanel( noteTree, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );
-	bSizerInstalled = new wxBoxSizer( wxVERTICAL );
+	panInstalled = new wxPanel( splMain, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );
+	bSizerInstalled = new wxStaticBoxSizer( new wxStaticBox( panInstalled, wxID_ANY, _("已安装") ), wxVERTICAL );
 	
 	
 	panInstalled->SetSizer( bSizerInstalled );
 	panInstalled->Layout();
 	bSizerInstalled->Fit( panInstalled );
-	noteTree->AddPage( panInstalled, _("已安装"), false );
-	
-	bSizerTree->Add( noteTree, 1, wxEXPAND | wxALL, 5 );
-	
-	
-	panTree->SetSizer( bSizerTree );
-	panTree->Layout();
-	bSizerTree->Fit( panTree );
-	panViewer = new wxPanel( splMain, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );
-	wxBoxSizer* bSizerViewer;
-	bSizerViewer = new wxBoxSizer( wxVERTICAL );
-	
-	wxStaticBoxSizer* sbSizerPreview;
-	sbSizerPreview = new wxStaticBoxSizer( new wxStaticBox( panViewer, wxID_ANY, _("预览") ), wxVERTICAL );
+	panRuning = new wxPanel( splMain, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );
+	bSizerRuning = new wxStaticBoxSizer( new wxStaticBox( panRuning, wxID_ANY, _("运行中") ), wxVERTICAL );
 	
 	
-	bSizerViewer->Add( sbSizerPreview, 1, 0, 5 );
-	
-	
-	panViewer->SetSizer( bSizerViewer );
-	panViewer->Layout();
-	bSizerViewer->Fit( panViewer );
-	splMain->SplitVertically( panTree, panViewer, 195 );
-	bSizerMain->Add( splMain, 1, wxEXPAND, 5 );
+	panRuning->SetSizer( bSizerRuning );
+	panRuning->Layout();
+	bSizerRuning->Fit( panRuning );
+	splMain->SplitVertically( panInstalled, panRuning, 195 );
+	bSizerMain->Add( splMain, 1, wxALL|wxEXPAND, 5 );
 	
 	
 	this->SetSizer( bSizerMain );

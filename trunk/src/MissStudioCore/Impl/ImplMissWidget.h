@@ -2,37 +2,57 @@
 #define IMPLMISSWIDGET_H__
 
 #include "MissAPI\interface\IMissWidget.h"
-#include <wx\dcmemory.h>
 #include <memory>
+namespace DTD
+{
+    struct SWidgetPara;
+}
 
-class MissWidget;
+class ILayeredDraw;
+class MissWidgetFuncBase;
+class wxMouseEvent;
+class wxPoint;
 
 class ImplMissWidget : public IMissWidget
 {
 public:
-    ImplMissWidget(MissWidget* pMissWidget);
+    ImplMissWidget(MissWidgetFuncBase* pFunc);
     ~ImplMissWidget();
 
     virtual wxFrame* GetFrame() const;
+    virtual wxDC*    DrawBegin();
+    virtual void     DrawEnd( wxDC* pDc );
+    virtual void     CloseWidget();
+    virtual void     SetSize( const wxSize& size );
 
-    virtual void SetSize( const wxSize& size );
+    void GetPos(wxPoint& pt) const;
+    void SetPos(const wxPoint& pt);
 
-    virtual wxDC* DrawBegin();
+    void GetScale(float& dZoom) const;
+    void SetScale(const float& dZoom);
 
-    virtual void DrawEnd( wxDC* pDc );
+    void GetOpacity(int& nOpacity) const;
+    void SetOpacity(const int& nOpacity);
 
-    virtual void CloseWidget();
+    void SetData(const DTD::SWidgetPara& data);
+    void GetData(DTD::SWidgetPara& data) const;
+
+    unsigned int GetRunID() const;
+    void SetRunID(unsigned int uID);
+
+    int  GetWidgetID() const;
+    void SetWidgetID(int nID);
 
 protected:
-    void UpdateBuffer();
+    virtual void OnLeftDown( wxMouseEvent& event );
+    virtual void OnRightUp( wxMouseEvent& event );
 
 private:
-    wxBitmap           m_bpUI;
-    std::tr1::shared_ptr<wxMemoryDC> m_pMemDc;
-    unsigned int       *m_pBitmap;
-    int                m_nPixCount;
-    MissWidget*        m_pMissWidget;
-    friend class MissWidget;
+    std::tr1::shared_ptr<wxFrame>      m_ptFrame;
+    std::tr1::shared_ptr<ILayeredDraw> m_ptDraw;
+    MissWidgetFuncBase*                m_pFunc;
+    unsigned int                       m_uRunID;
+    int                                m_nWidgetID;
 };
 
 

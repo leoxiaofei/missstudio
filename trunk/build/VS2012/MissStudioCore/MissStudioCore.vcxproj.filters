@@ -117,9 +117,6 @@
     <ClCompile Include="..\..\..\src\MissStudioCore\BLL\MissWidgetManager.cpp">
       <Filter>Source Files\BLL</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\src\MissStudioCore\Widget\MissWidget.cpp">
-      <Filter>Source Files\Widget</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\src\MissStudioCore\Impl\ImplMissWidget.cpp">
       <Filter>Source Files\Impl</Filter>
     </ClCompile>
@@ -143,6 +140,15 @@
     </ClCompile>
     <ClCompile Include="..\..\..\src\MissStudioCore\Common\AutoColumnWidth.cpp">
       <Filter>Source Files\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\MissStudioCore\Model\MissRunningModel.cpp">
+      <Filter>Source Files\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\MissStudioCore\Widget\ILayeredDraw.cpp">
+      <Filter>Source Files\Widget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\MissStudioCore\Widget\ManualDraw.cpp">
+      <Filter>Source Files\Widget</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -185,9 +191,6 @@
     <ClInclude Include="..\..\..\src\MissStudioCore\BLL\MissCoreConfig.h">
       <Filter>Header Files\BLL</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\src\MissStudioCore\BLL\MissFuncFinder.h">
-      <Filter>Header Files\BLL</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\src\MissStudioCore\BLL\MissFunctor.h">
       <Filter>Header Files\BLL</Filter>
     </ClInclude>
@@ -199,9 +202,6 @@
     </ClInclude>
     <ClInclude Include="..\..\..\src\MissStudioCore\BLL\MissWidgetManager.h">
       <Filter>Header Files\BLL</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src\MissStudioCore\Widget\MissWidget.h">
-      <Filter>Header Files\Widget</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\src\MissStudioCore\Impl\ImplMissWidget.h">
       <Filter>Header Files\Impl</Filter>
@@ -237,6 +237,21 @@
       <Filter>Header Files\Model</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\src\MissStudioCore\Common\AutoColumnWidth.h">
+      <Filter>Header Files\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\MissStudioCore\Model\MissRunningModel.h">
+      <Filter>Header Files\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\MissStudioCore\Widget\ILayeredDraw.h">
+      <Filter>Header Files\Widget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\MissStudioCore\Widget\ManualDraw.h">
+      <Filter>Header Files\Widget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\MissStudioCore\Common\IdCreater.hpp">
+      <Filter>Header Files\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\MissStudioCore\Common\MissFuncFinder.hpp">
       <Filter>Header Files\Common</Filter>
     </ClInclude>
   </ItemGroup>

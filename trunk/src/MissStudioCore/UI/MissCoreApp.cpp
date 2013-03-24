@@ -35,5 +35,6 @@ bool MissStudioCoreApp::OnInit()
     MissCoreConfig::Instance().Init();
     wxAppFrame = new MissCoreFrame;
 	//wxAppFrame->Show();
+    SetTopWindow(wxAppFrame);
     return true;
 }

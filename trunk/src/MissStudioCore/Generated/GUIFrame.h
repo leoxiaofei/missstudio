@@ -31,7 +31,6 @@ class wxKeyMonitorTextCtrl;
 #include <wx/dialog.h>
 #include <wx/button.h>
 #include <wx/textctrl.h>
-#include <wx/notebook.h>
 #include <wx/statbox.h>
 #include <wx/splitter.h>
 
@@ -90,17 +89,14 @@ class DesktopToolsBase : public wxDialog
 	
 	protected:
 		wxSplitterWindow* splMain;
-		wxPanel* panTree;
-		wxNotebook* noteTree;
-		wxPanel* panRuning;
-		wxBoxSizer* bSizerRuning;
 		wxPanel* panInstalled;
-		wxBoxSizer* bSizerInstalled;
-		wxPanel* panViewer;
+		wxStaticBoxSizer* bSizerInstalled;
+		wxPanel* panRuning;
+		wxStaticBoxSizer* bSizerRuning;
 	
 	public:
 		
-		DesktopToolsBase( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = _("桌面工具管理"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 564,412 ), long style = wxDEFAULT_DIALOG_STYLE ); 
+		DesktopToolsBase( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = _("桌面工具管理"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 564,412 ), long style = wxDEFAULT_DIALOG_STYLE|wxRESIZE_BORDER ); 
 		~DesktopToolsBase();
 		
 		void splMainOnIdle( wxIdleEvent& )

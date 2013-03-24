@@ -5,6 +5,8 @@
 #include <memory>
 #include "IndexTreeData.h"
 
+class MissWidgetFactoryBase;
+
 class MissInstalledModel : public wxDataViewModel
 {
 public:
@@ -22,6 +24,8 @@ public:
 
     enum NodeType{NT_ROOT, NT_PLUGIN, NT_PLUGIN_WIDGET};
     enum NodeData{ND_RELATION_INDEX, ND_WIDGET_INDEX};
+
+    bool GetDataByItem(const wxDataViewItem &item, MissWidgetFactoryBase*& pBase, int& nWigetId) const;
 
 protected:
     void LoadData();

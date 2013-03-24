@@ -141,3 +141,21 @@ void MissInstalledModel::LoadData()
     }
 }
 
+bool MissInstalledModel::GetDataByItem( const wxDataViewItem &item, MissWidgetFactoryBase*& pBase, int& nWigetId ) const
+{
+    bool bRet(false);
+    if (item.IsOk())
+    {
+        IndexTreeData* pTreeData = static_cast<IndexTreeData*>(item.GetID());
+        if (pTreeData->IndexSize() == NT_PLUGIN_WIDGET)
+        {
+            vector<shared_ptr<WidgetRelation> >& vecRelation = MissWidgetManager::Instance().GetWidgetData();
+            pBase    = vecRelation[(*pTreeData)[ND_RELATION_INDEX]]->pFactory;
+            nWigetId = vecRelation[(*pTreeData)[ND_RELATION_INDEX]]->vecWidgetMajor[(*pTreeData)[ND_WIDGET_INDEX]].nWidgetId;
+            bRet = true;
+        }
+
+    }
+    return bRet;
+}
+

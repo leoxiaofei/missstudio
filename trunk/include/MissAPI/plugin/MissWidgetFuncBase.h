@@ -1,38 +1,39 @@
 #ifndef MISSWIDGETFUNCBASE_H
 #define MISSWIDGETFUNCBASE_H
 
-#include <wx/event.h>
 #include <unordered_map>
 #include <memory>
+#include <wx/string.h>
+#include <wx/hashmap.h>
 
 class IMissWidget;
 
 typedef std::tr1::unordered_map<wxString, wxString, wxStringHash, wxStringEqual> CustomPara;
 
 
-
-class MissWidgetFuncBase : public wxEvtHandler
+class MissWidgetFuncBase
 {
 public:
     virtual ~MissWidgetFuncBase() {}
 
+    virtual void UpdateUI(const tm* tmNow) {};
+
 protected:
-    const std::tr1::shared_ptr<IMissWidget>& GetWidget() { return m_pWidget; }
+    IMissWidget* GetWidget() { return m_pWidget; }
     virtual void SetWidgetPara(const CustomPara& para) {};
     virtual void GetWidgetParas(CustomPara& para) {};
-    virtual void UpdateUI(const tm* tmNow) {};
     virtual void PreClose() {};
 
 private:
-    void InitWidget(const CustomPara& para, const std::tr1::shared_ptr<IMissWidget>& pWidget ) 
+    void InitWidget(const CustomPara& para, IMissWidget* pWidget ) 
     {
         m_pWidget = pWidget;
         SetWidgetPara(para);
     }
 
 private:
-    std::tr1::shared_ptr<IMissWidget> m_pWidget;
-    friend class MissWidget;
+    IMissWidget* m_pWidget;
+    friend class ImplMissWidget;
 };
 
 #endif // MISSWIDGETFUNCBASE_H

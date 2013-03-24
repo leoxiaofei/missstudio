@@ -1,6 +1,8 @@
 #include "MissEvtHandler.h"
 #include "PasswordAidMain.h"
 #include "MissAutoInputThread.h"
+#include "..\Common\MissGlobal.h"
+#include <wx/frame.h>
 
 class MissEvtHandler::Impl
 {
@@ -40,12 +42,12 @@ void MissEvtHandler::OpenPasswordAid()
     PasswordAidDialog* pAidDlg = m_pImpl->pAidDlg;
     if (pAidDlg == NULL)
     {
-        pAidDlg = new PasswordAidDialog(NULL);
+        pAidDlg = new PasswordAidDialog(MissGlobal::IMain->GetMainFrame());
         m_pImpl->pAidDlg = pAidDlg;
         pAidDlg->Bind(wxEVT_CLOSE_WINDOW, &MissEvtHandler::AidDlgClosed, this);
         pAidDlg->Show();
     }
-    pAidDlg->Raise();
+    //pAidDlg->Raise();
 }
 
 void MissEvtHandler::OpenAutoInput()

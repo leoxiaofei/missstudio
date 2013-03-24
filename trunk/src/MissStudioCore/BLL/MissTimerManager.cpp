@@ -1,8 +1,8 @@
 #include "MissTimerManager.h"
-#include "MissFuncFinder.h"
-#include <vector>
 #include "MissAPI\plugin\MissTimerFuncBase.h"
+#include "..\Common\MissFuncFinder.hpp"
 #include <time.h>
+#include <vector>
 
 
 class MissTimerManager::Impl
@@ -139,4 +139,16 @@ bool MissTimerManager::FindTimerFunc( MissTimerFuncBase* pFunc ) const
     } while (0);
 
     return bRet;
+}
+
+bool MissTimerManager::UnloadPlugin( MissPluginBase* pPluginBase )
+{
+    std::vector<MissTimerFuncBase*> vecFunc;
+    m_pImpl->funcFinder.QueryFuncByPlugin(pPluginBase, vecFunc);
+    for (std::vector<MissTimerFuncBase*>::size_type ix = 0; ix != vecFunc.size(); ++ix)
+    {
+        UnRegTimer(MTT_SEC, vecFunc[ix]);
+        UnRegTimer(MTT_MIN, vecFunc[ix]);
+    }
+    return true;
 }

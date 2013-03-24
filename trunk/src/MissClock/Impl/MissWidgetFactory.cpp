@@ -51,7 +51,7 @@ void MissWidgetFactory::CreateSuccessed( MissWidgetFuncBase* pWidgetFunc )
 {
     if (shared_ptr<IMissTimer> pt = m_pMissMain->QueryIF<IMissTimer>(IF_TIMER))
     {
-        MissWidgetRefreash* pRefreash = new MissWidgetRefreash((MissClockWidgetFunc*)pWidgetFunc);
+        MissWidgetRefreash* pRefreash = new MissWidgetRefreash(pWidgetFunc);
         pt->RegSecTimer(pRefreash);
         MissWidgetFuncMgr::Instance().SaveFunc(shared_ptr<MissWidgetFuncBase>(pWidgetFunc),
             shared_ptr<MissTimerFuncBase>(pRefreash));

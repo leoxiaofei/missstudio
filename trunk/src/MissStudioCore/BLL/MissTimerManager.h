@@ -18,9 +18,10 @@ public:
         return theSingleton;
     }
 
+    bool UnloadPlugin(MissPluginBase* pPluginBase);
+
     bool RegTimer(MissPluginBase* pPluginBase, int nType, MissTimerFuncBase* pFunc);
     bool UnRegTimer(int nType, MissTimerFuncBase* pFunc);
-
     void TimeUp();
 
 protected:

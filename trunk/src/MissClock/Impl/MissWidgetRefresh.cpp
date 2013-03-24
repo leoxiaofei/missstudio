@@ -1,7 +1,7 @@
 #include "MissWidgetRefresh.h"
 #include "MissClockWidgetFunc.h"
 
-MissWidgetRefreash::MissWidgetRefreash( MissClockWidgetFunc* pWidget )
+MissWidgetRefreash::MissWidgetRefreash( MissWidgetFuncBase* pWidget )
 : m_pWidget(pWidget)
 {
 

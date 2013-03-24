@@ -61,32 +61,32 @@ void MissPluginManager::LoadPlugin()
     }
 }
 
-void MissPluginManager::UnloadPlugin( MissPluginBase* pPlugin )
-{
-    for (std::vector<SDllData>::iterator itor = m_pImpl->vecPlugin.begin();
-        itor != m_pImpl->vecPlugin.end(); )
-    {
-        if (itor->pPlugin == pPlugin)
-        {
-            ReleaseDll(*itor);
-            itor = m_pImpl->vecPlugin.erase(itor);
-        }
-        else
-        {
-            ++itor;
-        }
-    }
-}
-
-void MissPluginManager::UnloadAll()
-{
-    for (std::vector<SDllData>::iterator itor = m_pImpl->vecPlugin.begin();
-        itor != m_pImpl->vecPlugin.end(); ++itor)
-    {
-        ReleaseDll(*itor);
-    }
-    m_pImpl->vecPlugin.clear();
-}
+// void MissPluginManager::UnloadPlugin( MissPluginBase* pPlugin )
+// {
+//     for (std::vector<SDllData>::iterator itor = m_pImpl->vecPlugin.begin();
+//         itor != m_pImpl->vecPlugin.end(); )
+//     {
+//         if (itor->pPlugin == pPlugin)
+//         {
+//             ReleaseDll(*itor);
+//             itor = m_pImpl->vecPlugin.erase(itor);
+//         }
+//         else
+//         {
+//             ++itor;
+//         }
+//     }
+// }
+// 
+// void MissPluginManager::UnloadAll()
+// {
+//     for (std::vector<SDllData>::iterator itor = m_pImpl->vecPlugin.begin();
+//         itor != m_pImpl->vecPlugin.end(); ++itor)
+//     {
+//         ReleaseDll(*itor);
+//     }
+//     m_pImpl->vecPlugin.clear();
+// }
 
 bool MissPluginManager::LoadDll( const wxString& strPath, const wxString& strFile )
 {
@@ -139,9 +139,7 @@ bool MissPluginManager::LoadDll( const wxString& strPath, const wxString& strFil
 bool MissPluginManager::ReleaseDll(SDllData& sDllData)
 {
     bool bRet(false);
-    ///通知模块关闭对该插件的使用。
-    sDllData.pPlugin->ClosePlugin();
-    PluginUnloader ()(sDllData.pPlugin);
+
     delete sDllData.pPlugin;
     sDllData.pPlugin = NULL;
 
@@ -198,4 +196,49 @@ bool MissPluginManager::GetPluginByGuid( const wxString& strGuid, MissPluginBase
     }
     return bRet;
 }
+
+void MissPluginManager::ClosePlugin( MissPluginBase* pPlugin )
+{
+    ///通知模块关闭对该插件的使用。
+    pPlugin->ClosePlugin();
+    PluginUnloader ()(pPlugin);
+}
+
+void MissPluginManager::UnloadDll( MissPluginBase* pPlugin )
+{
+    for (std::vector<SDllData>::iterator itor = m_pImpl->vecPlugin.begin();
+        itor != m_pImpl->vecPlugin.end(); )
+    {
+        if (itor->pPlugin == pPlugin)
+        {
+            ReleaseDll(*itor);
+            itor = m_pImpl->vecPlugin.erase(itor);
+        }
+        else
+        {
+            ++itor;
+        }
+    }
+}
+
+void MissPluginManager::ClosePluginAll()
+{
+    for (std::vector<SDllData>::iterator itor = m_pImpl->vecPlugin.begin();
+        itor != m_pImpl->vecPlugin.end(); ++itor)
+    {
+        ClosePlugin(itor->pPlugin);
+    }
+}
+
+void MissPluginManager::UnloadDllALL()
+{
+    for (std::vector<SDllData>::iterator itor = m_pImpl->vecPlugin.begin();
+        itor != m_pImpl->vecPlugin.end(); ++itor)
+    {
+        ReleaseDll(*itor);
+    }
+    m_pImpl->vecPlugin.clear();
+}
+
+
 

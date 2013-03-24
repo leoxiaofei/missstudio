@@ -1,15 +1,23 @@
 #include "ImplMissWidget.h"
-#include "..\Widget\MissWidget.h"
-#include <wx\dc.h>
 
-using std::tr1::shared_ptr;
+#include "../Widget/ManualDraw.h"
+#include "../Common/WidgetDef.h"
+#include <wx/frame.h>
+#include "MissAPI/plugin/MissWidgetFuncBase.h"
+#include "../UI/MissCoreFrame.h"
 
-ImplMissWidget::ImplMissWidget( MissWidget* pMissWidget )
-: m_pMissWidget(pMissWidget)
-, m_pBitmap(NULL)
-, m_nPixCount(0)
+
+ImplMissWidget::ImplMissWidget(MissWidgetFuncBase* pFunc)
+: m_pFunc(pFunc)
 {
+    m_ptFrame = std::tr1::shared_ptr<wxFrame>(new wxFrame(
+        wxAppFrame, wxID_ANY, wxT("MissWidget"), wxDefaultPosition,
+        wxSize( 200,200 ), 0 | wxTAB_TRAVERSAL));
 
+    m_ptFrame->Bind( wxEVT_LEFT_DOWN, &ImplMissWidget::OnLeftDown, this);
+    m_ptFrame->Bind( wxEVT_RIGHT_UP,  &ImplMissWidget::OnRightUp, this);
+
+    m_ptDraw  = std::tr1::shared_ptr<ManualDraw>(new ManualDraw(m_ptFrame->GetHandle()));
 }
 
 ImplMissWidget::~ImplMissWidget()
@@ -17,65 +25,102 @@ ImplMissWidget::~ImplMissWidget()
 
 }
 
-wxFrame* ImplMissWidget::GetFrame() const
-{
-    return m_pMissWidget;
-}
-
-void ImplMissWidget::SetSize( const wxSize& size )
-{
-    m_pMissWidget->SetSize(size);
-}
-
-wxDC* ImplMissWidget::DrawBegin()
-{
-    static int nPixCount;
-    static unsigned int* pBitmap;
-
-    nPixCount = m_nPixCount + 1;
-    pBitmap = m_pBitmap;
-
-    while (--nPixCount)
-    {
-        *pBitmap = 0x01000000;
-        ++pBitmap;
-    }
-
-    return m_pMemDc.get();
-}
-
-void ImplMissWidget::DrawEnd( wxDC* pDc )
-{
-    static int nPixCount;
-    static unsigned int* pBitmap;
-    nPixCount = m_nPixCount + 1;
-    pBitmap = m_pBitmap;
-
-    while (--nPixCount)
-    {
-        *pBitmap -= 0x01000000;
-        ++pBitmap;
-    }
-
-    m_pMissWidget->UpdateWindow(static_cast<HDC>(pDc->GetHDC()));
-}
-
 void ImplMissWidget::CloseWidget()
 {
     throw std::exception("The method or operation is not implemented.");
 }
 
-void ImplMissWidget::UpdateBuffer()
+wxFrame* ImplMissWidget::GetFrame() const
 {
-    wxSize size = m_pMissWidget->GetBoundRect();
-    m_bpUI = wxBitmap(size, 32);
-    if(m_bpUI.IsOk())
-    {
-        m_pMemDc = shared_ptr<wxMemoryDC>(new wxMemoryDC(m_bpUI));
-        BITMAP bm;
-        ::GetObject(static_cast<HBITMAP>(m_bpUI.GetHBITMAP()), sizeof(bm), &bm);
-        m_nPixCount = bm.bmWidth * bm.bmHeight;
-        m_pBitmap = static_cast<unsigned int*>(bm.bmBits);
-    }
+    return m_ptFrame.get();
+}
+
+void ImplMissWidget::SetSize( const wxSize& size )
+{
+    m_ptDraw->SetSize(size);
+}
+
+wxDC* ImplMissWidget::DrawBegin()
+{
+    return m_ptDraw->DrawBegin();
+}
+
+void ImplMissWidget::DrawEnd( wxDC* pDc )
+{
+    m_ptDraw->DrawEnd(pDc);
+}
+
+void ImplMissWidget::OnLeftDown( wxMouseEvent& event )
+{
+    ::PostMessage(m_ptFrame->GetHandle(), WM_NCLBUTTONDOWN, HTCAPTION, MAKELPARAM(event.GetX(), event.GetY()));
+}
+
+void ImplMissWidget::OnRightUp( wxMouseEvent& event )
+{
+    m_ptFrame->Raise();
+}
+
+void ImplMissWidget::SetData( const DTD::SWidgetPara& data )
+{
+    //m_pDraw = shared_ptr<ImplMissWidget>(new ImplMissWidget(this));
+    m_pFunc->InitWidget(data.m_vecPata, this);
+    m_ptDraw->SetScale(data.m_nZone / 100.0);
+    m_ptDraw->SetOpacity(data.m_nOpacity);
+    m_ptFrame->Move(data.m_ptPos);
+}
+
+void ImplMissWidget::GetData( DTD::SWidgetPara& data ) const
+{
+
+}
+
+unsigned int ImplMissWidget::GetRunID() const
+{
+    return m_uRunID;
+}
+
+void ImplMissWidget::SetRunID( unsigned int uID )
+{
+    m_uRunID = uID;
+}
+
+void ImplMissWidget::GetPos( wxPoint &pt ) const
+{
+    pt = m_ptFrame->GetPosition();
+}
+
+void ImplMissWidget::SetPos( const wxPoint &pt )
+{
+    m_ptFrame->Move(pt);
+}
+
+void ImplMissWidget::GetScale( float& dZoom ) const
+{
+    dZoom = m_ptDraw->GetScale();
+}
+
+void ImplMissWidget::SetScale( const float& dZoom )
+{
+    m_ptDraw->SetScale(dZoom);
+}
+
+void ImplMissWidget::GetOpacity( int& nOpacity ) const
+{
+    nOpacity = m_ptDraw->GetOpacity();
+}
+
+void ImplMissWidget::SetOpacity( const int& nOpacity )
+{
+    m_ptDraw->SetOpacity(nOpacity);
+}
+
+int ImplMissWidget::GetWidgetID() const
+{
+    return m_nWidgetID;
+}
+
+void ImplMissWidget::SetWidgetID( int nID )
+{
+    m_nWidgetID = nID;
 }
 

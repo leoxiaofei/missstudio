@@ -6,6 +6,7 @@
 
 #include <map>
 #include "..\BLL\MissPluginManager.h"
+#include "..\UI\MissCoreFrame.h"
 
 
 typedef IMissUnknown* (MissMainEntry::*FuncCreator)(void);
@@ -69,6 +70,11 @@ IMissUnknown* MissMainEntry::CreateTimer()
 IMissUnknown* MissMainEntry::CreateWidgetMgr()
 {
     return new ImplMissWidgetMgr(m_pPlugMain);
+}
+
+wxFrame* MissMainEntry::GetMainFrame() const
+{
+    return wxAppFrame;
 }
 
 

@@ -66,14 +66,14 @@ void MissTaskBarIcon::OnMenuCoreOptionSelection( wxCommandEvent& event )
 
 void MissTaskBarIcon::OnMenuPluginOptionSelection( wxCommandEvent& event )
 {
-    MissPluginOption option(wxAppFrame);
-    option.ShowModal();
+    MissPluginOption* option = new MissPluginOption(wxAppFrame);
+    option->Show();
 }
 
 void MissTaskBarIcon::OnMenuWidgetsOptionSelection( wxCommandEvent& event )
 {
     MissDesktopTools tools(wxAppFrame);
-    tools.ShowModal();
+    tools.Show();
 }
 
 void MissTaskBarIcon::OnMenuAboutSelection( wxCommandEvent& event )

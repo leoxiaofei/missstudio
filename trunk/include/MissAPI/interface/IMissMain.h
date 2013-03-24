@@ -10,7 +10,7 @@
 // class IMissWidgetManager;
 // class IMissConfig;
 // class MissPluginBase;
-// class wxSQLite3Database;
+class wxFrame;
 
 enum IF_TYPE
 {
@@ -26,6 +26,7 @@ INTERFACE_BEGIN(IMissMain)
 
 IDEF( void     ExitApp()             )
 IDEF( wxString GetPluginPath() const )
+IDEF( wxFrame* GetMainFrame()  const )
 
 TDEF( std::tr1::shared_ptr<T> QueryIF(IF_TYPE eType) )
 {

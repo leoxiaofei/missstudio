@@ -15,6 +15,7 @@
 #include <wx/window.h>
 #include "../BLL/MissWidgetManager.h"
 //#include "../Common/MissDataTypeDef.h"
+#include <wx/app.h>
 
 using std::tr1::shared_ptr;
 
@@ -112,23 +113,33 @@ void MissCoreFrame::OnClose( wxCloseEvent& event )
 {
     ///TODO: 保存数据
 
-    ///关闭窗口
-    for (wxWindowList::compatibility_iterator it = wxTopLevelWindows.GetFirst();
-        it; )
+//     ///关闭窗口
+//     for (wxWindowList::compatibility_iterator it = wxTopLevelWindows.GetFirst();
+//         it; )
+//     {
+//         wxWindow* win = it->GetData();
+//         it = it->GetNext();
+//         if (win->IsShown())
+//         {
+//             delete win;
+//         }
+//     }
+// 
+    ///关闭所有功能
+    MissPluginManager::Instance().ClosePluginAll();
+
+    wxWindowList& list = GetChildren();
+    while(!list.IsEmpty())
     {
-        wxWindow* win = it->GetData();
-        it = it->GetNext();
-        if (win->IsShown())
-        {
-            delete win;
-        }
+        delete list[0];
     }
 
-    ///关闭所有插件
-    MissPluginManager::Instance().UnloadAll();
+    ///卸载所有插件
+    MissPluginManager::Instance().UnloadDllALL();
 
     ///关闭程序
-    Destroy();
+    //Destroy();
+     wxApp::GetInstance()->ExitMainLoop();
 }
 
 void MissCoreFrame::OnTimer( wxTimerEvent& event )

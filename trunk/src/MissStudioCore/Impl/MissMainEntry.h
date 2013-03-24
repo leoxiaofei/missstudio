@@ -16,6 +16,7 @@ public:
 
     virtual void ExitApp();
     virtual wxString GetPluginPath() const;
+    virtual wxFrame* GetMainFrame() const;
 
 protected:
     virtual std::tr1::shared_ptr<IMissUnknown> GetInterfacePtr( IF_TYPE eType );
@@ -25,6 +26,7 @@ private:
     IMissUnknown* CreateStorage();
     IMissUnknown* CreateTimer();
     IMissUnknown* CreateWidgetMgr();
+
 
 
 
