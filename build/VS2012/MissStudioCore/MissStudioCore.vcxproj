@@ -21,6 +21,7 @@
     <ClCompile Include="..\..\..\src\MissStudioCore\Common\MissPaths.cpp" />
     <ClCompile Include="..\..\..\src\MissStudioCore\DAL\MissWidgetsDAL.cpp" />
     <ClCompile Include="..\..\..\src\MissStudioCore\Generated\GUIFrame.cpp" />
+    <ClCompile Include="..\..\..\src\MissStudioCore\Impl\ImplMissSharedMemory.cpp" />
     <ClCompile Include="..\..\..\src\MissStudioCore\Impl\ImplMissStorage.cpp" />
     <ClCompile Include="..\..\..\src\MissStudioCore\Impl\ImplMissHotKeyMgr.cpp" />
     <ClCompile Include="..\..\..\src\MissStudioCore\Impl\ImplMissTimer.cpp" />
@@ -57,6 +58,7 @@
     <ClInclude Include="..\..\..\src\MissStudioCore\Common\WidgetDef.h" />
     <ClInclude Include="..\..\..\src\MissStudioCore\DAL\MissWidgetsDAL.h" />
     <ClInclude Include="..\..\..\src\MissStudioCore\Generated\GUIFrame.h" />
+    <ClInclude Include="..\..\..\src\MissStudioCore\Impl\ImplMissSharedMemory.h" />
     <ClInclude Include="..\..\..\src\MissStudioCore\Impl\ImplMissStorage.h" />
     <ClInclude Include="..\..\..\src\MissStudioCore\Impl\ImplMissHotKeyMgr.h" />
     <ClInclude Include="..\..\..\src\MissStudioCore\Impl\ImplMissTimer.h" />
