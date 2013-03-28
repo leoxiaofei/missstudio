@@ -11,9 +11,11 @@
 #define MISSTASKBARICON_H
 
 #include <wx/taskbar.h>
+#include <memory>
 
 class MissTaskBarIcon : public wxTaskBarIcon
 {
+	class Impl;
 public:
     /** Default constructor */
     MissTaskBarIcon();
@@ -25,15 +27,21 @@ protected:
 
     void BindEvent();
     void UnbindEvent();
+	
+	//////////////////////////////////////////////////////////////////////////
+	///对话框关闭消息
 
+	//////////////////////////////////////////////////////////////////////////
+	/// 菜单信号
     void OnMenuCoreOptionSelection( wxCommandEvent& event );
     void OnMenuPluginOptionSelection( wxCommandEvent& event );
     void OnMenuWidgetsOptionSelection( wxCommandEvent& event );
     void OnMenuAboutSelection( wxCommandEvent& event );
     void OnMenuExitSelection( wxCommandEvent& event );
 
-private:
 
+private:
+	std::tr1::shared_ptr<Impl> m_pImpl;
 };
 
 #endif // MISSTASKBARICON_H

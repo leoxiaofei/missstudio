@@ -3,6 +3,8 @@
 
 #include "../MissApiDef.h"
 
+class wxString;
+
 INTERFACE_BEGIN(IMissTaskIcon)
 
 IDEF( bool ShowBalloon(  const wxString &strMsg,

@@ -1,0 +1,88 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MissAPI", "MissAPI", "{8E92489C-04E9-407B-97B9-D389AEBAE02B}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\include\MissAPI\MissApiDef.h = ..\..\include\MissAPI\MissApiDef.h
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "interface", "interface", "{8C0CF45B-17E2-4859-9FE3-7203520D43E4}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\include\MissAPI\interface\IMissHotKeyMgr.h = ..\..\include\MissAPI\interface\IMissHotKeyMgr.h
+		..\..\include\MissAPI\interface\IMissMain.h = ..\..\include\MissAPI\interface\IMissMain.h
+		..\..\include\MissAPI\interface\IMissSharedMemory.h = ..\..\include\MissAPI\interface\IMissSharedMemory.h
+		..\..\include\MissAPI\interface\IMissSpeech.h = ..\..\include\MissAPI\interface\IMissSpeech.h
+		..\..\include\MissAPI\interface\IMissStorage.h = ..\..\include\MissAPI\interface\IMissStorage.h
+		..\..\include\MissAPI\interface\IMissTaskIcon.h = ..\..\include\MissAPI\interface\IMissTaskIcon.h
+		..\..\include\MissAPI\interface\IMissTimer.h = ..\..\include\MissAPI\interface\IMissTimer.h
+		..\..\include\MissAPI\interface\IMissWidget.h = ..\..\include\MissAPI\interface\IMissWidget.h
+		..\..\include\MissAPI\interface\IMissWidgetMgr.h = ..\..\include\MissAPI\interface\IMissWidgetMgr.h
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "plugin", "plugin", "{652C8A5C-9108-4757-8B18-ACD0F7BFC59F}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\include\MissAPI\plugin\MissHotKeyFuncBase.h = ..\..\include\MissAPI\plugin\MissHotKeyFuncBase.h
+		..\..\include\MissAPI\plugin\MissPluginBase.h = ..\..\include\MissAPI\plugin\MissPluginBase.h
+		..\..\include\MissAPI\plugin\MissSharedMemoryBase.h = ..\..\include\MissAPI\plugin\MissSharedMemoryBase.h
+		..\..\include\MissAPI\plugin\MissTimerFuncBase.h = ..\..\include\MissAPI\plugin\MissTimerFuncBase.h
+		..\..\include\MissAPI\plugin\MissWidgetFactoryBase.h = ..\..\include\MissAPI\plugin\MissWidgetFactoryBase.h
+		..\..\include\MissAPI\plugin\MissWidgetFuncBase.h = ..\..\include\MissAPI\plugin\MissWidgetFuncBase.h
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MissPlugin", "MissPlugin", "{C4EF0F78-6315-4F1A-ADFC-2C03B5C81DA7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MissStudio", "MissStudio", "{B9E9BAC9-4A1E-4BB7-BC3D-3944079CF6CF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Include", "Include", "{1E2F153B-E5AA-4745-93A2-F6CCFCB68EFF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MissTools", "MissTools", "{A0B0F29A-346C-4E78-BF19-CB938323598C}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\include\MissTools\MissAlgorithm.h = ..\..\include\MissTools\MissAlgorithm.h
+		..\..\include\MissTools\MissConfigFile.h = ..\..\include\MissTools\MissConfigFile.h
+		..\..\include\MissTools\MissTreeData.h = ..\..\include\MissTools\MissTreeData.h
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MissStudioCore", "MissStudioCore\MissStudioCore.vcproj", "{7DB89C06-7AA4-4B09-995D-A634C296D7C8}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MissTools", "MissTools\MissTools.vcproj", "{A0578B05-4E2C-44AA-9C44-4CA26F3CC05A}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MissPasswordAid", "MissPasswordAid\MissPasswordAid.vcproj", "{BB7A4988-C8F9-427D-B28A-43C0428BE4D4}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MissClock", "MissClock\MissClock.vcproj", "{48A934CD-E613-46EE-B02B-9DDF5FB32A34}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7DB89C06-7AA4-4B09-995D-A634C296D7C8}.Debug|Win32.ActiveCfg = Debug|Win32
+		{7DB89C06-7AA4-4B09-995D-A634C296D7C8}.Debug|Win32.Build.0 = Debug|Win32
+		{7DB89C06-7AA4-4B09-995D-A634C296D7C8}.Release|Win32.ActiveCfg = Release|Win32
+		{7DB89C06-7AA4-4B09-995D-A634C296D7C8}.Release|Win32.Build.0 = Release|Win32
+		{A0578B05-4E2C-44AA-9C44-4CA26F3CC05A}.Debug|Win32.ActiveCfg = Debug|Win32
+		{A0578B05-4E2C-44AA-9C44-4CA26F3CC05A}.Debug|Win32.Build.0 = Debug|Win32
+		{A0578B05-4E2C-44AA-9C44-4CA26F3CC05A}.Release|Win32.ActiveCfg = Release|Win32
+		{A0578B05-4E2C-44AA-9C44-4CA26F3CC05A}.Release|Win32.Build.0 = Release|Win32
+		{BB7A4988-C8F9-427D-B28A-43C0428BE4D4}.Debug|Win32.ActiveCfg = Debug|Win32
+		{BB7A4988-C8F9-427D-B28A-43C0428BE4D4}.Debug|Win32.Build.0 = Debug|Win32
+		{BB7A4988-C8F9-427D-B28A-43C0428BE4D4}.Release|Win32.ActiveCfg = Release|Win32
+		{BB7A4988-C8F9-427D-B28A-43C0428BE4D4}.Release|Win32.Build.0 = Release|Win32
+		{48A934CD-E613-46EE-B02B-9DDF5FB32A34}.Debug|Win32.ActiveCfg = Debug|Win32
+		{48A934CD-E613-46EE-B02B-9DDF5FB32A34}.Debug|Win32.Build.0 = Debug|Win32
+		{48A934CD-E613-46EE-B02B-9DDF5FB32A34}.Release|Win32.ActiveCfg = Release|Win32
+		{48A934CD-E613-46EE-B02B-9DDF5FB32A34}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{8C0CF45B-17E2-4859-9FE3-7203520D43E4} = {8E92489C-04E9-407B-97B9-D389AEBAE02B}
+		{652C8A5C-9108-4757-8B18-ACD0F7BFC59F} = {8E92489C-04E9-407B-97B9-D389AEBAE02B}
+		{BB7A4988-C8F9-427D-B28A-43C0428BE4D4} = {C4EF0F78-6315-4F1A-ADFC-2C03B5C81DA7}
+		{48A934CD-E613-46EE-B02B-9DDF5FB32A34} = {C4EF0F78-6315-4F1A-ADFC-2C03B5C81DA7}
+		{7DB89C06-7AA4-4B09-995D-A634C296D7C8} = {B9E9BAC9-4A1E-4BB7-BC3D-3944079CF6CF}
+		{A0578B05-4E2C-44AA-9C44-4CA26F3CC05A} = {B9E9BAC9-4A1E-4BB7-BC3D-3944079CF6CF}
+		{A0B0F29A-346C-4E78-BF19-CB938323598C} = {1E2F153B-E5AA-4745-93A2-F6CCFCB68EFF}
+	EndGlobalSection
+EndGlobal

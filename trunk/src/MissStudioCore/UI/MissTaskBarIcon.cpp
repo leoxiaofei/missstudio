@@ -14,11 +14,22 @@
 #include "../Common/CustomId.h"
 #include "MissPluginOption.h"
 #include "MissDesktopTools.h"
+#include "MissTools/OneWinManager.h"
 
 using namespace DTD;
 
+
+class MissTaskBarIcon::Impl
+{
+public:
+	Impl()
+	: winManager(wxAppFrame){}
+	OneWinManager winManager;
+};
+
 MissTaskBarIcon::MissTaskBarIcon()
 : wxTaskBarIcon()
+, m_pImpl(new Impl)
 {
     //ctor
     BindEvent();
@@ -66,14 +77,17 @@ void MissTaskBarIcon::OnMenuCoreOptionSelection( wxCommandEvent& event )
 
 void MissTaskBarIcon::OnMenuPluginOptionSelection( wxCommandEvent& event )
 {
-    MissPluginOption* option = new MissPluginOption(wxAppFrame);
-    option->Show();
+	wxWindow* pWin = m_pImpl->winManager.CreateWin<MissPluginOption>
+		(wxT("MissPluginOption"));
+	pWin->Raise();
+
 }
 
 void MissTaskBarIcon::OnMenuWidgetsOptionSelection( wxCommandEvent& event )
 {
-    MissDesktopTools tools(wxAppFrame);
-    tools.Show();
+	wxWindow* pWin = m_pImpl->winManager.CreateWin<MissDesktopTools>
+		(wxT("MissDesktopTools"));
+	pWin->Raise();
 }
 
 void MissTaskBarIcon::OnMenuAboutSelection( wxCommandEvent& event )

@@ -49,7 +49,7 @@ class GUIDialog : public wxDialog
 		wxTextCtrl* m_edtOut;
 		
 		// Virtual event handlers, overide them in your derived class
-		virtual void GUIDialogOnClose( wxCloseEvent& event ) { event.Skip(); }
+		//virtual void GUIDialogOnClose( wxCloseEvent& event ) { event.Skip(); }
 		virtual void OnCheckAutoCloseBox( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnBtnGenerateClick( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnCheckShowPassBox( wxCommandEvent& event ) { event.Skip(); }
@@ -57,7 +57,7 @@ class GUIDialog : public wxDialog
 	
 	public:
 		
-		GUIDialog( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = _("迷失密码加密器 "), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 350,149 ), long style = wxDEFAULT_DIALOG_STYLE|wxRESIZE_BORDER|wxSTAY_ON_TOP ); 
+		GUIDialog( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = _("迷失密码加密器 "), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 350,149 ), long style = wxDEFAULT_DIALOG_STYLE|wxRESIZE_BORDER ); 
 		~GUIDialog();
 	
 };
