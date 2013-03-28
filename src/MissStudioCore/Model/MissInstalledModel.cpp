@@ -5,7 +5,7 @@
 #include "..\BLL\MissWidgetManager.h"
 
 using std::vector;
-using std::shared_ptr;
+using std::tr1::shared_ptr;
 
 MissInstalledModel::MissInstalledModel()
 {

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="gb2312"?>
+<VisualStudioPropertySheet
+	ProjectType="Visual C++"
+	Version="8.00"
+	Name="GlobalProperty"
+	>
+	<Tool
+		Name="VCCLCompilerTool"
+		AdditionalIncludeDirectories="$(wx29)include;$(wxSqlite3)include"
+	/>
+	<Tool
+		Name="VCLinkerTool"
+		AdditionalLibraryDirectories="&quot;$(wx29)lib\vc_dll&quot;;&quot;$(wxSqlite3)lib\vc_dll&quot;"
+	/>
+	<Tool
+		Name="VCResourceCompilerTool"
+		AdditionalIncludeDirectories="$(wx29)include;"
+	/>
+	<UserMacro
+		Name="wx29"
+		Value="D:\ThirdParty\wxWidgets\2_9_4\"
+		PerformEnvironmentSet="true"
+	/>
+	<UserMacro
+		Name="wxSqlite3"
+		Value="D:\ThirdParty\wxSqlite3\3_0_3\"
+		PerformEnvironmentSet="true"
+	/>
+</VisualStudioPropertySheet>

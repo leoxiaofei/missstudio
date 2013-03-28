@@ -1,7 +1,7 @@
 #ifndef IMPLMISSTASKBARICON_H
 #define IMPLMISSTASKBARICON_H
 
-#include "../../MissAPI/interface/IMissTaskIcon.h"
+#include "MissAPI/interface/IMissTaskIcon.h"
 
 class MissTaskBarIcon;
 class MissPluginBase;

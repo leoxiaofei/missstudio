@@ -3,6 +3,7 @@
 #include "..\Common\MissFuncFinder.hpp"
 #include <time.h>
 #include <vector>
+#include <algorithm>
 
 
 class MissTimerManager::Impl

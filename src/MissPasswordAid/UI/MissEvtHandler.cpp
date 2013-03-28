@@ -3,15 +3,16 @@
 #include "MissAutoInputThread.h"
 #include "..\Common\MissGlobal.h"
 #include <wx/frame.h>
+#include "MissTools/OneWinManager.h"
 
 class MissEvtHandler::Impl
 {
 public:
     Impl() 
-    : pAidDlg(NULL)
-    , pThread(NULL) {}
+	: winManager(MissGlobal::IMain->GetMainFrame())
+	, pThread(NULL) {}
 
-    PasswordAidDialog* pAidDlg;
+	OneWinManager winManager;
     MissAutoInputThread* pThread;
 };
 
@@ -39,15 +40,9 @@ void MissEvtHandler::UnbindEvent()
 
 void MissEvtHandler::OpenPasswordAid()
 {
-    PasswordAidDialog* pAidDlg = m_pImpl->pAidDlg;
-    if (pAidDlg == NULL)
-    {
-        pAidDlg = new PasswordAidDialog(MissGlobal::IMain->GetMainFrame());
-        m_pImpl->pAidDlg = pAidDlg;
-        pAidDlg->Bind(wxEVT_CLOSE_WINDOW, &MissEvtHandler::AidDlgClosed, this);
-        pAidDlg->Show();
-    }
-    //pAidDlg->Raise();
+    PasswordAidDialog* pAidDlg = 
+    m_pImpl->winManager.CreateWin<PasswordAidDialog>(wxT("PasswordAidDialog"));
+    pAidDlg->Raise();
 }
 
 void MissEvtHandler::OpenAutoInput()
@@ -72,17 +67,6 @@ void MissEvtHandler::OpenAutoInput()
             }
         }
         m_pImpl->pThread = pThread;
-    }
-}
-
-void MissEvtHandler::AidDlgClosed( wxCloseEvent& event )
-{
-    PasswordAidDialog* pAidDlg = m_pImpl->pAidDlg;
-    if (pAidDlg != NULL)
-    {
-        pAidDlg->Unbind(wxEVT_CLOSE_WINDOW, &MissEvtHandler::AidDlgClosed, this);
-        pAidDlg->Destroy();
-        m_pImpl->pAidDlg = NULL;
     }
 }
 

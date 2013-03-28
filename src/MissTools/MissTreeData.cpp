@@ -1,5 +1,6 @@
 #include "MissTreeData.h"
 #include <assert.h>
+#include <algorithm>
 
 
 TreeData::TreeData()
