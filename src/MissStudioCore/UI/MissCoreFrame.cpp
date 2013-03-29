@@ -3,7 +3,7 @@
 #include "../BLL/MissHotKeyManager.h"
 #include "../BLL/MissPluginManager.h"
 #include "../BLL/MissTimerManager.h"
-//#include "../Common/CustomId.h"
+#include "../BLL/MissWidgetManager.h"
 #include "../UI/MissTaskBarIcon.h"
 
 #include <wx/dir.h>
@@ -13,8 +13,6 @@
 #include <wx/timer.h>
 #include <iostream>
 #include <wx/window.h>
-#include "../BLL/MissWidgetManager.h"
-//#include "../Common/MissDataTypeDef.h"
 #include <wx/app.h>
 
 using std::tr1::shared_ptr;
@@ -41,7 +39,7 @@ void MissCoreFrame::Impl::SetupUi( wxFrame* parent )
     wxIcon icon = wxICON(RC_STUDIO_ICON);
     parent->SetIcon(icon); // To Set App Icon
 
-    pTrayIcon = shared_ptr<MissTaskBarIcon>(new MissTaskBarIcon);
+    pTrayIcon = shared_ptr<MissTaskBarIcon>(new MissTaskBarIcon(parent));
     pTrayIcon->SetIcon(icon, wxT("ริสงนคื๗สา"));
 
     pMainTimer = shared_ptr<wxTimer>(new wxTimer(parent));

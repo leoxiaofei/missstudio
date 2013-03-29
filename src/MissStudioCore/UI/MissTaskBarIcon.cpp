@@ -22,14 +22,14 @@ using namespace DTD;
 class MissTaskBarIcon::Impl
 {
 public:
-	Impl()
-	: winManager(wxAppFrame){}
+	Impl(wxWindow* parent)
+	: winManager(parent){}
 	OneWinManager winManager;
 };
 
-MissTaskBarIcon::MissTaskBarIcon()
+MissTaskBarIcon::MissTaskBarIcon(wxWindow* parent)
 : wxTaskBarIcon()
-, m_pImpl(new Impl)
+, m_pImpl(new Impl(parent))
 {
     //ctor
     BindEvent();
@@ -80,7 +80,6 @@ void MissTaskBarIcon::OnMenuPluginOptionSelection( wxCommandEvent& event )
 	wxWindow* pWin = m_pImpl->winManager.CreateWin<MissPluginOption>
 		(wxT("MissPluginOption"));
 	pWin->Raise();
-
 }
 
 void MissTaskBarIcon::OnMenuWidgetsOptionSelection( wxCommandEvent& event )
