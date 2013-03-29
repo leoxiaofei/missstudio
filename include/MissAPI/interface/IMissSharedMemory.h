@@ -4,13 +4,14 @@
 #include "../MissApiDef.h"
 
 class MissSharedMemoryBase;
-class wxString;
+class wxVariant;
 
 INTERFACE_BEGIN(IMissSharedMemory)
     IDEF( void RegSharedMemory(MissSharedMemoryBase* pPlugin)     )
     IDEF( void UnRegSharedMemory(MissSharedMemoryBase* pPlugin)   )
-    IDEF( bool GetSharedMemory(wxString& strMemory) const         )
-    IDEF( bool SetSharedMemory(const wxString& strMemory)         )
+    IDEF( bool operator ()(wxVariant& varData) const              )
+    IDEF( bool operator = (const wxVariant& varData)              )
+
 INTERFACE_END
 
 #endif // IMISSSHAREDMEMORY_H__

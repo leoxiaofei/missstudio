@@ -49,6 +49,7 @@ class GUIDialog : public wxFrame
 		wxTextCtrl* m_edtOut;
 		
 		// Virtual event handlers, overide them in your derived class
+		virtual void OnPasswordTextEnter( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnCheckAutoCloseBox( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnBtnGenerateClick( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnCheckShowPassBox( wxCommandEvent& event ) { event.Skip(); }
@@ -56,7 +57,7 @@ class GUIDialog : public wxFrame
 	
 	public:
 		
-		GUIDialog( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = _("迷失密码加密器 "), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 316,122 ), long style = wxCAPTION|wxCLOSE_BOX|wxFRAME_TOOL_WINDOW|wxSYSTEM_MENU );
+		GUIDialog( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = _("迷失密码加密器 "), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( -1,-1 ), long style = wxCAPTION|wxCLOSE_BOX|wxFRAME_TOOL_WINDOW|wxSYSTEM_MENU );
 		
 		~GUIDialog();
 	

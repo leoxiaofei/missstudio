@@ -13,6 +13,7 @@ public:
         SQL_CREATE_CORECONFIG,
         SQL_CREATE_WIDGETS,
         SQL_INSERT_WIDGETS,
+        SQL_SELECT_WIDGETS,
         SQL_UPDATE_WIDGETS,
         SQL_DELETE_WIDGETS,
         SQL_CREATE_WIDGETPARAS,
@@ -26,22 +27,24 @@ const wxString MissWidgetsDAL::Impl::s_SQL[] =
 {
     wxT("CREATE TABLE CoreConfig (CC_Key TEXT primary key, CC_Value TEXT);"),
     
-    wxT("CREATE TABLE Widgets (W_ID INTEGER primary key NOT NULL, W_PName TEXT, ")
-    wxT("W_WType INTEGER, W_Zone INTEGER, W_Opacity INTEGER, W_Pos INTEGER);"),
+    wxT("CREATE TABLE Widgets (W_ID INTEGER primary key NOT NULL, W_PGuid TEXT, ")
+    wxT("W_WType INTEGER, W_Zone INTEGER, W_Opacity INTEGER, W_Pos TEXT);"),
 
-    wxT("INSERT INTO Widgets VALUES(NULL, $W_PName, $W_WType, $W_Zone, $W_Opacity, $W_Pos);"),
+    wxT("INSERT INTO Widgets VALUES(NULL, $W_PGuid, $W_WType, $W_Zone, $W_Opacity, $W_Pos);"),
+
+    wxT("SELECT W_ID, W_PGuid, W_WType, W_Zone, W_Opacity, W_Pos FROM Widgets;"),
     
-    wxT("UPDATE Widgets SET W_Zone = $W_Zone, W_Opacity = $W_Opacity, W_Pos = $W_Pos WHERE W_ID = $W_ID);"),
+    wxT("UPDATE Widgets SET W_Zone = $W_Zone, W_Opacity = $W_Opacity, W_Pos = $W_Pos WHERE W_ID = $W_ID;"),
     
-    wxT("DELETE FROM Widgets WHERE W_ID = $W_ID;")
+    wxT("DELETE FROM Widgets WHERE W_ID = $W_ID;"),
 
     wxT("CREATE TABLE WidgetParas (W_ID INTEGER, WP_Key TEXT, WP_Value TEXT );"),
     
     wxT("INSERT INTO WidgetParas VALUES($W_ID, $WP_Key, $WP_Value);"),
     
-    wxT("DELETE FROM WidgetParas WHERE W_ID = $W_ID;")
+    wxT("DELETE FROM WidgetParas WHERE W_ID = $W_ID;"),
 
-    wxT("last_insert_rowid();"),
+    wxT("SELECT last_insert_rowid();"),
 };
 
 MissWidgetsDAL::MissWidgetsDAL()
@@ -67,6 +70,102 @@ void MissWidgetsDAL::InitDB()
     m_pImpl->dbMain.ExecuteUpdate(Impl::s_SQL[Impl::SQL_CREATE_CORECONFIG]);
     m_pImpl->dbMain.ExecuteUpdate(Impl::s_SQL[Impl::SQL_CREATE_WIDGETS]);
     m_pImpl->dbMain.ExecuteUpdate(Impl::s_SQL[Impl::SQL_CREATE_WIDGETPARAS]);
+}
+
+bool MissWidgetsDAL::SaveRunWidgets( const std::vector<RunWidgetData>& vecRunWidgets )
+{
+    bool bRet(false);
+    if (!vecRunWidgets.empty())
+    {
+        wxString strTemp;
+        m_pImpl->dbMain.Begin();
+        for (std::vector<RunWidgetData>::const_iterator citor = vecRunWidgets.begin();
+            citor != vecRunWidgets.end(); ++citor)
+        {
+            wxSQLite3Statement statement = m_pImpl->dbMain.PrepareStatement(Impl::s_SQL[Impl::SQL_UPDATE_WIDGETS]);
+            statement.Bind(statement.GetParamIndex(wxT("$W_Zone")), (int)citor->sWidgetPara.m_uZone);
+            statement.Bind(statement.GetParamIndex(wxT("$W_Opacity")), (int)citor->sWidgetPara.m_uOpacity);
+            
+            strTemp.Printf(wxT("%d:%d"), citor->sWidgetPara.m_ptPos.x, citor->sWidgetPara.m_ptPos.y);
+            statement.Bind(statement.GetParamIndex(wxT("$W_Pos")), strTemp);
+            statement.Bind(statement.GetParamIndex(wxT("$W_ID")), (int)citor->sWidgetPara.m_uRunID);
+
+            statement.ExecuteUpdate();
+        }
+        m_pImpl->dbMain.Commit();
+    }
+
+    return bRet;
+}
+
+bool MissWidgetsDAL::LoadRunWidgets( std::vector<RunWidgetData>& vecRunWidgets )
+{
+    bool bRet(false);
+    wxSQLite3ResultSet result = m_pImpl->dbMain.ExecuteQuery(Impl::s_SQL[Impl::SQL_SELECT_WIDGETS]);
+    RunWidgetData data;
+    wxString strPos;
+    long lTemp;
+    if(result.IsOk())
+    {
+        while (result.NextRow())
+        {
+            data.strGuid                 = result.GetString(wxT("W_PGuid"));
+            data.nWidgetId               = result.GetInt(wxT("W_WType"));
+            data.sWidgetPara.m_uRunID    = result.GetInt(wxT("W_ID"));
+            data.sWidgetPara.m_uZone     = result.GetInt(wxT("W_Zone"));
+            data.sWidgetPara.m_uOpacity  = result.GetInt(wxT("W_Opacity"));
+            strPos                       = result.GetString(wxT("W_Pos"), wxT("0:0"));
+            if(strPos.BeforeFirst(wxT(':')).ToLong(&lTemp))
+            {
+                data.sWidgetPara.m_ptPos.x = lTemp;
+            }
+            if(strPos.AfterFirst(wxT(':')).ToLong(&lTemp))
+            {
+                data.sWidgetPara.m_ptPos.y = lTemp;
+            }
+            vecRunWidgets.push_back(data);
+        }
+        result.Finalize();
+        bRet = true;
+    }
+    return bRet;
+}
+
+bool MissWidgetsDAL::NewRunWidget( const wxString& strGuid, int nWidgetId, DTD::SWidgetPara& sWidgetPara )
+{
+    wxString strTemp;
+    wxSQLite3Statement statement;
+    statement = m_pImpl->dbMain.PrepareStatement(Impl::s_SQL[Impl::SQL_INSERT_WIDGETS]);
+    statement.Bind(statement.GetParamIndex(wxT("$W_PGuid")), strGuid);
+    statement.Bind(statement.GetParamIndex(wxT("$W_WType")), nWidgetId);
+    statement.Bind(statement.GetParamIndex(wxT("$W_Zone")), (int)sWidgetPara.m_uZone);
+    statement.Bind(statement.GetParamIndex(wxT("$W_Opacity")), (int)sWidgetPara.m_uOpacity);
+    strTemp.Printf(wxT("%d:%d"), sWidgetPara.m_ptPos.x, sWidgetPara.m_ptPos.y);
+    statement.Bind(statement.GetParamIndex(wxT("$W_Pos")), strTemp);
+    statement.ExecuteUpdate();
+
+    sWidgetPara.m_uRunID = GetLastId();
+    return true;
+}
+
+bool MissWidgetsDAL::DelRunWidget( unsigned int uRunId )
+{
+    wxSQLite3Statement statement = m_pImpl->dbMain.PrepareStatement(Impl::s_SQL[Impl::SQL_DELETE_WIDGETS]);
+    statement.Bind(statement.GetParamIndex(wxT("$W_ID")), (int)uRunId);
+    statement.ExecuteUpdate();
+
+    return true;
+}
+
+int MissWidgetsDAL::GetLastId()
+{
+    int nRet(0);
+    wxSQLite3ResultSet result = m_pImpl->dbMain.ExecuteQuery(Impl::s_SQL[Impl::SQL_SELECT_LASTID]);
+    if (result.IsOk())
+    {
+        nRet = result.GetInt(0, 0);
+    }
+    return nRet;
 }
 
 // int MissWidgetsDAL::NewWidget(const wxString& strPName, int nType)

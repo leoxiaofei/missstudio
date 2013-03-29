@@ -97,8 +97,10 @@ GUIDialog::GUIDialog( wxWindow* parent, wxWindowID id, const wxString& title, co
 	
 	this->SetSizer( bSizer1 );
 	this->Layout();
+	bSizer1->Fit( this );
 	
 	// Connect Events
+	m_edtPassword->Connect( wxEVT_COMMAND_TEXT_ENTER, wxCommandEventHandler( GUIDialog::OnPasswordTextEnter ), NULL, this );
 	m_cboxAutoClose->Connect( wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler( GUIDialog::OnCheckAutoCloseBox ), NULL, this );
 	m_btnGenerate->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( GUIDialog::OnBtnGenerateClick ), NULL, this );
 	m_cboxShowPass->Connect( wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler( GUIDialog::OnCheckShowPassBox ), NULL, this );
@@ -107,6 +109,7 @@ GUIDialog::GUIDialog( wxWindow* parent, wxWindowID id, const wxString& title, co
 GUIDialog::~GUIDialog()
 {
 	// Disconnect Events
+	m_edtPassword->Disconnect( wxEVT_COMMAND_TEXT_ENTER, wxCommandEventHandler( GUIDialog::OnPasswordTextEnter ), NULL, this );
 	m_cboxAutoClose->Disconnect( wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler( GUIDialog::OnCheckAutoCloseBox ), NULL, this );
 	m_btnGenerate->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( GUIDialog::OnBtnGenerateClick ), NULL, this );
 	m_cboxShowPass->Disconnect( wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler( GUIDialog::OnCheckShowPassBox ), NULL, this );

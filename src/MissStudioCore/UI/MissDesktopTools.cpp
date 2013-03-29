@@ -81,8 +81,7 @@ void MissDesktopTools::DClickInstalledItem( wxDataViewEvent& event )
     int nWigetId;
     if(m_pImpl->ptInstalledModel->GetDataByItem(item, pBase, nWigetId))
     {
-        DTD::SWidgetPara data;
-        MissWidgetManager::Instance().GenerateWidget(pBase, nWigetId, data);
+        MissWidgetManager::Instance().CreateWidget(pBase, nWigetId);
         m_pImpl->ptRunningModel->Reset(MissWidgetManager::Instance().GetRunningWidget().size());
     }
 

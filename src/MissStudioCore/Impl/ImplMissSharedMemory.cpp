@@ -18,12 +18,12 @@ void ImplMissSharedMemory::UnRegSharedMemory( MissSharedMemoryBase* pPlugin )
 {
 }
 
-bool ImplMissSharedMemory::GetSharedMemory( wxString& strMemory ) const
+bool ImplMissSharedMemory::operator=( const wxVariant& varData )
 {
     return false;
 }
 
-bool ImplMissSharedMemory::SetSharedMemory( const wxString& strMemory )
+bool ImplMissSharedMemory::operator()( wxVariant& varData )
 {
     return false;
 }

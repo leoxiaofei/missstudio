@@ -44,7 +44,7 @@ void MissPluginOption::InitUi()
     sizerHotKey->Add(pHotKeyList, 1, wxEXPAND | wxALL, 5 );
     sizerHotKey->Layout();
     m_pImpl->pHotKeyList = pHotKeyList;
-    //pHotKeyList->ExpandAncestors();
+    //pHotKeyList->Expand();
 }
 
 void MissPluginOption::BindEvent()

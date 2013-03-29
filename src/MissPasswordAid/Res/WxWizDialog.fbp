@@ -42,7 +42,7 @@
             <property name="minimum_size"></property>
             <property name="name">GUIDialog</property>
             <property name="pos"></property>
-            <property name="size">316,122</property>
+            <property name="size">-1,-1</property>
             <property name="style">wxCAPTION|wxCLOSE_BOX|wxFRAME_TOOL_WINDOW|wxSYSTEM_MENU</property>
             <property name="subclass"></property>
             <property name="title">迷失密码加密器 </property>
@@ -268,7 +268,7 @@
                                 <event name="OnSetFocus"></event>
                                 <event name="OnSize"></event>
                                 <event name="OnText"></event>
-                                <event name="OnTextEnter"></event>
+                                <event name="OnTextEnter">OnPasswordTextEnter</event>
                                 <event name="OnTextMaxLen"></event>
                                 <event name="OnTextURL"></event>
                                 <event name="OnUpdateUI"></event>
