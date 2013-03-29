@@ -90,6 +90,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
+				CommandLine="editbin /SUBSYSTEM:CONSOLE $(OUTDIR)\$(TargetName).exe"
 			/>
 		</Configuration>
 		<Configuration

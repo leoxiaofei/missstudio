@@ -31,7 +31,6 @@ PasswordAidDialog::PasswordAidDialog(wxWindow *dlg)
 
 PasswordAidDialog::~PasswordAidDialog()
 {
-    std::cout<<"~PasswordAidDialog()";
 }
 
 void PasswordAidDialog::OnBtnGenerateClick(wxCommandEvent& event)
@@ -51,11 +50,9 @@ void PasswordAidDialog::OnBtnGenerateClick(wxCommandEvent& event)
     }
     if(m_cboxAutoClose->GetValue())
     {
-        SetReturnCode(wxID_OK);
+        //SetReturnCode(wxID_OK);
         Close();
-        //EndModal(wxID_OK);
     }
-    //m_edtOut->SetValue(MissGlobal::strClipbrd);
 }
 
 void PasswordAidDialog::OnCheckAutoCloseBox(wxCommandEvent& event)

@@ -19,9 +19,10 @@
 
 ///////////////////////////////////////////////////////////////////////////
 
-GUIDialog::GUIDialog( wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style ) : wxDialog( parent, id, title, pos, size, style )
+GUIDialog::GUIDialog( wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style ) : wxFrame( parent, id, title, pos, size, style )
 {
 	this->SetSizeHints( wxDefaultSize, wxDefaultSize );
+	this->SetBackgroundColour( wxSystemSettings::GetColour( wxSYS_COLOUR_BTNFACE ) );
 	
 	wxBoxSizer* bSizer1;
 	bSizer1 = new wxBoxSizer( wxVERTICAL );
@@ -72,7 +73,7 @@ GUIDialog::GUIDialog( wxWindow* parent, wxWindowID id, const wxString& title, co
 	bSizer41->Add( m_spVersion, 0, wxALL|wxALIGN_CENTER_VERTICAL, 5 );
 	
 	
-	bSizer1->Add( bSizer41, 1, wxEXPAND, 5 );
+	bSizer1->Add( bSizer41, 1, wxEXPAND, 0 );
 	
 	wxBoxSizer* bSizer4;
 	bSizer4 = new wxBoxSizer( wxHORIZONTAL );
@@ -98,7 +99,6 @@ GUIDialog::GUIDialog( wxWindow* parent, wxWindowID id, const wxString& title, co
 	this->Layout();
 	
 	// Connect Events
-	//this->Connect( wxEVT_CLOSE_WINDOW, wxCloseEventHandler( GUIDialog::GUIDialogOnClose ) );
 	m_cboxAutoClose->Connect( wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler( GUIDialog::OnCheckAutoCloseBox ), NULL, this );
 	m_btnGenerate->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( GUIDialog::OnBtnGenerateClick ), NULL, this );
 	m_cboxShowPass->Connect( wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler( GUIDialog::OnCheckShowPassBox ), NULL, this );
@@ -107,7 +107,6 @@ GUIDialog::GUIDialog( wxWindow* parent, wxWindowID id, const wxString& title, co
 GUIDialog::~GUIDialog()
 {
 	// Disconnect Events
-	//this->Disconnect( wxEVT_CLOSE_WINDOW, wxCloseEventHandler( GUIDialog::GUIDialogOnClose ) );
 	m_cboxAutoClose->Disconnect( wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler( GUIDialog::OnCheckAutoCloseBox ), NULL, this );
 	m_btnGenerate->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( GUIDialog::OnBtnGenerateClick ), NULL, this );
 	m_cboxShowPass->Disconnect( wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler( GUIDialog::OnCheckShowPassBox ), NULL, this );

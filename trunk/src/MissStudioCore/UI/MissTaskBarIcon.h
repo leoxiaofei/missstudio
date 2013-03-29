@@ -18,7 +18,7 @@ class MissTaskBarIcon : public wxTaskBarIcon
 	class Impl;
 public:
     /** Default constructor */
-    MissTaskBarIcon();
+    MissTaskBarIcon(wxWindow* parent);
     /** Default destructor */
     virtual ~MissTaskBarIcon();
 
