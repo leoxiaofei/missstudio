@@ -35,11 +35,9 @@ public:
 
     bool UnloadPlugin(MissPluginBase* pPluginBase);
 
-    //MissWidgetUpdateFunc* CreateWidget(MissWidgetFuncBase * pFunc);
     MissPluginBase* GetPluginBase(MissWidgetFactoryBase* pBase) const;
 
-    void CreateWidget(const wxString& strGUID, int nWidgetId, const DTD::SWidgetPara& data);
-    void GenerateWidget(MissWidgetFactoryBase* pBase, int nWidgetId, const DTD::SWidgetPara& data);
+    void CreateWidget(MissWidgetFactoryBase* pBase, int nWidgetId);
 
     std::vector<std::tr1::shared_ptr<WidgetRelation> >& GetWidgetData();
     std::vector<std::tr1::shared_ptr<ImplMissWidget> >& GetRunningWidget();
@@ -50,8 +48,13 @@ public:
     bool GetFactoryByRunId(unsigned int uId, MissWidgetFactoryBase*& pBase);
     void GetRunIdByFactory(MissWidgetFactoryBase* pBase, std::vector<unsigned int>& vecRunId);
 
+    void LoadRunWidget();
+    void SaveRunWidget();
+
 protected:
     bool CheckWidgetRelation(MissWidgetFactoryBase* pBase, int nWidgetId);
+    void GenerateWidget(const wxString& strGUID, int nWidgetId, const DTD::SWidgetPara& data);
+    void GenerateWidget(MissWidgetFactoryBase* pBase, int nWidgetId, const DTD::SWidgetPara& data);
 
 private:
     MissWidgetManager();

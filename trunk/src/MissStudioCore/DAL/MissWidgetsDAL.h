@@ -3,11 +3,14 @@
 
 
 #include <memory>
+#include "..\Common\WidgetDef.h"
 
-namespace DTD
+struct RunWidgetData
 {
-    struct SWidgetPara;
-}
+    wxString         strGuid;
+    int              nWidgetId;
+    DTD::SWidgetPara sWidgetPara;
+};
 
 class MissWidgetsDAL
 {
@@ -20,13 +23,15 @@ public:
         return theSingleton;
     }
 
-    bool SaveCurWidgets();
-    bool LoadRunWidgets();
+    bool SaveRunWidgets(const std::vector<RunWidgetData>& vecRunWidgets);
+    bool LoadRunWidgets(std::vector<RunWidgetData>& vecRunWidgets);
 
-    //int NewWidget(const wxString& strPName, int nType);
+    bool NewRunWidget(const wxString& strGuid, int nWidgetId, DTD::SWidgetPara& sWidgetPara);
+    bool DelRunWidget(unsigned int uRunId);
 
 protected:
     void InitDB();
+    int  GetLastId();
 
 private:
     MissWidgetsDAL();

@@ -13,14 +13,16 @@ namespace DTD
     struct SWidgetPara
     {
         SWidgetPara()
-            : m_nZone(100)
-            , m_nOpacity(255)
+            : m_uRunID(0)
+            , m_uZone(100)
+            , m_uOpacity(255)
             , m_ptPos(0,0)
         {}
-        int         m_nZone;
-        int         m_nOpacity;
-        wxPoint     m_ptPos;
-        CustomPara  m_vecPata;
+        unsigned int m_uRunID;
+        unsigned int m_uZone;
+        unsigned int m_uOpacity;
+        wxPoint      m_ptPos;
+        CustomPara   m_vecPata;
     };
 
 }

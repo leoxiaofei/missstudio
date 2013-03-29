@@ -69,3 +69,8 @@ void PasswordAidDialog::OnCheckShowPassBox(wxCommandEvent& event)
     }
     Layout();
 }
+
+void PasswordAidDialog::OnPasswordTextEnter( wxCommandEvent& event )
+{
+    OnBtnGenerateClick(event);
+}

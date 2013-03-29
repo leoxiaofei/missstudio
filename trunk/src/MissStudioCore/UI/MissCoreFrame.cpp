@@ -90,6 +90,9 @@ void MissCoreFrame::OnInitWindow( wxEvent& event )
     ///初始化插件
     InitPlugin();
 
+    ///加载小工具
+    MissWidgetManager::Instance().LoadRunWidget();
+
     ///开始时钟
     m_pImpl->pMainTimer->Start(1000);
 
@@ -110,6 +113,7 @@ void MissCoreFrame::OnHotKey( wxKeyEvent& event )
 void MissCoreFrame::OnClose( wxCloseEvent& event )
 {
     ///TODO: 保存数据
+    MissWidgetManager::Instance().SaveRunWidget();
 
 //     ///关闭窗口
 //     for (wxWindowList::compatibility_iterator it = wxTopLevelWindows.GetFirst();

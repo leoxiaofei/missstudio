@@ -14,12 +14,14 @@
     <ClCompile Include="..\..\..\src\MissTools\MissAlgorithm.cpp" />
     <ClCompile Include="..\..\..\src\MissTools\MissConfigFile.cpp" />
     <ClCompile Include="..\..\..\src\MissTools\MissTreeData.cpp" />
+    <ClCompile Include="..\..\..\src\MissTools\OneWinManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\src\MissTools\MissAlgorithm.h" />
     <ClInclude Include="..\..\..\src\MissTools\MissConfigFile.h" />
     <ClInclude Include="..\..\..\src\MissTools\MissGlobal.h" />
     <ClInclude Include="..\..\..\src\MissTools\MissTreeData.h" />
+    <ClInclude Include="..\..\..\src\MissTools\OneWinManager.h" />
     <ClInclude Include="..\..\..\src\MissTools\rapidxml.hpp" />
     <ClInclude Include="..\..\..\src\MissTools\rapidxml_iterators.hpp" />
     <ClInclude Include="..\..\..\src\MissTools\rapidxml_print.hpp" />

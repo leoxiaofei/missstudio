@@ -15,8 +15,11 @@ public:
 
     virtual void RegSharedMemory( MissSharedMemoryBase* pPlugin );
     virtual void UnRegSharedMemory( MissSharedMemoryBase* pPlugin );
-    virtual bool GetSharedMemory( wxString& strMemory ) const;
-    virtual bool SetSharedMemory( const wxString& strMemory );
+
+    virtual bool operator = ( const wxVariant& varData ) ;
+    virtual bool operator ()( wxVariant& varData );
+    //     virtual bool GetSharedMemory( wxVariant& strMemory ) const;
+//     virtual bool SetSharedMemory( const wxVariant& strMemory );
 
 private:
     MissPluginBase* m_pPlugMain;

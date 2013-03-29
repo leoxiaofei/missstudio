@@ -9,6 +9,8 @@
 #include <wx/frame.h>
 #include <iostream>
 #include <algorithm>
+#include "../DAL/MissWidgetsDAL.h"
+#include "../../../include/MissAPI/plugin/MissPluginBase.h"
 
 using std::tr1::shared_ptr;
 using std::vector;
@@ -60,7 +62,7 @@ bool MissWidgetManager::UnRegWidgetFactory( MissWidgetFactoryBase* pFunc )
     return true;
 }
 
-void MissWidgetManager::CreateWidget( const wxString& strGUID, int nWidgetId, const DTD::SWidgetPara& data )
+void MissWidgetManager::GenerateWidget( const wxString& strGUID, int nWidgetId, const DTD::SWidgetPara& data )
 {
     MissPluginBase* pPlugin;
     if(MissPluginManager::Instance().GetPluginByGuid(strGUID, pPlugin))
@@ -86,7 +88,6 @@ void MissWidgetManager::GenerateWidget( MissWidgetFactoryBase* pBase, int nWidge
     {
         shared_ptr<ImplMissWidget> p(new ImplMissWidget(pFunc));
         p->SetData(data);
-        p->SetRunID(m_pImpl->icRunWidget());
         p->SetWidgetID(nWidgetId);
         m_pImpl->vecRunWidgets.push_back(p);
         m_pImpl->mapWidgetId.insert(std::make_pair(p->GetRunID(), pBase));
@@ -186,5 +187,44 @@ bool MissWidgetManager::UnloadPlugin( MissPluginBase* pPluginBase )
     }
 
     return true;
+}
+
+void MissWidgetManager::LoadRunWidget()
+{
+    std::vector<RunWidgetData> vecRunWidgets;
+    MissWidgetsDAL::Instance().LoadRunWidgets(vecRunWidgets);
+    for (std::vector<RunWidgetData>::const_iterator citor = vecRunWidgets.begin();
+        citor != vecRunWidgets.end(); ++citor)
+    {
+        GenerateWidget(citor->strGuid, citor->nWidgetId, citor->sWidgetPara);
+    }
+}
+
+void MissWidgetManager::SaveRunWidget()
+{
+    std::vector<RunWidgetData> vecRunWidgets(m_pImpl->vecRunWidgets.size());
+    for (vector<shared_ptr<ImplMissWidget> >::size_type ix = 0;
+        ix != m_pImpl->vecRunWidgets.size(); ++ix)
+    {
+        MissWidgetFactoryBase* pBase(NULL);
+        if(GetFactoryByRunId(m_pImpl->vecRunWidgets[ix]->GetRunID(), pBase))
+        {
+            vecRunWidgets[ix].strGuid = GetPluginBase(pBase)->GetPluginGUID();
+            vecRunWidgets[ix].nWidgetId = m_pImpl->vecRunWidgets[ix]->GetWidgetID();
+            m_pImpl->vecRunWidgets[ix]->GetData(vecRunWidgets[ix].sWidgetPara);
+        }
+    }
+    MissWidgetsDAL::Instance().SaveRunWidgets(vecRunWidgets);
+}
+
+void MissWidgetManager::CreateWidget( MissWidgetFactoryBase* pBase, int nWidgetId )
+{
+    MissPluginBase* pPlugin = GetPluginBase(pBase);
+    if (pPlugin)
+    {
+        DTD::SWidgetPara data;
+        MissWidgetsDAL::Instance().NewRunWidget(pPlugin->GetPluginGUID(), nWidgetId, data);
+        GenerateWidget(pBase, nWidgetId, data);
+    }
 }
 

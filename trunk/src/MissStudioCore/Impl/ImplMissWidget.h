@@ -38,7 +38,6 @@ public:
     void GetData(DTD::SWidgetPara& data) const;
 
     unsigned int GetRunID() const;
-    void SetRunID(unsigned int uID);
 
     int  GetWidgetID() const;
     void SetWidgetID(int nID);

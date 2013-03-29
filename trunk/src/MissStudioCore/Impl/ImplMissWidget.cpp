@@ -62,26 +62,25 @@ void ImplMissWidget::OnRightUp( wxMouseEvent& event )
 
 void ImplMissWidget::SetData( const DTD::SWidgetPara& data )
 {
-    //m_pDraw = shared_ptr<ImplMissWidget>(new ImplMissWidget(this));
-    m_pFunc->InitWidget(data.m_vecPata, this);
-    m_ptDraw->SetScale(data.m_nZone / 100.0);
-    m_ptDraw->SetOpacity(data.m_nOpacity);
+    m_uRunID = data.m_uRunID;
+    m_ptDraw->SetScale(data.m_uZone / 100.0);
+    m_ptDraw->SetOpacity(data.m_uOpacity);
     m_ptFrame->Move(data.m_ptPos);
+    m_pFunc->InitWidget(data.m_vecPata, this);
 }
 
 void ImplMissWidget::GetData( DTD::SWidgetPara& data ) const
 {
-
+    data.m_uRunID   = m_uRunID;
+    data.m_uZone    = m_ptDraw->GetScale() * 100;
+    data.m_uOpacity = m_ptDraw->GetOpacity();
+    data.m_ptPos    = m_ptFrame->GetPosition();
+    m_pFunc->GetWidgetParas(data.m_vecPata);
 }
 
 unsigned int ImplMissWidget::GetRunID() const
 {
     return m_uRunID;
-}
-
-void ImplMissWidget::SetRunID( unsigned int uID )
-{
-    m_uRunID = uID;
 }
 
 void ImplMissWidget::GetPos( wxPoint &pt ) const
