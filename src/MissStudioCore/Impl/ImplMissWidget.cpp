@@ -2,10 +2,10 @@
 
 #include "../Widget/ManualDraw.h"
 #include "../Common/WidgetDef.h"
-#include <wx/frame.h>
-#include "MissAPI/plugin/MissWidgetFuncBase.h"
 #include "../UI/MissCoreFrame.h"
-
+#include "../BLL/MissWidgetManager.h"
+#include "MissAPI/plugin/MissWidgetFuncBase.h"
+#include "../UI/MissWidgetMenu.h"
 
 ImplMissWidget::ImplMissWidget(MissWidgetFuncBase* pFunc)
 : m_pFunc(pFunc)
@@ -27,7 +27,7 @@ ImplMissWidget::~ImplMissWidget()
 
 void ImplMissWidget::CloseWidget()
 {
-    throw std::exception("The method or operation is not implemented.");
+    MissWidgetManager::Instance().DelRunWidget(m_uRunID);
 }
 
 wxFrame* ImplMissWidget::GetFrame() const
@@ -57,7 +57,8 @@ void ImplMissWidget::OnLeftDown( wxMouseEvent& event )
 
 void ImplMissWidget::OnRightUp( wxMouseEvent& event )
 {
-    m_ptFrame->Raise();
+    std::shared_ptr<wxMenu> ptMenu = MissWidgetMenu::Instance().GetMenu(this);
+    m_ptFrame->PopupMenu(ptMenu.get());
 }
 
 void ImplMissWidget::SetData( const DTD::SWidgetPara& data )
@@ -121,5 +122,15 @@ int ImplMissWidget::GetWidgetID() const
 void ImplMissWidget::SetWidgetID( int nID )
 {
     m_nWidgetID = nID;
+}
+
+void ImplMissWidget::PreClose()
+{
+    m_pFunc->PreClose();
+}
+
+void ImplMissWidget::UpdateUI()
+{
+    m_pFunc->UpdateUI();
 }
 

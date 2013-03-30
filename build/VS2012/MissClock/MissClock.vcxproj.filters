@@ -69,11 +69,11 @@
     <ClCompile Include="..\..\..\src\MissClock\DAL\MissXML.cpp">
       <Filter>Source Files\DAL</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\src\MissClock\Impl\MissWidgetRefresh.cpp">
-      <Filter>Source Files\Impl</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\src\MissClock\BLL\MissWidgetFuncMgr.cpp">
       <Filter>Source Files\BLL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\MissClock\Common\MissGlobal.cpp">
+      <Filter>Source Files\Common</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -92,11 +92,14 @@
     <ClInclude Include="..\..\..\src\MissClock\DAL\MissXML.h">
       <Filter>Header Files\DAL</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\src\MissClock\Impl\MissWidgetRefresh.h">
-      <Filter>Header Files\Impl</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\src\MissClock\BLL\MissWidgetFuncMgr.h">
       <Filter>Header Files\BLL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\MissClock\Common\MissGlobal.h">
+      <Filter>Header Files\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\MissClock\Impl\MissWidgetRefresh.hpp">
+      <Filter>Header Files\Impl</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

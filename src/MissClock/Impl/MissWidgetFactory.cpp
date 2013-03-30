@@ -1,17 +1,14 @@
 #include "MissWidgetFactory.h"
 #include "MissClockWidgetFunc.h"
-//#include "MissAPI\interface\IMissWidgetMgr.h"
 #include "MissAPI\interface\IMissMain.h"
-#include "MissAPI\interface\IMissTimer.h"
-#include "MissWidgetRefresh.h"
 #include "..\BLL\MissWidgetFuncMgr.h"
 #include "..\DAL\MissXML.h"
 #include "..\BLL\MissSkin.h"
+#include "..\Common\MissGlobal.h"
 
 using std::tr1::shared_ptr;
 
-MissWidgetFactory::MissWidgetFactory( const std::tr1::shared_ptr<IMissMain>& pMissMain )
-: m_pMissMain(pMissMain)
+MissWidgetFactory::MissWidgetFactory()
 {
 
 }
@@ -24,7 +21,7 @@ MissWidgetFuncBase* MissWidgetFactory::CreateWidgetFunc( int nWidgetId )
     case WT_CLOCK:
         {
             std::tr1::shared_ptr<MissSkin> pSkin(new MissSkin);
-            wxString strPath = m_pMissMain->GetPluginPath();
+            wxString strPath = MissGlobal::IMain->GetPluginPath();
             MissXML::LoadSkin(pSkin.get(), strPath + wxT("ClockSkin/Default/"));
             pRet = new MissClockWidgetFunc(pSkin);
         }
@@ -49,12 +46,7 @@ void MissWidgetFactory::GetWidgetName( int nWidgetId, wxString& strWidgetName )
 
 void MissWidgetFactory::CreateSuccessed( MissWidgetFuncBase* pWidgetFunc )
 {
-    if (shared_ptr<IMissTimer> pt = m_pMissMain->QueryIF<IMissTimer>(IF_TIMER))
-    {
-        MissWidgetRefreash* pRefreash = new MissWidgetRefreash(pWidgetFunc);
-        pt->RegSecTimer(pRefreash);
-        MissWidgetFuncMgr::Instance().SaveFunc(shared_ptr<MissWidgetFuncBase>(pWidgetFunc),
-            shared_ptr<MissTimerFuncBase>(pRefreash));
-    }
+    MissWidgetFuncMgr::Instance().AddClockWidget(static_cast<MissClockWidgetFunc*>(pWidgetFunc));
+
 }
 

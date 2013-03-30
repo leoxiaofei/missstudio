@@ -9,6 +9,7 @@ class wxSize;
 
 INTERFACE_BEGIN(IMissWidget)
 
+    IDEF( unsigned int GetRunID() const )
     IDEF( void CloseWidget() )
     IDEF( wxFrame* GetFrame() const )
     IDEF( void  SetSize(const wxSize& size) )

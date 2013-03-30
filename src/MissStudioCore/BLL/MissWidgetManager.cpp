@@ -2,7 +2,6 @@
 
 #include "MissAPI/plugin/MissWidgetFactoryBase.h"
 #include "../Common/MissFuncFinder.hpp"
-#include "../Common/IdCreater.hpp"
 #include "../Impl/ImplMissWidget.h"
 #include "MissPluginManager.h"
 
@@ -10,21 +9,39 @@
 #include <iostream>
 #include <algorithm>
 #include "../DAL/MissWidgetsDAL.h"
-#include "../../../include/MissAPI/plugin/MissPluginBase.h"
+#include "MissAPI/plugin/MissPluginBase.h"
 
 using std::tr1::shared_ptr;
 using std::vector;
 using std::map;
 
+DEFINE_LOCAL_EVENT_TYPE(wxEVT_RUNNINGWIDGET_CHANGED);
+
+class FindImplMissWidget
+{
+public:
+    FindImplMissWidget(unsigned int uRunId)
+    : m_uRunId(uRunId)
+    {}
+
+    bool operator()(const shared_ptr<ImplMissWidget>& ptWidget) const
+    {
+        return ptWidget->GetRunID() == m_uRunId;
+    }
+
+private:
+    unsigned int m_uRunId;
+};
+
 class MissWidgetManager::Impl
 {
 public:
-    Impl():icRunWidget(0){}
+    Impl(){}
     vector<shared_ptr<WidgetRelation> >        vecWidgets;
     MissFuncFinder<MissWidgetFactoryBase>      funcFinder;
     vector<shared_ptr<ImplMissWidget> >        vecRunWidgets;
     map<unsigned int, MissWidgetFactoryBase*>  mapWidgetId;
-    IdCreater<unsigned int>                    icRunWidget;
+    wxEvtHandler                               hHandler;
 };
 
 MissWidgetManager::MissWidgetManager()
@@ -93,6 +110,8 @@ void MissWidgetManager::GenerateWidget( MissWidgetFactoryBase* pBase, int nWidge
         m_pImpl->mapWidgetId.insert(std::make_pair(p->GetRunID(), pBase));
         pBase->CreateSuccessed(pFunc);
         p->GetFrame()->Show();
+        p->UpdateUI();
+        SendRunWidgetChanged();
     }
 }
 
@@ -167,16 +186,7 @@ bool MissWidgetManager::UnloadPlugin( MissPluginBase* pPluginBase )
     
     for (std::vector<unsigned int>::size_type ix = 0; ix != vecRunId.size(); ++ix)
     {
-        for(vector<shared_ptr<ImplMissWidget> >::iterator itor = m_pImpl->vecRunWidgets.begin();
-            itor != m_pImpl->vecRunWidgets.end(); ++itor)
-        {
-            if ((*itor)->GetRunID() == vecRunId[ix])
-            {
-                m_pImpl->vecRunWidgets.erase(itor);
-                break;
-            }
-        }
-        m_pImpl->mapWidgetId.erase(m_pImpl->mapWidgetId.find(vecRunId[ix]));
+        CloseRunWidget(vecRunId[ix]);
     }
 
     //////////////////////////////////////////////////////////////////////////
@@ -191,10 +201,10 @@ bool MissWidgetManager::UnloadPlugin( MissPluginBase* pPluginBase )
 
 void MissWidgetManager::LoadRunWidget()
 {
-    std::vector<RunWidgetData> vecRunWidgets;
-    MissWidgetsDAL::Instance().LoadRunWidgets(vecRunWidgets);
-    for (std::vector<RunWidgetData>::const_iterator citor = vecRunWidgets.begin();
-        citor != vecRunWidgets.end(); ++citor)
+    std::vector<RunWidgetData> vecRunDatas;
+    MissWidgetsDAL::Instance().LoadRunWidgets(vecRunDatas);
+    for (std::vector<RunWidgetData>::const_iterator citor = vecRunDatas.begin();
+        citor != vecRunDatas.end(); ++citor)
     {
         GenerateWidget(citor->strGuid, citor->nWidgetId, citor->sWidgetPara);
     }
@@ -202,19 +212,19 @@ void MissWidgetManager::LoadRunWidget()
 
 void MissWidgetManager::SaveRunWidget()
 {
-    std::vector<RunWidgetData> vecRunWidgets(m_pImpl->vecRunWidgets.size());
+    std::vector<RunWidgetData> vecRunDatas(m_pImpl->vecRunWidgets.size());
     for (vector<shared_ptr<ImplMissWidget> >::size_type ix = 0;
         ix != m_pImpl->vecRunWidgets.size(); ++ix)
     {
         MissWidgetFactoryBase* pBase(NULL);
         if(GetFactoryByRunId(m_pImpl->vecRunWidgets[ix]->GetRunID(), pBase))
         {
-            vecRunWidgets[ix].strGuid = GetPluginBase(pBase)->GetPluginGUID();
-            vecRunWidgets[ix].nWidgetId = m_pImpl->vecRunWidgets[ix]->GetWidgetID();
-            m_pImpl->vecRunWidgets[ix]->GetData(vecRunWidgets[ix].sWidgetPara);
+            vecRunDatas[ix].strGuid = GetPluginBase(pBase)->GetPluginGUID();
+            vecRunDatas[ix].nWidgetId = m_pImpl->vecRunWidgets[ix]->GetWidgetID();
+            m_pImpl->vecRunWidgets[ix]->GetData(vecRunDatas[ix].sWidgetPara);
         }
     }
-    MissWidgetsDAL::Instance().SaveRunWidgets(vecRunWidgets);
+    MissWidgetsDAL::Instance().SaveRunWidgets(vecRunDatas);
 }
 
 void MissWidgetManager::CreateWidget( MissWidgetFactoryBase* pBase, int nWidgetId )
@@ -226,5 +236,35 @@ void MissWidgetManager::CreateWidget( MissWidgetFactoryBase* pBase, int nWidgetI
         MissWidgetsDAL::Instance().NewRunWidget(pPlugin->GetPluginGUID(), nWidgetId, data);
         GenerateWidget(pBase, nWidgetId, data);
     }
+}
+
+void MissWidgetManager::DelRunWidget( unsigned int uRunId )
+{
+    CloseRunWidget(uRunId);
+    MissWidgetsDAL::Instance().DelRunWidget(uRunId);
+}
+
+void MissWidgetManager::CloseRunWidget( unsigned int uRunId )
+{
+    vector<shared_ptr<ImplMissWidget> >::iterator iFind = 
+        std::find_if(m_pImpl->vecRunWidgets.begin(), m_pImpl->vecRunWidgets.end(), 
+        FindImplMissWidget(uRunId));
+    (*iFind)->PreClose();
+    m_pImpl->vecRunWidgets.erase(iFind);
+    m_pImpl->mapWidgetId.erase(m_pImpl->mapWidgetId.find(uRunId));
+
+    SendRunWidgetChanged();
+}
+
+wxEvtHandler* MissWidgetManager::GetHandle() const
+{
+    return &m_pImpl->hHandler;
+}
+
+void MissWidgetManager::SendRunWidgetChanged()
+{
+    ///发送一个数据改变消息
+    wxCommandEvent send(wxEVT_RUNNINGWIDGET_CHANGED);
+    m_pImpl->hHandler.AddPendingEvent(send);
 }
 
