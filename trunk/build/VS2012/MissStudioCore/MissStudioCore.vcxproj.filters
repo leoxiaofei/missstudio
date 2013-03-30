@@ -153,6 +153,9 @@
     <ClCompile Include="..\..\..\src\MissStudioCore\Impl\ImplMissSharedMemory.cpp">
       <Filter>Source Files\Impl</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\src\MissStudioCore\UI\MissWidgetMenu.cpp">
+      <Filter>Source Files\UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\src\MissStudioCore\UI\MissCoreFrame.h">
@@ -259,6 +262,9 @@
     </ClInclude>
     <ClInclude Include="..\..\..\src\MissStudioCore\Impl\ImplMissSharedMemory.h">
       <Filter>Header Files\Impl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\MissStudioCore\UI\MissWidgetMenu.h">
+      <Filter>Header Files\UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

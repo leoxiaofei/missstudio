@@ -9,7 +9,7 @@ class IMissMain;
 class MissWidgetFactory : public MissWidgetFactoryBase
 {
 public:
-    MissWidgetFactory(const std::tr1::shared_ptr<IMissMain>& pMissMain);
+    MissWidgetFactory();
     virtual ~MissWidgetFactory() {};
 
     enum WIDGET_TYPE { WT_CLOCK };
@@ -19,7 +19,7 @@ public:
     virtual void GetWidgetName( int nWidgetId, wxString& strWidgetName );
 
 private:
-    std::tr1::shared_ptr<IMissMain> m_pMissMain;
+
 };
 
 

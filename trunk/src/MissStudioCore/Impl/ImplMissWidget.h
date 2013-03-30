@@ -19,11 +19,12 @@ public:
     ImplMissWidget(MissWidgetFuncBase* pFunc);
     ~ImplMissWidget();
 
-    virtual wxFrame* GetFrame() const;
-    virtual wxDC*    DrawBegin();
-    virtual void     DrawEnd( wxDC* pDc );
-    virtual void     CloseWidget();
-    virtual void     SetSize( const wxSize& size );
+    virtual wxFrame*     GetFrame() const;
+    virtual wxDC*        DrawBegin();
+    virtual void         DrawEnd( wxDC* pDc );
+    virtual void         CloseWidget();
+    virtual void         SetSize( const wxSize& size );
+    virtual unsigned int GetRunID() const;
 
     void GetPos(wxPoint& pt) const;
     void SetPos(const wxPoint& pt);
@@ -37,10 +38,11 @@ public:
     void SetData(const DTD::SWidgetPara& data);
     void GetData(DTD::SWidgetPara& data) const;
 
-    unsigned int GetRunID() const;
-
     int  GetWidgetID() const;
     void SetWidgetID(int nID);
+
+    void PreClose();
+    void UpdateUI();
 
 protected:
     virtual void OnLeftDown( wxMouseEvent& event );

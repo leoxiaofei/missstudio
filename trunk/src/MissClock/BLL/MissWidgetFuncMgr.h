@@ -3,8 +3,7 @@
 
 #include <memory>
 
-class MissWidgetFuncBase;
-class MissTimerFuncBase;
+class MissClockWidgetFunc;
 
 class MissWidgetFuncMgr
 {
@@ -16,8 +15,9 @@ public:
         return theSingleton;
     }
 
-    void SaveFunc(const std::tr1::shared_ptr<MissWidgetFuncBase>& pFunc,
-        const std::tr1::shared_ptr<MissTimerFuncBase>& pRefreash);
+    void AddClockWidget(MissClockWidgetFunc* pClockFunc);
+
+    void RemoveWidget(unsigned int uRunId);
 
 private:
     MissWidgetFuncMgr();

@@ -96,8 +96,6 @@ void MissCoreFrame::OnInitWindow( wxEvent& event )
     ///开始时钟
     m_pImpl->pMainTimer->Start(1000);
 
-//     DTD::SWidgetPara data;
-//     MissWidgetManager::Instance().CreateWidget(wxT("DAD2F0D0-3C45-49EF-933D-0680C5D8471D"), 0, data);
 }
 
 void MissCoreFrame::InitPlugin()
@@ -115,21 +113,13 @@ void MissCoreFrame::OnClose( wxCloseEvent& event )
     ///TODO: 保存数据
     MissWidgetManager::Instance().SaveRunWidget();
 
-//     ///关闭窗口
 //     for (wxWindowList::compatibility_iterator it = wxTopLevelWindows.GetFirst();
 //         it; )
-//     {
-//         wxWindow* win = it->GetData();
-//         it = it->GetNext();
-//         if (win->IsShown())
-//         {
-//             delete win;
-//         }
-//     }
-// 
+
     ///关闭所有功能
     MissPluginManager::Instance().ClosePluginAll();
 
+    ///关闭窗口
     wxWindowList& list = GetChildren();
     while(!list.IsEmpty())
     {

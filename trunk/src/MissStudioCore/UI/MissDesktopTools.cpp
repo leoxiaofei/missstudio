@@ -29,7 +29,7 @@ MissDesktopTools::MissDesktopTools( wxWindow* parent )
 
 MissDesktopTools::~MissDesktopTools()
 {
-
+    UnbindEvent();
 }
 
 void MissDesktopTools::InitUi()
@@ -71,6 +71,13 @@ void MissDesktopTools::InitUi()
 void MissDesktopTools::BindEvent()
 {
     m_pImpl->pInstalledList->Bind(wxEVT_COMMAND_DATAVIEW_ITEM_ACTIVATED, &MissDesktopTools::DClickInstalledItem, this);
+    MissWidgetManager::Instance().GetHandle()->Bind(wxEVT_RUNNINGWIDGET_CHANGED, &MissDesktopTools::RunWidgetDataChanged, this);
+}
+
+void MissDesktopTools::UnbindEvent()
+{
+    m_pImpl->pInstalledList->Unbind(wxEVT_COMMAND_DATAVIEW_ITEM_ACTIVATED, &MissDesktopTools::DClickInstalledItem, this);
+    MissWidgetManager::Instance().GetHandle()->Unbind(wxEVT_RUNNINGWIDGET_CHANGED, &MissDesktopTools::RunWidgetDataChanged, this);
 }
 
 void MissDesktopTools::DClickInstalledItem( wxDataViewEvent& event )
@@ -82,9 +89,13 @@ void MissDesktopTools::DClickInstalledItem( wxDataViewEvent& event )
     if(m_pImpl->ptInstalledModel->GetDataByItem(item, pBase, nWigetId))
     {
         MissWidgetManager::Instance().CreateWidget(pBase, nWigetId);
-        m_pImpl->ptRunningModel->Reset(MissWidgetManager::Instance().GetRunningWidget().size());
     }
-
 }
+
+void MissDesktopTools::RunWidgetDataChanged( wxEvent& event )
+{
+    m_pImpl->ptRunningModel->Reset(MissWidgetManager::Instance().GetRunningWidget().size());
+}
+
 
 

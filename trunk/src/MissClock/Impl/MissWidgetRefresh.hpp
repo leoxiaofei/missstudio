@@ -3,18 +3,19 @@
 
 #include "MissAPI\plugin\MissTimerFuncBase.h"
 
-class MissWidgetFuncBase;
-
+template <class T>
 class MissWidgetRefreash : public MissTimerFuncBase
 {
 public:
-    MissWidgetRefreash(MissWidgetFuncBase* pWidget);
-    virtual ~MissWidgetRefreash();
+    MissWidgetRefreash(T* pWidget):m_pWidget(pWidget){}
 
-    virtual void TimeUp( const tm* tmNow );
+    virtual void TimeUp( const tm* tmNow )
+    {
+        m_pWidget->UpdateUI(tmNow);
+    }
 
 private:
-    MissWidgetFuncBase* m_pWidget;
+    T* m_pWidget;
 };
 
 

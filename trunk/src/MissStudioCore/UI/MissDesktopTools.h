@@ -7,6 +7,7 @@
 #include <memory>
 
 class wxDataViewEvent;
+class wxCommandEvent;
 
 class MissDesktopTools : public DesktopToolsBase
 {
@@ -18,8 +19,10 @@ class MissDesktopTools : public DesktopToolsBase
 protected:
     void InitUi();
     void BindEvent();
+    void UnbindEvent();
 
     void DClickInstalledItem(wxDataViewEvent& event);
+    void RunWidgetDataChanged(wxEvent& event);
 
 private:
     std::tr1::shared_ptr<Impl> m_pImpl;

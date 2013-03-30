@@ -88,21 +88,22 @@
   <ItemGroup>
     <ClCompile Include="..\..\..\src\MissClock\BLL\MissSkin.cpp" />
     <ClCompile Include="..\..\..\src\MissClock\BLL\MissWidgetFuncMgr.cpp" />
+    <ClCompile Include="..\..\..\src\MissClock\Common\MissGlobal.cpp" />
     <ClCompile Include="..\..\..\src\MissClock\DAL\MissXML.cpp" />
     <ClCompile Include="..\..\..\src\MissClock\dllmain.cpp" />
     <ClCompile Include="..\..\..\src\MissClock\Impl\MissPluginMain.cpp" />
     <ClCompile Include="..\..\..\src\MissClock\Impl\MissClockWidgetFunc.cpp" />
     <ClCompile Include="..\..\..\src\MissClock\Impl\MissWidgetFactory.cpp" />
-    <ClCompile Include="..\..\..\src\MissClock\Impl\MissWidgetRefresh.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\src\MissClock\BLL\MissSkin.h" />
     <ClInclude Include="..\..\..\src\MissClock\BLL\MissWidgetFuncMgr.h" />
+    <ClInclude Include="..\..\..\src\MissClock\Common\MissGlobal.h" />
     <ClInclude Include="..\..\..\src\MissClock\DAL\MissXML.h" />
     <ClInclude Include="..\..\..\src\MissClock\Impl\MissPluginMain.h" />
     <ClInclude Include="..\..\..\src\MissClock\Impl\MissClockWidgetFunc.h" />
     <ClInclude Include="..\..\..\src\MissClock\Impl\MissWidgetFactory.h" />
-    <ClInclude Include="..\..\..\src\MissClock\Impl\MissWidgetRefresh.h" />
+    <ClInclude Include="..\..\..\src\MissClock\Impl\MissWidgetRefresh.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

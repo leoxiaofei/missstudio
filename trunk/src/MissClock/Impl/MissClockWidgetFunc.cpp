@@ -2,6 +2,8 @@
 #include "..\BLL\MissSkin.h"
 #include "MissAPI\plugin\MissWidgetFuncBase.h"
 #include "MissAPI\interface\IMissWidget.h"
+#include "MissAPI\interface\IMissWidget.h"
+#include "..\BLL\MissWidgetFuncMgr.h"
 
 
 MissClockWidgetFunc::MissClockWidgetFunc(const std::tr1::shared_ptr<MissSkin>& pSkin)
@@ -19,7 +21,7 @@ void MissClockWidgetFunc::SetWidgetPara( const CustomPara& para )
     GetWidget()->SetSize(m_pSkin->GetBGBitmap().GetSize());
 }
 
-void MissClockWidgetFunc::GetWidgetParas( CustomPara& para )
+void MissClockWidgetFunc::GetWidgetParas( CustomPara& para ) const
 {
 }
 
@@ -30,6 +32,18 @@ void MissClockWidgetFunc::UpdateUI(const tm* tmNow)
     GetWidget()->DrawEnd(dc);
 }
 
+void MissClockWidgetFunc::UpdateUI()
+{
+    time_t ttNow = time(NULL);
+    UpdateUI(localtime(&ttNow));
+}
+
 void MissClockWidgetFunc::PreClose()
 {
+    MissWidgetFuncMgr::Instance().RemoveWidget(GetRunID());
+}
+
+unsigned int MissClockWidgetFunc::GetRunID() const
+{
+    return GetWidget()->GetRunID();
 }

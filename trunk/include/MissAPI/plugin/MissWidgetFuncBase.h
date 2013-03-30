@@ -16,12 +16,12 @@ class MissWidgetFuncBase
 public:
     virtual ~MissWidgetFuncBase() {}
 
-    virtual void UpdateUI(const tm* tmNow) {};
+    virtual void UpdateUI() = 0;
 
 protected:
-    IMissWidget* GetWidget() { return m_pWidget; }
+    IMissWidget* GetWidget() const { return m_pWidget; }
     virtual void SetWidgetPara(const CustomPara& para) {};
-    virtual void GetWidgetParas(CustomPara& para) {};
+    virtual void GetWidgetParas(CustomPara& para) const {};
     virtual void PreClose() {};
 
 private:
@@ -35,5 +35,7 @@ private:
     IMissWidget* m_pWidget;
     friend class ImplMissWidget;
 };
+
+
 
 #endif // MISSWIDGETFUNCBASE_H

@@ -11,11 +11,15 @@ public:
     MissClockWidgetFunc(const std::tr1::shared_ptr<MissSkin>& pSkin);
     ~MissClockWidgetFunc();
 
+    virtual void UpdateUI();
+
     void UpdateUI(const tm* tmNow);
+
+    unsigned int GetRunID() const;
 
 protected:
     virtual void SetWidgetPara( const CustomPara& para );
-    virtual void GetWidgetParas( CustomPara& para );
+    virtual void GetWidgetParas( CustomPara& para ) const;
     virtual void PreClose();
 
 private:

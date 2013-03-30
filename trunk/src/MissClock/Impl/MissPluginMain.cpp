@@ -7,6 +7,7 @@
 #include "MissAPI/interface/IMissStorage.h"
 #include "MissAPI/interface/IMissWidgetMgr.h"
 #include "MissWidgetFactory.h"
+#include "../Common/MissGlobal.h"
 
 
 using std::tr1::shared_ptr;
@@ -31,9 +32,10 @@ MissPluginMain::~MissPluginMain()
 
 void MissPluginMain::LoadPlugin()
 {
+    MissGlobal::IMain = GetMain();
     if (shared_ptr<IMissWidgetMgr> pt = GetMain()->QueryIF<IMissWidgetMgr>(IF_WIDGETMANAGER))
     {
-        m_pImpl->pWidgetFactory = shared_ptr<MissWidgetFactory>(new MissWidgetFactory(GetMain()));
+        m_pImpl->pWidgetFactory = shared_ptr<MissWidgetFactory>(new MissWidgetFactory);
         WidgetMajorSet widgetSet(1);
         widgetSet[0].nWidgetId = MissWidgetFactory::WT_CLOCK;
         pt->RegWidgetFactory(m_pImpl->pWidgetFactory.get(), widgetSet);
