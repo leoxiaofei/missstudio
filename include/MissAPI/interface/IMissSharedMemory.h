@@ -5,12 +5,13 @@
 
 class MissSharedMemoryBase;
 class wxVariant;
+class wxString;
 
 INTERFACE_BEGIN(IMissSharedMemory)
-    IDEF( void RegSharedMemory(MissSharedMemoryBase* pPlugin)     )
-    IDEF( void UnRegSharedMemory(MissSharedMemoryBase* pPlugin)   )
-    IDEF( bool operator ()(wxVariant& varData) const              )
-    IDEF( bool operator = (const wxVariant& varData)              )
+    IDEF( void RegSharedMemory(const wxString& strMemoryName, MissSharedMemoryBase* pPlugin)     )
+    IDEF( void UnRegSharedMemory(const wxString& strMemoryName, MissSharedMemoryBase* pPlugin)   )
+    IDEF( bool GetVariant(const wxString& strMemoryName, wxVariant& varData)                     )
+    IDEF( bool SetVariant(const wxString& strMemoryName, const wxVariant& varData)               )
 
 INTERFACE_END
 
