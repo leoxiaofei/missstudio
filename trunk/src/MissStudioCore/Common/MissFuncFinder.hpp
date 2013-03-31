@@ -61,7 +61,7 @@ public:
         {
             if (itor->second == pPlugin)
             {
-                itor = m_mapPluginQuery.erase(iFind);
+                itor = m_mapPluginQuery.erase(itor);
             }
             else
             {

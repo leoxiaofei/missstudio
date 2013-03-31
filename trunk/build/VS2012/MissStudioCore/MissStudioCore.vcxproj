@@ -14,6 +14,7 @@
     <ClCompile Include="..\..\..\src\MissStudioCore\BLL\MissCoreConfig.cpp" />
     <ClCompile Include="..\..\..\src\MissStudioCore\BLL\MissFunctor.cpp" />
     <ClCompile Include="..\..\..\src\MissStudioCore\BLL\MissHotKeyManager.cpp" />
+    <ClCompile Include="..\..\..\src\MissStudioCore\BLL\MissMemoryManager.cpp" />
     <ClCompile Include="..\..\..\src\MissStudioCore\BLL\MissPluginManager.cpp" />
     <ClCompile Include="..\..\..\src\MissStudioCore\BLL\MissTimerManager.cpp" />
     <ClCompile Include="..\..\..\src\MissStudioCore\BLL\MissWidgetManager.cpp" />
@@ -47,6 +48,7 @@
     <ClInclude Include="..\..\..\src\MissStudioCore\BLL\MissCoreConfig.h" />
     <ClInclude Include="..\..\..\src\MissStudioCore\BLL\MissFunctor.h" />
     <ClInclude Include="..\..\..\src\MissStudioCore\BLL\MissHotKeyManager.h" />
+    <ClInclude Include="..\..\..\src\MissStudioCore\BLL\MissMemoryManager.h" />
     <ClInclude Include="..\..\..\src\MissStudioCore\BLL\MissPluginManager.h" />
     <ClInclude Include="..\..\..\src\MissStudioCore\BLL\MissTimerManager.h" />
     <ClInclude Include="..\..\..\src\MissStudioCore\BLL\MissWidgetManager.h" />

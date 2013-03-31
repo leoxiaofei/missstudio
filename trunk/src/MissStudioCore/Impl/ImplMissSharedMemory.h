@@ -13,13 +13,13 @@ public:
     ImplMissSharedMemory(MissPluginBase* pPlugMain);
     ~ImplMissSharedMemory();
 
-    virtual void RegSharedMemory( MissSharedMemoryBase* pPlugin );
-    virtual void UnRegSharedMemory( MissSharedMemoryBase* pPlugin );
+    virtual void RegSharedMemory( const wxString& strMemoryName, MissSharedMemoryBase* pPlugin );
+    virtual void UnRegSharedMemory( const wxString& strMemoryName, MissSharedMemoryBase* pPlugin );
 
-    virtual bool operator = ( const wxVariant& varData ) ;
-    virtual bool operator ()( wxVariant& varData );
-    //     virtual bool GetSharedMemory( wxVariant& strMemory ) const;
-//     virtual bool SetSharedMemory( const wxVariant& strMemory );
+    virtual bool GetVariant( const wxString& strMemoryName, wxVariant& varData );
+    virtual bool SetVariant( const wxString& strMemoryName, const wxVariant& varData );
+
+
 
 private:
     MissPluginBase* m_pPlugMain;

@@ -1,4 +1,5 @@
 #include "ImplMissSharedMemory.h"
+#include "..\BLL\MissMemoryManager.h"
 
 
 ImplMissSharedMemory::ImplMissSharedMemory(MissPluginBase* pPlugMain)
@@ -10,20 +11,23 @@ ImplMissSharedMemory::~ImplMissSharedMemory()
 {
 }
 
-void ImplMissSharedMemory::RegSharedMemory( MissSharedMemoryBase* pPlugin )
+void ImplMissSharedMemory::RegSharedMemory( const wxString& strMemoryName, MissSharedMemoryBase* pPlugin )
 {
+    MissMemoryManager::Instance().RegSharedMemory(m_pPlugMain, strMemoryName, pPlugin);
 }
 
-void ImplMissSharedMemory::UnRegSharedMemory( MissSharedMemoryBase* pPlugin )
+void ImplMissSharedMemory::UnRegSharedMemory( const wxString& strMemoryName, MissSharedMemoryBase* pPlugin )
 {
+    MissMemoryManager::Instance().UnRegSharedMemory(strMemoryName, pPlugin);
 }
 
-bool ImplMissSharedMemory::operator=( const wxVariant& varData )
+bool ImplMissSharedMemory::GetVariant( const wxString& strMemoryName, wxVariant& varData )
 {
-    return false;
+    return MissMemoryManager::Instance().GetVariant(m_pPlugMain, strMemoryName, varData);
 }
 
-bool ImplMissSharedMemory::operator()( wxVariant& varData )
+bool ImplMissSharedMemory::SetVariant( const wxString& strMemoryName, const wxVariant& varData )
 {
-    return false;
+    return MissMemoryManager::Instance().SetVariant(m_pPlugMain, strMemoryName, varData);
 }
+

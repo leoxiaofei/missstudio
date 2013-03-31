@@ -5,7 +5,7 @@ class MissSharedMemoryBase
 {
 public:
     virtual ~MissSharedMemoryBase(){};
-    virtual MemoryChanged(const wxString& strMemory) = 0;
+    virtual void MemoryChanged(const wxVariant& vMemory) = 0;
 
 private:
 
