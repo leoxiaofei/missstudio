@@ -18,6 +18,7 @@ namespace DTD
 
         ///小工具菜单起始ID
         CI_WIDGET_MENU_BEGIN,
+        CI_WIDGET_WINDOW_OPTION,
         CI_WIDGET_EXIT,
         CI_WIDGET_MENU_END = CI_WIDGET_MENU_BEGIN + 200,
 

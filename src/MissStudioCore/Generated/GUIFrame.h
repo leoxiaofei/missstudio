@@ -33,6 +33,10 @@ class wxKeyMonitorTextCtrl;
 #include <wx/textctrl.h>
 #include <wx/statbox.h>
 #include <wx/splitter.h>
+#include <wx/spinctrl.h>
+#include <wx/checkbox.h>
+#include <wx/slider.h>
+#include <wx/frame.h>
 
 ///////////////////////////////////////////////////////////////////////////
 
@@ -104,6 +108,45 @@ class DesktopToolsBase : public wxDialog
 			splMain->SetSashPosition( 195 );
 			splMain->Disconnect( wxEVT_IDLE, wxIdleEventHandler( DesktopToolsBase::splMainOnIdle ), NULL, this );
 		}
+	
+};
+
+///////////////////////////////////////////////////////////////////////////////
+/// Class WidgetOptionBase
+///////////////////////////////////////////////////////////////////////////////
+class WidgetOptionBase : public wxFrame 
+{
+	private:
+	
+	protected:
+		wxSpinCtrl* spinX;
+		wxSpinCtrl* spinY;
+		wxCheckBox* cbtnPin;
+		wxStaticText* lblZ;
+		wxChoice* choZ;
+		wxCheckBox* cbtnAllowZoom;
+		wxSlider* sldZoom;
+		wxCheckBox* cbtnShadow;
+		wxSlider* sldOpacity;
+		wxButton* btnClose;
+		
+		// Virtual event handlers, overide them in your derived class
+		virtual void OnSpinXCtrl( wxSpinEvent& event ) { event.Skip(); }
+		virtual void OnSpinYCtrl( wxSpinEvent& event ) { event.Skip(); }
+		virtual void OnCheckPinBox( wxCommandEvent& event ) { event.Skip(); }
+		virtual void OnChoZ( wxCommandEvent& event ) { event.Skip(); }
+		virtual void OnCheckAllowZoomBox( wxCommandEvent& event ) { event.Skip(); }
+		virtual void OnScrollZoomChanged( wxScrollEvent& event ) { event.Skip(); }
+		virtual void OnCheckShadowBox( wxCommandEvent& event ) { event.Skip(); }
+		virtual void OnScrollOpacityChanged( wxScrollEvent& event ) { event.Skip(); }
+		virtual void OnBtnCloseClick( wxCommandEvent& event ) { event.Skip(); }
+		
+	
+	public:
+		
+		WidgetOptionBase( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = _("设置"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( -1,-1 ), long style = wxCAPTION|wxCLOSE_BOX|wxSYSTEM_MENU|wxTAB_TRAVERSAL );
+		
+		~WidgetOptionBase();
 	
 };
 

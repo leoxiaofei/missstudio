@@ -51,7 +51,7 @@ MissCoreFrame::MissCoreFrame()
 , m_pImpl(new Impl)
 {
     m_pImpl->SetupUi(this);
-
+    Center();
     BindEvent();
 
     ///发送一个初始化消息

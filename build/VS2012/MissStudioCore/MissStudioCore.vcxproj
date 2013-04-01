@@ -40,6 +40,7 @@
     <ClCompile Include="..\..\..\src\MissStudioCore\UI\MissPluginOption.cpp" />
     <ClCompile Include="..\..\..\src\MissStudioCore\UI\MissTaskBarIcon.cpp" />
     <ClCompile Include="..\..\..\src\MissStudioCore\UI\MissWidgetMenu.cpp" />
+    <ClCompile Include="..\..\..\src\MissStudioCore\UI\MissWidgetOption.cpp" />
     <ClCompile Include="..\..\..\src\MissStudioCore\Widget\ILayeredDraw.cpp" />
     <ClCompile Include="..\..\..\src\MissStudioCore\Widget\ManualDraw.cpp" />
     <ClCompile Include="..\..\..\src\MissStudioCore\Widget\wxKeyMonitorTextCtrl.cpp" />
@@ -79,6 +80,7 @@
     <ClInclude Include="..\..\..\src\MissStudioCore\UI\MissPluginOption.h" />
     <ClInclude Include="..\..\..\src\MissStudioCore\UI\MissTaskBarIcon.h" />
     <ClInclude Include="..\..\..\src\MissStudioCore\UI\MissWidgetMenu.h" />
+    <ClInclude Include="..\..\..\src\MissStudioCore\UI\MissWidgetOption.h" />
     <ClInclude Include="..\..\..\src\MissStudioCore\Widget\ILayeredDraw.h" />
     <ClInclude Include="..\..\..\src\MissStudioCore\Widget\ManualDraw.h" />
     <ClInclude Include="..\..\..\src\MissStudioCore\Widget\wxKeyMonitorTextCtrl.h" />
