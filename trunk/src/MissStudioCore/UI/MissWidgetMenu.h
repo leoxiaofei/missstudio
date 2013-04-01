@@ -23,6 +23,7 @@ protected:
     void BindEvent();
     void UnbindEvent();
 
+    void OnMenuWidgetOption(wxCommandEvent& event);
     void OnMenuWidgetExit(wxCommandEvent& event);
 
 private:
