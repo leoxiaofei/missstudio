@@ -1,17 +1,16 @@
 #include "MissAutoInputThread.h"
 #include <wx/utils.h>
-#include "../Common/MissGlobal.h"
 //#define WINVER 0x0600
 #define _WIN32_WINNT 0x0500
 #include <windows.h>
 #include <iostream>
-//#include <atlconv.h>
 
 wxDEFINE_EVENT(wxEVT_COMMAND_AUTOINPUT_COMPLETED, wxThreadEvent);
 
-MissAutoInputThread::MissAutoInputThread(wxEvtHandler* pHandler)
+MissAutoInputThread::MissAutoInputThread(wxEvtHandler* pHandler, const wxString& strInput)
 : wxThread(wxTHREAD_DETACHED)
 , m_pHandler(pHandler)
+, m_strInput(strInput)
 {
     //ctor
 }
@@ -24,11 +23,11 @@ MissAutoInputThread::~MissAutoInputThread()
 wxThread::ExitCode MissAutoInputThread::Entry()
 {
     wxMilliSleep(500);
-    int nCount = MissGlobal::strClipbrd.length();
+    int nCount = m_strInput.length();
     for(int ix = 0; ix != nCount; ++ix)
     {
         //SendUnicode(MissGlobal::strClipbrd[ix]);
-        SendKey(MissGlobal::strClipbrd[ix]);
+        SendKey(m_strInput[ix]);
     }
     wxQueueEvent(m_pHandler, new wxThreadEvent(wxEVT_COMMAND_AUTOINPUT_COMPLETED));
     return (wxThread::ExitCode)0;     // success

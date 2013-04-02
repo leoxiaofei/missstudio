@@ -9,7 +9,7 @@ wxDECLARE_EVENT(wxEVT_COMMAND_AUTOINPUT_COMPLETED, wxThreadEvent);
 class MissAutoInputThread : public wxThread
 {
     public:
-        MissAutoInputThread(wxEvtHandler* pHandler);
+        MissAutoInputThread(wxEvtHandler* pHandler, const wxString& strInput);
         virtual ~MissAutoInputThread();
 
         static void SendUnicode(wchar_t wch);
@@ -20,6 +20,7 @@ class MissAutoInputThread : public wxThread
 
     private:
         wxEvtHandler* m_pHandler;
+		wxString      m_strInput;
 };
 
 #endif // MISSAUTOINPUTTHREAD_H

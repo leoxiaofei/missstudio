@@ -196,6 +196,10 @@
 					>
 				</File>
 				<File
+					RelativePath="..\..\..\src\MissStudioCore\BLL\MissMemoryManager.cpp"
+					>
+				</File>
+				<File
 					RelativePath="..\..\..\src\MissStudioCore\BLL\MissPluginManager.cpp"
 					>
 				</File>
@@ -319,6 +323,14 @@
 					RelativePath="..\..\..\src\MissStudioCore\UI\MissTaskBarIcon.cpp"
 					>
 				</File>
+				<File
+					RelativePath="..\..\..\src\MissStudioCore\UI\MissWidgetMenu.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\src\MissStudioCore\UI\MissWidgetOption.cpp"
+					>
+				</File>
 			</Filter>
 			<Filter
 				Name="Widget"
@@ -373,6 +385,10 @@
 				</File>
 				<File
 					RelativePath="..\..\..\src\MissStudioCore\BLL\MissHotKeyManager.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\src\MissStudioCore\BLL\MissMemoryManager.h"
 					>
 				</File>
 				<File
@@ -521,6 +537,14 @@
 				</File>
 				<File
 					RelativePath="..\..\..\src\MissStudioCore\UI\MissTaskBarIcon.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\src\MissStudioCore\UI\MissWidgetMenu.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\src\MissStudioCore\UI\MissWidgetOption.h"
 					>
 				</File>
 			</Filter>

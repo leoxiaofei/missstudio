@@ -33,7 +33,7 @@ MissWidgetMenu::~MissWidgetMenu()
     UnbindEvent();
 }
 
-std::shared_ptr<wxMenu> MissWidgetMenu::GetMenu( ImplMissWidget* pWidgets )
+std::tr1::shared_ptr<wxMenu> MissWidgetMenu::GetMenu( ImplMissWidget* pWidgets )
 {
     m_pImpl->pWidgets = pWidgets;
     wxMenu* pRet = new wxMenu;
@@ -42,7 +42,7 @@ std::shared_ptr<wxMenu> MissWidgetMenu::GetMenu( ImplMissWidget* pWidgets )
     pRet->Append(CI_WIDGET_WINDOW_OPTION, wxT("ÉèÖÃ"));
     pRet->Append(CI_WIDGET_EXIT, wxT("ÍË³ö(&x)"));
     pRet->SetNextHandler(&m_pImpl->hHandle);
-    return std::shared_ptr<wxMenu>(pRet);
+	return std::tr1::shared_ptr<wxMenu>(pRet);
 }
 
 void MissWidgetMenu::BindEvent()

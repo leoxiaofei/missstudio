@@ -57,7 +57,7 @@ void ImplMissWidget::OnLeftDown( wxMouseEvent& event )
 
 void ImplMissWidget::OnRightUp( wxMouseEvent& event )
 {
-    std::shared_ptr<wxMenu> ptMenu = MissWidgetMenu::Instance().GetMenu(this);
+	std::tr1::shared_ptr<wxMenu> ptMenu = MissWidgetMenu::Instance().GetMenu(this);
     m_ptFrame->PopupMenu(ptMenu.get());
 }
 

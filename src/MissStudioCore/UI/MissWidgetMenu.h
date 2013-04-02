@@ -17,7 +17,7 @@ public:
         return theSingleton;
     }
 
-    std::shared_ptr<wxMenu> GetMenu(ImplMissWidget* pWidgets);
+	std::tr1::shared_ptr<wxMenu> GetMenu(ImplMissWidget* pWidgets);
 
 protected:
     void BindEvent();

@@ -16,17 +16,24 @@
 #endif //__BORLANDC__
 
 #include "PasswordAidMain.h"
-#include "MissAutoInputThread.h"
 #include "../Encrypt/ProcPwCore.h"
 #include "../Common/MissGlobal.h"
+#include "MissAPI/interface/IMissSharedMemory.h"
 
-//helper functions
+using std::tr1::shared_ptr;
 
+class PasswordAidDialog::Impl
+{
+public:
+	shared_ptr<IMissSharedMemory> ptSharedMemory;
+};
 
 PasswordAidDialog::PasswordAidDialog(wxWindow *dlg)
 : GUIDialog(dlg)
+, m_pImpl(new Impl)
 {
-
+	 m_pImpl->ptSharedMemory = MissGlobal::IMain->
+		 QueryIF<IMissSharedMemory>(IF_SHAREDMEMORY);
 }
 
 PasswordAidDialog::~PasswordAidDialog()
@@ -43,10 +50,17 @@ void PasswordAidDialog::OnBtnGenerateClick(wxCommandEvent& event)
     wxCharBuffer bufOut(nLen);
     ProcPwCore pwCore(nLen, nVersion, static_cast<ProcPwCore::PWTYPE>(nType));
     pwCore.StartProc(bufIn.data(),strlen(bufIn.data()),bufOut.data(),nLen);
-    MissGlobal::strClipbrd = wxString(bufOut.data(), wxConvLocal);
+
+	wxString strClipbrd = wxString(bufOut.data(), wxConvLocal);
+
+	if (m_pImpl->ptSharedMemory)
+	{
+		m_pImpl->ptSharedMemory->SetVariant(wxT("MissInput"), strClipbrd);
+	}
+
     if(m_cboxShowPass->GetValue())
     {
-        m_edtOut->SetValue(MissGlobal::strClipbrd);
+        m_edtOut->SetValue(strClipbrd);
     }
     if(m_cboxAutoClose->GetValue())
     {
@@ -65,7 +79,12 @@ void PasswordAidDialog::OnCheckShowPassBox(wxCommandEvent& event)
     m_edtOut->Show(bShow);
     if(bShow)
     {
-        m_edtOut->SetValue(MissGlobal::strClipbrd);
+		wxVariant varClipbrd;
+		if (m_pImpl->ptSharedMemory)
+		{
+			m_pImpl->ptSharedMemory->GetVariant("MissInput", varClipbrd);
+		}
+        m_edtOut->SetValue(varClipbrd.GetString());
     }
     Layout();
 }

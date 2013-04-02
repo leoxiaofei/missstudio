@@ -9,10 +9,9 @@ class MissConfigFile;
 
 class MissHotKeyFunc : public MissHotKeyFuncBase
 {
-	class Impl;
 public:
     MissHotKeyFunc();
-    ~MissHotKeyFunc(void);
+    ~MissHotKeyFunc();
 
     void InitHotkey(const std::tr1::shared_ptr<MissConfigFile>& pConfig);
 
@@ -22,7 +21,7 @@ public:
     virtual void RunFunc( int nFuncId );
     virtual void ModifiedHotKey( const SHotKeyMajor& sNewHotkey );
 
-    enum FuncType{HKF_BEGIN = -1, HKF_OPENPANEL, HKF_END};
+    enum FuncType{HKF_BEGIN = -1, HKF_AUTOINPUT, HKF_END};
 
 protected:
 	static const wxString s_strFuncNames[];
@@ -30,7 +29,6 @@ protected:
 	static const wxString s_strNodePath;
 
 private:
-    std::tr1::shared_ptr<Impl> m_pImpl;
 };
 
 #endif // MISSHOTKEYFUNC_H__

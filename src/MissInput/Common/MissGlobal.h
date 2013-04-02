@@ -3,6 +3,7 @@
 
 #include "MissAPI/interface/IMissMain.h"
 
+
 namespace MissGlobal
 {
     extern std::tr1::shared_ptr<IMissMain> IMain;
