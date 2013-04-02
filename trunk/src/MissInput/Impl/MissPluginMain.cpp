@@ -5,8 +5,10 @@
 #include "MissAPI/interface/IMissMain.h"
 #include "MissAPI/interface/IMissHotKeyMgr.h"
 #include "MissAPI/interface/IMissStorage.h"
-#include "MissHotKeyFunc.h"
+#include "../UI/MissAutoInputThread.h"
 #include "../Common/MissGlobal.h"
+
+#include "MissHotKeyFunc.h"
 
 using std::tr1::shared_ptr;
 
@@ -47,9 +49,9 @@ void MissPluginMain::UnloadPlugin()
 
 bool MissPluginMain::GetPlugInfo( SPlugInfo& info ) const
 {
-    info.strPluginName = wxT("迷失密码助手");
+    info.strPluginName = wxT("迷失输入助手");
     info.strVersion = wxT("1.0.0");
-    info.strSpecification = wxT("用加密后的密码作为网站的密码，以便从容应对各网站密码泄露问题。");
+    info.strSpecification = wxT("方便输入序列号的小工具");
     info.strAuthor = wxT("leoxiaofei");
     info.strEmail = wxT("xxffsoft@163.com");
     info.strWeb = wxT("http://www.leoxiaofei.com");
@@ -58,10 +60,10 @@ bool MissPluginMain::GetPlugInfo( SPlugInfo& info ) const
 
 wxString MissPluginMain::GetPluginName() const
 {
-    return wxT("迷失密码助手");
+    return wxT("迷失输入助手");
 }
 
 wxString MissPluginMain::GetPluginGUID() const
 {
-    return wxT("76C98BE0-4C3D-459A-9626-A6B2929EB367");
+    return wxT("4AFFE234-4A38-4d88-80C8-5353C3141583");
 }

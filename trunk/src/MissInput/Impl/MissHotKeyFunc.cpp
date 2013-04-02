@@ -4,27 +4,18 @@
 #include "MissAPI/interface/IMissStorage.h"
 #include "MissAPI/interface/IMissHotKeyMgr.h"
 #include "MissTools/MissConfigFile.h"
-#include "MissTools/OneWinManager.h"
+#include "../UI/MissEvtHandler.h"
 #include "../Common/MissGlobal.h"
-#include "../UI/PasswordAidMain.h"
-
 
 using std::tr1::shared_ptr;
 
-class MissHotKeyFunc::Impl
-{
-public:
-	Impl():winManager(MissGlobal::IMain->GetMainFrame()){}
-	OneWinManager winManager;
-};
 
 MissHotKeyFunc::MissHotKeyFunc()
-: m_pImpl(new Impl)
 {
 }
 
 
-MissHotKeyFunc::~MissHotKeyFunc(void)
+MissHotKeyFunc::~MissHotKeyFunc()
 {
 }
 
@@ -32,11 +23,9 @@ void MissHotKeyFunc::RunFunc( int nFuncId )
 {
     switch(nFuncId)
     {
-    case HKF_OPENPANEL:
+    case HKF_AUTOINPUT:
         {
-			PasswordAidDialog* pAidDlg = 
-				m_pImpl->winManager.CreateWin<PasswordAidDialog>(wxT("PasswordAidDialog"));
-			pAidDlg->Raise();
+            MissEvtHandler::Instance().OpenAutoInput();
         }
         break;
     default:
@@ -48,7 +37,7 @@ void MissHotKeyFunc::RunFunc( int nFuncId )
 void MissHotKeyFunc::ModifiedHotKey( const SHotKeyMajor& sNewHotkey )
 {
     assert(sNewHotkey.nFuncId > HKF_BEGIN && sNewHotkey.nFuncId < HKF_END);
-    shared_ptr<IMissStorage> ptStorage = MissGlobal::IMain->QueryIF<IMissStorage>(IF_STORAGE);
+	shared_ptr<IMissStorage> ptStorage = MissGlobal::IMain->QueryIF<IMissStorage>(IF_STORAGE);
     if (ptStorage)
     {
         shared_ptr<MissConfigFile> ptConfig = ptStorage->GetConfigFile(wxT("config.ini"));
@@ -102,11 +91,11 @@ void MissHotKeyFunc::InitHotkey( const std::tr1::shared_ptr<MissConfigFile>& pCo
 }
 
 const wxString MissHotKeyFunc::s_strFuncNames[] = {
-    wxT("打开窗口"),
+    wxT("自动输入")
 };
 
 const wxString MissHotKeyFunc::s_strFuncDescs[] = {
-    wxT("打开密码助手窗口，用来输入原文。"),
+    wxT("自动输入生成的密码到光标处。")
 };
 
 const wxString MissHotKeyFunc::s_strNodePath = wxT("热键/");

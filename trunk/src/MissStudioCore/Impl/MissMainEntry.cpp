@@ -3,11 +3,12 @@
 #include "ImplMissStorage.h"
 #include "ImplMissTimer.h"
 #include "ImplMissWidgetMgr.h"
+#include "ImplMissSharedMemory.h"
 
-#include <map>
 #include "..\BLL\MissPluginManager.h"
 #include "..\UI\MissCoreFrame.h"
 
+#include <map>
 
 typedef IMissUnknown* (MissMainEntry::*FuncCreator)(void);
 std::map<IF_TYPE, FuncCreator> s_InterfaceCreator;
@@ -20,6 +21,7 @@ MissMainEntry::MissMainEntry(MissPluginBase* pPlugMain)
         s_InterfaceCreator.insert(std::make_pair(IF_HOTKEY, &MissMainEntry::CreateHotKey));
         s_InterfaceCreator.insert(std::make_pair(IF_STORAGE, &MissMainEntry::CreateStorage));
         s_InterfaceCreator.insert(std::make_pair(IF_TIMER, &MissMainEntry::CreateTimer));
+		s_InterfaceCreator.insert(std::make_pair(IF_SHAREDMEMORY, &MissMainEntry::CreateSharedMemory));
         s_InterfaceCreator.insert(std::make_pair(IF_WIDGETMANAGER, &MissMainEntry::CreateWidgetMgr));
     }
 }
@@ -72,10 +74,16 @@ IMissUnknown* MissMainEntry::CreateWidgetMgr()
     return new ImplMissWidgetMgr(m_pPlugMain);
 }
 
+IMissUnknown* MissMainEntry::CreateSharedMemory()
+{
+	return new ImplMissSharedMemory(m_pPlugMain);
+}
+
 wxFrame* MissMainEntry::GetMainFrame() const
 {
     return wxAppFrame;
 }
+
 
 
 

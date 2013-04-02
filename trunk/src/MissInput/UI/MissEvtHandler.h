@@ -14,14 +14,12 @@ public:
         return theSingleton;
     }
 
-    void OpenPasswordAid();
     void OpenAutoInput();
 
 protected:
     void BindEvent();
     void UnbindEvent();
 
-    void AidDlgClosed(wxCloseEvent& event);
     void InputThreadFinished(wxThreadEvent& event);
 
 private:

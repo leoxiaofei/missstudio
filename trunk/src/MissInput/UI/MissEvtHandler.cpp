@@ -1,19 +1,16 @@
 #include "MissEvtHandler.h"
-#include "PasswordAidMain.h"
 #include "MissAutoInputThread.h"
 #include "../Common/MissGlobal.h"
+#include "MissAPI/interface/IMissSharedMemory.h"
+
 #include <wx/frame.h>
-#include "MissTools/OneWinManager.h"
-#include <windows.h>
 
 class MissEvtHandler::Impl
 {
 public:
     Impl() 
-	: winManager(MissGlobal::IMain->GetMainFrame())
-	, pThread(NULL) {}
+	: pThread(NULL) {}
 
-	OneWinManager winManager;
     MissAutoInputThread* pThread;
 };
 
@@ -39,19 +36,18 @@ void MissEvtHandler::UnbindEvent()
     Unbind(wxEVT_COMMAND_AUTOINPUT_COMPLETED, &MissEvtHandler::InputThreadFinished, this);
 }
 
-void MissEvtHandler::OpenPasswordAid()
-{
-    PasswordAidDialog* pAidDlg = 
-    m_pImpl->winManager.CreateWin<PasswordAidDialog>(wxT("PasswordAidDialog"));
-	pAidDlg->Raise();
-}
-
 void MissEvtHandler::OpenAutoInput()
 {
     MissAutoInputThread* pThread = m_pImpl->pThread;
     if (pThread == NULL)
     {
-        pThread = new MissAutoInputThread(this);
+		wxVariant varClipbrd;
+		if(std::tr1::shared_ptr<IMissSharedMemory> ptSharedMemory 
+			= MissGlobal::IMain->QueryIF<IMissSharedMemory>(IF_SHAREDMEMORY))
+		{
+			ptSharedMemory->GetVariant(wxT("MissInput"), varClipbrd);
+		}
+        pThread = new MissAutoInputThread(this, varClipbrd.GetString());
         if ( pThread->Create() != wxTHREAD_NO_ERROR )
         {
             //wxLogError("Can't create the thread!");

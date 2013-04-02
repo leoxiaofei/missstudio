@@ -26,7 +26,7 @@ private:
     IMissUnknown* CreateStorage();
     IMissUnknown* CreateTimer();
     IMissUnknown* CreateWidgetMgr();
-
+	IMissUnknown* CreateSharedMemory();
 
 
 
