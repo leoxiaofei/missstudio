@@ -12,7 +12,7 @@ ImplMissWidget::ImplMissWidget(MissWidgetFuncBase* pFunc)
 {
     m_ptFrame = std::tr1::shared_ptr<wxFrame>(new wxFrame(
         wxAppFrame, wxID_ANY, wxT("MissWidget"), wxDefaultPosition,
-        wxSize( 200,200 ), 0 | wxTAB_TRAVERSAL));
+        wxSize( 200,200 ), 0 | wxTAB_TRAVERSAL | wxFRAME_TOOL_WINDOW));
 
     m_ptFrame->Bind( wxEVT_LEFT_DOWN, &ImplMissWidget::OnLeftDown, this);
     m_ptFrame->Bind( wxEVT_RIGHT_UP,  &ImplMissWidget::OnRightUp, this);
