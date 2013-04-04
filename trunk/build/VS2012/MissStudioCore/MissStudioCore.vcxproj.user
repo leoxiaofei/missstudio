@@ -6,7 +6,7 @@
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <LocalDebuggerEnvironment>PATH=$(Path);$(wx29)\lib\vc_dll\</LocalDebuggerEnvironment>
+    <LocalDebuggerEnvironment>PATH=$(Path);$(wx29)\lib\vc_dll\;$(wxSqlite3)\lib\vc_dll\</LocalDebuggerEnvironment>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
   </PropertyGroup>
 </Project>
