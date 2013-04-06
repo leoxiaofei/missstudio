@@ -24,6 +24,7 @@ public:
 
     virtual wxDC* DrawBegin() = 0;
     virtual void DrawEnd( wxDC* pDc ) = 0;
+    virtual void UpdateLayered() = 0;
 
 protected:
     void ReCaleWindowSize();

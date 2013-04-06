@@ -13,10 +13,12 @@ public:
 
     virtual wxDC* DrawBegin();
     virtual void DrawEnd( wxDC* pDc );
+    virtual void UpdateLayered();
 
 
 protected:
     virtual void ReCaleBuffer();
+
 
 private:
     wxBitmap                         m_bpUI;

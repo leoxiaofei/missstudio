@@ -22,6 +22,8 @@ protected:
     void UnbindEvent();
 
     void DClickInstalledItem(wxDataViewEvent& event);
+    void RClickRunningList(wxDataViewEvent& event);
+
     void RunWidgetDataChanged(wxEvent& event);
 
 private:

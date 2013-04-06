@@ -27,6 +27,7 @@ protected:
 protected:
     void OnFilterChoice( wxCommandEvent& event );
     void OnHotKeyItemActivated( wxDataViewEvent& event );
+
 private:
     std::tr1::shared_ptr<Impl> m_pImpl;
 };

@@ -28,6 +28,8 @@ wxDC* ManualDraw::DrawBegin()
         ++pBitmap;
     }
 
+    m_pMemDc->SetUserScale(GetScale(), GetScale());
+
     return m_pMemDc.get();
 }
 
@@ -59,4 +61,9 @@ void ManualDraw::ReCaleBuffer()
         m_nPixCount = bm.bmWidth * bm.bmHeight;
         m_pBitmap = static_cast<unsigned int*>(bm.bmBits);
     }
+}
+
+void ManualDraw::UpdateLayered()
+{
+    UpdateWindow(static_cast<HDC>(m_pMemDc->GetHDC()));
 }
