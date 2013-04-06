@@ -110,6 +110,9 @@ void MissWidgetMenu::BindEvent()
 
 void MissWidgetMenu::UnbindEvent()
 {
+    m_pImpl->hHandle.Unbind(wxEVT_COMMAND_MENU_SELECTED, &MissWidgetMenu::OnMenuWidgetOpacity, this);
+    m_pImpl->hHandle.Unbind(wxEVT_COMMAND_MENU_SELECTED, &MissWidgetMenu::OnMenuWidgetScale, this);
+    m_pImpl->hHandle.Unbind(wxEVT_COMMAND_MENU_SELECTED, &MissWidgetMenu::OnMenuWidgetZPos, this);
     m_pImpl->hHandle.Unbind(wxEVT_COMMAND_MENU_SELECTED, &MissWidgetMenu::OnMenuWidgetShadow, this);
     m_pImpl->hHandle.Unbind(wxEVT_COMMAND_MENU_SELECTED, &MissWidgetMenu::OnMenuWidgetPin, this);
     m_pImpl->hHandle.Unbind(wxEVT_COMMAND_MENU_SELECTED, &MissWidgetMenu::OnMenuWidgetOption, this);
