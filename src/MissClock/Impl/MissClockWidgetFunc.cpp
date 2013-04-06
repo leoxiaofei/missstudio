@@ -9,7 +9,6 @@
 MissClockWidgetFunc::MissClockWidgetFunc(const std::tr1::shared_ptr<MissSkin>& pSkin)
 : m_pSkin( pSkin )
 {
-    //GetWidget()->SetSize(m_pSkin->GetBGBitmap().GetSize());
 }
 
 MissClockWidgetFunc::~MissClockWidgetFunc()

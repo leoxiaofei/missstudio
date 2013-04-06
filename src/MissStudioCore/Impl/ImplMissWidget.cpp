@@ -85,7 +85,7 @@ void ImplMissWidget::SetData( const SWidgetPara& data )
     SetFrameZPos(data.m_nZPos);
     SetFrameShadow(data.m_bShadow);
 
-    m_pFunc->InitWidget(data.m_vecPata, this);
+    m_pFunc->InitWidget(data.m_vecPara, this);
 }
 
 void ImplMissWidget::GetData( SWidgetPara& data ) const
@@ -98,7 +98,7 @@ void ImplMissWidget::GetData( SWidgetPara& data ) const
     GetZPos(data.m_nZPos);
     GetShadow(data.m_bShadow);
 
-    m_pFunc->GetWidgetParas(data.m_vecPata);
+    m_pFunc->GetWidgetParas(data.m_vecPara);
 }
 
 unsigned int ImplMissWidget::GetRunID() const

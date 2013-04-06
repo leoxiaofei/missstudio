@@ -27,7 +27,7 @@ namespace DTD
         bool         m_bShadow;
         bool         m_bPin;
         int          m_nZPos;
-        CustomPara   m_vecPata;
+        CustomPara   m_vecPara;
     };
 
 }
