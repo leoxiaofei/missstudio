@@ -208,7 +208,7 @@ WidgetOptionBase::WidgetOptionBase( wxWindow* parent, wxWindowID id, const wxStr
 	lblZ->Wrap( -1 );
 	bSizer10->Add( lblZ, 0, wxALL|wxALIGN_CENTER_VERTICAL, 5 );
 	
-	wxString choZChoices[] = { _("置顶"), _("普通") };
+	wxString choZChoices[] = { _("置顶"), _("正常") };
 	int choZNChoices = sizeof( choZChoices ) / sizeof( wxString );
 	choZ = new wxChoice( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, choZNChoices, choZChoices, 0 );
 	choZ->SetSelection( 1 );

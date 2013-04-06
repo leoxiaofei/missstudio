@@ -6,6 +6,8 @@
 #include "../BLL/MissWidgetManager.h"
 #include "../Common/WidgetDef.h"
 #include "MissWidgetMenu.h"
+#include "../Impl/ImplMissWidget.h"
+#include "../Common/WidgetEvent.h"
 
 using std::tr1::shared_ptr;
 

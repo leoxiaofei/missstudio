@@ -20,6 +20,7 @@
     <ClCompile Include="..\..\..\src\MissStudioCore\BLL\MissWidgetManager.cpp" />
     <ClCompile Include="..\..\..\src\MissStudioCore\Common\AutoColumnWidth.cpp" />
     <ClCompile Include="..\..\..\src\MissStudioCore\Common\MissPaths.cpp" />
+    <ClCompile Include="..\..\..\src\MissStudioCore\Common\WidgetEvent.cpp" />
     <ClCompile Include="..\..\..\src\MissStudioCore\DAL\MissWidgetsDAL.cpp" />
     <ClCompile Include="..\..\..\src\MissStudioCore\Generated\GUIFrame.cpp" />
     <ClCompile Include="..\..\..\src\MissStudioCore\Impl\ImplMissSharedMemory.cpp" />
@@ -60,6 +61,7 @@
     <ClInclude Include="..\..\..\src\MissStudioCore\Common\MissPaths.h" />
     <ClInclude Include="..\..\..\src\MissStudioCore\Common\Targetver.h" />
     <ClInclude Include="..\..\..\src\MissStudioCore\Common\WidgetDef.h" />
+    <ClInclude Include="..\..\..\src\MissStudioCore\Common\WidgetEvent.h" />
     <ClInclude Include="..\..\..\src\MissStudioCore\DAL\MissWidgetsDAL.h" />
     <ClInclude Include="..\..\..\src\MissStudioCore\Generated\GUIFrame.h" />
     <ClInclude Include="..\..\..\src\MissStudioCore\Impl\ImplMissSharedMemory.h" />

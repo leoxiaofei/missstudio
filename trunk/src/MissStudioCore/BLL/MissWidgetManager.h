@@ -3,7 +3,6 @@
 
 #include "MissAPI\interface\IMissWidgetMgr.h"
 #include <memory>
-#include <wx\event.h>
 
 namespace DTD
 {
@@ -13,6 +12,7 @@ namespace DTD
 class MissWidgetFactoryBase;
 class MissPluginBase;
 class ImplMissWidget;
+class wxEvtHandler;
 
 struct WidgetRelation
 {
@@ -72,9 +72,5 @@ private:
 private:
     std::tr1::shared_ptr<Impl> m_pImpl;
 };
-
-BEGIN_DECLARE_EVENT_TYPES()
-    DECLARE_LOCAL_EVENT_TYPE(wxEVT_RUNNINGWIDGET_CHANGED, -1)
-END_DECLARE_EVENT_TYPES()
 
 #endif // MISSWIDGETMANAGER_H

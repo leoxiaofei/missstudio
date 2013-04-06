@@ -35,8 +35,7 @@ private:
 
 extern wxFrame* wxAppFrame;
 
-BEGIN_DECLARE_EVENT_TYPES()
-    DECLARE_LOCAL_EVENT_TYPE(wxEVT_INITIALIZE, -1)
-END_DECLARE_EVENT_TYPES()
+wxDECLARE_EVENT(wxEVT_INITIALIZE, wxEvent);
+
 
 #endif // __MissCoreFrame__

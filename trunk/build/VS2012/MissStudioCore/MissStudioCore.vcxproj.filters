@@ -162,6 +162,9 @@
     <ClCompile Include="..\..\..\src\MissStudioCore\UI\MissWidgetOption.cpp">
       <Filter>Source Files\UI</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\src\MissStudioCore\Common\WidgetEvent.cpp">
+      <Filter>Source Files\Common</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\src\MissStudioCore\UI\MissCoreFrame.h">
@@ -277,6 +280,9 @@
     </ClInclude>
     <ClInclude Include="..\..\..\src\MissStudioCore\UI\MissWidgetOption.h">
       <Filter>Header Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\MissStudioCore\Common\WidgetEvent.h">
+      <Filter>Header Files\Common</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

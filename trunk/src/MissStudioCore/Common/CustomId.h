@@ -39,6 +39,7 @@ namespace DTD
         CI_HOTKEY_ID_BEGIN,
         CI_HOTKEY_ID_END     = CI_HOTKEY_ID_BEGIN + 2000,
     };
+
 }
 
 #endif // CustomId_h__
