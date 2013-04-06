@@ -73,3 +73,14 @@ wxString MissRunningModel::GetColumnType( unsigned int col ) const
     return wxT("string");
 }
 
+bool MissRunningModel::GetDataByItem( const wxDataViewItem &item, std::tr1::shared_ptr<ImplMissWidget>& ptRunning ) const
+{
+    bool bRet(false);
+    if (item.IsOk())
+    {
+        ptRunning = m_vecRunning[GetRow(item)];
+        bRet = true;
+    }
+    return bRet;
+}
+

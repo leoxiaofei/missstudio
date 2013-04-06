@@ -27,14 +27,15 @@ const wxString MissWidgetsDAL::Impl::s_SQL[] =
 {
     wxT("CREATE TABLE CoreConfig (CC_Key TEXT primary key, CC_Value TEXT);"),
     
-    wxT("CREATE TABLE Widgets (W_ID INTEGER primary key NOT NULL, W_PGuid TEXT, ")
-    wxT("W_WType INTEGER, W_Zone INTEGER, W_Opacity INTEGER, W_Pos TEXT);"),
+    wxT("CREATE TABLE Widgets (W_ID INTEGER primary key NOT NULL, W_PGuid TEXT, W_WType INTEGER,")
+    wxT("W_Zone INTEGER, W_Opacity INTEGER, W_Pos TEXT, W_Shadow INTEGER, W_Pin INTEGER, W_ZPos INTEGER);"),
 
-    wxT("INSERT INTO Widgets VALUES(NULL, $W_PGuid, $W_WType, $W_Zone, $W_Opacity, $W_Pos);"),
+    wxT("INSERT INTO Widgets VALUES(NULL, $W_PGuid, $W_WType, $W_Zone, $W_Opacity, $W_Pos, $W_Shadow, $W_Pin, $W_ZPos);"),
 
-    wxT("SELECT W_ID, W_PGuid, W_WType, W_Zone, W_Opacity, W_Pos FROM Widgets;"),
+    wxT("SELECT W_ID, W_PGuid, W_WType, W_Zone, W_Opacity, W_Pos, W_Shadow, W_Pin, W_ZPos FROM Widgets;"),
     
-    wxT("UPDATE Widgets SET W_Zone = $W_Zone, W_Opacity = $W_Opacity, W_Pos = $W_Pos WHERE W_ID = $W_ID;"),
+    wxT("UPDATE Widgets SET W_Zone = $W_Zone, W_Opacity = $W_Opacity, W_Pos = $W_Pos,")
+    wxT("W_Shadow = $W_Shadow, W_Pin = $W_Pin, W_ZPos = $W_ZPos WHERE W_ID = $W_ID;"),
     
     wxT("DELETE FROM Widgets WHERE W_ID = $W_ID;"),
 
@@ -88,6 +89,9 @@ bool MissWidgetsDAL::SaveRunWidgets( const std::vector<RunWidgetData>& vecRunWid
             
             strTemp.Printf(wxT("%d:%d"), citor->sWidgetPara.m_ptPos.x, citor->sWidgetPara.m_ptPos.y);
             statement.Bind(statement.GetParamIndex(wxT("$W_Pos")), strTemp);
+            statement.Bind(statement.GetParamIndex(wxT("$W_Shadow")), citor->sWidgetPara.m_bShadow ? 1 : 0);
+            statement.Bind(statement.GetParamIndex(wxT("$W_Pin")), citor->sWidgetPara.m_bPin ? 1 : 0);
+            statement.Bind(statement.GetParamIndex(wxT("$W_ZPos")), citor->sWidgetPara.m_nZPos);
             statement.Bind(statement.GetParamIndex(wxT("$W_ID")), (int)citor->sWidgetPara.m_uRunID);
 
             statement.ExecuteUpdate();
@@ -114,6 +118,9 @@ bool MissWidgetsDAL::LoadRunWidgets( std::vector<RunWidgetData>& vecRunWidgets )
             data.sWidgetPara.m_uRunID    = result.GetInt(wxT("W_ID"));
             data.sWidgetPara.m_uZone     = result.GetInt(wxT("W_Zone"));
             data.sWidgetPara.m_uOpacity  = result.GetInt(wxT("W_Opacity"));
+            data.sWidgetPara.m_bShadow   = result.GetBool(wxT("W_Shadow"));
+            data.sWidgetPara.m_bPin      = result.GetBool(wxT("W_Pin"));
+            data.sWidgetPara.m_nZPos     = result.GetInt(wxT("W_ZPos"));
             strPos                       = result.GetString(wxT("W_Pos"), wxT("0:0"));
             if(strPos.BeforeFirst(wxT(':')).ToLong(&lTemp))
             {
@@ -142,6 +149,9 @@ bool MissWidgetsDAL::NewRunWidget( const wxString& strGuid, int nWidgetId, DTD::
     statement.Bind(statement.GetParamIndex(wxT("$W_Opacity")), (int)sWidgetPara.m_uOpacity);
     strTemp.Printf(wxT("%d:%d"), sWidgetPara.m_ptPos.x, sWidgetPara.m_ptPos.y);
     statement.Bind(statement.GetParamIndex(wxT("$W_Pos")), strTemp);
+    statement.Bind(statement.GetParamIndex(wxT("$W_Shadow")), sWidgetPara.m_bShadow ? 1 : 0);
+    statement.Bind(statement.GetParamIndex(wxT("$W_Pin")), sWidgetPara.m_bPin ? 1 : 0);
+    statement.Bind(statement.GetParamIndex(wxT("$W_ZPos")), sWidgetPara.m_nZPos);
     statement.ExecuteUpdate();
 
     sWidgetPara.m_uRunID = GetLastId();
@@ -168,22 +178,3 @@ int MissWidgetsDAL::GetLastId()
     return nRet;
 }
 
-// int MissWidgetsDAL::NewWidget(const wxString& strPName, int nType)
-// {
-//     /*
-//     wxSQLite3Statement query = m_pImpl->dbMain.PrepareStatement(Impl::s_SQL[Impl::SQL_INSERT_WIDGETS]);
-//     query.Bind(1,data.nDateType);
-//     query.Bind(2,data.strTaskDate);
-//     query.Bind(3,data.nRemindType);
-//     query.Bind(4,data.nTimeType);
-//     query.Bind(5,data.strTaskTime);
-//     query.Bind(6,data.nEvery);
-//     query.Bind(7,data.nTaskType);
-//     query.Bind(8,data.strPlugInGUID);
-//     query.Bind(9,data.strTaskContent);
-//     query.Bind(10,nID);
-// 
-//     query.ExecuteUpdate();
-//     */
-//     return 0;
-// }

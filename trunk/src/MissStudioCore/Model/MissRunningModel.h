@@ -19,6 +19,8 @@ public:
     virtual unsigned int GetColumnCount() const;
     virtual wxString GetColumnType( unsigned int col ) const;
 
+    bool GetDataByItem(const wxDataViewItem &item, std::tr1::shared_ptr<ImplMissWidget>& ptRunning) const;
+
 protected:
 
 private:

@@ -10,11 +10,11 @@ class MissWidgetOption : public WidgetOptionBase
 {
     class Impl;
 public:
-    MissWidgetOption( wxWindow* parent );
-
-    void InitData(ImplMissWidget* pWidgets);
+    MissWidgetOption( wxWindow* parent, ImplMissWidget* pWidgets );
 
 protected:
+    void InitData(ImplMissWidget* pWidgets);
+
     void Backup();
     void Restore();
 
@@ -27,6 +27,8 @@ protected:
     virtual void OnCheckShadowBox( wxCommandEvent& event );
     virtual void OnScrollOpacityChanged( wxScrollEvent& event );
     virtual void OnBtnCloseClick( wxCommandEvent& event );
+
+    void UpdateUI(int nFlag);
 
 private:
     std::tr1::shared_ptr<Impl> m_pImpl;

@@ -22,7 +22,12 @@ public:
 protected:
     void BindEvent();
     void UnbindEvent();
-
+    
+    void OnMenuWidgetScale(wxCommandEvent& event);
+    void OnMenuWidgetOpacity(wxCommandEvent& event);
+    void OnMenuWidgetZPos(wxCommandEvent& event);
+    void OnMenuWidgetShadow(wxCommandEvent& event);
+    void OnMenuWidgetPin(wxCommandEvent& event);
     void OnMenuWidgetOption(wxCommandEvent& event);
     void OnMenuWidgetExit(wxCommandEvent& event);
 

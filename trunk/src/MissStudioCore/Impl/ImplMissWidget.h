@@ -35,6 +35,15 @@ public:
     void GetOpacity(int& nOpacity) const;
     void SetOpacity(const int& nOpacity);
 
+    void GetShadow(bool& bShadow) const;
+    void SetShadow(const bool& bShadow);
+
+    void GetPin(bool& bPin) const;
+    void SetPin(const bool& bPin);
+
+    void GetZPos(int& nPos) const;
+    void SetZPos(const int& nPos);
+
     void SetData(const DTD::SWidgetPara& data);
     void GetData(DTD::SWidgetPara& data) const;
 
@@ -44,9 +53,13 @@ public:
     void PreClose();
     void UpdateUI();
 
+    enum ZPOS{ZP_TOP, ZP_NORMAL, ZP_BOTTOM};
+
 protected:
     virtual void OnLeftDown( wxMouseEvent& event );
     virtual void OnRightUp( wxMouseEvent& event );
+
+    void SetFrameShadow(const bool& bShadow);
 
 private:
     std::tr1::shared_ptr<wxFrame>      m_ptFrame;
@@ -54,6 +67,7 @@ private:
     MissWidgetFuncBase*                m_pFunc;
     unsigned int                       m_uRunID;
     int                                m_nWidgetID;
+    bool                               m_bPin;
 };
 
 

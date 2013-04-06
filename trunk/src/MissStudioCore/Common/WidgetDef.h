@@ -17,11 +17,17 @@ namespace DTD
             , m_uZone(100)
             , m_uOpacity(255)
             , m_ptPos(0,0)
+            , m_bShadow(false)
+            , m_bPin(false)
+            , m_nZPos(1)
         {}
         unsigned int m_uRunID;
         unsigned int m_uZone;
         unsigned int m_uOpacity;
         wxPoint      m_ptPos;
+        bool         m_bShadow;
+        bool         m_bPin;
+        int          m_nZPos;
         CustomPara   m_vecPata;
     };
 

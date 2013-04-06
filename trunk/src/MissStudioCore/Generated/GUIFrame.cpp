@@ -208,17 +208,17 @@ WidgetOptionBase::WidgetOptionBase( wxWindow* parent, wxWindowID id, const wxStr
 	lblZ->Wrap( -1 );
 	bSizer10->Add( lblZ, 0, wxALL|wxALIGN_CENTER_VERTICAL, 5 );
 	
-	wxString choZChoices[] = { _("置顶"), _("普通"), _("置底") };
+	wxString choZChoices[] = { _("置顶"), _("普通") };
 	int choZNChoices = sizeof( choZChoices ) / sizeof( wxString );
 	choZ = new wxChoice( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, choZNChoices, choZChoices, 0 );
-	choZ->SetSelection( 0 );
-	bSizer10->Add( choZ, 0, wxALL, 5 );
+	choZ->SetSelection( 1 );
+	bSizer10->Add( choZ, 0, wxALL|wxALIGN_CENTER_VERTICAL, 5 );
 	
 	
 	sbSizerPosition->Add( bSizer10, 1, wxEXPAND, 5 );
 	
 	
-	bSizerMain->Add( sbSizerPosition, 0, wxEXPAND|wxTOP, 5 );
+	bSizerMain->Add( sbSizerPosition, 1, wxTOP|wxEXPAND, 5 );
 	
 	wxStaticBoxSizer* sbSizerZoom;
 	sbSizerZoom = new wxStaticBoxSizer( new wxStaticBox( this, wxID_ANY, _("缩放") ), wxVERTICAL );
@@ -252,7 +252,7 @@ WidgetOptionBase::WidgetOptionBase( wxWindow* parent, wxWindowID id, const wxStr
 	sbSizerZoom->Add( sbSizerZoom2, 1, wxEXPAND, 5 );
 	
 	
-	bSizerMain->Add( sbSizerZoom, 0, wxEXPAND|wxTOP, 5 );
+	bSizerMain->Add( sbSizerZoom, 1, wxEXPAND|wxTOP, 5 );
 	
 	wxStaticBoxSizer* sbSizerTransparency;
 	sbSizerTransparency = new wxStaticBoxSizer( new wxStaticBox( this, wxID_ANY, _("透明度") ), wxVERTICAL );
@@ -286,7 +286,7 @@ WidgetOptionBase::WidgetOptionBase( wxWindow* parent, wxWindowID id, const wxStr
 	sbSizerTransparency->Add( sbSizerTransparency2, 1, wxEXPAND, 5 );
 	
 	
-	bSizerMain->Add( sbSizerTransparency, 0, wxEXPAND|wxTOP, 5 );
+	bSizerMain->Add( sbSizerTransparency, 1, wxEXPAND|wxTOP, 5 );
 	
 	wxBoxSizer* bSizerClose;
 	bSizerClose = new wxBoxSizer( wxVERTICAL );
@@ -295,12 +295,11 @@ WidgetOptionBase::WidgetOptionBase( wxWindow* parent, wxWindowID id, const wxStr
 	bSizerClose->Add( btnClose, 0, wxALL|wxALIGN_RIGHT, 5 );
 	
 	
-	bSizerMain->Add( bSizerClose, 1, wxEXPAND|wxTOP|wxBOTTOM, 5 );
+	bSizerMain->Add( bSizerClose, 0, wxEXPAND|wxTOP|wxBOTTOM, 5 );
 	
 	
 	this->SetSizer( bSizerMain );
 	this->Layout();
-	bSizerMain->Fit( this );
 	
 	this->Centre( wxBOTH );
 	
