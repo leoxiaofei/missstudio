@@ -2,7 +2,9 @@
 #define IMPLMISSWIDGET_H__
 
 #include "MissAPI\interface\IMissWidget.h"
+
 #include <memory>
+
 namespace DTD
 {
     struct SWidgetPara;
@@ -11,6 +13,7 @@ namespace DTD
 class ILayeredDraw;
 class MissWidgetFuncBase;
 class wxMouseEvent;
+class wxMoveEvent;
 class wxPoint;
 
 class ImplMissWidget : public IMissWidget
@@ -56,10 +59,14 @@ public:
     enum ZPOS{ZP_TOP, ZP_NORMAL, ZP_BOTTOM};
 
 protected:
-    virtual void OnLeftDown( wxMouseEvent& event );
-    virtual void OnRightUp( wxMouseEvent& event );
+    void OnLeftDown( wxMouseEvent& event );
+    void OnRightUp( wxMouseEvent& event );
+    void OnMoved( wxMoveEvent& event );
 
+
+    void SetFrameZPos(const int& nZPos);
     void SetFrameShadow(const bool& bShadow);
+    void SendWidgetDataChanged(int nFlag);
 
 private:
     std::tr1::shared_ptr<wxFrame>      m_ptFrame;
@@ -69,6 +76,5 @@ private:
     int                                m_nWidgetID;
     bool                               m_bPin;
 };
-
 
 #endif // IMPLMISSWIDGET_H__

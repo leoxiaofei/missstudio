@@ -1,7 +1,6 @@
 #ifndef MISSDATATYPEDEF_H
 #define MISSDATATYPEDEF_H
 
-//#include <tr1/unordered_map>
 #include <unordered_map>
 #include <wx/string.h>
 #include <wx/gdicmn.h>

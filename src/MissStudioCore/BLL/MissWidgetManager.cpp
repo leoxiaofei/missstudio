@@ -10,12 +10,12 @@
 #include <algorithm>
 #include "../DAL/MissWidgetsDAL.h"
 #include "MissAPI/plugin/MissPluginBase.h"
+#include "../Common/WidgetEvent.h"
 
 using std::tr1::shared_ptr;
 using std::vector;
 using std::map;
 
-DEFINE_LOCAL_EVENT_TYPE(wxEVT_RUNNINGWIDGET_CHANGED);
 
 class FindImplMissWidget
 {

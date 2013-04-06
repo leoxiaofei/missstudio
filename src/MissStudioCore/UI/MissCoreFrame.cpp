@@ -17,11 +17,7 @@
 
 using std::tr1::shared_ptr;
 
-DEFINE_LOCAL_EVENT_TYPE(wxEVT_INITIALIZE);
-
-// BEGIN_EVENT_TABLE(MissCoreFrame, wxFrame)
-//     EVT_MENU(CI_HOTKEY_OPTION, MissCoreFrame::OnMenuHotKeyOptionSelection)
-// END_EVENT_TABLE()
+wxDEFINE_EVENT(wxEVT_INITIALIZE, wxEvent);
 
 class MissCoreFrame::Impl
 {
@@ -56,7 +52,7 @@ MissCoreFrame::MissCoreFrame()
 
     ///发送一个初始化消息
     wxCommandEvent send(wxEVT_INITIALIZE, GetId());
-    AddPendingEvent(send);
+    wxPostEvent(this, send);
 }
 
 MissCoreFrame::~MissCoreFrame()
@@ -112,9 +108,6 @@ void MissCoreFrame::OnClose( wxCloseEvent& event )
 {
     ///TODO: 保存数据
     MissWidgetManager::Instance().SaveRunWidget();
-
-//     for (wxWindowList::compatibility_iterator it = wxTopLevelWindows.GetFirst();
-//         it; )
 
     ///关闭所有功能
     MissPluginManager::Instance().ClosePluginAll();
