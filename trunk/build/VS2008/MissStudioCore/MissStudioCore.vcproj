@@ -184,6 +184,10 @@
 				Name="BLL"
 				>
 				<File
+					RelativePath="..\..\..\src\MissStudioCore\BLL\MissClipboardManager.cpp"
+					>
+				</File>
+				<File
 					RelativePath="..\..\..\src\MissStudioCore\BLL\MissCoreConfig.cpp"
 					>
 				</File>
@@ -223,6 +227,10 @@
 					RelativePath="..\..\..\src\MissStudioCore\Common\MissPaths.cpp"
 					>
 				</File>
+				<File
+					RelativePath="..\..\..\src\MissStudioCore\Common\WidgetEvent.cpp"
+					>
+				</File>
 			</Filter>
 			<Filter
 				Name="DAL"
@@ -243,6 +251,10 @@
 			<Filter
 				Name="Impl"
 				>
+				<File
+					RelativePath="..\..\..\src\MissStudioCore\Impl\ImplMissClipboard.cpp"
+					>
+				</File>
 				<File
 					RelativePath="..\..\..\src\MissStudioCore\Impl\ImplMissHotKeyMgr.cpp"
 					>
@@ -376,6 +388,10 @@
 				Name="BLL"
 				>
 				<File
+					RelativePath="..\..\..\src\MissStudioCore\BLL\MissClipboardManager.h"
+					>
+				</File>
+				<File
 					RelativePath="..\..\..\src\MissStudioCore\BLL\MissCoreConfig.h"
 					>
 				</File>
@@ -439,6 +455,10 @@
 					RelativePath="..\..\..\src\MissStudioCore\Common\WidgetDef.h"
 					>
 				</File>
+				<File
+					RelativePath="..\..\..\src\MissStudioCore\Common\WidgetEvent.h"
+					>
+				</File>
 			</Filter>
 			<Filter
 				Name="DAL"
@@ -459,6 +479,10 @@
 			<Filter
 				Name="Impl"
 				>
+				<File
+					RelativePath="..\..\..\src\MissStudioCore\Impl\ImplMissClipboard.h"
+					>
+				</File>
 				<File
 					RelativePath="..\..\..\src\MissStudioCore\Impl\ImplMissHotKeyMgr.h"
 					>

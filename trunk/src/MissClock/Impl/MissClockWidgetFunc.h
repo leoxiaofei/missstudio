@@ -19,7 +19,7 @@ public:
 
 protected:
     virtual void SetWidgetPara( const CustomPara& para );
-    virtual void GetWidgetParas( CustomPara& para ) const;
+    virtual void GetWidgetPara( CustomPara& para ) const;
     virtual void PreClose();
 
 private:

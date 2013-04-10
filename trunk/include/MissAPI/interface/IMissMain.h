@@ -5,11 +5,6 @@
 #include <memory>
 #include <wx/string.h>
 
-// class IMissTaskIcon;
-// class IMissHotKey;
-// class IMissWidgetManager;
-// class IMissConfig;
-// class MissPluginBase;
 class wxFrame;
 
 enum IF_TYPE
@@ -18,6 +13,7 @@ enum IF_TYPE
     IF_STORAGE,
     IF_HOTKEY,
 	IF_SHAREDMEMORY,
+	IF_CLIPBOARD,
     IF_WIDGETMANAGER,
     IF_SQLITE3DATABASE
 };

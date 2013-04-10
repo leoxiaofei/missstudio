@@ -10,18 +10,17 @@ class IMissWidget;
 
 typedef std::tr1::unordered_map<wxString, wxString, wxStringHash, wxStringEqual> CustomPara;
 
-
 class MissWidgetFuncBase
 {
 public:
     virtual ~MissWidgetFuncBase() {}
 
-    virtual void UpdateUI() = 0;
+	virtual void UpdateUI() = 0;
 
 protected:
     IMissWidget* GetWidget() const { return m_pWidget; }
     virtual void SetWidgetPara(const CustomPara& para) {};
-    virtual void GetWidgetParas(CustomPara& para) const {};
+    virtual void GetWidgetPara(CustomPara& para) const {};
     virtual void PreClose() {};
 
 private:
@@ -35,7 +34,5 @@ private:
     IMissWidget* m_pWidget;
     friend class ImplMissWidget;
 };
-
-
 
 #endif // MISSWIDGETFUNCBASE_H

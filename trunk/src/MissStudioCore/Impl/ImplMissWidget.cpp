@@ -98,7 +98,7 @@ void ImplMissWidget::GetData( SWidgetPara& data ) const
     GetZPos(data.m_nZPos);
     GetShadow(data.m_bShadow);
 
-    m_pFunc->GetWidgetParas(data.m_vecPara);
+    m_pFunc->GetWidgetPara(data.m_vecPara);
 }
 
 unsigned int ImplMissWidget::GetRunID() const
