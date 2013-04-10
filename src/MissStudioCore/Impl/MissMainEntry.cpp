@@ -9,6 +9,7 @@
 #include "..\UI\MissCoreFrame.h"
 
 #include <map>
+#include "ImplMissClipboard.h"
 
 typedef IMissUnknown* (MissMainEntry::*FuncCreator)(void);
 std::map<IF_TYPE, FuncCreator> s_InterfaceCreator;
@@ -23,6 +24,7 @@ MissMainEntry::MissMainEntry(MissPluginBase* pPlugMain)
         s_InterfaceCreator.insert(std::make_pair(IF_TIMER, &MissMainEntry::CreateTimer));
 		s_InterfaceCreator.insert(std::make_pair(IF_SHAREDMEMORY, &MissMainEntry::CreateSharedMemory));
         s_InterfaceCreator.insert(std::make_pair(IF_WIDGETMANAGER, &MissMainEntry::CreateWidgetMgr));
+		s_InterfaceCreator.insert(std::make_pair(IF_CLIPBOARD, &MissMainEntry::CreateClipboard));
     }
 }
 
@@ -79,11 +81,13 @@ IMissUnknown* MissMainEntry::CreateSharedMemory()
 	return new ImplMissSharedMemory(m_pPlugMain);
 }
 
+IMissUnknown* MissMainEntry::CreateClipboard()
+{
+	return new ImplMissClipboard(m_pPlugMain);
+}
+
 wxFrame* MissMainEntry::GetMainFrame() const
 {
     return wxAppFrame;
 }
-
-
-
 

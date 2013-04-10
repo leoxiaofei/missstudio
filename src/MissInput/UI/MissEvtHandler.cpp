@@ -3,7 +3,9 @@
 #include "../Common/MissGlobal.h"
 #include "MissAPI/interface/IMissSharedMemory.h"
 
+#include <wx/clipbrd.h>
 #include <wx/frame.h>
+#include <iostream>
 
 class MissEvtHandler::Impl
 {
@@ -50,7 +52,6 @@ void MissEvtHandler::OpenAutoInput()
         pThread = new MissAutoInputThread(this, varClipbrd.GetString());
         if ( pThread->Create() != wxTHREAD_NO_ERROR )
         {
-            //wxLogError("Can't create the thread!");
             delete pThread;
             pThread = NULL;
         }
@@ -58,7 +59,6 @@ void MissEvtHandler::OpenAutoInput()
         {
             if (pThread->Run() != wxTHREAD_NO_ERROR )
             {
-                //wxLogError("Can't create the thread!");
                 delete pThread;
                 pThread = NULL;
             }
@@ -70,4 +70,23 @@ void MissEvtHandler::OpenAutoInput()
 void MissEvtHandler::InputThreadFinished( wxThreadEvent& event )
 {
     m_pImpl->pThread = NULL;
+}
+
+void MissEvtHandler::ClipboardChanged()
+{
+	if (wxTheClipboard->Open())
+	{
+		if (wxTheClipboard->IsSupported( wxDF_TEXT ))
+		{
+			wxTextDataObject data;
+			wxTheClipboard->GetData( data );
+			if(std::tr1::shared_ptr<IMissSharedMemory> ptSharedMemory 
+				= MissGlobal::IMain->QueryIF<IMissSharedMemory>(IF_SHAREDMEMORY))
+			{
+				ptSharedMemory->SetVariant(wxT("MissInput"), data.GetText());
+			}
+		}
+		wxTheClipboard->Close();
+	}
+
 }

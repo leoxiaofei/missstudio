@@ -27,7 +27,7 @@ private:
     IMissUnknown* CreateTimer();
     IMissUnknown* CreateWidgetMgr();
 	IMissUnknown* CreateSharedMemory();
-
+	IMissUnknown* CreateClipboard();
 
 
 private:

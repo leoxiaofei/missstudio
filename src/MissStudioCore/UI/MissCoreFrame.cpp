@@ -14,6 +14,7 @@
 #include <iostream>
 #include <wx/window.h>
 #include <wx/app.h>
+#include "../BLL/MissClipboardManager.h"
 
 using std::tr1::shared_ptr;
 
@@ -24,9 +25,9 @@ class MissCoreFrame::Impl
 public:
 	shared_ptr<MissTaskBarIcon> pTrayIcon;
     shared_ptr<wxTimer>         pMainTimer;
+	HWND                        hwndNextViewer;
 
     void SetupUi(wxFrame* parent);
-private:
 
 };
 
@@ -58,6 +59,7 @@ MissCoreFrame::MissCoreFrame()
 MissCoreFrame::~MissCoreFrame()
 {
     UnbindEvent();
+	DestroyMSW();
 }
 
 void MissCoreFrame::BindEvent()
@@ -84,20 +86,19 @@ void MissCoreFrame::OnInitWindow( wxEvent& event )
     Unbind(wxEVT_INITIALIZE, &MissCoreFrame::OnInitWindow, this);
 
     ///初始化插件
-    InitPlugin();
+	MissPluginManager::Instance().LoadPlugin();
 
     ///加载小工具
     MissWidgetManager::Instance().LoadRunWidget();
+
+	///初始化依靠WinAPI实现的功能
+	InitMSW();
 
     ///开始时钟
     m_pImpl->pMainTimer->Start(1000);
 
 }
 
-void MissCoreFrame::InitPlugin()
-{
-    MissPluginManager::Instance().LoadPlugin();
-}
 
 void MissCoreFrame::OnHotKey( wxKeyEvent& event )
 {
@@ -124,11 +125,44 @@ void MissCoreFrame::OnClose( wxCloseEvent& event )
 
     ///关闭程序
     //Destroy();
-     wxApp::GetInstance()->ExitMainLoop();
+    wxApp::GetInstance()->ExitMainLoop();
 }
 
 void MissCoreFrame::OnTimer( wxTimerEvent& event )
 {
     MissTimerManager::Instance().TimeUp();
+}
+
+void MissCoreFrame::InitMSW()
+{
+	m_pImpl->hwndNextViewer = ::SetClipboardViewer(GetHWND());
+}
+
+void MissCoreFrame::DestroyMSW()
+{
+	::ChangeClipboardChain(GetHWND(), m_pImpl->hwndNextViewer);
+}
+
+WXLRESULT MissCoreFrame::MSWWindowProc( WXUINT message, WXWPARAM wParam, WXLPARAM lParam )
+{
+	switch (message)
+	{
+	case WM_CHANGECBCHAIN:
+		if ((HWND) wParam == m_pImpl->hwndNextViewer)
+		{
+			m_pImpl->hwndNextViewer = (HWND)lParam; 
+		}
+		else if (m_pImpl->hwndNextViewer != NULL) 
+		{
+			::SendMessage(m_pImpl->hwndNextViewer, message, wParam, lParam); 
+		}
+		break;
+	case WM_DRAWCLIPBOARD:
+		MissClipboardManager::Instance().Notify();
+		break;
+	default:
+		break;
+	}
+	return wxFrame::MSWWindowProc(message, wParam, lParam);
 }
 

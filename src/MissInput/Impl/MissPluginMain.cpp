@@ -9,6 +9,8 @@
 #include "../Common/MissGlobal.h"
 
 #include "MissHotKeyFunc.h"
+#include "MissAPI/interface/IMissClipboard.h"
+#include "../UI/MissEvtHandler.h"
 
 using std::tr1::shared_ptr;
 
@@ -41,6 +43,9 @@ void MissPluginMain::LoadPlugin()
     ///加载热键功能
     m_pImpl->pHotKeyFunc = shared_ptr<MissHotKeyFunc>(new MissHotKeyFunc());
     m_pImpl->pHotKeyFunc->InitHotkey(ptConfig);
+
+	std::tr1::shared_ptr<IMissClipboard> pt = GetMain()->QueryIF<IMissClipboard>(IF_CLIPBOARD);
+	pt->RegNotify(&MissEvtHandler::ClipboardChanged, &MissEvtHandler::Instance());
 }
 
 void MissPluginMain::UnloadPlugin()

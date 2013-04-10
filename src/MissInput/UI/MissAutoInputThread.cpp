@@ -24,10 +24,18 @@ wxThread::ExitCode MissAutoInputThread::Entry()
 {
     wxMilliSleep(500);
     int nCount = m_strInput.length();
+	wxUniChar ch;
     for(int ix = 0; ix != nCount; ++ix)
     {
-        //SendUnicode(MissGlobal::strClipbrd[ix]);
-        SendKey(m_strInput[ix]);
+		ch = m_strInput[ix];
+		if (ch.IsAscii())
+		{
+			SendKey(ch);
+		}
+		else
+		{
+			SendUnicode(ch);
+		}
     }
     wxQueueEvent(m_pHandler, new wxThreadEvent(wxEVT_COMMAND_AUTOINPUT_COMPLETED));
     return (wxThread::ExitCode)0;     // success

@@ -18,8 +18,8 @@ public:
     std::set<const MissPluginBase*>  setPlugin;
 };
 
-typedef std::tr1::unordered_map<wxString, MemoryData, wxStringHash> HsMemory;
-typedef std::tr1::unordered_map<wxString, std::vector<MissSharedMemoryBase*>, wxStringHash> HsCallBack;
+typedef std::tr1::unordered_map<wxString, MemoryData, wxStringHash, wxStringEqual> HsMemory;
+typedef std::tr1::unordered_map<wxString, std::vector<MissSharedMemoryBase*>, wxStringHash, wxStringEqual> HsCallBack;
 
 class MissMemoryManager::Impl
 {

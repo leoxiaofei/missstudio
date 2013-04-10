@@ -15,6 +15,7 @@ public:
     }
 
     void OpenAutoInput();
+	void ClipboardChanged();
 
 protected:
     void BindEvent();

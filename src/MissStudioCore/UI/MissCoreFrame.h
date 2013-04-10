@@ -23,12 +23,13 @@ protected:
     ///自定义事件
     void OnInitWindow(wxEvent& event);
 
-    
     void BindEvent();
     void UnbindEvent();
 
-    void InitPlugin();
-    //DECLARE_EVENT_TABLE()
+	void InitMSW();
+	void DestroyMSW();
+	virtual WXLRESULT MSWWindowProc( WXUINT message, WXWPARAM wParam, WXLPARAM lParam );
+
 private:
 	std::tr1::shared_ptr<Impl> m_pImpl;
 };

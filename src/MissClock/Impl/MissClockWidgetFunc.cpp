@@ -20,7 +20,7 @@ void MissClockWidgetFunc::SetWidgetPara( const CustomPara& para )
     GetWidget()->SetSize(m_pSkin->GetBGBitmap().GetSize());
 }
 
-void MissClockWidgetFunc::GetWidgetParas( CustomPara& para ) const
+void MissClockWidgetFunc::GetWidgetPara( CustomPara& para ) const
 {
 }
 
