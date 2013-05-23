@@ -11,6 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\src\MissStudioCore\BLL\MissClipboardManager.cpp" />
     <ClCompile Include="..\..\..\src\MissStudioCore\BLL\MissCoreConfig.cpp" />
     <ClCompile Include="..\..\..\src\MissStudioCore\BLL\MissFunctor.cpp" />
     <ClCompile Include="..\..\..\src\MissStudioCore\BLL\MissHotKeyManager.cpp" />
@@ -21,11 +22,17 @@
     <ClCompile Include="..\..\..\src\MissStudioCore\Common\AutoColumnWidth.cpp" />
     <ClCompile Include="..\..\..\src\MissStudioCore\Common\MissPaths.cpp" />
     <ClCompile Include="..\..\..\src\MissStudioCore\Common\WidgetEvent.cpp" />
-    <ClCompile Include="..\..\..\src\MissStudioCore\DAL\MissWidgetsDAL.cpp" />
+    <ClCompile Include="..\..\..\src\MissStudioCore\DAL\MissCoreDb.cpp" />
+    <ClCompile Include="..\..\..\src\MissStudioCore\DAL\MissDAL.cpp" />
+    <ClCompile Include="..\..\..\src\MissStudioCore\DAL\MissDbBase.cpp" />
+    <ClCompile Include="..\..\..\src\MissStudioCore\DAL\MissTaskDb.cpp" />
+    <ClCompile Include="..\..\..\src\MissStudioCore\DAL\MissWidgetDb.cpp" />
     <ClCompile Include="..\..\..\src\MissStudioCore\Generated\GUIFrame.cpp" />
+    <ClCompile Include="..\..\..\src\MissStudioCore\Impl\ImplMissClipboard.cpp" />
     <ClCompile Include="..\..\..\src\MissStudioCore\Impl\ImplMissSharedMemory.cpp" />
     <ClCompile Include="..\..\..\src\MissStudioCore\Impl\ImplMissStorage.cpp" />
     <ClCompile Include="..\..\..\src\MissStudioCore\Impl\ImplMissHotKeyMgr.cpp" />
+    <ClCompile Include="..\..\..\src\MissStudioCore\Impl\ImplMissTaskIcon.cpp" />
     <ClCompile Include="..\..\..\src\MissStudioCore\Impl\ImplMissTimer.cpp" />
     <ClCompile Include="..\..\..\src\MissStudioCore\Impl\ImplMissWidget.cpp" />
     <ClCompile Include="..\..\..\src\MissStudioCore\Impl\ImplMissWidgetMgr.cpp" />
@@ -47,6 +54,7 @@
     <ClCompile Include="..\..\..\src\MissStudioCore\Widget\wxKeyMonitorTextCtrl.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\src\MissStudioCore\BLL\MissClipboardManager.h" />
     <ClInclude Include="..\..\..\src\MissStudioCore\BLL\MissCoreConfig.h" />
     <ClInclude Include="..\..\..\src\MissStudioCore\BLL\MissFunctor.h" />
     <ClInclude Include="..\..\..\src\MissStudioCore\BLL\MissHotKeyManager.h" />
@@ -62,11 +70,17 @@
     <ClInclude Include="..\..\..\src\MissStudioCore\Common\Targetver.h" />
     <ClInclude Include="..\..\..\src\MissStudioCore\Common\WidgetDef.h" />
     <ClInclude Include="..\..\..\src\MissStudioCore\Common\WidgetEvent.h" />
-    <ClInclude Include="..\..\..\src\MissStudioCore\DAL\MissWidgetsDAL.h" />
+    <ClInclude Include="..\..\..\src\MissStudioCore\DAL\MissCoreDb.h" />
+    <ClInclude Include="..\..\..\src\MissStudioCore\DAL\MissDAL.h" />
+    <ClInclude Include="..\..\..\src\MissStudioCore\DAL\MissDbBase.h" />
+    <ClInclude Include="..\..\..\src\MissStudioCore\DAL\MissTaskDb.h" />
+    <ClInclude Include="..\..\..\src\MissStudioCore\DAL\MissWidgetDb.h" />
     <ClInclude Include="..\..\..\src\MissStudioCore\Generated\GUIFrame.h" />
+    <ClInclude Include="..\..\..\src\MissStudioCore\Impl\ImplMissClipboard.h" />
     <ClInclude Include="..\..\..\src\MissStudioCore\Impl\ImplMissSharedMemory.h" />
     <ClInclude Include="..\..\..\src\MissStudioCore\Impl\ImplMissStorage.h" />
     <ClInclude Include="..\..\..\src\MissStudioCore\Impl\ImplMissHotKeyMgr.h" />
+    <ClInclude Include="..\..\..\src\MissStudioCore\Impl\ImplMissTaskIcon.h" />
     <ClInclude Include="..\..\..\src\MissStudioCore\Impl\ImplMissTimer.h" />
     <ClInclude Include="..\..\..\src\MissStudioCore\Impl\ImplMissWidget.h" />
     <ClInclude Include="..\..\..\src\MissStudioCore\Impl\ImplMissWidgetMgr.h" />

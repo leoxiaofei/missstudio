@@ -10,11 +10,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MissAPI", "MissAPI", "{8E92
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "interface", "interface", "{8C0CF45B-17E2-4859-9FE3-7203520D43E4}"
 	ProjectSection(SolutionItems) = preProject
+		..\..\include\MissAPI\interface\IMissClipboard.h = ..\..\include\MissAPI\interface\IMissClipboard.h
 		..\..\include\MissAPI\interface\IMissHotKeyMgr.h = ..\..\include\MissAPI\interface\IMissHotKeyMgr.h
 		..\..\include\MissAPI\interface\IMissMain.h = ..\..\include\MissAPI\interface\IMissMain.h
+		..\..\include\MissAPI\interface\IMissNetwork.h = ..\..\include\MissAPI\interface\IMissNetwork.h
 		..\..\include\MissAPI\interface\IMissSharedMemory.h = ..\..\include\MissAPI\interface\IMissSharedMemory.h
 		..\..\include\MissAPI\interface\IMissSpeech.h = ..\..\include\MissAPI\interface\IMissSpeech.h
 		..\..\include\MissAPI\interface\IMissStorage.h = ..\..\include\MissAPI\interface\IMissStorage.h
+		..\..\include\MissAPI\interface\IMissTask.h = ..\..\include\MissAPI\interface\IMissTask.h
 		..\..\include\MissAPI\interface\IMissTaskIcon.h = ..\..\include\MissAPI\interface\IMissTaskIcon.h
 		..\..\include\MissAPI\interface\IMissTimer.h = ..\..\include\MissAPI\interface\IMissTimer.h
 		..\..\include\MissAPI\interface\IMissWidget.h = ..\..\include\MissAPI\interface\IMissWidget.h
@@ -58,6 +61,17 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MissClock", "MissClock\Miss
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MissInput", "MissInput\MissInput.vcxproj", "{DF2113DD-D462-4C7F-907C-AAE3E63420DE}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "callback", "callback", "{96F7EBC6-14FB-4037-B36B-6560227438BD}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\include\MissAPI\callback\MissNotifyBase.h = ..\..\include\MissAPI\callback\MissNotifyBase.h
+		..\..\include\MissAPI\callback\MissNotifyFunctor.hpp = ..\..\include\MissAPI\callback\MissNotifyFunctor.hpp
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "datatype", "datatype", "{A55A34AA-8DC1-4971-9CC4-B99A4CF110EC}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\include\MissAPI\datatype\TaskDef.h = ..\..\include\MissAPI\datatype\TaskDef.h
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -93,6 +107,8 @@ Global
 		{1154EF12-6973-496C-89D9-AC1047031B65} = {B9E9BAC9-4A1E-4BB7-BC3D-3944079CF6CF}
 		{8C0CF45B-17E2-4859-9FE3-7203520D43E4} = {8E92489C-04E9-407B-97B9-D389AEBAE02B}
 		{652C8A5C-9108-4757-8B18-ACD0F7BFC59F} = {8E92489C-04E9-407B-97B9-D389AEBAE02B}
+		{96F7EBC6-14FB-4037-B36B-6560227438BD} = {8E92489C-04E9-407B-97B9-D389AEBAE02B}
+		{A55A34AA-8DC1-4971-9CC4-B99A4CF110EC} = {8E92489C-04E9-407B-97B9-D389AEBAE02B}
 		{9B6B91FD-8988-453B-84CA-480EF406C80B} = {C4EF0F78-6315-4F1A-ADFC-2C03B5C81DA7}
 		{06C04951-34B2-48EA-981E-F101B84B7419} = {C4EF0F78-6315-4F1A-ADFC-2C03B5C81DA7}
 		{DF2113DD-D462-4C7F-907C-AAE3E63420DE} = {C4EF0F78-6315-4F1A-ADFC-2C03B5C81DA7}
