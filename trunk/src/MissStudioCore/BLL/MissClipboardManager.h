@@ -4,6 +4,7 @@
 #include <memory>
 
 class MissNotifyBase;
+class MissPluginBase;
 
 class MissClipboardManager
 {
@@ -17,8 +18,12 @@ public:
 
 	void Notify();
 
-	void RegNotify  ( MissNotifyBase* pBase );
+	void RegNotify  ( MissPluginBase* pPlugMain, MissNotifyBase* pBase );
 	void UnRegNotify( void* method, void* handler );
+	bool UnloadPlugin(MissPluginBase* pPluginBase);
+
+protected:
+	void UnRegNotify(MissNotifyBase* pBase);
 
 private:
 	MissClipboardManager();

@@ -30,7 +30,7 @@ bool MissStudioCoreApp::OnInit()
 {
     //wxSetWorkingDirectory(Miss::GetAppExePath());
     wxImage::AddHandler( new wxPNGHandler );
-    //_CrtSetBreakAlloc(15671);
+    //_CrtSetBreakAlloc(10550);
 
     MissCoreConfig::Instance().Init();
     wxAppFrame = new MissCoreFrame;

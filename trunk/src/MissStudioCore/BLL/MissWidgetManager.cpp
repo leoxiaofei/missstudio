@@ -8,7 +8,8 @@
 #include <wx/frame.h>
 #include <iostream>
 #include <algorithm>
-#include "../DAL/MissWidgetsDAL.h"
+#include "../DAL/MissDAL.h"
+#include "../DAL/MissWidgetDb.h"
 #include "MissAPI/plugin/MissPluginBase.h"
 #include "../Common/WidgetEvent.h"
 
@@ -41,6 +42,7 @@ public:
     MissFuncFinder<MissWidgetFactoryBase>      funcFinder;
     vector<shared_ptr<ImplMissWidget> >        vecRunWidgets;
     map<unsigned int, MissWidgetFactoryBase*>  mapWidgetId;
+	shared_ptr<MissWidgetDb>                   ptWidgetDb;
     wxEvtHandler                               hHandler;
 };
 
@@ -48,6 +50,8 @@ MissWidgetManager::MissWidgetManager()
 : m_pImpl(new Impl)
 {
     //ctor
+	m_pImpl->ptWidgetDb = MissDAL::Instance().QueryIF<MissWidgetDb>(DT_WIDGETS);
+
 }
 
 MissWidgetManager::~MissWidgetManager()
@@ -202,7 +206,7 @@ bool MissWidgetManager::UnloadPlugin( MissPluginBase* pPluginBase )
 void MissWidgetManager::LoadRunWidget()
 {
     std::vector<RunWidgetData> vecRunDatas;
-    MissWidgetsDAL::Instance().LoadRunWidgets(vecRunDatas);
+	m_pImpl->ptWidgetDb->LoadRunWidgets(vecRunDatas);
     for (std::vector<RunWidgetData>::const_iterator citor = vecRunDatas.begin();
         citor != vecRunDatas.end(); ++citor)
     {
@@ -224,7 +228,7 @@ void MissWidgetManager::SaveRunWidget()
             m_pImpl->vecRunWidgets[ix]->GetData(vecRunDatas[ix].sWidgetPara);
         }
     }
-    MissWidgetsDAL::Instance().SaveRunWidgets(vecRunDatas);
+    m_pImpl->ptWidgetDb->SaveRunWidgets(vecRunDatas);
 }
 
 void MissWidgetManager::CreateWidget( MissWidgetFactoryBase* pBase, int nWidgetId )
@@ -233,7 +237,7 @@ void MissWidgetManager::CreateWidget( MissWidgetFactoryBase* pBase, int nWidgetI
     if (pPlugin)
     {
         DTD::SWidgetPara data;
-        MissWidgetsDAL::Instance().NewRunWidget(pPlugin->GetPluginGUID(), nWidgetId, data);
+        m_pImpl->ptWidgetDb->NewRunWidget(pPlugin->GetPluginGUID(), nWidgetId, data);
         GenerateWidget(pBase, nWidgetId, data);
     }
 }
@@ -241,7 +245,7 @@ void MissWidgetManager::CreateWidget( MissWidgetFactoryBase* pBase, int nWidgetI
 void MissWidgetManager::DelRunWidget( unsigned int uRunId )
 {
     CloseRunWidget(uRunId);
-    MissWidgetsDAL::Instance().DelRunWidget(uRunId);
+    m_pImpl->ptWidgetDb->DelRunWidget(uRunId);
 }
 
 void MissWidgetManager::CloseRunWidget( unsigned int uRunId )

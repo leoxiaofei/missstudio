@@ -126,9 +126,6 @@
     <ClCompile Include="..\..\..\src\MissStudioCore\BLL\MissTimerManager.cpp">
       <Filter>Source Files\BLL</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\src\MissStudioCore\DAL\MissWidgetsDAL.cpp">
-      <Filter>Source Files\DAL</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\src\MissStudioCore\Common\MissPaths.cpp">
       <Filter>Source Files\Common</Filter>
     </ClCompile>
@@ -164,6 +161,30 @@
     </ClCompile>
     <ClCompile Include="..\..\..\src\MissStudioCore\Common\WidgetEvent.cpp">
       <Filter>Source Files\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\MissStudioCore\BLL\MissClipboardManager.cpp">
+      <Filter>Source Files\BLL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\MissStudioCore\Impl\ImplMissTaskIcon.cpp">
+      <Filter>Source Files\Impl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\MissStudioCore\Impl\ImplMissClipboard.cpp">
+      <Filter>Source Files\Impl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\MissStudioCore\DAL\MissDAL.cpp">
+      <Filter>Source Files\DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\MissStudioCore\DAL\MissWidgetDb.cpp">
+      <Filter>Source Files\DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\MissStudioCore\DAL\MissDbBase.cpp">
+      <Filter>Source Files\DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\MissStudioCore\DAL\MissTaskDb.cpp">
+      <Filter>Source Files\DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\MissStudioCore\DAL\MissCoreDb.cpp">
+      <Filter>Source Files\DAL</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -227,9 +248,6 @@
     <ClInclude Include="..\..\..\src\MissStudioCore\BLL\MissTimerManager.h">
       <Filter>Header Files\BLL</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\src\MissStudioCore\DAL\MissWidgetsDAL.h">
-      <Filter>Header Files\DAL</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\src\MissStudioCore\Common\CustomId.h">
       <Filter>Header Files\Common</Filter>
     </ClInclude>
@@ -283,6 +301,30 @@
     </ClInclude>
     <ClInclude Include="..\..\..\src\MissStudioCore\Common\WidgetEvent.h">
       <Filter>Header Files\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\MissStudioCore\BLL\MissClipboardManager.h">
+      <Filter>Header Files\BLL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\MissStudioCore\Impl\ImplMissClipboard.h">
+      <Filter>Header Files\Impl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\MissStudioCore\Impl\ImplMissTaskIcon.h">
+      <Filter>Header Files\Impl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\MissStudioCore\DAL\MissDbBase.h">
+      <Filter>Header Files\DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\MissStudioCore\DAL\MissDAL.h">
+      <Filter>Header Files\DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\MissStudioCore\DAL\MissWidgetDb.h">
+      <Filter>Header Files\DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\MissStudioCore\DAL\MissTaskDb.h">
+      <Filter>Header Files\DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\MissStudioCore\DAL\MissCoreDb.h">
+      <Filter>Header Files\DAL</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

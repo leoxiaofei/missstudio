@@ -13,7 +13,7 @@ class wxCloseEvent;
 
 class DLL_EXPORT OneWinManager
 {
-	typedef std::tr1::unordered_map<wxString, wxWindow*, wxStringHash> HsWin;
+	typedef std::tr1::unordered_map<wxString, wxWindow*, wxStringHash, wxStringEqual> HsWin;
 
 public:
 	OneWinManager(wxWindow* pParent);

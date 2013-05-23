@@ -14,7 +14,7 @@ ImplMissClipboard::~ImplMissClipboard()
 
 void ImplMissClipboard::RegNotify( MissNotifyBase* pBase )
 {
-	MissClipboardManager::Instance().RegNotify(pBase);
+	MissClipboardManager::Instance().RegNotify(m_pPlugMain, pBase);
 }
 
 void ImplMissClipboard::UnRegNotify( void* method, void* handler )
