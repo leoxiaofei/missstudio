@@ -15,8 +15,9 @@ public:
         return theSingleton;
     }
 
-    wxString GetDataBaseDir() const;
-    wxString GetPluginDir() const;
+	wxString GetAppPath() const;
+    wxString GetDataBasePath() const;
+    wxString GetPluginPath() const;
     wxString GetConfigPath() const;
 
     void SetConfigDirType(int nType);

@@ -37,7 +37,7 @@ MissPluginManager::~MissPluginManager()
 
 void MissPluginManager::LoadPlugin()
 {
-    wxString strDiraddr = MissPaths::Instance().GetPluginDir();
+    wxString strDiraddr = MissPaths::Instance().GetPluginPath();
     wxDir dirPath(strDiraddr);
     wxDir dirPlugin;
     if (dirPath.IsOpened())

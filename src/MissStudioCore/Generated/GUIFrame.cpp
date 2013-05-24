@@ -47,15 +47,7 @@ PluginOptionBase::PluginOptionBase( wxWindow* parent, wxWindowID id, const wxStr
 	panProperty->SetSizer( sizerProperty );
 	panProperty->Layout();
 	sizerProperty->Fit( panProperty );
-	lbOption->AddPage( panProperty, _("参数设置"), false );
-	lbOptionBitmap = wxNullBitmap;
-	if ( lbOptionBitmap.Ok() )
-	{
-		lbOptionImage = lbOptionBitmap.ConvertToImage();
-		lbOptionImages->Add( lbOptionImage.Scale( lbOptionImageSize.GetWidth(), lbOptionImageSize.GetHeight() ) );
-		lbOption->SetPageImage( lbOptionIndex, lbOptionIndex );
-		lbOptionIndex++;
-	}
+	lbOption->AddPage( panProperty, _("参数设置"), true );
 	panHotKey = new wxPanel( lbOption, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );
 	sizerHotKey = new wxBoxSizer( wxVERTICAL );
 	
@@ -63,7 +55,7 @@ PluginOptionBase::PluginOptionBase( wxWindow* parent, wxWindowID id, const wxStr
 	panHotKey->SetSizer( sizerHotKey );
 	panHotKey->Layout();
 	sizerHotKey->Fit( panHotKey );
-	lbOption->AddPage( panHotKey, _("热键设置"), true );
+	lbOption->AddPage( panHotKey, _("热键设置"), false );
 	
 	bSizerMain->Add( lbOption, 1, wxEXPAND | wxALL, 5 );
 	

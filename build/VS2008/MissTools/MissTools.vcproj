@@ -43,7 +43,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="0"
 				AdditionalIncludeDirectories="&quot;$(wx29)lib\vc_dll\mswud&quot;;&quot;$(SolutionDir)..\..\include&quot;"
-				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;BUILD_DLL;__WXMSW__;__WXDEBUG__;WXUSINGDLL"
+				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;BUILD_DLL;__WXMSW__;__WXDEBUG__;WXUSINGDLL;_CRT_SECURE_NO_WARNINGS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
@@ -119,7 +119,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="&quot;$(wx29)lib\vc_dll\mswud&quot;;&quot;$(SolutionDir)..\..\include&quot;"
+				AdditionalIncludeDirectories="&quot;$(wx29)lib\vc_dll\mswu&quot;;&quot;$(SolutionDir)..\..\include&quot;"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;__WXMSW__;WXUSINGDLL;BUILD_DLL"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
@@ -191,6 +191,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\..\src\MissTools\MissZipReader.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\src\MissTools\OneWinManager.cpp"
 				>
 			</File>
@@ -214,6 +218,10 @@
 			</File>
 			<File
 				RelativePath="..\..\..\src\MissTools\MissTreeData.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\src\MissTools\MissZipReader.h"
 				>
 			</File>
 			<File
