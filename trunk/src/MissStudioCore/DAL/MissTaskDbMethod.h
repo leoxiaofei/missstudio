@@ -1,6 +1,15 @@
 #ifndef MISSTASKDBMETHOD_H__
 #define MISSTASKDBMETHOD_H__
 
+class wxSQLite3ResultSet;
+class wxSQLite3Statement;
+#include <memory>
+
+namespace Miss
+{
+	class TaskDef;
+}
+
 class DbMethodBase
 {
 public:

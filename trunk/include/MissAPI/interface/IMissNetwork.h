@@ -1,10 +1,15 @@
 #ifndef IMISSNETWORK_H__
 #define IMISSNETWORK_H__
 
+#include "..\MissApiDef.h"
+#include <memory>
+#include <wx/string.h>
+
+class IMissUDP;
 
 INTERFACE_BEGIN(IMissNetwork)
 
-	IDEF()
+IDEF(std::tr1::shared_ptr<IMissUDP> GetUDP())
 	
 INTERFACE_END
 

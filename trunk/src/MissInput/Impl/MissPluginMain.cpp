@@ -5,12 +5,12 @@
 #include "MissAPI/interface/IMissMain.h"
 #include "MissAPI/interface/IMissHotKeyMgr.h"
 #include "MissAPI/interface/IMissStorage.h"
+#include "MissAPI/interface/IMissClipboard.h"
 #include "../UI/MissAutoInputThread.h"
+#include "../UI/MissEvtHandler.h"
 #include "../Common/MissGlobal.h"
 
 #include "MissHotKeyFunc.h"
-#include "MissAPI/interface/IMissClipboard.h"
-#include "../UI/MissEvtHandler.h"
 
 using std::tr1::shared_ptr;
 

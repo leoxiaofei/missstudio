@@ -15,6 +15,7 @@
 #include <wx/window.h>
 #include <wx/app.h>
 #include "../BLL/MissClipboardManager.h"
+#include "../BLL/MissExtendManager.h"
 
 using std::tr1::shared_ptr;
 
@@ -84,6 +85,9 @@ void MissCoreFrame::OnInitWindow( wxEvent& event )
 {
     ///断开初始化信号
     Unbind(wxEVT_INITIALIZE, &MissCoreFrame::OnInitWindow, this);
+
+	///初始化扩展
+	MissExtendManager::Instance().LoadPlugin();
 
     ///初始化插件
 	MissPluginManager::Instance().LoadPlugin();

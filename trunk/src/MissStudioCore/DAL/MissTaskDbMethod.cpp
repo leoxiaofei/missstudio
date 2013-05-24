@@ -1,7 +1,12 @@
 #include "MissTaskDbMethod.h"
 #include "MissAPI\datatype\TaskDef.h"
+#include <map>
+#include <wx/datetime.h>
+#include "wx/wxsqlite3.h"
 
 typedef std::map<int, std::tr1::shared_ptr<DbMethodBase> > MethodContainer;
+
+using namespace Miss;
 
 class DbMethodFactory::Impl
 {
@@ -68,28 +73,31 @@ bool DateUsualMethod::ReadDb( Miss::TaskDef &data, wxSQLite3ResultSet& result ) 
 	p->month = time.GetMonth();
 	p->day = time.GetDay();
 	data.ptDate = std::tr1::shared_ptr<DateBase>(p);
+	return false;
 }
 
 bool DateUsualMethod::WriteDb( const Miss::TaskDef &data, wxSQLite3Statement& statement ) const
 {
-	DateUsual* p = static_cast<DateUsual>(data.ptDate.get());
+	DateUsual* p = static_cast<DateUsual*>(data.ptDate.get());
 	statement.Bind(statement.GetParamIndex(wxT("$TD_DateType")), DateUsual::TYPE);
 	wxString strTemp;
 	strTemp.Printf(wxT("%04d-%02d-%02d"), p->year, p->month, p->day);
 	statement.Bind(statement.GetParamIndex(wxT("$TD_TaskDate")), strTemp);
+	return false;
 }
 
 bool DateDailyMethod::ReadDb( Miss::TaskDef &data, wxSQLite3ResultSet& result ) const
 {
-	DateDaily* p = new DateDaily;
-	wxString strDate = result.GetString(wxT("TD_TaskDate"));
-	p->
-	wxDateTime time;
-	time.ParseISODate();
-	p->year = time.GetYear();
-	p->month = time.GetMonth();
-	p->day = time.GetDay();
-	data.ptDate = std::tr1::shared_ptr<DateBase>(p);
+// 	DateDaily* p = new DateDaily;
+// 	wxString strDate = result.GetString(wxT("TD_TaskDate"));
+// 	//p->
+// 	wxDateTime time;
+// 	time.ParseISODate();
+// 	p->year = time.GetYear();
+// 	p->month = time.GetMonth();
+// 	p->day = time.GetDay();
+// 	data.ptDate = std::tr1::shared_ptr<DateBase>(p);
+	return false;
 }
 
 bool DateDailyMethod::WriteDb( const Miss::TaskDef &data, wxSQLite3Statement& statement ) const

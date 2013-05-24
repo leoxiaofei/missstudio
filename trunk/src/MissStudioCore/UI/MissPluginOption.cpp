@@ -4,6 +4,9 @@
 #include "../Model/MissHotKeyModel.h"
 #include "MissHotKeySetting.h"
 #include "../Common/AutoColumnWidth.h"
+#include "wx/xrc/xmlres.h"
+#include "MissTools/MissZipReader.h"
+#include "../BLL/MissResManager.h"
 
 class MissPluginOption::Impl
 {
@@ -11,6 +14,8 @@ public:
     wxDataViewCtrl*                  pHotKeyList;
     wxObjectDataPtr<MissHotKeyModel> ptHotKeyModel;
     AutoColumnWidth                  acwHotKeyList;
+
+	wxImageList*                     lbOptionImages;
 };
 
 
@@ -30,6 +35,23 @@ MissPluginOption::~MissPluginOption()
 
 void MissPluginOption::InitUi()
 {
+	wxSize lbOptionImageSize = wxSize( 32,32 );
+	m_pImpl->lbOptionImages = new wxImageList(lbOptionImageSize.GetWidth(), lbOptionImageSize.GetHeight());
+	lbOption->AssignImageList( m_pImpl->lbOptionImages );
+
+	int lbOptionIndex = 0;
+
+	std::tr1::shared_ptr<MissZipReader> pMainRes = MissResManager::Instance().GetMainRes();
+	std::tr1::shared_ptr<wxImage> pImage = pMainRes->LoadImage(_T("Bitmap/1day.png"));
+	//wxBitmap lbOptionBitmap = wxXmlResource::Get()->LoadBitmap(_T("Bitmap/1day.png"));
+	if ( pImage && pImage->IsOk() )
+	{
+		//lbOptionImage = lbOptionBitmap.ConvertToImage();
+		m_pImpl->lbOptionImages->Add( pImage->Scale( lbOptionImageSize.GetWidth(), lbOptionImageSize.GetHeight() ) );
+		lbOption->SetPageImage( lbOptionIndex, lbOptionIndex );
+		++lbOptionIndex;
+	}
+
     wxDataViewCtrl* pHotKeyList;
     pHotKeyList = new wxDataViewCtrl(panHotKey, wxID_ANY);
     m_pImpl->acwHotKeyList.SetViewCtrl(pHotKeyList);

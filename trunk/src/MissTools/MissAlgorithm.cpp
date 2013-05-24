@@ -1,6 +1,7 @@
 #include "MissAlgorithm.h"
 #include <wx/hashmap.h>
 #include <algorithm>
+#include <functional>
 
 
 void MissAlgorithm::wxHash( const wxString& strSrc, wxString& strDes )
@@ -11,7 +12,7 @@ void MissAlgorithm::wxHash( const wxString& strSrc, wxString& strDes )
 }
 
 template<typename T>
-class FindSameChar
+class FindSameChar : public std::unary_function<T, bool>
 {
 public:
 	FindSameChar(T chSplit)
@@ -32,7 +33,7 @@ void MissAlgorithm::split( const wxString& strSrc, std::vector<wxString>& vecDes
 	wxString::const_iterator j;
 	while (i != strSrc.end())
 	{  
-		i = std::find_if_not(i, strSrc.end(), FindSameChar<wxString::value_type>(chSplit));  
+		i = std::find_if(i, strSrc.end(), std::not1(FindSameChar<wxString::value_type>(chSplit)));  
 		j = std::find_if(i, strSrc.end(), FindSameChar<wxString::value_type>(chSplit));  
 
 		// get valid word  

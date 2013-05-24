@@ -10,7 +10,7 @@ class MissNetMessageBase
 public:
 	virtual ~MissNetMessageBase() {}
 
-	void Receive(const MissIPAddress& addr, );
+	virtual void Receive(const MissIPAddress& addr, const wxMemoryOutputStream& data) = 0;
 
 protected:
 

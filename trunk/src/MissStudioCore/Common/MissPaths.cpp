@@ -28,19 +28,19 @@ void MissPaths::SetConfigDirType( int nType )
     }
 }
 
-wxString MissPaths::GetDataBaseDir() const
+wxString MissPaths::GetDataBasePath() const
 {
     return m_pImpl->spDir.GetDataDir() + wxT("\\..\\Config\\");
 }
 
-wxString MissPaths::GetPluginDir() const
+wxString MissPaths::GetPluginPath() const
 {
     return m_pImpl->spDir.GetDataDir() + wxT("\\..\\Plugin\\");
 }
 
 wxString MissPaths::GetConfigPath() const
 {
-    wxString strRet = GetDataBaseDir();
+    wxString strRet = GetDataBasePath();
     switch (m_pImpl->nDirType)
     {
     case DTD::PCD_GLOBAL:
@@ -68,4 +68,9 @@ wxString MissPaths::GetConfigPath() const
         break;
     }
     return strRet;
+}
+
+wxString MissPaths::GetAppPath() const
+{
+	return m_pImpl->spDir.GetDataDir() + wxT("\\");
 }

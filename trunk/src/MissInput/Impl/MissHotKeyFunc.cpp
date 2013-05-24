@@ -95,7 +95,7 @@ const wxString MissHotKeyFunc::s_strFuncNames[] = {
 };
 
 const wxString MissHotKeyFunc::s_strFuncDescs[] = {
-    wxT("自动输入生成的密码到光标处。")
+    wxT("自动输入字符到光标处。")
 };
 
 const wxString MissHotKeyFunc::s_strNodePath = wxT("热键/");

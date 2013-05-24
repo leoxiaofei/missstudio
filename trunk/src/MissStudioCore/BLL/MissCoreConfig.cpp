@@ -13,7 +13,7 @@ MissCoreConfig::~MissCoreConfig()
 
 void MissCoreConfig::Init()
 {
-    wxString strPath = MissPaths::Instance().GetDataBaseDir() + wxT("Globle.ini");
+    wxString strPath = MissPaths::Instance().GetDataBasePath() + wxT("Globle.ini");
     MissConfigFile config(strPath);
     long nPcdType = 0;
     if(config.Read(wxT("System//PathType"), nPcdType))

@@ -62,7 +62,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="wxmsw29ud_core.lib wxbase29ud.lib wxmsw29ud_adv.lib wxexpatd.lib wxmsw29ud_stc.lib wxscintillad.lib wxcode_msw29ud_wxsqlite3.lib MissTools.lib"
+				AdditionalDependencies="wxmsw29ud_core.lib wxbase29ud.lib wxmsw29ud_adv.lib wxexpatd.lib wxmsw29ud_stc.lib wxscintillad.lib wxcode_msw29ud_wxsqlite3.lib wxmsw29ud_xrc.lib MissTools.lib"
 				LinkIncremental="2"
 				AdditionalLibraryDirectories="$(SolutionDir)$(ConfigurationName)\Bin"
 				GenerateDebugInformation="true"
@@ -140,7 +140,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="wxmsw29u_core.lib wxbase29u.lib wxmsw29u_adv.lib wxexpat.lib wxmsw29u_stc.lib wxscintilla.lib wxcode_msw29u_wxsqlite3.lib MissTools.lib"
+				AdditionalDependencies="wxmsw29u_core.lib wxbase29u.lib wxmsw29u_adv.lib wxexpat.lib wxmsw29u_stc.lib wxscintilla.lib wxcode_msw29u_wxsqlite3.lib MissTools.lib wxmsw29u_xrc.lib"
 				LinkIncremental="1"
 				AdditionalLibraryDirectories="$(SolutionDir)$(ConfigurationName)\Bin"
 				GenerateDebugInformation="true"
@@ -192,6 +192,10 @@
 					>
 				</File>
 				<File
+					RelativePath="..\..\..\src\MissStudioCore\BLL\MissExtendManager.cpp"
+					>
+				</File>
+				<File
 					RelativePath="..\..\..\src\MissStudioCore\BLL\MissFunctor.cpp"
 					>
 				</File>
@@ -204,7 +208,15 @@
 					>
 				</File>
 				<File
+					RelativePath="..\..\..\src\MissStudioCore\BLL\MissNetworkManager.cpp"
+					>
+				</File>
+				<File
 					RelativePath="..\..\..\src\MissStudioCore\BLL\MissPluginManager.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\src\MissStudioCore\BLL\MissResManager.cpp"
 					>
 				</File>
 				<File
@@ -236,7 +248,27 @@
 				Name="DAL"
 				>
 				<File
-					RelativePath="..\..\..\src\MissStudioCore\DAL\MissWidgetsDAL.cpp"
+					RelativePath="..\..\..\src\MissStudioCore\DAL\MissCoreDb.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\src\MissStudioCore\DAL\MissDAL.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\src\MissStudioCore\DAL\MissDbBase.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\src\MissStudioCore\DAL\MissTaskDb.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\src\MissStudioCore\DAL\MissTaskDbMethod.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\src\MissStudioCore\DAL\MissWidgetDb.cpp"
 					>
 				</File>
 			</Filter>
@@ -257,6 +289,10 @@
 				</File>
 				<File
 					RelativePath="..\..\..\src\MissStudioCore\Impl\ImplMissHotKeyMgr.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\src\MissStudioCore\Impl\ImplMissNetwork.cpp"
 					>
 				</File>
 				<File
@@ -396,6 +432,10 @@
 					>
 				</File>
 				<File
+					RelativePath="..\..\..\src\MissStudioCore\BLL\MissExtendManager.h"
+					>
+				</File>
+				<File
 					RelativePath="..\..\..\src\MissStudioCore\BLL\MissFunctor.h"
 					>
 				</File>
@@ -408,7 +448,15 @@
 					>
 				</File>
 				<File
+					RelativePath="..\..\..\src\MissStudioCore\BLL\MissNetworkManager.h"
+					>
+				</File>
+				<File
 					RelativePath="..\..\..\src\MissStudioCore\BLL\MissPluginManager.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\src\MissStudioCore\BLL\MissResManager.h"
 					>
 				</File>
 				<File
@@ -464,7 +512,27 @@
 				Name="DAL"
 				>
 				<File
-					RelativePath="..\..\..\src\MissStudioCore\DAL\MissWidgetsDAL.h"
+					RelativePath="..\..\..\src\MissStudioCore\DAL\MissCoreDb.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\src\MissStudioCore\DAL\MissDAL.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\src\MissStudioCore\DAL\MissDbBase.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\src\MissStudioCore\DAL\MissTaskDb.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\src\MissStudioCore\DAL\MissTaskDbMethod.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\src\MissStudioCore\DAL\MissWidgetDb.h"
 					>
 				</File>
 			</Filter>
@@ -485,6 +553,10 @@
 				</File>
 				<File
 					RelativePath="..\..\..\src\MissStudioCore\Impl\ImplMissHotKeyMgr.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\src\MissStudioCore\Impl\ImplMissNetwork.h"
 					>
 				</File>
 				<File

@@ -36,7 +36,8 @@ wxThread::ExitCode MissAutoInputThread::Entry()
 		{
 			SendUnicode(ch);
 		}
-    }
+		wxMicroSleep(500);
+	}
     wxQueueEvent(m_pHandler, new wxThreadEvent(wxEVT_COMMAND_AUTOINPUT_COMPLETED));
     return (wxThread::ExitCode)0;     // success
 }
@@ -65,12 +66,18 @@ void MissAutoInputThread::SendKey(char ch)
     unsigned char vkey;
 
     sc = OemKeyScan(ch);
-    shift = sc >> 16;
-    vkey=MapVirtualKey(sc&0xffff,1);
+    
+	shift = sc >> 16;
+    
+	vkey = MapVirtualKey( sc & 0xffff, 1);
+
     if(shift)
-        keybd_event(VK_SHIFT,0,0,0);
-    keybd_event(vkey,0,0,0);
-    keybd_event(vkey,0,KEYEVENTF_KEYUP,0);
+        keybd_event(VK_SHIFT, 0, 0, 0);
+    
+	keybd_event(vkey, 0, 0, 0);
+    keybd_event(vkey, 0, KEYEVENTF_KEYUP, 0);
+
     if(shift)
-        keybd_event(VK_SHIFT,0,KEYEVENTF_KEYUP,0);
+        keybd_event(VK_SHIFT, 0, KEYEVENTF_KEYUP, 0);
+
 }

@@ -4,9 +4,6 @@
 #include "MissGlobal.h"
 #include <vector>
 
-class TreeData;
-template class DLL_EXPORT std::allocator<TreeData*>;
-template class DLL_EXPORT std::vector<TreeData*, std::allocator<TreeData*> >;
 
 class DLL_EXPORT TreeData
 {
@@ -40,7 +37,8 @@ protected:
     void                SetParent(TreeData* pParent);
 
 private:
-
+	template class DLL_EXPORT std::allocator<TreeData*>;
+	template class DLL_EXPORT std::vector<TreeData*, std::allocator<TreeData*> >;
     std::vector<TreeData*>   m_vecChilds;
     TreeData*                m_pParent;
 };
