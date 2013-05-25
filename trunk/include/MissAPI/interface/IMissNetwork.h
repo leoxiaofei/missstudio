@@ -18,10 +18,8 @@ class MissNetMessageBase;
 
 struct MissIPAddress
 {
-	wxString       strSrcAddr;
-	unsigned short sSrcPort;
-	wxString       strDesAddr;
-	unsigned short sDesPort;
+	wxString       strAddr;
+	unsigned short sPort;
 };
 
 INTERFACE_BEGIN(IMissUDP)

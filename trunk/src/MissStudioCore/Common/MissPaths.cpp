@@ -74,3 +74,8 @@ wxString MissPaths::GetAppPath() const
 {
 	return m_pImpl->spDir.GetDataDir() + wxT("\\");
 }
+
+wxString MissPaths::GetResPath() const
+{
+	return m_pImpl->spDir.GetDataDir() + wxT("\\..\\Res\\");
+}

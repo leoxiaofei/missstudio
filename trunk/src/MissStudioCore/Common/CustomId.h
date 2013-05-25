@@ -38,6 +38,10 @@ namespace DTD
         ///热键起始ID
         CI_HOTKEY_ID_BEGIN,
         CI_HOTKEY_ID_END     = CI_HOTKEY_ID_BEGIN + 2000,
+
+		///网络通信ID
+		CI_SOCKET_ID_BEGIN,
+		CI_SOCKET_ID_END     = CI_SOCKET_ID_BEGIN + 4000,
     };
 
 }

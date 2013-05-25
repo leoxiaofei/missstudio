@@ -3,7 +3,6 @@
 
 #include "MissAPI\interface\IMissMain.h"
 
-
 class MissPluginBase;
 class MissMainEntry;
 
@@ -22,13 +21,11 @@ protected:
     virtual std::tr1::shared_ptr<IMissUnknown> GetInterfacePtr( IF_TYPE eType );
 
 private:
-    IMissUnknown* CreateHotKey();
-    IMissUnknown* CreateStorage();
-    IMissUnknown* CreateTimer();
-    IMissUnknown* CreateWidgetMgr();
-	IMissUnknown* CreateSharedMemory();
-	IMissUnknown* CreateClipboard();
-
+	template <class T>
+	IMissUnknown* CreateInterface()
+	{
+		return new T(m_pPlugMain);
+	}
 
 private:
     MissPluginBase* m_pPlugMain;
