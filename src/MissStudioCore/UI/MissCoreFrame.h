@@ -5,6 +5,7 @@
 #include <memory>
 
 class wxTimerEvent;
+class wxSocketEvent;
 
 class MissCoreFrame : public wxFrame
 {
@@ -14,11 +15,12 @@ public:
 	MissCoreFrame();
     ~MissCoreFrame();
 
-    void OnHotKey(wxKeyEvent& event);
 
 protected:
     void OnClose(wxCloseEvent& event);
+	void OnHotKey(wxKeyEvent& event);
     void OnTimer(wxTimerEvent& event);
+	void OnSocket(wxSocketEvent& event);
 
     ///自定义事件
     void OnInitWindow(wxEvent& event);

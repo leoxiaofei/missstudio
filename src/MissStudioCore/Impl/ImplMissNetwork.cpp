@@ -1,7 +1,9 @@
 #include "ImplMissNetwork.h"
+#include "..\BLL\MissNetworkManager.h"
 
 
-ImplMissNetwork::ImplMissNetwork()
+ImplMissNetwork::ImplMissNetwork(MissPluginBase* pPluginBase)
+: m_pPluginBase(pPluginBase)
 {
 
 }
@@ -13,10 +15,11 @@ ImplMissNetwork::~ImplMissNetwork()
 
 std::tr1::shared_ptr<IMissUDP> ImplMissNetwork::GetUDP()
 {
-	return std::tr1::shared_ptr<IMissUDP>(new ImplMissUDP);
+	return std::tr1::shared_ptr<IMissUDP>(new ImplMissUDP(m_pPluginBase));
 }
 
-ImplMissUDP::ImplMissUDP()
+ImplMissUDP::ImplMissUDP(MissPluginBase* pPluginBase)
+: m_pPluginBase(pPluginBase)
 {
 
 }
@@ -28,19 +31,16 @@ ImplMissUDP::~ImplMissUDP()
 
 bool ImplMissUDP::Listen( const MissIPAddress& addr, MissNetMessageBase* pMessage )
 {
-
-	return false;
+	return MissNetworkManager::Instance().ListenUDP(m_pPluginBase, addr, pMessage);
 }
 
 bool ImplMissUDP::UnListen( MissNetMessageBase* pMessage )
 {
-
-	return false;
+	return MissNetworkManager::Instance().UnListenUDP(pMessage);
 }
 
 bool ImplMissUDP::SendTo( const MissIPAddress& addr, const wxMemoryOutputStream& data )
 {
-
-	return false;
+	return MissNetworkManager::Instance().SendUDP(m_pPluginBase, addr, data);
 }
 

@@ -4,12 +4,13 @@
 #include "ImplMissTimer.h"
 #include "ImplMissWidgetMgr.h"
 #include "ImplMissSharedMemory.h"
+#include "ImplMissClipboard.h"
+#include "ImplMissNetwork.h"
 
 #include "..\BLL\MissPluginManager.h"
 #include "..\UI\MissCoreFrame.h"
 
 #include <map>
-#include "ImplMissClipboard.h"
 
 typedef IMissUnknown* (MissMainEntry::*FuncCreator)(void);
 std::map<IF_TYPE, FuncCreator> s_InterfaceCreator;
@@ -19,12 +20,13 @@ MissMainEntry::MissMainEntry(MissPluginBase* pPlugMain)
 {
     if (s_InterfaceCreator.empty())
     {
-        s_InterfaceCreator.insert(std::make_pair(IF_HOTKEY, &MissMainEntry::CreateHotKey));
-        s_InterfaceCreator.insert(std::make_pair(IF_STORAGE, &MissMainEntry::CreateStorage));
-        s_InterfaceCreator.insert(std::make_pair(IF_TIMER, &MissMainEntry::CreateTimer));
-		s_InterfaceCreator.insert(std::make_pair(IF_SHAREDMEMORY, &MissMainEntry::CreateSharedMemory));
-        s_InterfaceCreator.insert(std::make_pair(IF_WIDGETMANAGER, &MissMainEntry::CreateWidgetMgr));
-		s_InterfaceCreator.insert(std::make_pair(IF_CLIPBOARD, &MissMainEntry::CreateClipboard));
+        s_InterfaceCreator.insert(std::make_pair(IF_HOTKEY, &MissMainEntry::CreateInterface<ImplMissHotKeyMgr>));
+        s_InterfaceCreator.insert(std::make_pair(IF_STORAGE, &MissMainEntry::CreateInterface<ImplMissStorage>));
+        s_InterfaceCreator.insert(std::make_pair(IF_TIMER, &MissMainEntry::CreateInterface<ImplMissTimer>));
+		s_InterfaceCreator.insert(std::make_pair(IF_SHAREDMEMORY, &MissMainEntry::CreateInterface<ImplMissSharedMemory>));
+        s_InterfaceCreator.insert(std::make_pair(IF_WIDGETMANAGER, &MissMainEntry::CreateInterface<ImplMissWidgetMgr>));
+		s_InterfaceCreator.insert(std::make_pair(IF_CLIPBOARD, &MissMainEntry::CreateInterface<ImplMissClipboard>));
+		s_InterfaceCreator.insert(std::make_pair(IF_NETWORK, &MissMainEntry::CreateInterface<ImplMissNetwork>));
     }
 }
 
@@ -54,36 +56,6 @@ wxString MissMainEntry::GetPluginPath() const
     wxString strPath;
     MissPluginManager::Instance().GetPluginPath(m_pPlugMain, strPath);
     return strPath;
-}
-
-IMissUnknown* MissMainEntry::CreateHotKey()
-{
-    return new ImplMissHotKeyMgr(m_pPlugMain);
-}
-
-IMissUnknown* MissMainEntry::CreateStorage()
-{
-    return new ImplMissStorage(m_pPlugMain);
-}
-
-IMissUnknown* MissMainEntry::CreateTimer()
-{
-    return new ImplMissTimer(m_pPlugMain);
-}
-
-IMissUnknown* MissMainEntry::CreateWidgetMgr()
-{
-    return new ImplMissWidgetMgr(m_pPlugMain);
-}
-
-IMissUnknown* MissMainEntry::CreateSharedMemory()
-{
-	return new ImplMissSharedMemory(m_pPlugMain);
-}
-
-IMissUnknown* MissMainEntry::CreateClipboard()
-{
-	return new ImplMissClipboard(m_pPlugMain);
 }
 
 wxFrame* MissMainEntry::GetMainFrame() const

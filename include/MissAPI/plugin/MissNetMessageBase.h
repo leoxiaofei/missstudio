@@ -3,7 +3,8 @@
 
 #include <wx/string.h>
 
-class MissIPAddress;
+struct MissIPAddress;
+class wxMemoryOutputStream;
 
 class MissNetMessageBase
 {

@@ -62,7 +62,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="wxmsw29ud_core.lib wxbase29ud.lib wxmsw29ud_adv.lib wxexpatd.lib wxmsw29ud_stc.lib wxscintillad.lib wxcode_msw29ud_wxsqlite3.lib wxmsw29ud_xrc.lib MissTools.lib"
+				AdditionalDependencies="wxmsw29ud_core.lib wxbase29ud.lib wxmsw29ud_adv.lib wxbase29ud_net.lib wxexpatd.lib wxmsw29ud_stc.lib wxscintillad.lib wxcode_msw29ud_wxsqlite3.lib wxmsw29ud_xrc.lib MissTools.lib"
 				LinkIncremental="2"
 				AdditionalLibraryDirectories="$(SolutionDir)$(ConfigurationName)\Bin"
 				GenerateDebugInformation="true"
@@ -140,7 +140,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="wxmsw29u_core.lib wxbase29u.lib wxmsw29u_adv.lib wxexpat.lib wxmsw29u_stc.lib wxscintilla.lib wxcode_msw29u_wxsqlite3.lib MissTools.lib wxmsw29u_xrc.lib"
+				AdditionalDependencies="wxmsw29u_core.lib wxbase29u.lib wxmsw29u_adv.lib wxbase29u_net.lib wxexpat.lib wxmsw29u_stc.lib wxscintilla.lib wxcode_msw29u_wxsqlite3.lib MissTools.lib wxmsw29u_xrc.lib"
 				LinkIncremental="1"
 				AdditionalLibraryDirectories="$(SolutionDir)$(ConfigurationName)\Bin"
 				GenerateDebugInformation="true"

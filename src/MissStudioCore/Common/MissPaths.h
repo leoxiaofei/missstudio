@@ -19,6 +19,7 @@ public:
     wxString GetDataBasePath() const;
     wxString GetPluginPath() const;
     wxString GetConfigPath() const;
+	wxString GetResPath() const;
 
     void SetConfigDirType(int nType);
 

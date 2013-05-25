@@ -3,6 +3,13 @@
 
 #include <memory>
 
+class MissPluginBase;
+class MissNetMessageBase;
+struct MissIPAddress;
+
+class wxMemoryOutputStream;
+class wxSocketEvent;
+
 class MissNetworkManager
 {
 	class Impl;
@@ -13,7 +20,19 @@ public:
 		return theSingleton;
 	}
 
-	
+	MissPluginBase* GetPluginBase(MissNetMessageBase* pMessage) const;
+	bool UnloadPlugin(MissPluginBase* pPluginBase);
+
+	bool ListenUDP(MissPluginBase* pPluginBase, 
+		const MissIPAddress& addr, MissNetMessageBase* pMessage);
+	bool UnListenUDP(MissNetMessageBase* pMessage);
+
+	bool SendUDP(MissPluginBase* pPluginBase, const MissIPAddress& addr, const wxMemoryOutputStream& data);
+
+	void Receive(wxSocketEvent& event);
+
+protected:
+
 
 private:
 	MissNetworkManager();

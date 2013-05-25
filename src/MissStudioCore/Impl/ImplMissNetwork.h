@@ -3,22 +3,25 @@
 
 #include "MissAPI\interface\IMissNetwork.h"
 
+class MissPluginBase;
 
 class ImplMissNetwork : public IMissNetwork
 {
 public:
-	ImplMissNetwork();
+	ImplMissNetwork(MissPluginBase* pPluginBase);
 	~ImplMissNetwork();
 
 	virtual std::tr1::shared_ptr<IMissUDP> GetUDP();
 
+private:
+	MissPluginBase* m_pPluginBase;
 };
 
 
 class ImplMissUDP : public IMissUDP
 {
 public:
-	ImplMissUDP();
+	ImplMissUDP(MissPluginBase* pPluginBase);
 	~ImplMissUDP();
 
 	virtual bool Listen( const MissIPAddress& addr, MissNetMessageBase* pMessage );
@@ -27,6 +30,8 @@ public:
 
 	virtual bool SendTo( const MissIPAddress& addr, const wxMemoryOutputStream& data );
 
+private:
+	MissPluginBase* m_pPluginBase;
 };
 
 #endif // IMPLMISSNETWORK_H__
