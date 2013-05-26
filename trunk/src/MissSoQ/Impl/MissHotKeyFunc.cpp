@@ -6,10 +6,20 @@
 #include "MissTools/MissConfigFile.h"
 #include "../Common/MissGlobal.h"
 
+
 using std::tr1::shared_ptr;
 
+wxDEFINE_EVENT(wxEVT_HOTKEYFUNC, wxCommandEvent);
+
+class MissHotKeyFunc::Impl
+{
+public:
+	wxEvtHandler                    hHandler;
+
+};
 
 MissHotKeyFunc::MissHotKeyFunc()
+: m_pImpl(new Impl)
 {
 }
 
@@ -20,17 +30,7 @@ MissHotKeyFunc::~MissHotKeyFunc()
 
 void MissHotKeyFunc::RunFunc( int nFuncId )
 {
-    switch(nFuncId)
-    {
-    case HKF_SENDMSG:
-        {
-			
-        }
-        break;
-    default:
-        assert(false);
-        break;
-    }
+	SendEvent(nFuncId);
 }
 
 void MissHotKeyFunc::ModifiedHotKey( const SHotKeyMajor& sNewHotkey )
@@ -93,5 +93,17 @@ const wxString MissHotKeyFunc::s_strFuncNames[] = {
 const wxString MissHotKeyFunc::s_strFuncDescs[] = {
     wxT("发送消息。")
 };
+
+wxEvtHandler* MissHotKeyFunc::GetHandle() const
+{
+	return &m_pImpl->hHandler;
+}
+
+void MissHotKeyFunc::SendEvent( int nType )
+{
+	wxCommandEvent send(wxEVT_HOTKEYFUNC);
+	send.SetId(nType);
+	m_pImpl->hHandler.AddPendingEvent(send);
+}
 
 const wxString MissHotKeyFunc::s_strNodePath = wxT("热键/");

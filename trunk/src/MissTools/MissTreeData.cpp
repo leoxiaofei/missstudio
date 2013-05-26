@@ -2,11 +2,17 @@
 #include <assert.h>
 #include <algorithm>
 
+class TreeData::Impl
+{
+public:
+	std::vector<TreeData*>   vecChilds;
+	TreeData*                pParent;
+};
 
 TreeData::TreeData()
-: m_pParent(NULL)
+: m_pImpl(new Impl)
 {
-
+	m_pImpl->pParent = NULL;
 }
 
 TreeData::~TreeData()
@@ -17,6 +23,7 @@ TreeData::~TreeData()
     {
         delete vecChilds[ix];
     }
+	delete m_pImpl;
 //     static int nCount = 0;
 //     qDebug()<<++nCount;
 }
@@ -64,98 +71,98 @@ void TreeData::ModifyParent( TreeData* pParent )
 
 TreeData* TreeData::GetParent() const
 {
-    return m_pParent;
+    return m_pImpl->pParent;
 }
 
 
 const std::vector<TreeData*>& TreeData::GetChilds() const
 {
-    return m_vecChilds;
+    return m_pImpl->vecChilds;
 }
 
 
 void TreeData::Dismiss()
 {
-    if (m_pParent)
+    if (m_pImpl->pParent)
     {
-        m_pParent->RemoveChildData(this);
-        m_pParent = NULL;
+        m_pImpl->pParent->RemoveChildData(this);
+        m_pImpl->pParent = NULL;
     }
 }
 
 void TreeData::AppendChildData( TreeData* pChild )
 {
     RemoveChildData( pChild );
-    m_vecChilds.push_back(pChild);
+    m_pImpl->vecChilds.push_back(pChild);
 }
 
 void TreeData::PrependChildData( TreeData* pChild )
 {
     RemoveChildData( pChild );
-    m_vecChilds.insert(m_vecChilds.begin(), pChild);
+    m_pImpl->vecChilds.insert(m_pImpl->vecChilds.begin(), pChild);
 }
 
 void TreeData::RemoveChildData( TreeData* pChild )
 {
-    std::vector<TreeData*>::iterator iFind = std::find(m_vecChilds.begin(), m_vecChilds.end(), pChild);
-    if(iFind != m_vecChilds.end())
+    std::vector<TreeData*>::iterator iFind = std::find(m_pImpl->vecChilds.begin(), m_pImpl->vecChilds.end(), pChild);
+    if(iFind != m_pImpl->vecChilds.end())
     {
-        m_vecChilds.erase(iFind);
+        m_pImpl->vecChilds.erase(iFind);
     }
 }
 
 void TreeData::InsertChildDataAf( TreeData* pChild, const TreeData* pAfterChild )
 {
     RemoveChildData( pChild );
-    std::vector<TreeData*>::iterator iFind = std::find(m_vecChilds.begin(), m_vecChilds.end(), pAfterChild);
-    if (iFind != m_vecChilds.end())
+    std::vector<TreeData*>::iterator iFind = std::find(m_pImpl->vecChilds.begin(), m_pImpl->vecChilds.end(), pAfterChild);
+    if (iFind != m_pImpl->vecChilds.end())
     {
         ++iFind;
     }
-    m_vecChilds.insert(iFind, pChild);
+    m_pImpl->vecChilds.insert(iFind, pChild);
 }
 
 void TreeData::InsertChildDataBf( TreeData* pChild, const TreeData* pBeforeChild )
 {
     RemoveChildData( pChild );
-    std::vector<TreeData*>::iterator iFind = std::find(m_vecChilds.begin(), m_vecChilds.end(), pBeforeChild);
-    m_vecChilds.insert(iFind, pChild);
+    std::vector<TreeData*>::iterator iFind = std::find(m_pImpl->vecChilds.begin(), m_pImpl->vecChilds.end(), pBeforeChild);
+    m_pImpl->vecChilds.insert(iFind, pChild);
 }
 
 
 
 void TreeData::SetParent( TreeData* pParent )
 {
-    if (m_pParent != pParent)
+    if (m_pImpl->pParent != pParent)
     {
         Dismiss();
-        m_pParent = pParent;
+        m_pImpl->pParent = pParent;
     }
 }
 
 // void TreeData::SetName( const QString& strName )
 // {
-//     m_strName = strName;
+//     m_pImpl->strName = strName;
 // }
 
 bool TreeData::FindChild( const TreeData* pChild )
 {
-    std::vector<TreeData*>::iterator iFind = std::find(m_vecChilds.begin(), m_vecChilds.end(), pChild);
-    return (iFind != m_vecChilds.end());
+    std::vector<TreeData*>::iterator iFind = std::find(m_pImpl->vecChilds.begin(), m_pImpl->vecChilds.end(), pChild);
+    return (iFind != m_pImpl->vecChilds.end());
 }
 
 // void TreeData::SetData( const QString& strData )
 // {
-//     m_strData = strData;
+//     m_pImpl->strData = strData;
 // }
 
 TreeData* TreeData::GetChildBySn( int nSN )
 {
-    //Q_ASSERT(nSN < m_vecChilds.size() && nSN > -1);
+    //Q_ASSERT(nSN < m_pImpl->vecChilds.size() && nSN > -1);
     TreeData* pRet(NULL);
-    if ((std::vector<TreeData*>::size_type)nSN < m_vecChilds.size() )
+    if ((std::vector<TreeData*>::size_type)nSN < m_pImpl->vecChilds.size() )
     {
-        pRet = m_vecChilds[nSN];
+        pRet = m_pImpl->vecChilds[nSN];
     }
     return pRet;
 }
@@ -163,9 +170,9 @@ TreeData* TreeData::GetChildBySn( int nSN )
 int TreeData::GetSnInParent() const
 {
     int nRet(0);
-    if (m_pParent)
+    if (m_pImpl->pParent)
     {
-        const std::vector<TreeData*>& vecBrother = m_pParent->GetChilds();
+        const std::vector<TreeData*>& vecBrother = m_pImpl->pParent->GetChilds();
         std::vector<TreeData*>::const_iterator iFind = std::find(vecBrother.begin(), vecBrother.end(), this);
         if (iFind != vecBrother.end())
         {

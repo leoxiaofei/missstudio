@@ -8,6 +8,7 @@
 #include "MissAPI/interface/IMissNetwork.h"
 
 #include <vector>
+#include <iostream>
 
 using std::tr1::shared_ptr;
 
@@ -23,11 +24,21 @@ MissPluginMain::MissPluginMain()
 , m_pImpl(new Impl)
 {
     //ctor
+	Init();
 }
 
 MissPluginMain::~MissPluginMain()
 {
     //dtor
+}
+
+void MissPluginMain::Init()
+{
+	m_pImpl->pHotKeyFunc = shared_ptr<MissHotKeyFunc>(new MissHotKeyFunc());
+	m_pImpl->pCommunicate = shared_ptr<MissCommunicate>(new MissCommunicate());
+
+	m_pImpl->pHotKeyFunc->GetHandle()->Bind(wxEVT_HOTKEYFUNC, &MissPluginMain::OnHotkey, this);
+
 }
 
 void MissPluginMain::LoadPlugin()
@@ -38,7 +49,6 @@ void MissPluginMain::LoadPlugin()
     {
         ptConfig = ptStorage->GetConfigFile(wxT("config.ini"));
 		///加载热键功能
-		m_pImpl->pHotKeyFunc = shared_ptr<MissHotKeyFunc>(new MissHotKeyFunc());
 		m_pImpl->pHotKeyFunc->InitHotkey(ptConfig);
     }
 
@@ -47,7 +57,6 @@ void MissPluginMain::LoadPlugin()
 	{
 		std::tr1::shared_ptr<IMissUDP> ptUDP = ptNetwork->GetUDP();
 		///加载通讯功能
-		m_pImpl->pCommunicate = shared_ptr<MissCommunicate>(new MissCommunicate());
 		m_pImpl->pCommunicate->InitNet(ptUDP);
 	}
 	
@@ -77,4 +86,9 @@ wxString MissPluginMain::GetPluginName() const
 wxString MissPluginMain::GetPluginGUID() const
 {
     return wxT("296341CA-4262-423d-A3F1-15CB12AD4CEC");
+}
+
+void MissPluginMain::OnHotkey( wxCommandEvent& event )
+{
+	std::cout<<event.GetId()<<std::endl;
 }

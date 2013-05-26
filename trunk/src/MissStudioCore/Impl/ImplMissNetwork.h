@@ -28,7 +28,8 @@ public:
 
 	virtual bool UnListen( MissNetMessageBase* pMessage );
 
-	virtual bool SendTo( const MissIPAddress& addr, const wxMemoryOutputStream& data );
+	virtual bool SendTo( const MissIPAddress& addrSrc, const MissIPAddress& addrDes, 
+						 const wxMemoryOutputStream& data );
 
 private:
 	MissPluginBase* m_pPluginBase;

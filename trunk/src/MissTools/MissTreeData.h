@@ -7,6 +7,7 @@
 
 class DLL_EXPORT TreeData
 {
+	class Impl;
 public:
     TreeData();
     virtual ~TreeData();
@@ -37,10 +38,7 @@ protected:
     void                SetParent(TreeData* pParent);
 
 private:
-	template class DLL_EXPORT std::allocator<TreeData*>;
-	template class DLL_EXPORT std::vector<TreeData*, std::allocator<TreeData*> >;
-    std::vector<TreeData*>   m_vecChilds;
-    TreeData*                m_pParent;
+	Impl*    m_pImpl;
 };
 
 

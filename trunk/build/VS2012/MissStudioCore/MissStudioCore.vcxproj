@@ -13,10 +13,13 @@
   <ItemGroup>
     <ClCompile Include="..\..\..\src\MissStudioCore\BLL\MissClipboardManager.cpp" />
     <ClCompile Include="..\..\..\src\MissStudioCore\BLL\MissCoreConfig.cpp" />
+    <ClCompile Include="..\..\..\src\MissStudioCore\BLL\MissExtendManager.cpp" />
     <ClCompile Include="..\..\..\src\MissStudioCore\BLL\MissFunctor.cpp" />
     <ClCompile Include="..\..\..\src\MissStudioCore\BLL\MissHotKeyManager.cpp" />
     <ClCompile Include="..\..\..\src\MissStudioCore\BLL\MissMemoryManager.cpp" />
+    <ClCompile Include="..\..\..\src\MissStudioCore\BLL\MissNetworkManager.cpp" />
     <ClCompile Include="..\..\..\src\MissStudioCore\BLL\MissPluginManager.cpp" />
+    <ClCompile Include="..\..\..\src\MissStudioCore\BLL\MissResManager.cpp" />
     <ClCompile Include="..\..\..\src\MissStudioCore\BLL\MissTimerManager.cpp" />
     <ClCompile Include="..\..\..\src\MissStudioCore\BLL\MissWidgetManager.cpp" />
     <ClCompile Include="..\..\..\src\MissStudioCore\Common\AutoColumnWidth.cpp" />
@@ -29,6 +32,7 @@
     <ClCompile Include="..\..\..\src\MissStudioCore\DAL\MissWidgetDb.cpp" />
     <ClCompile Include="..\..\..\src\MissStudioCore\Generated\GUIFrame.cpp" />
     <ClCompile Include="..\..\..\src\MissStudioCore\Impl\ImplMissClipboard.cpp" />
+    <ClCompile Include="..\..\..\src\MissStudioCore\Impl\ImplMissNetwork.cpp" />
     <ClCompile Include="..\..\..\src\MissStudioCore\Impl\ImplMissSharedMemory.cpp" />
     <ClCompile Include="..\..\..\src\MissStudioCore\Impl\ImplMissStorage.cpp" />
     <ClCompile Include="..\..\..\src\MissStudioCore\Impl\ImplMissHotKeyMgr.cpp" />
@@ -41,8 +45,10 @@
     <ClCompile Include="..\..\..\src\MissStudioCore\Model\MissHotKeyModel.cpp" />
     <ClCompile Include="..\..\..\src\MissStudioCore\Model\MissInstalledModel.cpp" />
     <ClCompile Include="..\..\..\src\MissStudioCore\Model\MissRunningModel.cpp" />
+    <ClCompile Include="..\..\..\src\MissStudioCore\UI\MissAbout.cpp" />
     <ClCompile Include="..\..\..\src\MissStudioCore\UI\MissCoreFrame.cpp" />
     <ClCompile Include="..\..\..\src\MissStudioCore\UI\MissCoreApp.cpp" />
+    <ClCompile Include="..\..\..\src\MissStudioCore\UI\MissCoreOption.cpp" />
     <ClCompile Include="..\..\..\src\MissStudioCore\UI\MissDesktopTools.cpp" />
     <ClCompile Include="..\..\..\src\MissStudioCore\UI\MissHotKeySetting.cpp" />
     <ClCompile Include="..\..\..\src\MissStudioCore\UI\MissPluginOption.cpp" />
@@ -56,10 +62,13 @@
   <ItemGroup>
     <ClInclude Include="..\..\..\src\MissStudioCore\BLL\MissClipboardManager.h" />
     <ClInclude Include="..\..\..\src\MissStudioCore\BLL\MissCoreConfig.h" />
+    <ClInclude Include="..\..\..\src\MissStudioCore\BLL\MissExtendManager.h" />
     <ClInclude Include="..\..\..\src\MissStudioCore\BLL\MissFunctor.h" />
     <ClInclude Include="..\..\..\src\MissStudioCore\BLL\MissHotKeyManager.h" />
     <ClInclude Include="..\..\..\src\MissStudioCore\BLL\MissMemoryManager.h" />
+    <ClInclude Include="..\..\..\src\MissStudioCore\BLL\MissNetworkManager.h" />
     <ClInclude Include="..\..\..\src\MissStudioCore\BLL\MissPluginManager.h" />
+    <ClInclude Include="..\..\..\src\MissStudioCore\BLL\MissResManager.h" />
     <ClInclude Include="..\..\..\src\MissStudioCore\BLL\MissTimerManager.h" />
     <ClInclude Include="..\..\..\src\MissStudioCore\BLL\MissWidgetManager.h" />
     <ClInclude Include="..\..\..\src\MissStudioCore\Common\AutoColumnWidth.h" />
@@ -77,6 +86,7 @@
     <ClInclude Include="..\..\..\src\MissStudioCore\DAL\MissWidgetDb.h" />
     <ClInclude Include="..\..\..\src\MissStudioCore\Generated\GUIFrame.h" />
     <ClInclude Include="..\..\..\src\MissStudioCore\Impl\ImplMissClipboard.h" />
+    <ClInclude Include="..\..\..\src\MissStudioCore\Impl\ImplMissNetwork.h" />
     <ClInclude Include="..\..\..\src\MissStudioCore\Impl\ImplMissSharedMemory.h" />
     <ClInclude Include="..\..\..\src\MissStudioCore\Impl\ImplMissStorage.h" />
     <ClInclude Include="..\..\..\src\MissStudioCore\Impl\ImplMissHotKeyMgr.h" />
@@ -89,8 +99,10 @@
     <ClInclude Include="..\..\..\src\MissStudioCore\Model\MissHotKeyModel.h" />
     <ClInclude Include="..\..\..\src\MissStudioCore\Model\MissInstalledModel.h" />
     <ClInclude Include="..\..\..\src\MissStudioCore\Model\MissRunningModel.h" />
+    <ClInclude Include="..\..\..\src\MissStudioCore\UI\MissAbout.h" />
     <ClInclude Include="..\..\..\src\MissStudioCore\UI\MissCoreFrame.h" />
     <ClInclude Include="..\..\..\src\MissStudioCore\UI\MissCoreApp.h" />
+    <ClInclude Include="..\..\..\src\MissStudioCore\UI\MissCoreOption.h" />
     <ClInclude Include="..\..\..\src\MissStudioCore\UI\MissDesktopTools.h" />
     <ClInclude Include="..\..\..\src\MissStudioCore\UI\MissHotKeySetting.h" />
     <ClInclude Include="..\..\..\src\MissStudioCore\UI\MissPluginOption.h" />
@@ -166,7 +178,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>wxmsw29ud_core.lib;wxbase29ud.lib;wxmsw29ud_adv.lib;wxexpatd.lib;wxmsw29ud_stc.lib;wxscintillad.lib;MissTools.lib;wxcode_msw29ud_wxsqlite3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>wxmsw29ud_core.lib;wxbase29ud.lib;wxmsw29ud_adv.lib;wxbase29ud_net.lib;wxexpatd.lib;wxmsw29ud_stc.lib;wxscintillad.lib;MissTools.lib;wxcode_msw29ud_wxsqlite3.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)$(Configuration)\Bin\</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
@@ -189,7 +201,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalLibraryDirectories>$(SolutionDir)$(Configuration)\Bin\</AdditionalLibraryDirectories>
-      <AdditionalDependencies>wxmsw29u_core.lib;wxbase29u.lib;wxmsw29u_adv.lib;wxexpat.lib;wxmsw29u_stc.lib;wxscintilla.lib;MissTools.lib;wxcode_msw29u_wxsqlite3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>wxmsw29u_core.lib;wxbase29u.lib;wxmsw29u_adv.lib;wxbase29u_net.lib;wxexpat.lib;wxmsw29u_stc.lib;wxscintilla.lib;MissTools.lib;wxcode_msw29u_wxsqlite3.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

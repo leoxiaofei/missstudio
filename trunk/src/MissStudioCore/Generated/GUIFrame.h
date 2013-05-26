@@ -150,4 +150,64 @@ class WidgetOptionBase : public wxFrame
 	
 };
 
+///////////////////////////////////////////////////////////////////////////////
+/// Class CoreOptionBase
+///////////////////////////////////////////////////////////////////////////////
+class CoreOptionBase : public wxFrame 
+{
+	private:
+	
+	protected:
+		wxListbook* m_listbook3;
+		wxPanel* m_panel7;
+		wxStaticText* m_staticText10;
+		wxCheckBox* m_checkBox4;
+		wxStaticText* m_staticText11;
+		wxChoice* m_choice4;
+		wxStaticText* m_staticText12;
+		wxChoice* m_choice3;
+		wxCheckBox* m_checkBox5;
+		wxCheckBox* m_checkBox6;
+		wxPanel* m_panel10;
+		wxSplitterWindow* m_splitter2;
+		wxPanel* m_panel12;
+		wxListCtrl* m_listCtrl2;
+		wxPanel* m_panel13;
+	
+	public:
+		
+		CoreOptionBase( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = _("系统设置"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 500,409 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
+		
+		~CoreOptionBase();
+		
+		void m_splitter2OnIdle( wxIdleEvent& )
+		{
+			m_splitter2->SetSashPosition( 223 );
+			m_splitter2->Disconnect( wxEVT_IDLE, wxIdleEventHandler( CoreOptionBase::m_splitter2OnIdle ), NULL, this );
+		}
+	
+};
+
+///////////////////////////////////////////////////////////////////////////////
+/// Class AboutBase
+///////////////////////////////////////////////////////////////////////////////
+class AboutBase : public wxFrame 
+{
+	private:
+	
+	protected:
+		wxPanel* m_panel14;
+		wxStaticText* m_staticText13;
+		wxStaticText* m_staticText14;
+		wxStaticText* m_staticText15;
+		wxStaticText* m_staticText16;
+	
+	public:
+		
+		AboutBase( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = _("关于"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 322,382 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
+		
+		~AboutBase();
+	
+};
+
 #endif //__GUIFRAME_H__

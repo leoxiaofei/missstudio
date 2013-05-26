@@ -5,7 +5,11 @@
 
 #include <memory>
 
+
+#include <wx/event.h>
+
 class IMissUDP;
+
 
 class MissCommunicate : public MissNetMessageBase
 {
@@ -19,6 +23,8 @@ public:
 	virtual void Receive( const MissIPAddress& addr, const wxMemoryOutputStream& data );
 
 	void SendMsg(const wxString& strMsg);
+
+	wxEvtHandler* GetHandle() const;
 
 private:
 	std::tr1::shared_ptr<Impl> m_pImpl;

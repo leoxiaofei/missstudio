@@ -12,21 +12,22 @@
 
 #include <map>
 
-typedef IMissUnknown* (MissMainEntry::*FuncCreator)(void);
-std::map<IF_TYPE, FuncCreator> s_InterfaceCreator;
+typedef IMissUnknown* (MissMainEntry::*FuncCreator)();
+typedef std::map<IF_TYPE, FuncCreator> IFCreater;
+IFCreater s_InterfaceCreator;
 
 MissMainEntry::MissMainEntry(MissPluginBase* pPlugMain)
 : m_pPlugMain ( pPlugMain )
 {
     if (s_InterfaceCreator.empty())
     {
-        s_InterfaceCreator.insert(std::make_pair(IF_HOTKEY, &MissMainEntry::CreateInterface<ImplMissHotKeyMgr>));
-        s_InterfaceCreator.insert(std::make_pair(IF_STORAGE, &MissMainEntry::CreateInterface<ImplMissStorage>));
-        s_InterfaceCreator.insert(std::make_pair(IF_TIMER, &MissMainEntry::CreateInterface<ImplMissTimer>));
-		s_InterfaceCreator.insert(std::make_pair(IF_SHAREDMEMORY, &MissMainEntry::CreateInterface<ImplMissSharedMemory>));
-        s_InterfaceCreator.insert(std::make_pair(IF_WIDGETMANAGER, &MissMainEntry::CreateInterface<ImplMissWidgetMgr>));
-		s_InterfaceCreator.insert(std::make_pair(IF_CLIPBOARD, &MissMainEntry::CreateInterface<ImplMissClipboard>));
-		s_InterfaceCreator.insert(std::make_pair(IF_NETWORK, &MissMainEntry::CreateInterface<ImplMissNetwork>));
+        s_InterfaceCreator.insert(IFCreater::value_type(IF_HOTKEY,        &MissMainEntry::CreateInterface<ImplMissHotKeyMgr>));
+        s_InterfaceCreator.insert(IFCreater::value_type(IF_STORAGE,       &MissMainEntry::CreateInterface<ImplMissStorage>));
+        s_InterfaceCreator.insert(IFCreater::value_type(IF_TIMER,         &MissMainEntry::CreateInterface<ImplMissTimer>));
+		s_InterfaceCreator.insert(IFCreater::value_type(IF_SHAREDMEMORY,  &MissMainEntry::CreateInterface<ImplMissSharedMemory>));
+        s_InterfaceCreator.insert(IFCreater::value_type(IF_WIDGETMANAGER, &MissMainEntry::CreateInterface<ImplMissWidgetMgr>));
+		s_InterfaceCreator.insert(IFCreater::value_type(IF_CLIPBOARD,     &MissMainEntry::CreateInterface<ImplMissClipboard>));
+		s_InterfaceCreator.insert(IFCreater::value_type(IF_NETWORK,       &MissMainEntry::CreateInterface<ImplMissNetwork>));
     }
 }
 
@@ -43,7 +44,7 @@ void MissMainEntry::ExitApp()
 std::tr1::shared_ptr<IMissUnknown> MissMainEntry::GetInterfacePtr( IF_TYPE eType )
 {
     IMissUnknown* pRet(NULL);
-    std::map<IF_TYPE, FuncCreator>::iterator iFind = s_InterfaceCreator.find(eType);
+    IFCreater::iterator iFind = s_InterfaceCreator.find(eType);
     if (iFind != s_InterfaceCreator.end())
     {
         pRet = (this->*(iFind->second))();
@@ -62,4 +63,5 @@ wxFrame* MissMainEntry::GetMainFrame() const
 {
     return wxAppFrame;
 }
+
 

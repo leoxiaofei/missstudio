@@ -6,7 +6,8 @@
 class MissCommunicate::Impl
 {
 public:
-	std::tr1::shared_ptr<IMissUDP> ptUDP;
+	std::tr1::shared_ptr<IMissUDP>  ptUDP;
+	wxEvtHandler                    hHandler;
 };
 
 MissCommunicate::MissCommunicate()
@@ -44,5 +45,10 @@ void MissCommunicate::SendMsg( const wxString& strMsg )
 	addr.sPort = 2425;
 	wxMemoryOutputStream data;
 	data.Write(strMsg.c_str(), wcslen(strMsg.c_str())*2);
-	m_pImpl->ptUDP->SendTo(addr, data);
+	m_pImpl->ptUDP->SendTo(addr, addr, data);
+}
+
+wxEvtHandler* MissCommunicate::GetHandle() const
+{
+	return &m_pImpl->hHandler;
 }

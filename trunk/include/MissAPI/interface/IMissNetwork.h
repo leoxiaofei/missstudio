@@ -27,7 +27,8 @@ INTERFACE_BEGIN(IMissUDP)
 	IDEF( bool Listen(const MissIPAddress& addr, MissNetMessageBase* pMessage) )
 	IDEF( bool UnListen(MissNetMessageBase* pMessage) )
 
-	IDEF( bool SendTo(const MissIPAddress& addr, const wxMemoryOutputStream& data) )
+	IDEF( bool SendTo(const MissIPAddress& addrSrc, const MissIPAddress& addrDes, 
+		  const wxMemoryOutputStream& data) )
 
 INTERFACE_END
 

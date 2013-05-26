@@ -20,12 +20,13 @@ public:
 protected:
     virtual std::tr1::shared_ptr<IMissUnknown> GetInterfacePtr( IF_TYPE eType );
 
-private:
+protected:
 	template <class T>
 	IMissUnknown* CreateInterface()
 	{
 		return new T(m_pPlugMain);
 	}
+
 
 private:
     MissPluginBase* m_pPlugMain;
