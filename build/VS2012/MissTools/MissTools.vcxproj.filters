@@ -27,6 +27,9 @@
     <ClCompile Include="..\..\..\src\MissTools\OneWinManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\src\MissTools\MissZipReader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\src\MissTools\rapidxml_iterators.hpp">
@@ -54,6 +57,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\src\MissTools\OneWinManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\MissTools\MissZipReader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

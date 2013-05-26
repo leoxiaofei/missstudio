@@ -107,16 +107,16 @@ bool MissNetworkManager::UnListenUDP( MissNetMessageBase* pMessage )
 	return false;
 }
 
-bool MissNetworkManager::SendUDP( MissPluginBase* pPluginBase, 
-	 const MissIPAddress& addr, const wxMemoryOutputStream& data )
+bool MissNetworkManager::SendUDP( MissPluginBase* pPluginBase, const MissIPAddress& addrSrc,
+								 const MissIPAddress& addrDes, const wxMemoryOutputStream& data )
 {
 	std::map<unsigned short, SocketData>::const_iterator ciFind = 
-		m_pImpl->mapUDP.find(addr.sPort);
+		m_pImpl->mapUDP.find(addrSrc.sPort);
 	if (ciFind != m_pImpl->mapUDP.end())
 	{
 		wxIPV4address SendAddress;
-		SendAddress.Hostname(addr.strAddr);
-		SendAddress.Service(addr.sPort);
+		SendAddress.Hostname(addrDes.strAddr);
+		SendAddress.Service(addrDes.sPort);
 		std::tr1::static_pointer_cast<wxDatagramSocket>(ciFind->second.pSocket)->
 			SendTo(SendAddress,
 			data.GetOutputStreamBuffer()->GetBufferStart(),

@@ -186,6 +186,24 @@
     <ClCompile Include="..\..\..\src\MissStudioCore\DAL\MissCoreDb.cpp">
       <Filter>Source Files\DAL</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\src\MissStudioCore\BLL\MissResManager.cpp">
+      <Filter>Source Files\BLL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\MissStudioCore\BLL\MissExtendManager.cpp">
+      <Filter>Source Files\BLL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\MissStudioCore\BLL\MissNetworkManager.cpp">
+      <Filter>Source Files\BLL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\MissStudioCore\Impl\ImplMissNetwork.cpp">
+      <Filter>Source Files\Impl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\MissStudioCore\UI\MissCoreOption.cpp">
+      <Filter>Source Files\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\MissStudioCore\UI\MissAbout.cpp">
+      <Filter>Source Files\UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\src\MissStudioCore\UI\MissCoreFrame.h">
@@ -325,6 +343,24 @@
     </ClInclude>
     <ClInclude Include="..\..\..\src\MissStudioCore\DAL\MissCoreDb.h">
       <Filter>Header Files\DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\MissStudioCore\BLL\MissExtendManager.h">
+      <Filter>Header Files\BLL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\MissStudioCore\BLL\MissNetworkManager.h">
+      <Filter>Header Files\BLL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\MissStudioCore\BLL\MissResManager.h">
+      <Filter>Header Files\BLL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\MissStudioCore\Impl\ImplMissNetwork.h">
+      <Filter>Header Files\Impl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\MissStudioCore\UI\MissCoreOption.h">
+      <Filter>Header Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\MissStudioCore\UI\MissAbout.h">
+      <Filter>Header Files\UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

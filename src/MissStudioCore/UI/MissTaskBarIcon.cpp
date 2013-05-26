@@ -13,7 +13,10 @@
 #include "../UI/MissCoreFrame.h"
 #include "../Common/CustomId.h"
 #include "MissPluginOption.h"
+#include "MissCoreOption.h"
 #include "MissDesktopTools.h"
+#include "MissAbout.h"
+
 #include "MissTools/OneWinManager.h"
 
 using namespace DTD;
@@ -72,7 +75,9 @@ wxMenu * MissTaskBarIcon::CreatePopupMenu()
 
 void MissTaskBarIcon::OnMenuCoreOptionSelection( wxCommandEvent& event )
 {
-
+	wxWindow* pWin = m_pImpl->winManager.CreateWin<MissCoreOption>
+		(wxT("MissCoreOption"));
+	pWin->Raise();
 }
 
 void MissTaskBarIcon::OnMenuPluginOptionSelection( wxCommandEvent& event )
@@ -91,6 +96,9 @@ void MissTaskBarIcon::OnMenuWidgetsOptionSelection( wxCommandEvent& event )
 
 void MissTaskBarIcon::OnMenuAboutSelection( wxCommandEvent& event )
 {
+	wxWindow* pWin = m_pImpl->winManager.CreateWin<MissAbout>
+		(wxT("MissAbout"));
+	pWin->Raise();
 }
 
 void MissTaskBarIcon::OnMenuExitSelection( wxCommandEvent& event )

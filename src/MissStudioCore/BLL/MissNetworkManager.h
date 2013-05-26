@@ -27,7 +27,8 @@ public:
 		const MissIPAddress& addr, MissNetMessageBase* pMessage);
 	bool UnListenUDP(MissNetMessageBase* pMessage);
 
-	bool SendUDP(MissPluginBase* pPluginBase, const MissIPAddress& addr, const wxMemoryOutputStream& data);
+	bool SendUDP(MissPluginBase* pPluginBase, const MissIPAddress& addrSrc,
+		const MissIPAddress& addrDes, const wxMemoryOutputStream& data);
 
 	void Receive(wxSocketEvent& event);
 

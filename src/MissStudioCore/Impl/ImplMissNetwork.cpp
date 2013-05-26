@@ -39,8 +39,9 @@ bool ImplMissUDP::UnListen( MissNetMessageBase* pMessage )
 	return MissNetworkManager::Instance().UnListenUDP(pMessage);
 }
 
-bool ImplMissUDP::SendTo( const MissIPAddress& addr, const wxMemoryOutputStream& data )
+bool ImplMissUDP::SendTo( const MissIPAddress& addrSrc, const MissIPAddress& addrDes, 
+						  const wxMemoryOutputStream& data )
 {
-	return MissNetworkManager::Instance().SendUDP(m_pPluginBase, addr, data);
+	return MissNetworkManager::Instance().SendUDP(m_pPluginBase, addrSrc, addrDes, data);
 }
 

@@ -321,3 +321,182 @@ WidgetOptionBase::~WidgetOptionBase()
 	btnClose->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( WidgetOptionBase::OnBtnCloseClick ), NULL, this );
 	
 }
+
+CoreOptionBase::CoreOptionBase( wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style ) : wxFrame( parent, id, title, pos, size, style )
+{
+	this->SetSizeHints( wxDefaultSize, wxDefaultSize );
+	
+	wxBoxSizer* bSizer16;
+	bSizer16 = new wxBoxSizer( wxVERTICAL );
+	
+	m_listbook3 = new wxListbook( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLB_TOP );
+	m_panel7 = new wxPanel( m_listbook3, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );
+	wxBoxSizer* bSizer24;
+	bSizer24 = new wxBoxSizer( wxVERTICAL );
+	
+	wxStaticBoxSizer* sbSizer10;
+	sbSizer10 = new wxStaticBoxSizer( new wxStaticBox( m_panel7, wxID_ANY, _("常规") ), wxVERTICAL );
+	
+	wxFlexGridSizer* fgSizer1;
+	fgSizer1 = new wxFlexGridSizer( 0, 2, 0, 0 );
+	fgSizer1->SetFlexibleDirection( wxBOTH );
+	fgSizer1->SetNonFlexibleGrowMode( wxFLEX_GROWMODE_SPECIFIED );
+	
+	m_staticText10 = new wxStaticText( m_panel7, wxID_ANY, _("开机自动运行"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText10->Wrap( -1 );
+	fgSizer1->Add( m_staticText10, 0, wxALL|wxALIGN_CENTER_VERTICAL, 5 );
+	
+	m_checkBox4 = new wxCheckBox( m_panel7, wxID_ANY, _("启用"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_checkBox4->SetValue(true); 
+	fgSizer1->Add( m_checkBox4, 0, wxALL|wxALIGN_CENTER_VERTICAL, 5 );
+	
+	m_staticText11 = new wxStaticText( m_panel7, wxID_ANY, _("选择语言"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText11->Wrap( -1 );
+	fgSizer1->Add( m_staticText11, 0, wxALL|wxALIGN_CENTER_VERTICAL, 5 );
+	
+	wxArrayString m_choice4Choices;
+	m_choice4 = new wxChoice( m_panel7, wxID_ANY, wxDefaultPosition, wxDefaultSize, m_choice4Choices, 0 );
+	m_choice4->SetSelection( 0 );
+	fgSizer1->Add( m_choice4, 0, wxALL, 5 );
+	
+	m_staticText12 = new wxStaticText( m_panel7, wxID_ANY, _("配置文件"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText12->Wrap( -1 );
+	fgSizer1->Add( m_staticText12, 0, wxALL, 5 );
+	
+	wxString m_choice3Choices[] = { _("全局用户"), _("当前用户") };
+	int m_choice3NChoices = sizeof( m_choice3Choices ) / sizeof( wxString );
+	m_choice3 = new wxChoice( m_panel7, wxID_ANY, wxDefaultPosition, wxDefaultSize, m_choice3NChoices, m_choice3Choices, 0 );
+	m_choice3->SetSelection( 0 );
+	fgSizer1->Add( m_choice3, 0, wxALL, 5 );
+	
+	
+	sbSizer10->Add( fgSizer1, 1, wxEXPAND, 5 );
+	
+	
+	bSizer24->Add( sbSizer10, 1, wxEXPAND, 5 );
+	
+	wxStaticBoxSizer* sbSizer12;
+	sbSizer12 = new wxStaticBoxSizer( new wxStaticBox( m_panel7, wxID_ANY, _("其他") ), wxVERTICAL );
+	
+	m_checkBox5 = new wxCheckBox( m_panel7, wxID_ANY, _("自动检测新版本"), wxDefaultPosition, wxDefaultSize, 0 );
+	sbSizer12->Add( m_checkBox5, 0, wxALL, 5 );
+	
+	m_checkBox6 = new wxCheckBox( m_panel7, wxID_ANY, _("隐藏托盘图标"), wxDefaultPosition, wxDefaultSize, 0 );
+	sbSizer12->Add( m_checkBox6, 0, wxALL, 5 );
+	
+	
+	bSizer24->Add( sbSizer12, 1, wxEXPAND, 5 );
+	
+	
+	m_panel7->SetSizer( bSizer24 );
+	m_panel7->Layout();
+	bSizer24->Fit( m_panel7 );
+	m_listbook3->AddPage( m_panel7, _("全局设置"), false );
+	m_panel10 = new wxPanel( m_listbook3, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );
+	wxBoxSizer* bSizer18;
+	bSizer18 = new wxBoxSizer( wxVERTICAL );
+	
+	m_splitter2 = new wxSplitterWindow( m_panel10, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxSP_3D );
+	m_splitter2->Connect( wxEVT_IDLE, wxIdleEventHandler( CoreOptionBase::m_splitter2OnIdle ), NULL, this );
+	
+	m_panel12 = new wxPanel( m_splitter2, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );
+	wxStaticBoxSizer* sbSizer8;
+	sbSizer8 = new wxStaticBoxSizer( new wxStaticBox( m_panel12, wxID_ANY, _("插件列表") ), wxVERTICAL );
+	
+	m_listCtrl2 = new wxListCtrl( m_panel12, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLC_HRULES|wxLC_REPORT|wxLC_SINGLE_SEL|wxLC_VRULES );
+	sbSizer8->Add( m_listCtrl2, 1, wxALL|wxEXPAND, 5 );
+	
+	
+	m_panel12->SetSizer( sbSizer8 );
+	m_panel12->Layout();
+	sbSizer8->Fit( m_panel12 );
+	m_panel13 = new wxPanel( m_splitter2, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );
+	wxStaticBoxSizer* sbSizer9;
+	sbSizer9 = new wxStaticBoxSizer( new wxStaticBox( m_panel13, wxID_ANY, _("插件信息") ), wxVERTICAL );
+	
+	
+	m_panel13->SetSizer( sbSizer9 );
+	m_panel13->Layout();
+	sbSizer9->Fit( m_panel13 );
+	m_splitter2->SplitVertically( m_panel12, m_panel13, 223 );
+	bSizer18->Add( m_splitter2, 1, wxEXPAND, 5 );
+	
+	
+	m_panel10->SetSizer( bSizer18 );
+	m_panel10->Layout();
+	bSizer18->Fit( m_panel10 );
+	m_listbook3->AddPage( m_panel10, _("插件管理"), true );
+	#ifndef __WXGTK__ // Small icon style not supported in GTK
+	wxListView* m_listbook3ListView = m_listbook3->GetListView();
+	long m_listbook3Flags = m_listbook3ListView->GetWindowStyleFlag();
+	m_listbook3Flags = ( m_listbook3Flags & ~wxLC_ICON ) | wxLC_SMALL_ICON;
+	m_listbook3ListView->SetWindowStyleFlag( m_listbook3Flags );
+	#endif
+	
+	bSizer16->Add( m_listbook3, 1, wxEXPAND, 5 );
+	
+	
+	this->SetSizer( bSizer16 );
+	this->Layout();
+	
+	this->Centre( wxBOTH );
+}
+
+CoreOptionBase::~CoreOptionBase()
+{
+}
+
+AboutBase::AboutBase( wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style ) : wxFrame( parent, id, title, pos, size, style )
+{
+	this->SetSizeHints( wxDefaultSize, wxDefaultSize );
+	
+	wxBoxSizer* bSizer26;
+	bSizer26 = new wxBoxSizer( wxVERTICAL );
+	
+	m_panel14 = new wxPanel( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );
+	bSizer26->Add( m_panel14, 1, wxEXPAND | wxALL, 5 );
+	
+	wxBoxSizer* bSizer27;
+	bSizer27 = new wxBoxSizer( wxHORIZONTAL );
+	
+	wxBoxSizer* bSizer28;
+	bSizer28 = new wxBoxSizer( wxVERTICAL );
+	
+	
+	bSizer27->Add( bSizer28, 1, wxEXPAND, 5 );
+	
+	wxBoxSizer* bSizer29;
+	bSizer29 = new wxBoxSizer( wxVERTICAL );
+	
+	m_staticText13 = new wxStaticText( this, wxID_ANY, _("MyLabel"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText13->Wrap( -1 );
+	bSizer29->Add( m_staticText13, 0, wxALL, 5 );
+	
+	m_staticText14 = new wxStaticText( this, wxID_ANY, _("MyLabel"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText14->Wrap( -1 );
+	bSizer29->Add( m_staticText14, 0, wxALL, 5 );
+	
+	m_staticText15 = new wxStaticText( this, wxID_ANY, _("MyLabel"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText15->Wrap( -1 );
+	bSizer29->Add( m_staticText15, 0, wxALL, 5 );
+	
+	m_staticText16 = new wxStaticText( this, wxID_ANY, _("MyLabel"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText16->Wrap( -1 );
+	bSizer29->Add( m_staticText16, 0, wxALL, 5 );
+	
+	
+	bSizer27->Add( bSizer29, 1, wxEXPAND, 5 );
+	
+	
+	bSizer26->Add( bSizer27, 1, wxEXPAND, 5 );
+	
+	
+	this->SetSizer( bSizer26 );
+	this->Layout();
+	
+	this->Centre( wxBOTH );
+}
+
+AboutBase::~AboutBase()
+{
+}
