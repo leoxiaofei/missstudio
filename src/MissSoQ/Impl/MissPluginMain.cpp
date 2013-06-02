@@ -1,11 +1,10 @@
 #include "MissPluginMain.h"
 
 #include "../Common/MissGlobal.h"
-#include "MissCommunicate.h"
+#include "../BLL/MissCommunicate.h"
 #include "MissHotKeyFunc.h"
 
 #include "MissAPI/interface/IMissStorage.h"
-#include "MissAPI/interface/IMissNetwork.h"
 
 #include <vector>
 #include <iostream>
@@ -16,7 +15,6 @@ class MissPluginMain::Impl
 {
 public:
     shared_ptr<MissHotKeyFunc> pHotKeyFunc;
-	shared_ptr<MissCommunicate> pCommunicate;	
 };
 
 MissPluginMain::MissPluginMain()
@@ -35,7 +33,6 @@ MissPluginMain::~MissPluginMain()
 void MissPluginMain::Init()
 {
 	m_pImpl->pHotKeyFunc = shared_ptr<MissHotKeyFunc>(new MissHotKeyFunc());
-	m_pImpl->pCommunicate = shared_ptr<MissCommunicate>(new MissCommunicate());
 
 	m_pImpl->pHotKeyFunc->GetHandle()->Bind(wxEVT_HOTKEYFUNC, &MissPluginMain::OnHotkey, this);
 
@@ -52,15 +49,9 @@ void MissPluginMain::LoadPlugin()
 		m_pImpl->pHotKeyFunc->InitHotkey(ptConfig);
     }
 
-	///创建监听
-	if (shared_ptr<IMissNetwork> ptNetwork = GetMain()->QueryIF<IMissNetwork>(IF_NETWORK))
-	{
-		std::tr1::shared_ptr<IMissUDP> ptUDP = ptNetwork->GetUDP();
-		///加载通讯功能
-		m_pImpl->pCommunicate->InitNet(ptUDP);
-	}
+	MissCommunicate::Instance().Init();
 	
-
+	MissCommunicate::Instance().Online();
 }
 
 void MissPluginMain::UnloadPlugin()

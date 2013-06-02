@@ -3,12 +3,14 @@
 #include "..\Common\CustomId.h"
 #include "..\Common\IdCreater.hpp"
 #include "MissAPI/interface/IMissNetwork.h"
+#include "MissAPI/plugin/MissNetMessageBase.h"
 
 #include <wx/frame.h>
 #include <wx/socket.h>
 #include <wx/mstream.h>
 
 #include <iostream>
+#include <winsock2.h>
 
 extern wxFrame* wxAppFrame;
 
@@ -20,6 +22,8 @@ public:
 	std::tr1::shared_ptr<wxSocketBase> pSocket;
 };
 
+typedef std::map<unsigned int, std::vector<MissNetMessageBase*> > MsgMap;
+
 class MissNetworkManager::Impl
 {
 public:
@@ -28,12 +32,12 @@ public:
 	IdCreater<unsigned int>             idSocket;
 
 	///Socket_ID
-	std::map<unsigned int, std::vector<MissNetMessageBase*> > mapMess;
+	MsgMap mapMess;
 	
 	///port
 	std::map<unsigned short, SocketData>     mapUDP;
 
-	unsigned char buffer[2048];
+	unsigned char buffer[32767];
 };
 
 MissNetworkManager::MissNetworkManager()
@@ -85,7 +89,7 @@ bool MissNetworkManager::ListenUDP( MissPluginBase* pPluginBase,
 			ListenAddress.Hostname(addr.strAddr);
 		}
 		ListenAddress.Service(addr.sPort);
-		wxDatagramSocket* pSocket = new wxDatagramSocket(ListenAddress);
+		wxDatagramSocket* pSocket = new wxDatagramSocket(ListenAddress, wxSOCKET_BROADCAST);
 		pSocket->SetEventHandler(*wxAppFrame, uSocketID);
 		pSocket->SetNotify(wxSOCKET_INPUT_FLAG);
 		pSocket->Notify(true);
@@ -115,7 +119,15 @@ bool MissNetworkManager::SendUDP( MissPluginBase* pPluginBase, const MissIPAddre
 	if (ciFind != m_pImpl->mapUDP.end())
 	{
 		wxIPV4address SendAddress;
-		SendAddress.Hostname(addrDes.strAddr);
+		if (addrDes.strAddr.IsEmpty())
+		{
+			//SendAddress.BroadcastAddress();
+			//SendAddress.Hostname("192.168.0.20");
+		}
+		else
+		{
+			SendAddress.Hostname(addrDes.strAddr);
+		}
 		SendAddress.Service(addrDes.sPort);
 		std::tr1::static_pointer_cast<wxDatagramSocket>(ciFind->second.pSocket)->
 			SendTo(SendAddress,
@@ -129,16 +141,34 @@ void MissNetworkManager::Receive( wxSocketEvent& event )
 {
 	//std::cout<<event.GetSocketEvent()<<std::endl;
 	std::cout<<event.GetEventType()<<std::endl;
-	
-	wxUint32 bufferSize(2048);
+	std::cout<<event.GetId()<<std::endl;
+	wxUint32 bufferSize(32767);
 	wxSocketBase* pSocket = event.GetSocket();
 	do 
 	{
 		pSocket->Read(m_pImpl->buffer, bufferSize);
 		bufferSize = pSocket->LastCount();
 		m_pImpl->buffer[bufferSize] = '\0';
-		std::cout<<m_pImpl->buffer<<std::endl;
-		//m_pImpl->mapMess.find();
+		MsgMap::const_iterator ciFind = m_pImpl->mapMess.find(event.GetId());
+		if (ciFind != m_pImpl->mapMess.end())
+		{
+			wxIPV4address ipaddr;
+			pSocket->GetLocal(ipaddr);
+			MissIPAddress addr;
+			addr.strAddr = ipaddr.IPAddress();
+			addr.sPort   = ipaddr.Service();
+			wxMemoryOutputStream steam(m_pImpl->buffer, bufferSize);
+			for (std::vector<MissNetMessageBase*>::const_iterator citor = ciFind->second.begin();
+				citor != ciFind->second.end(); ++citor)
+			{
+				(*citor)->Receive(addr, steam);
+			}
+		}
+		if (bufferSize == 2048)
+		{
+			std::cout<<"bufferSize == 2048"<<std::endl;
+		}
 	} while (bufferSize == 2048);
+
 }
 
