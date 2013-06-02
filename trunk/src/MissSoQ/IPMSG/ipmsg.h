@@ -146,6 +146,4 @@
 
 /*  end of IP Messenger Communication Protocol version 3.0 define  */
 
-#include "ipmsgcmn.h"
-
 #endif
