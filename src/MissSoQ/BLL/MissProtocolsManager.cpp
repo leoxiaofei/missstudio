@@ -36,7 +36,7 @@ MissProtocolsManager::~MissProtocolsManager()
 
 void MissProtocolsManager::InitData()
 {
-	m_pImpl->strVer = "1";
+	m_pImpl->strVer = "MissSoQ";
 	m_pImpl->hostLocal.strHostName = wxGetHostName();
 	m_pImpl->hostLocal.strUserName = wxGetUserName();
 
@@ -106,6 +106,32 @@ unsigned long MissProtocolsManager::HostStatus()
 // 		| IPMSG_CAPUTF8OPT
 // 		| IPMSG_ENCEXTMSGOPT;
 }
+
+void MissProtocolsManager::GetNoOperation( wxMemoryOutputStream& sMsg )
+{
+	PackMsg(sMsg, IPMSG_NOOPERATION | HostStatus(), m_pImpl->hostLocal.strUserName);
+}
+
+void MissProtocolsManager::GetSendMsg( wxMemoryOutputStream& sMsg, const wxString& strMsg )
+{
+	PackMsg(sMsg, IPMSG_SENDMSG | HostStatus(), strMsg);
+}
+
+bool MissProtocolsManager::Analyse( unsigned long uSerial, unsigned int uCommand, 
+								    const wxString& strContext, const wxMemoryOutputStream& sMsg )
+{
+	return false;
+}
+
+unsigned long MissProtocolsManager::UnPackMsg( unsigned int uCommand, 
+											   const wxString& strContext, const wxMemoryOutputStream& sMsg )
+{
+	wxStreamBuffer* pBuffer = sMsg.GetOutputStreamBuffer();
+	//pBuffer->
+	return 0;
+}
+
+
 
 
 /*

@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\src\MissSoQ\BLL\MissCommunicate.cpp" />
+    <ClCompile Include="..\..\..\src\MissSoQ\BLL\MissProtocolsManager.cpp" />
+    <ClCompile Include="..\..\..\src\MissSoQ\Common\MissGlobal.cpp" />
+    <ClCompile Include="..\..\..\src\MissSoQ\Communication\communthread.cpp" />
+    <ClCompile Include="..\..\..\src\MissSoQ\Communication\detector.cpp" />
+    <ClCompile Include="..\..\..\src\MissSoQ\Communication\eventcallback.cpp" />
+    <ClCompile Include="..\..\..\src\MissSoQ\dllmain.cpp" />
+    <ClCompile Include="..\..\..\src\MissSoQ\Impl\MissHotKeyFunc.cpp" />
+    <ClCompile Include="..\..\..\src\MissSoQ\Impl\MissPluginMain.cpp" />
+    <ClCompile Include="..\..\..\src\MissSoQ\IPMSG\pubkey.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\src\MissSoQ\BLL\MissCommunicate.h" />
+    <ClInclude Include="..\..\..\src\MissSoQ\BLL\MissProtocolsManager.h" />
+    <ClInclude Include="..\..\..\src\MissSoQ\Common\MissComDef.h" />
+    <ClInclude Include="..\..\..\src\MissSoQ\Common\MissGlobal.h" />
+    <ClInclude Include="..\..\..\src\MissSoQ\Communication\eventcallback.h" />
+    <ClInclude Include="..\..\..\src\MissSoQ\Communication\msgcallbackbase.h" />
+    <ClInclude Include="..\..\..\src\MissSoQ\Communication\communthread.h" />
+    <ClInclude Include="..\..\..\src\MissSoQ\Communication\detector.h" />
+    <ClInclude Include="..\..\..\src\MissSoQ\Impl\MissHotKeyFunc.h" />
+    <ClInclude Include="..\..\..\src\MissSoQ\Impl\MissPluginMain.h" />
+    <ClInclude Include="..\..\..\src\MissSoQ\IPMSG\ipmsg.h" />
+    <ClInclude Include="..\..\..\src\MissSoQ\IPMSG\pubkey.h" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{CB839319-0A72-4F4C-9A61-E3A57A090102}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>MissInput</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\GlobalProperty.props" />
+    <Import Project="..\..\..\..\..\ThirdParty\boost\1_53_0\BoostProperty.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\GlobalProperty.props" />
+    <Import Project="..\..\..\..\..\ThirdParty\boost\1_53_0\BoostProperty.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(SolutionDir)$(Configuration)\Plugin\$(ProjectName)\</OutDir>
+    <IncludePath>$(wx29)lib\vc_dll\mswud;$(SolutionDir)..\..\include;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(SolutionDir)$(Configuration)\Plugin\$(ProjectName)\</OutDir>
+    <IncludePath>$(wx29)lib\vc_dll\mswu;$(SolutionDir)..\..\include;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;BUILD_DLL;__WXMSW__;__WXDEBUG__;WXUSINGDLL;_CRT_SECURE_NO_WARNINGS;_WIN32_WINNT=0x0501;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(SolutionDir)$(Configuration)\Bin\</AdditionalLibraryDirectories>
+      <AdditionalDependencies>wxmsw29ud_core.lib;wxbase29ud.lib;wxmsw29ud_adv.lib;wxexpatd.lib;wxmsw29ud_stc.lib;wxscintillad.lib;MissTools.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;__WXMSW__;WXUSINGDLL;BUILD_DLL;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>$(SolutionDir)$(Configuration)\Bin\</AdditionalLibraryDirectories>
+      <AdditionalDependencies>wxmsw29u_core.lib;wxbase29u.lib;wxmsw29u_adv.lib;wxexpat.lib;wxmsw29u_stc.lib;wxscintilla.lib;MissTools.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

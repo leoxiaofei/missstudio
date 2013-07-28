@@ -3,8 +3,8 @@
 
 #include "MissGlobal.h"
 
-#include "wx/string.h"
-#include "wx/hashmap.h"
+#include <wx/string.h>
+#include <wx/hashmap.h>
 
 #include <unordered_map>
 

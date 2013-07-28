@@ -158,9 +158,9 @@ class CoreOptionBase : public wxFrame
 	private:
 	
 	protected:
-		wxListbook* m_listbook3;
-		wxPanel* m_panel7;
-		wxStaticText* m_staticText10;
+		wxListbook* bookOption;
+		wxPanel* panGlobalOption;
+		wxStaticText* lblAutoRun;
 		wxCheckBox* m_checkBox4;
 		wxStaticText* m_staticText11;
 		wxChoice* m_choice4;
@@ -168,7 +168,7 @@ class CoreOptionBase : public wxFrame
 		wxChoice* m_choice3;
 		wxCheckBox* m_checkBox5;
 		wxCheckBox* m_checkBox6;
-		wxPanel* m_panel10;
+		wxPanel* panPluginManager;
 		wxSplitterWindow* m_splitter2;
 		wxPanel* m_panel12;
 		wxListCtrl* m_listCtrl2;

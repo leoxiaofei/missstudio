@@ -288,7 +288,7 @@
                         <property name="aui_row"></property>
                         <property name="best_size"></property>
                         <property name="bg"></property>
-                        <property name="bitmapsize">32,32</property>
+                        <property name="bitmapsize">1,1</property>
                         <property name="caption"></property>
                         <property name="caption_visible">1</property>
                         <property name="center_pane">0</property>
@@ -816,7 +816,7 @@
                 </object>
             </object>
         </object>
-        <object class="Dialog" expanded="0">
+        <object class="Dialog" expanded="1">
             <property name="aui_managed">0</property>
             <property name="aui_manager_style">wxAUI_MGR_DEFAULT</property>
             <property name="bg"></property>
@@ -1147,7 +1147,7 @@
                 </object>
             </object>
         </object>
-        <object class="Frame" expanded="0">
+        <object class="Frame" expanded="1">
             <property name="aui_managed">0</property>
             <property name="aui_manager_style">wxAUI_MGR_DEFAULT</property>
             <property name="bg">wxSYS_COLOUR_BTNFACE</property>
@@ -1209,7 +1209,7 @@
             <event name="OnSetFocus"></event>
             <event name="OnSize"></event>
             <event name="OnUpdateUI"></event>
-            <object class="wxBoxSizer" expanded="0">
+            <object class="wxBoxSizer" expanded="1">
                 <property name="minimum_size"></property>
                 <property name="name">bSizerMain</property>
                 <property name="orient">wxVERTICAL</property>
@@ -2817,7 +2817,7 @@
                     <property name="border">5</property>
                     <property name="flag">wxEXPAND</property>
                     <property name="proportion">1</property>
-                    <object class="wxListbook" expanded="1">
+                    <object class="wxListbook" expanded="0">
                         <property name="BottomDockable">1</property>
                         <property name="LeftDockable">1</property>
                         <property name="RightDockable">1</property>
@@ -2828,7 +2828,7 @@
                         <property name="aui_row"></property>
                         <property name="best_size"></property>
                         <property name="bg"></property>
-                        <property name="bitmapsize"></property>
+                        <property name="bitmapsize">1,1</property>
                         <property name="caption"></property>
                         <property name="caption_visible">1</property>
                         <property name="center_pane">0</property>
@@ -2853,7 +2853,7 @@
                         <property name="minimize_button">0</property>
                         <property name="minimum_size"></property>
                         <property name="moveable">1</property>
-                        <property name="name">m_listbook3</property>
+                        <property name="name">bookOption</property>
                         <property name="pane_border">1</property>
                         <property name="pane_position"></property>
                         <property name="pane_size"></property>
@@ -2863,7 +2863,7 @@
                         <property name="resize">Resizable</property>
                         <property name="show">1</property>
                         <property name="size"></property>
-                        <property name="style">wxLB_TOP</property>
+                        <property name="style">wxLB_DEFAULT</property>
                         <property name="subclass"></property>
                         <property name="toolbar_pane">0</property>
                         <property name="tooltip"></property>
@@ -2895,11 +2895,11 @@
                         <event name="OnSetFocus"></event>
                         <event name="OnSize"></event>
                         <event name="OnUpdateUI"></event>
-                        <object class="listbookpage" expanded="1">
-                            <property name="bitmap">Load From File; ; [-1; -1]</property>
+                        <object class="listbookpage" expanded="0">
+                            <property name="bitmap"></property>
                             <property name="label">全局设置</property>
                             <property name="select">1</property>
-                            <object class="wxPanel" expanded="1">
+                            <object class="wxPanel" expanded="0">
                                 <property name="BottomDockable">1</property>
                                 <property name="LeftDockable">1</property>
                                 <property name="RightDockable">1</property>
@@ -2934,7 +2934,7 @@
                                 <property name="minimize_button">0</property>
                                 <property name="minimum_size"></property>
                                 <property name="moveable">1</property>
-                                <property name="name">m_panel7</property>
+                                <property name="name">panGlobalOption</property>
                                 <property name="pane_border">1</property>
                                 <property name="pane_position"></property>
                                 <property name="pane_size"></property>
@@ -2973,7 +2973,7 @@
                                 <event name="OnSetFocus"></event>
                                 <event name="OnSize"></event>
                                 <event name="OnUpdateUI"></event>
-                                <object class="wxBoxSizer" expanded="1">
+                                <object class="wxBoxSizer" expanded="0">
                                     <property name="minimum_size"></property>
                                     <property name="name">bSizer24</property>
                                     <property name="orient">wxVERTICAL</property>
@@ -3046,7 +3046,7 @@
                                                             <property name="minimize_button">0</property>
                                                             <property name="minimum_size"></property>
                                                             <property name="moveable">1</property>
-                                                            <property name="name">m_staticText10</property>
+                                                            <property name="name">lblAutoRun</property>
                                                             <property name="pane_border">1</property>
                                                             <property name="pane_position"></property>
                                                             <property name="pane_size"></property>
@@ -3716,11 +3716,11 @@
                                 </object>
                             </object>
                         </object>
-                        <object class="listbookpage" expanded="1">
+                        <object class="listbookpage" expanded="0">
                             <property name="bitmap"></property>
                             <property name="label">插件管理</property>
                             <property name="select">0</property>
-                            <object class="wxPanel" expanded="1">
+                            <object class="wxPanel" expanded="0">
                                 <property name="BottomDockable">1</property>
                                 <property name="LeftDockable">1</property>
                                 <property name="RightDockable">1</property>
@@ -3755,7 +3755,7 @@
                                 <property name="minimize_button">0</property>
                                 <property name="minimum_size"></property>
                                 <property name="moveable">1</property>
-                                <property name="name">m_panel10</property>
+                                <property name="name">panPluginManager</property>
                                 <property name="pane_border">1</property>
                                 <property name="pane_position"></property>
                                 <property name="pane_size"></property>
@@ -3794,16 +3794,16 @@
                                 <event name="OnSetFocus"></event>
                                 <event name="OnSize"></event>
                                 <event name="OnUpdateUI"></event>
-                                <object class="wxBoxSizer" expanded="1">
+                                <object class="wxBoxSizer" expanded="0">
                                     <property name="minimum_size"></property>
                                     <property name="name">bSizer18</property>
                                     <property name="orient">wxVERTICAL</property>
                                     <property name="permission">none</property>
-                                    <object class="sizeritem" expanded="1">
+                                    <object class="sizeritem" expanded="0">
                                         <property name="border">5</property>
                                         <property name="flag">wxEXPAND</property>
                                         <property name="proportion">1</property>
-                                        <object class="wxSplitterWindow" expanded="1">
+                                        <object class="wxSplitterWindow" expanded="0">
                                             <property name="BottomDockable">1</property>
                                             <property name="LeftDockable">1</property>
                                             <property name="RightDockable">1</property>
@@ -4078,8 +4078,8 @@
                                                     </object>
                                                 </object>
                                             </object>
-                                            <object class="splitteritem" expanded="1">
-                                                <object class="wxPanel" expanded="1">
+                                            <object class="splitteritem" expanded="0">
+                                                <object class="wxPanel" expanded="0">
                                                     <property name="BottomDockable">1</property>
                                                     <property name="LeftDockable">1</property>
                                                     <property name="RightDockable">1</property>

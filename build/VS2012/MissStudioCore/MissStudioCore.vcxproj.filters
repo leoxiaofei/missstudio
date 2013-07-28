@@ -192,12 +192,6 @@
     <ClCompile Include="..\..\..\src\MissStudioCore\BLL\MissExtendManager.cpp">
       <Filter>Source Files\BLL</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\src\MissStudioCore\BLL\MissNetworkManager.cpp">
-      <Filter>Source Files\BLL</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src\MissStudioCore\Impl\ImplMissNetwork.cpp">
-      <Filter>Source Files\Impl</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\src\MissStudioCore\UI\MissCoreOption.cpp">
       <Filter>Source Files\UI</Filter>
     </ClCompile>
@@ -347,14 +341,8 @@
     <ClInclude Include="..\..\..\src\MissStudioCore\BLL\MissExtendManager.h">
       <Filter>Header Files\BLL</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\src\MissStudioCore\BLL\MissNetworkManager.h">
-      <Filter>Header Files\BLL</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\src\MissStudioCore\BLL\MissResManager.h">
       <Filter>Header Files\BLL</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src\MissStudioCore\Impl\ImplMissNetwork.h">
-      <Filter>Header Files\Impl</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\src\MissStudioCore\UI\MissCoreOption.h">
       <Filter>Header Files\UI</Filter>

@@ -20,7 +20,7 @@ protected:
     void OnClose(wxCloseEvent& event);
 	void OnHotKey(wxKeyEvent& event);
     void OnTimer(wxTimerEvent& event);
-	void OnSocket(wxSocketEvent& event);
+	//void OnSocket(wxSocketEvent& event);
 
     ///自定义事件
     void OnInitWindow(wxEvent& event);

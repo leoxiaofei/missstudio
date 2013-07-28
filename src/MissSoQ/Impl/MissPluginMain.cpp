@@ -51,11 +51,13 @@ void MissPluginMain::LoadPlugin()
 
 	MissCommunicate::Instance().Init();
 	
-	MissCommunicate::Instance().Online();
+	//MissCommunicate::Instance().Online();
 }
 
 void MissPluginMain::UnloadPlugin()
 {
+	MissCommunicate::Instance().Offline();
+	MissCommunicate::Instance().Exit();
 }
 
 bool MissPluginMain::GetPlugInfo( SPlugInfo& info ) const
@@ -82,4 +84,5 @@ wxString MissPluginMain::GetPluginGUID() const
 void MissPluginMain::OnHotkey( wxCommandEvent& event )
 {
 	std::cout<<event.GetId()<<std::endl;
+	MissCommunicate::Instance().SendMsg();
 }

@@ -17,7 +17,6 @@
     <ClCompile Include="..\..\..\src\MissStudioCore\BLL\MissFunctor.cpp" />
     <ClCompile Include="..\..\..\src\MissStudioCore\BLL\MissHotKeyManager.cpp" />
     <ClCompile Include="..\..\..\src\MissStudioCore\BLL\MissMemoryManager.cpp" />
-    <ClCompile Include="..\..\..\src\MissStudioCore\BLL\MissNetworkManager.cpp" />
     <ClCompile Include="..\..\..\src\MissStudioCore\BLL\MissPluginManager.cpp" />
     <ClCompile Include="..\..\..\src\MissStudioCore\BLL\MissResManager.cpp" />
     <ClCompile Include="..\..\..\src\MissStudioCore\BLL\MissTimerManager.cpp" />
@@ -32,7 +31,6 @@
     <ClCompile Include="..\..\..\src\MissStudioCore\DAL\MissWidgetDb.cpp" />
     <ClCompile Include="..\..\..\src\MissStudioCore\Generated\GUIFrame.cpp" />
     <ClCompile Include="..\..\..\src\MissStudioCore\Impl\ImplMissClipboard.cpp" />
-    <ClCompile Include="..\..\..\src\MissStudioCore\Impl\ImplMissNetwork.cpp" />
     <ClCompile Include="..\..\..\src\MissStudioCore\Impl\ImplMissSharedMemory.cpp" />
     <ClCompile Include="..\..\..\src\MissStudioCore\Impl\ImplMissStorage.cpp" />
     <ClCompile Include="..\..\..\src\MissStudioCore\Impl\ImplMissHotKeyMgr.cpp" />
@@ -66,7 +64,6 @@
     <ClInclude Include="..\..\..\src\MissStudioCore\BLL\MissFunctor.h" />
     <ClInclude Include="..\..\..\src\MissStudioCore\BLL\MissHotKeyManager.h" />
     <ClInclude Include="..\..\..\src\MissStudioCore\BLL\MissMemoryManager.h" />
-    <ClInclude Include="..\..\..\src\MissStudioCore\BLL\MissNetworkManager.h" />
     <ClInclude Include="..\..\..\src\MissStudioCore\BLL\MissPluginManager.h" />
     <ClInclude Include="..\..\..\src\MissStudioCore\BLL\MissResManager.h" />
     <ClInclude Include="..\..\..\src\MissStudioCore\BLL\MissTimerManager.h" />
@@ -86,7 +83,6 @@
     <ClInclude Include="..\..\..\src\MissStudioCore\DAL\MissWidgetDb.h" />
     <ClInclude Include="..\..\..\src\MissStudioCore\Generated\GUIFrame.h" />
     <ClInclude Include="..\..\..\src\MissStudioCore\Impl\ImplMissClipboard.h" />
-    <ClInclude Include="..\..\..\src\MissStudioCore\Impl\ImplMissNetwork.h" />
     <ClInclude Include="..\..\..\src\MissStudioCore\Impl\ImplMissSharedMemory.h" />
     <ClInclude Include="..\..\..\src\MissStudioCore\Impl\ImplMissStorage.h" />
     <ClInclude Include="..\..\..\src\MissStudioCore\Impl\ImplMissHotKeyMgr.h" />
