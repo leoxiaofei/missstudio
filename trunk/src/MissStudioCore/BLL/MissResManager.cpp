@@ -15,7 +15,7 @@ public:
 MissResManager::MissResManager()
 : m_pImpl(new Impl)
 {
-	wxString strPath = MissPaths::Instance().GetAppPath() + wxT("Resource.bin");
+	wxString strPath = MissPaths::Instance().GetResPath() + wxT("Resource.bin");
 	m_pImpl->ptMainRes = shared_ptr<MissZipReader>(new MissZipReader(strPath));
 }
 

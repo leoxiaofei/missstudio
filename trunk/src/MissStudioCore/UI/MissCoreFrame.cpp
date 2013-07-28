@@ -18,7 +18,6 @@
 #include <wx/app.h>
 
 #include <iostream>
-#include "../BLL/MissNetworkManager.h"
 
 using std::tr1::shared_ptr;
 
@@ -73,7 +72,7 @@ void MissCoreFrame::BindEvent()
     Bind(wxEVT_TIMER, &MissCoreFrame::OnTimer, this);
     Bind(wxEVT_CLOSE_WINDOW, &MissCoreFrame::OnClose, this);
     Bind(wxEVT_HOTKEY, &MissCoreFrame::OnHotKey, this);
-	Bind(wxEVT_SOCKET, &MissCoreFrame::OnSocket, this);
+	//Bind(wxEVT_SOCKET, &MissCoreFrame::OnSocket, this);
 }
 
 void MissCoreFrame::UnbindEvent()
@@ -81,7 +80,7 @@ void MissCoreFrame::UnbindEvent()
     Unbind(wxEVT_TIMER, &MissCoreFrame::OnTimer, this);
     Unbind(wxEVT_CLOSE_WINDOW, &MissCoreFrame::OnClose, this);
     Unbind(wxEVT_HOTKEY, &MissCoreFrame::OnHotKey, this);
-	Unbind(wxEVT_SOCKET, &MissCoreFrame::OnSocket, this);
+	//Unbind(wxEVT_SOCKET, &MissCoreFrame::OnSocket, this);
 }
 
 
@@ -174,8 +173,7 @@ WXLRESULT MissCoreFrame::MSWWindowProc( WXUINT message, WXWPARAM wParam, WXLPARA
 	return wxFrame::MSWWindowProc(message, wParam, lParam);
 }
 
-void MissCoreFrame::OnSocket( wxSocketEvent& event )
-{
-	MissNetworkManager::Instance().Receive(event);
-}
-
+// void MissCoreFrame::OnSocket( wxSocketEvent& event )
+// {
+// }
+// 

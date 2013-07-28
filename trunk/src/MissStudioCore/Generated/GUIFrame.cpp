@@ -34,7 +34,7 @@ PluginOptionBase::PluginOptionBase( wxWindow* parent, wxWindowID id, const wxStr
 	bSizerMain->Add( bSizerFilter, 0, wxEXPAND, 5 );
 	
 	lbOption = new wxListbook( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLB_DEFAULT|wxLB_LEFT );
-	wxSize lbOptionImageSize = wxSize( 32,32 );
+	wxSize lbOptionImageSize = wxSize( 1,1 );
 	int lbOptionIndex = 0;
 	wxImageList* lbOptionImages = new wxImageList( lbOptionImageSize.GetWidth(), lbOptionImageSize.GetHeight() );
 	lbOption->AssignImageList( lbOptionImages );
@@ -329,43 +329,49 @@ CoreOptionBase::CoreOptionBase( wxWindow* parent, wxWindowID id, const wxString&
 	wxBoxSizer* bSizer16;
 	bSizer16 = new wxBoxSizer( wxVERTICAL );
 	
-	m_listbook3 = new wxListbook( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLB_TOP );
-	m_panel7 = new wxPanel( m_listbook3, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );
+	bookOption = new wxListbook( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLB_DEFAULT );
+	wxSize bookOptionImageSize = wxSize( 1,1 );
+	int bookOptionIndex = 0;
+	wxImageList* bookOptionImages = new wxImageList( bookOptionImageSize.GetWidth(), bookOptionImageSize.GetHeight() );
+	bookOption->AssignImageList( bookOptionImages );
+	wxBitmap bookOptionBitmap;
+	wxImage bookOptionImage;
+	panGlobalOption = new wxPanel( bookOption, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );
 	wxBoxSizer* bSizer24;
 	bSizer24 = new wxBoxSizer( wxVERTICAL );
 	
 	wxStaticBoxSizer* sbSizer10;
-	sbSizer10 = new wxStaticBoxSizer( new wxStaticBox( m_panel7, wxID_ANY, _("常规") ), wxVERTICAL );
+	sbSizer10 = new wxStaticBoxSizer( new wxStaticBox( panGlobalOption, wxID_ANY, _("常规") ), wxVERTICAL );
 	
 	wxFlexGridSizer* fgSizer1;
 	fgSizer1 = new wxFlexGridSizer( 0, 2, 0, 0 );
 	fgSizer1->SetFlexibleDirection( wxBOTH );
 	fgSizer1->SetNonFlexibleGrowMode( wxFLEX_GROWMODE_SPECIFIED );
 	
-	m_staticText10 = new wxStaticText( m_panel7, wxID_ANY, _("开机自动运行"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_staticText10->Wrap( -1 );
-	fgSizer1->Add( m_staticText10, 0, wxALL|wxALIGN_CENTER_VERTICAL, 5 );
+	lblAutoRun = new wxStaticText( panGlobalOption, wxID_ANY, _("开机自动运行"), wxDefaultPosition, wxDefaultSize, 0 );
+	lblAutoRun->Wrap( -1 );
+	fgSizer1->Add( lblAutoRun, 0, wxALL|wxALIGN_CENTER_VERTICAL, 5 );
 	
-	m_checkBox4 = new wxCheckBox( m_panel7, wxID_ANY, _("启用"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_checkBox4 = new wxCheckBox( panGlobalOption, wxID_ANY, _("启用"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_checkBox4->SetValue(true); 
 	fgSizer1->Add( m_checkBox4, 0, wxALL|wxALIGN_CENTER_VERTICAL, 5 );
 	
-	m_staticText11 = new wxStaticText( m_panel7, wxID_ANY, _("选择语言"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText11 = new wxStaticText( panGlobalOption, wxID_ANY, _("选择语言"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticText11->Wrap( -1 );
 	fgSizer1->Add( m_staticText11, 0, wxALL|wxALIGN_CENTER_VERTICAL, 5 );
 	
 	wxArrayString m_choice4Choices;
-	m_choice4 = new wxChoice( m_panel7, wxID_ANY, wxDefaultPosition, wxDefaultSize, m_choice4Choices, 0 );
+	m_choice4 = new wxChoice( panGlobalOption, wxID_ANY, wxDefaultPosition, wxDefaultSize, m_choice4Choices, 0 );
 	m_choice4->SetSelection( 0 );
 	fgSizer1->Add( m_choice4, 0, wxALL, 5 );
 	
-	m_staticText12 = new wxStaticText( m_panel7, wxID_ANY, _("配置文件"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText12 = new wxStaticText( panGlobalOption, wxID_ANY, _("配置文件"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticText12->Wrap( -1 );
 	fgSizer1->Add( m_staticText12, 0, wxALL, 5 );
 	
 	wxString m_choice3Choices[] = { _("全局用户"), _("当前用户") };
 	int m_choice3NChoices = sizeof( m_choice3Choices ) / sizeof( wxString );
-	m_choice3 = new wxChoice( m_panel7, wxID_ANY, wxDefaultPosition, wxDefaultSize, m_choice3NChoices, m_choice3Choices, 0 );
+	m_choice3 = new wxChoice( panGlobalOption, wxID_ANY, wxDefaultPosition, wxDefaultSize, m_choice3NChoices, m_choice3Choices, 0 );
 	m_choice3->SetSelection( 0 );
 	fgSizer1->Add( m_choice3, 0, wxALL, 5 );
 	
@@ -376,27 +382,27 @@ CoreOptionBase::CoreOptionBase( wxWindow* parent, wxWindowID id, const wxString&
 	bSizer24->Add( sbSizer10, 1, wxEXPAND, 5 );
 	
 	wxStaticBoxSizer* sbSizer12;
-	sbSizer12 = new wxStaticBoxSizer( new wxStaticBox( m_panel7, wxID_ANY, _("其他") ), wxVERTICAL );
+	sbSizer12 = new wxStaticBoxSizer( new wxStaticBox( panGlobalOption, wxID_ANY, _("其他") ), wxVERTICAL );
 	
-	m_checkBox5 = new wxCheckBox( m_panel7, wxID_ANY, _("自动检测新版本"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_checkBox5 = new wxCheckBox( panGlobalOption, wxID_ANY, _("自动检测新版本"), wxDefaultPosition, wxDefaultSize, 0 );
 	sbSizer12->Add( m_checkBox5, 0, wxALL, 5 );
 	
-	m_checkBox6 = new wxCheckBox( m_panel7, wxID_ANY, _("隐藏托盘图标"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_checkBox6 = new wxCheckBox( panGlobalOption, wxID_ANY, _("隐藏托盘图标"), wxDefaultPosition, wxDefaultSize, 0 );
 	sbSizer12->Add( m_checkBox6, 0, wxALL, 5 );
 	
 	
 	bSizer24->Add( sbSizer12, 1, wxEXPAND, 5 );
 	
 	
-	m_panel7->SetSizer( bSizer24 );
-	m_panel7->Layout();
-	bSizer24->Fit( m_panel7 );
-	m_listbook3->AddPage( m_panel7, _("全局设置"), false );
-	m_panel10 = new wxPanel( m_listbook3, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );
+	panGlobalOption->SetSizer( bSizer24 );
+	panGlobalOption->Layout();
+	bSizer24->Fit( panGlobalOption );
+	bookOption->AddPage( panGlobalOption, _("全局设置"), true );
+	panPluginManager = new wxPanel( bookOption, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );
 	wxBoxSizer* bSizer18;
 	bSizer18 = new wxBoxSizer( wxVERTICAL );
 	
-	m_splitter2 = new wxSplitterWindow( m_panel10, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxSP_3D );
+	m_splitter2 = new wxSplitterWindow( panPluginManager, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxSP_3D );
 	m_splitter2->Connect( wxEVT_IDLE, wxIdleEventHandler( CoreOptionBase::m_splitter2OnIdle ), NULL, this );
 	
 	m_panel12 = new wxPanel( m_splitter2, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );
@@ -422,18 +428,12 @@ CoreOptionBase::CoreOptionBase( wxWindow* parent, wxWindowID id, const wxString&
 	bSizer18->Add( m_splitter2, 1, wxEXPAND, 5 );
 	
 	
-	m_panel10->SetSizer( bSizer18 );
-	m_panel10->Layout();
-	bSizer18->Fit( m_panel10 );
-	m_listbook3->AddPage( m_panel10, _("插件管理"), true );
-	#ifndef __WXGTK__ // Small icon style not supported in GTK
-	wxListView* m_listbook3ListView = m_listbook3->GetListView();
-	long m_listbook3Flags = m_listbook3ListView->GetWindowStyleFlag();
-	m_listbook3Flags = ( m_listbook3Flags & ~wxLC_ICON ) | wxLC_SMALL_ICON;
-	m_listbook3ListView->SetWindowStyleFlag( m_listbook3Flags );
-	#endif
+	panPluginManager->SetSizer( bSizer18 );
+	panPluginManager->Layout();
+	bSizer18->Fit( panPluginManager );
+	bookOption->AddPage( panPluginManager, _("插件管理"), false );
 	
-	bSizer16->Add( m_listbook3, 1, wxEXPAND, 5 );
+	bSizer16->Add( bookOption, 1, wxEXPAND, 5 );
 	
 	
 	this->SetSizer( bSizer16 );

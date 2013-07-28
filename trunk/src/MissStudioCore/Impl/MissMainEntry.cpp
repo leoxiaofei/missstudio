@@ -5,7 +5,6 @@
 #include "ImplMissWidgetMgr.h"
 #include "ImplMissSharedMemory.h"
 #include "ImplMissClipboard.h"
-#include "ImplMissNetwork.h"
 
 #include "..\BLL\MissPluginManager.h"
 #include "..\UI\MissCoreFrame.h"
@@ -27,7 +26,6 @@ MissMainEntry::MissMainEntry(MissPluginBase* pPlugMain)
 		s_InterfaceCreator.insert(IFCreater::value_type(IF_SHAREDMEMORY,  &MissMainEntry::CreateInterface<ImplMissSharedMemory>));
         s_InterfaceCreator.insert(IFCreater::value_type(IF_WIDGETMANAGER, &MissMainEntry::CreateInterface<ImplMissWidgetMgr>));
 		s_InterfaceCreator.insert(IFCreater::value_type(IF_CLIPBOARD,     &MissMainEntry::CreateInterface<ImplMissClipboard>));
-		s_InterfaceCreator.insert(IFCreater::value_type(IF_NETWORK,       &MissMainEntry::CreateInterface<ImplMissNetwork>));
     }
 }
 

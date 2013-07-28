@@ -15,7 +15,6 @@ public:
     wxObjectDataPtr<MissHotKeyModel> ptHotKeyModel;
     AutoColumnWidth                  acwHotKeyList;
 
-	wxImageList*                     lbOptionImages;
 };
 
 
@@ -35,19 +34,27 @@ MissPluginOption::~MissPluginOption()
 
 void MissPluginOption::InitUi()
 {
-	wxSize lbOptionImageSize = wxSize( 32,32 );
-	m_pImpl->lbOptionImages = new wxImageList(lbOptionImageSize.GetWidth(), lbOptionImageSize.GetHeight());
-	lbOption->AssignImageList( m_pImpl->lbOptionImages );
+	wxSize lbOptionImageSize = wxSize( 48, 48 );
+	wxImageList* lbOptionImages = new wxImageList(lbOptionImageSize.GetWidth(), lbOptionImageSize.GetHeight());
+	lbOption->AssignImageList( lbOptionImages );
 
 	int lbOptionIndex = 0;
 
 	std::tr1::shared_ptr<MissZipReader> pMainRes = MissResManager::Instance().GetMainRes();
-	std::tr1::shared_ptr<wxImage> pImage = pMainRes->LoadImage(_T("Bitmap/1day.png"));
-	//wxBitmap lbOptionBitmap = wxXmlResource::Get()->LoadBitmap(_T("Bitmap/1day.png"));
-	if ( pImage && pImage->IsOk() )
+	std::tr1::shared_ptr<wxImage> pImage = pMainRes->LoadImage(_T("Bitmap/configure.png"));
+
+	if ( pImage )
 	{
-		//lbOptionImage = lbOptionBitmap.ConvertToImage();
-		m_pImpl->lbOptionImages->Add( pImage->Scale( lbOptionImageSize.GetWidth(), lbOptionImageSize.GetHeight() ) );
+		lbOptionImages->Add( pImage->Scale( lbOptionImageSize.GetWidth(), lbOptionImageSize.GetHeight() ) );
+		lbOption->SetPageImage( lbOptionIndex, lbOptionIndex );
+		++lbOptionIndex;
+	}
+
+	pImage = pMainRes->LoadImage(_T("Bitmap/configure_shortcuts.png"));
+
+	if ( pImage )
+	{
+		lbOptionImages->Add( pImage->Scale( lbOptionImageSize.GetWidth(), lbOptionImageSize.GetHeight() ) );
 		lbOption->SetPageImage( lbOptionIndex, lbOptionIndex );
 		++lbOptionIndex;
 	}

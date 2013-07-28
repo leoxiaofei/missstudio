@@ -4,6 +4,8 @@
 #include <memory>
 #include <wx/event.h>
 
+class MissMessageEvent;
+
 class MissCommunicate
 {
 	class Impl;
@@ -19,12 +21,19 @@ public:
 
 	void GetUserList();
 
+	void NoOperation();
 	void Online();
 	void Offline();
 	void SendMsg();
 
 	wxEvtHandler* GetHandle() const;
 
+	void Exit();
+
+protected:
+	void ConnectReady(wxEvent& event);
+
+	void ReceiveData(MissMessageEvent& event);
 
 
 private:

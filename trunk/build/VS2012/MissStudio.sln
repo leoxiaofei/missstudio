@@ -13,7 +13,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "interface", "interface", "{
 		..\..\include\MissAPI\interface\IMissClipboard.h = ..\..\include\MissAPI\interface\IMissClipboard.h
 		..\..\include\MissAPI\interface\IMissHotKeyMgr.h = ..\..\include\MissAPI\interface\IMissHotKeyMgr.h
 		..\..\include\MissAPI\interface\IMissMain.h = ..\..\include\MissAPI\interface\IMissMain.h
-		..\..\include\MissAPI\interface\IMissNetwork.h = ..\..\include\MissAPI\interface\IMissNetwork.h
 		..\..\include\MissAPI\interface\IMissSharedMemory.h = ..\..\include\MissAPI\interface\IMissSharedMemory.h
 		..\..\include\MissAPI\interface\IMissSpeech.h = ..\..\include\MissAPI\interface\IMissSpeech.h
 		..\..\include\MissAPI\interface\IMissStorage.h = ..\..\include\MissAPI\interface\IMissStorage.h
