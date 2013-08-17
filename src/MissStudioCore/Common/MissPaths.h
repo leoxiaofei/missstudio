@@ -4,6 +4,8 @@
 #include <memory>
 #include <wx/string.h>
 
+class wxFileName;
+
 class MissPaths
 {
     class Impl;
@@ -23,6 +25,10 @@ public:
 
     void SetConfigDirType(int nType);
 
+	void CheckMakePaths();
+
+protected:
+	void CheckMakePath( const wxString& strDir );
 
 private:
     MissPaths();

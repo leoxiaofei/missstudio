@@ -1,19 +1,27 @@
 #include "MissPaths.h"
-#include <wx/stdpaths.h>
+
 #include "MissTools/MissAlgorithm.h"
 #include "ConfigId.h"
+
+#include <wx/filename.h>
+#include <wx/stdpaths.h>
+
+
 
 class MissPaths::Impl
 {
 public:
-    Impl():nDirType(DTD::PCD_GLOBAL){}
+    Impl()
+	: nDirType(DTD::PCD_GLOBAL)
+	, spDir(wxStandardPaths::Get()){}
     int nDirType;
-    wxStandardPaths spDir;
+    wxStandardPaths& spDir;
 };
 
 MissPaths::MissPaths()
 : m_pImpl(new Impl)
 {
+	CheckMakePaths();
 }
 
 MissPaths::~MissPaths()
@@ -78,4 +86,21 @@ wxString MissPaths::GetAppPath() const
 wxString MissPaths::GetResPath() const
 {
 	return m_pImpl->spDir.GetDataDir() + wxT("\\..\\Res\\");
+}
+
+void MissPaths::CheckMakePaths()
+{
+	CheckMakePath(GetDataBasePath());
+	CheckMakePath(GetPluginPath());
+	CheckMakePath(GetConfigPath());
+	CheckMakePath(GetResPath());
+}
+
+void MissPaths::CheckMakePath( const wxString& strDir )
+{
+	wxFileName dirChecker(strDir);
+	if (!dirChecker.DirExists())
+	{
+		dirChecker.Mkdir();
+	}
 }
